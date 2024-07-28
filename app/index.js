@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native';
 
-const HomePage = () => {
+const RootPage = () => {
  return (
   <View>
-   <Text>Home Page</Text>
+   <Text>Splash Screen</Text>
   </View>
  );
 };
 
-export default HomePage;
+export default RootPage;
