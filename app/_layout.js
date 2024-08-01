@@ -2,25 +2,26 @@ import { StatusBar } from 'expo-status-bar';
 import '@/global.css';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { StyleSheet, Text, View } from 'react-native';
-import { ExpoRouter, Slot, Stack } from 'expo-router';
+import { Slot } from 'expo-router';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { AuthProvider } from '@/context/AuthContext';
 
 const RootLayout = () => {
  return (
-  <GluestackUIProvider mode="light">
-   <View style={styles.container}>
-    <Slot />
-   </View>
-  </GluestackUIProvider>
+  <SafeAreaProvider>
+   <GluestackUIProvider mode="light">
+    <SafeAreaView style={styles.container}>
+     <AuthProvider>
+      <Slot />
+     </AuthProvider>
+    </SafeAreaView>
+   </GluestackUIProvider>
+  </SafeAreaProvider>
  );
 };
 
 const styles = StyleSheet.create({
- container: {
-  flex: 1,
-  backgroundColor: '#fff',
-  alignItems: 'center',
-  justifyContent: 'center',
- },
+ container: { flex: 1 },
 });
 
 export default RootLayout;
