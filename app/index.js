@@ -32,7 +32,7 @@ const RootPage = () => {
     style={styles.lottieView}
     onAnimationFinish={() => {
      setTimeout(() => {
-      router.replace(userToken ? '/home' : '/sign-up');
+      router.replace(userToken ? '/home' : '/explainers/explainer-one');
      }, 200);
     }}
     source={require('@/assets/animations/logo_animation.json')}
