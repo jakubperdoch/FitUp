@@ -18,9 +18,7 @@ const circleLength = 200;
 const radius = circleLength / (2 * Math.PI);
 
 const ProgressButton = ({ progress }) => {
- const progressValue = useSharedValue(0);
-
- useEffect(() => (progressValue.value = withTiming(1, { duration: 1000 })), []);
+ const progressValue = useSharedValue(progress);
 
  const animatedProps = useAnimatedProps(() => {
   return {
@@ -56,7 +54,7 @@ const ProgressButton = ({ progress }) => {
      colors={['#F77F00', '#D62828']}
      style={styles.button_background}
     >
-     <MaterialIcons name="arrow-forward-ios" size={20} color="white" />
+     <MaterialIcons name="arrow-forward-ios" size={17} color="white" />
     </ButtonGradient>
    </TouchableOpacity>
   </View>

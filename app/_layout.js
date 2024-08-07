@@ -4,16 +4,16 @@ import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { StyleSheet, Text, View } from 'react-native';
 import { Slot } from 'expo-router';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { AuthProvider } from '@/context/AuthContext';
+import { ContextProvider } from '@/context/context';
 
 const RootLayout = () => {
  return (
   <SafeAreaProvider>
    <GluestackUIProvider mode="light">
     <SafeAreaView style={styles.container}>
-     <AuthProvider>
+     <ContextProvider>
       <Slot />
-     </AuthProvider>
+     </ContextProvider>
     </SafeAreaView>
    </GluestackUIProvider>
   </SafeAreaProvider>

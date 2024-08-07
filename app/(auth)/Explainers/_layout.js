@@ -1,17 +1,23 @@
 import { Slot } from 'expo-router';
 import { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import ProgressButton from '@/components/custom/ProgressButton';
-const ExplainersLayout = ({ image, title, description }) => {
- const [progressBar, setProgress] = useState(0);
+import { useExplainer } from '@/context/ExplainerContext';
 
+const ExplainersLayout = () => {
+ const [progressBar, setProgress] = useState(-0.7);
+ const { explainerImage, explainerDescription, explainerTitle } =
+  useExplainer();
  return (
   <View style={styles.explainersLayout}>
-   <View style={styles.explainersImage}>{image}</View>
-   <Text style={styles.explainersTitle}>{title}</Text>
-   <Text style={styles.explainersDesc}>{description}</Text>
+   <View style={styles.explainersImage}>
+    <Image source={explainerImage} />
+   </View>
+   <Text style={styles.explainersTitle}>{explainerTitle}</Text>
+   <Text style={styles.explainersDesc}>{explainerDescription}</Text>
 
    <Slot />
+
    <ProgressButton progress={progressBar} />
   </View>
  );
