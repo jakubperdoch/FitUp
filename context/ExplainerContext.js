@@ -6,7 +6,7 @@ const ExplainerContext = createContext(null);
 export const ExplainerProvider = ({ children }) => {
  const [explainerTitle, setExplainerTitle] = useState('');
  const [explainerDescription, setExplainerDescription] = useState('');
- const [explainerImage, setExplainerImage] = useState('');
+ const [explainerImage, setExplainerImage] = useState(null);
 
  return (
   <ExplainerContext.Provider

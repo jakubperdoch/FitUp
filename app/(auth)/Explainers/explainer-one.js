@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useExplainer } from '@/context/ExplainerContext';
+import ExplainerImage from '@/assets/images/explainers-one.svg';
 
 const ExplainerPageOne = () => {
  const { setExplainerTitle, setExplainerDescription, setExplainerImage } =
@@ -12,7 +13,7 @@ const ExplainerPageOne = () => {
   );
  }, [setExplainerTitle, setExplainerDescription, setExplainerImage]);
 
- return null;
+ return <ExplainerImage  />;
 };
 
 export default ExplainerPageOne;
