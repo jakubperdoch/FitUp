@@ -1,49 +1,74 @@
-import { Slot } from 'expo-router';
-import { useState } from 'react';
+import { router, Slot } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ProgressButton from '@/components/custom/ProgressButton';
 import { useExplainer } from '@/context/ExplainerContext';
+import { usePathname } from 'expo-router';
 
 const ExplainersLayout = () => {
- const [progressBar, setProgress] = useState(-0.7);
- const {
-  explainerImage: ExplainerComponent,
-  explainerDescription,
-  explainerTitle,
- } = useExplainer();
+	const [progressBar, setProgress] = useState(-0.75);
+	const [pageIndex, setIndex] = useState(1);
+	const { explainerDescription, explainerTitle } = useExplainer();
+	const pathname = usePathname();
 
- return (
-  <View style={styles.explainersLayout}>
-   <View style={styles.explainersImage}>
-    <Slot />
-   </View>
-   <Text style={styles.explainersTitle}>{explainerTitle}</Text>
-   <Text style={styles.explainersDesc}>{explainerDescription}</Text>
-   <ProgressButton progress={progressBar} />
-  </View>
- );
+	const onPressHandler = () => {
+		setProgress((prevProgress) => prevProgress + 0.25);
+		setIndex((prevIndex) => prevIndex + 1);
+		router.replace(`/explainers/explainer-${pageIndex + 1}`);
+	};
+
+	useEffect(() => {
+		console.log(pathname);
+	}, [pathname]);
+
+	return (
+		<View style={styles.explainersLayout}>
+			<View style={styles.explainersImage}>
+				<Slot />
+			</View>
+			<View style={styles.contentContainer}>
+				<Text style={styles.explainersTitle}>{explainerTitle}</Text>
+				<Text style={styles.explainersDesc}>{explainerDescription}</Text>
+				<ProgressButton
+					style={styles.progressButton}
+					progress={progressBar}
+					onPressHandler={onPressHandler}
+				/>
+	
+			</View>
+		</View>
+	);
 };
 
 const styles = StyleSheet.create({
- explainersLayout: {
-  padding: 20,
-  alignItems: 'center',
-  justifyContent: 'center',
- },
- explainersImage: {
-  marginBottom: 20,
-  alignItems: 'center',
- },
- explainersTitle: {
-  fontSize: 24,
-  fontWeight: 'bold',
-  marginBottom: 10,
- },
- explainersDesc: {
-  fontSize: 16,
-  textAlign: 'center',
-  marginBottom: 20,
- },
+	explainersLayout: {
+		alignItems: 'center',
+		justifyContent: 'flex-start',
+		flex: 1,
+	},
+	contentContainer: {
+		paddingHorizontal: 30,
+		alignItems: 'flex-start',
+		justifyContent: 'flex-start',
+		height: '37%',
+	},
+	explainersImage: {
+		width: '100%',
+		height: '65%',
+		marginTop: -20,
+	},
+	explainersTitle: {
+		fontSize: 24,
+		fontWeight: 'bold',
+		marginBottom: 10,
+	},
+	explainersDesc: {
+		fontSize: 16,
+		textAlign: 'center',
+		marginBottom: 20,
+		textAlign: 'left',
+		width: 320,
+	},
 });
 
 export default ExplainersLayout;
