@@ -1,5 +1,5 @@
 import { router, Slot } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ProgressButton from '@/components/custom/ProgressButton';
 import { useExplainer } from '@/context/ExplainerContext';
@@ -20,10 +20,6 @@ const ExplainersLayout = () => {
 		setIndex((prevIndex) => prevIndex + 1);
 		router.replace(`/explainers/explainer-${pageIndex + 1}`);
 	};
-
-	useEffect(() => {
-		console.log(pathname);
-	}, [pathname]);
 
 	return (
 		<View style={styles.explainersLayout}>
