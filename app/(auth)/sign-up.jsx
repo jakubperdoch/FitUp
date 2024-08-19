@@ -116,6 +116,8 @@ const HomeScreen = () => {
 
 			<TouchableOpacity className='w-full mt-auto'>
 				<LinearGradient
+					start={{ x: 0, y: 0.75 }}
+					end={{ x: 1.3, y: 0.25 }}
 					colors={['#F77F00', '#D62828']}
 					style={{
 						height: 70,
