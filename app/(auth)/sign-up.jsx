@@ -6,6 +6,7 @@ import Feather from '@expo/vector-icons/Feather';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Separator } from 'tamagui';
+import AppleLoginIcon from '@/assets/icons/apple-login--icon.svg';
 
 const HomeScreen = () => {
 	const [showPassword, setShowPassword] = useState(false);
@@ -126,7 +127,7 @@ const HomeScreen = () => {
 				</LinearGradient>
 			</TouchableOpacity>
 
-			<View className='w-full flex flex-row items-center justify-center gap-2'>
+			<View className='w-full flex flex-row items-center justify-center gap-2 mt-2'>
 				<Separator
 					borderColor='#DDDADA'
 					borderWidth={1}
@@ -136,6 +137,19 @@ const HomeScreen = () => {
 					borderColor='#DDDADA'
 					borderWidth={1}
 				/>
+			</View>
+			<TouchableOpacity>
+				<AppleLoginIcon
+					width={60}
+					height={60}
+				/>
+			</TouchableOpacity>
+
+			<View className='flex flex-col gap-2 mt-5 items-center justify-center'>
+				<Text className='text-xl'>Already have an account?</Text>
+				<TouchableOpacity>
+					<Text className=' text-xl font-bold text-[#F77F00]'>Sign In</Text>
+				</TouchableOpacity>
 			</View>
 		</View>
 	);
