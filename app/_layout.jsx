@@ -10,6 +10,7 @@ import Toast from 'react-native-toast-message';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 const tamaguiConfig = createTamagui(config);
 
+
 const RootLayout = () => {
 	return (
 		<SafeAreaProvider>

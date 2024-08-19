@@ -8,6 +8,7 @@ import {
 	useAnimatedProps,
 	withTiming,
 } from 'react-native-reanimated';
+
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 const strokeWidth = 2.5;
