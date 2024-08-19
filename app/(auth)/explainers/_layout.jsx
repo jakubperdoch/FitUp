@@ -13,12 +13,12 @@ const ExplainersLayout = () => {
 
 	const onPressHandler = () => {
 		if (pageIndex >= 4) {
-			router.replace('/sign-up');
+			router.replace('/SignUpScreen');
 			return;
 		}
 		setProgress((prevProgress) => prevProgress + 0.25);
 		setIndex((prevIndex) => prevIndex + 1);
-		router.replace(`/explainers/explainer-${pageIndex + 1}`);
+		router.replace(`/explainers/Explainer${pageIndex + 1}Screen`);
 	};
 
 	return (

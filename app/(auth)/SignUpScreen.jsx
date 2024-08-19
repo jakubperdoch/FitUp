@@ -7,10 +7,12 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Separator } from 'tamagui';
 import AppleLoginIcon from '@/assets/icons/apple-login--icon.svg';
+import SignUpForm from '@/components/custom/SignUpForm';
 
-const HomeScreen = () => {
+const LoginScreen = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [checked, setChecked] = useState(false);
+
 	const handleState = () => {
 		setShowPassword((showState) => {
 			return !showState;
@@ -23,76 +25,11 @@ const HomeScreen = () => {
 				<Text className='text-2xl text-primary-500'>Hey there,</Text>
 				<Text className='text-3xl font-bold'>Create an Account</Text>
 			</View>
-			<Input
-				paddingHorizontal={10}
-				size='xl'
-				variant='rounded'>
-				<InputSlot>
-					<FontAwesome
-						name='user-o'
-						size={20}
-						color='#7B6F72'
-					/>
-				</InputSlot>
-				<InputField
-					type={'text'}
-					placeholder='Full Name'
-					fontFamily='Poppins'
-					fontSize={17}
-					autoCapitalize='words'
-					autoCorrect={false}
-				/>
-			</Input>
 
-			<Input
-				paddingHorizontal={10}
-				size='xl'
-				variant='rounded'>
-				<InputSlot>
-					<Feather
-						name='mail'
-						size={20}
-						color='#7B6F72'
-					/>
-				</InputSlot>
-				<InputField
-					type={'text'}
-					placeholder='Email'
-					fontFamily='Poppins'
-					color='#7B6F72'
-					autoCapitalize='none'
-					autoCorrect={false}
-				/>
-			</Input>
-
-			<Input
-				paddingHorizontal={10}
-				size='xl'
-				variant='rounded'>
-				<InputSlot>
-					<Feather
-						name='lock'
-						size={20}
-						color='#7B6F72'
-					/>
-				</InputSlot>
-				<InputField
-					fontFamily='Poppins'
-					placeholder='Password'
-					type={showPassword ? 'text' : 'password'}
-					fontSize={17}
-					autoCorrect={false}
-				/>
-				<InputSlot
-					className='pr-3'
-					onPress={handleState}>
-					<Feather
-						name={showPassword ? 'eye' : 'eye-off'}
-						size={22}
-						color='#7B6F72'
-					/>
-				</InputSlot>
-			</Input>
+			<SignUpForm
+				passwordVisibility={showPassword}
+				showPasswordHandler={handleState}
+			/>
 
 			<View className='flex flex-row max-w-lg justify-center items-center gap-3 mt-5'>
 				<BouncyCheckbox
@@ -157,4 +94,4 @@ const HomeScreen = () => {
 	);
 };
 
-export default HomeScreen;
+export default LoginScreen;
