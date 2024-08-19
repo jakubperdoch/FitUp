@@ -1,15 +1,12 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
-import { Input, InputField, InputSlot } from '@/components/ui/input';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import Feather from '@expo/vector-icons/Feather';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Separator } from 'tamagui';
 import AppleLoginIcon from '@/assets/icons/apple-login--icon.svg';
 import SignUpForm from '@/components/custom/SignUpForm';
-
-const LoginScreen = () => {
+import { router } from 'expo-router';
+const SignUpScreen = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [checked, setChecked] = useState(false);
 
@@ -51,7 +48,11 @@ const LoginScreen = () => {
 				</Text>
 			</View>
 
-			<TouchableOpacity className='w-full mt-auto'>
+			<TouchableOpacity
+				className='w-full mt-auto'
+				onPress={() => {
+					router.replace('/register-process/InformationsScreen');
+				}}>
 				<LinearGradient
 					start={{ x: 0, y: 0.75 }}
 					end={{ x: 1.3, y: 0.25 }}
@@ -94,4 +95,4 @@ const LoginScreen = () => {
 	);
 };
 
-export default LoginScreen;
+export default SignUpScreen;
