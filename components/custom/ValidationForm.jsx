@@ -1,32 +1,49 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { Input, InputField, InputSlot } from '@/components/ui/input';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Feather from '@expo/vector-icons/Feather';
+import { Controller } from 'react-hook-form';
 
-const SignUpForm = ({ passwordVisibility, showPasswordHandler, formType }) => {
+const SignUpForm = ({
+	passwordVisibility,
+	showPasswordHandler,
+	formType,
+	control,
+}) => {
 	return (
 		<View className='w-full gap-5 flex '>
 			{formType === 'signup' ? (
-				<Input
-					paddingHorizontal={15}
-					size='xl'
-					variant='rounded'>
-					<InputSlot>
-						<FontAwesome
-							name='user-o'
-							size={20}
-							color='#7B6F72'
-						/>
-					</InputSlot>
-					<InputField
-						className='text-lg'
-						type={'text'}
-						placeholder='Full Name'
-						fontFamily='Poppins'
-						autoCapitalize='words'
-						autoCorrect={false}
-					/>
-				</Input>
+				<Controller
+					control={control}
+					rules={{
+						required: true,
+					}}
+					render={({ field: { onChange, value } }) => (
+						<Input
+							paddingHorizontal={15}
+							size='xl'
+							variant='rounded'>
+							<InputSlot>
+								<FontAwesome
+									name='user-o'
+									size={20}
+									color='#7B6F72'
+								/>
+							</InputSlot>
+							<InputField
+								className='text-lg'
+								type={'text'}
+								value={value}
+								onChangeText={onChange}
+								placeholder='Full Name'
+								fontFamily='Poppins'
+								autoCapitalize='words'
+								autoCorrect={false}
+							/>
+						</Input>
+					)}
+					name='name'
+				/>
 			) : null}
 
 			<Input

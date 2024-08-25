@@ -6,9 +6,40 @@ import { Separator } from 'tamagui';
 import AppleLoginIcon from '@/assets/icons/apple-login--icon.svg';
 import ValidationForm from '@/components/custom/ValidationForm';
 import { router } from 'expo-router';
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+
 const SignUpScreen = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [checked, setChecked] = useState(false);
+
+	let userSchema = yup.object().shape({
+		name: yup.string().required('Name is required'),
+		email: yup.string().required('Email is required').email('Invalid email'),
+		password: yup
+			.string()
+			.required('Password is required')
+			.min(8, 'Password must contain at least 8 characters'),
+	});
+
+	const {
+		control,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		resolver: yupResolver(userSchema),
+		defaultValues: {
+			name: '',
+			email: '',
+			password: '',
+		},
+	});
+
+	const submitHandler = (formData) => {
+		console.log(formData);
+		// '/register-process/InformationsScreen';
+	};
 
 	const handleState = () => {
 		setShowPassword((showState) => {
@@ -27,7 +58,14 @@ const SignUpScreen = () => {
 				passwordVisibility={showPassword}
 				showPasswordHandler={handleState}
 				formType={'signup'}
+				errors={errors}
+				control={control}
 			/>
+			{errors.name && (
+				<Text className='text-red-500 text-md font-roboto'>
+					{errors.name.message}
+				</Text>
+			)}
 
 			<View className='flex flex-row max-w-lg  justify-center items-center gap-3 mt-5'>
 				<BouncyCheckbox
@@ -51,9 +89,7 @@ const SignUpScreen = () => {
 
 			<TouchableOpacity
 				className='w-full mt-auto'
-				onPress={() => {
-					router.replace('/register-process/InformationsScreen');
-				}}>
+				onPress={handleSubmit(submitHandler)}>
 				<LinearGradient
 					start={{ x: 0, y: 0.75 }}
 					end={{ x: 1.3, y: 0.25 }}

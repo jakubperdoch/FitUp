@@ -42,6 +42,7 @@
 		"@gluestack-ui/textarea": "^0.1.23",
 		"@gluestack-ui/toast": "^1.0.7",
 		"@gluestack-ui/tooltip": "^0.1.32",
+		"@hookform/resolvers": "^3.9.0",
 		"@legendapp/motion": "^2.4.0",
 		"@react-navigation/native": "^6.1.18",
 		"@react-navigation/native-stack": "^6.11.0",
@@ -65,6 +66,7 @@
 		"nativewind": "^4.0.36",
 		"prop-types": "^15.8.1",
 		"react": "18.2.0",
+		"react-hook-form": "^7.53.0",
 		"react-native": "0.74.5",
 		"react-native-bouncy-checkbox": "^4.0.1",
 		"react-native-gesture-handler": "~2.16.1",
@@ -76,7 +78,8 @@
 		"react-native-toast-message": "^2.2.0",
 		"tamagui": "^1.108.4",
 		"typescript": "~5.3.3",
-		"victory-native": "^41.1.0"
+		"victory-native": "^41.1.0",
+		"yup": "^1.4.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.0",
