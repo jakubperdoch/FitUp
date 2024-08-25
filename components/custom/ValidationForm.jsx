@@ -3,32 +3,34 @@ import { Input, InputField, InputSlot } from '@/components/ui/input';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Feather from '@expo/vector-icons/Feather';
 
-const SignUpForm = ({ passwordVisibility, showPasswordHandler }) => {
+const SignUpForm = ({ passwordVisibility, showPasswordHandler, formType }) => {
 	return (
 		<View className='w-full gap-5 flex '>
-			<Input
-				paddingHorizontal={10}
-				size='xl'
-				variant='rounded'>
-				<InputSlot>
-					<FontAwesome
-						name='user-o'
-						size={20}
-						color='#7B6F72'
+			{formType === 'signup' ? (
+				<Input
+					paddingHorizontal={15}
+					size='xl'
+					variant='rounded'>
+					<InputSlot>
+						<FontAwesome
+							name='user-o'
+							size={20}
+							color='#7B6F72'
+						/>
+					</InputSlot>
+					<InputField
+						className='text-lg'
+						type={'text'}
+						placeholder='Full Name'
+						fontFamily='Poppins'
+						autoCapitalize='words'
+						autoCorrect={false}
 					/>
-				</InputSlot>
-				<InputField
-					type={'text'}
-					placeholder='Full Name'
-					fontFamily='Poppins'
-					fontSize={17}
-					autoCapitalize='words'
-					autoCorrect={false}
-				/>
-			</Input>
+				</Input>
+			) : null}
 
 			<Input
-				paddingHorizontal={10}
+				paddingHorizontal={15}
 				size='xl'
 				variant='rounded'>
 				<InputSlot>
@@ -39,18 +41,18 @@ const SignUpForm = ({ passwordVisibility, showPasswordHandler }) => {
 					/>
 				</InputSlot>
 				<InputField
+					className='text-lg'
 					type={'text'}
 					inputMode='email'
 					placeholder='Email'
 					fontFamily='Poppins'
-					color='#7B6F72'
 					autoCapitalize='none'
 					autoCorrect={false}
 				/>
 			</Input>
 
 			<Input
-				paddingHorizontal={10}
+				paddingHorizontal={15}
 				size='xl'
 				variant='rounded'>
 				<InputSlot>
@@ -61,10 +63,10 @@ const SignUpForm = ({ passwordVisibility, showPasswordHandler }) => {
 					/>
 				</InputSlot>
 				<InputField
+					className='text-lg'
 					fontFamily='Poppins'
 					placeholder='Password'
 					type={passwordVisibility ? 'text' : 'password'}
-					fontSize={17}
 					autoCorrect={false}
 				/>
 				<InputSlot
