@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { useState } from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -29,16 +29,32 @@ const SignUpScreen = () => {
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(userSchema),
-		defaultValues: {
-			name: '',
-			email: '',
-			password: '',
-		},
 	});
 
 	const submitHandler = (formData) => {
-		console.log(formData);
-		// '/register-process/InformationsScreen';
+		// push formData to the backend
+		// if successful, navigate to the next screen
+		// TODO: Implement the backend logic
+		
+		router.replace('/register-process/InformationsScreen');
+	};
+
+	const onError = (errors) => {
+		let errorMessage = '';
+
+		if (errors.name) {
+			errorMessage += `Name: ${errors.name.message}\n`;
+		}
+		if (errors.email) {
+			errorMessage += `Email: ${errors.email.message}\n`;
+		}
+		if (errors.password) {
+			errorMessage += `Password: ${errors.password.message}\n`;
+		}
+
+		if (errorMessage) {
+			Alert.alert('Validation Errors', errorMessage);
+		}
 	};
 
 	const handleState = () => {
@@ -61,11 +77,6 @@ const SignUpScreen = () => {
 				errors={errors}
 				control={control}
 			/>
-			{errors.name && (
-				<Text className='text-red-500 text-md font-roboto'>
-					{errors.name.message}
-				</Text>
-			)}
 
 			<View className='flex flex-row max-w-lg  justify-center items-center gap-3 mt-5'>
 				<BouncyCheckbox
@@ -89,7 +100,7 @@ const SignUpScreen = () => {
 
 			<TouchableOpacity
 				className='w-full mt-auto'
-				onPress={handleSubmit(submitHandler)}>
+				onPress={handleSubmit(submitHandler, onError)}>
 				<LinearGradient
 					start={{ x: 0, y: 0.75 }}
 					end={{ x: 1.3, y: 0.25 }}
