@@ -50,7 +50,7 @@
 		"@shopify/react-native-skia": "1.2.3",
 		"@tamagui/config": "^1.108.4",
 		"@tamagui/core": "^1.108.4",
-		"@types/react": "~18.2.45",
+		"@types/react": "^18.3.4",
 		"babel-plugin-module-resolver": "^5.0.2",
 		"expo": "^51.0.24",
 		"expo-constants": "~16.0.2",

@@ -31,7 +31,6 @@ const ExplainersLayout = () => {
 				<Text style={styles.explainersTitle}>{explainerTitle}</Text>
 				<Text style={styles.explainersDesc}>{explainerDescription}</Text>
 				<ProgressButton
-					style={styles.progressButton}
 					progress={progressBar}
 					onPressHandler={onPressHandler}
 				/>
@@ -64,7 +63,6 @@ const styles = StyleSheet.create({
 	},
 	explainersDesc: {
 		fontSize: 16,
-		textAlign: 'center',
 		marginBottom: 20,
 		textAlign: 'left',
 		width: 320,
