@@ -3,25 +3,26 @@ import { StyleSheet } from 'react-native';
 import { Slot } from 'expo-router';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ContextProvider } from '@/context/Context';
-import { TamaguiProvider, createTamagui } from '@tamagui/core';
+import { TamaguiProvider } from '@tamagui/core';
 import config from '@/tamagui.config';
 import 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-const tamaguiConfig = createTamagui(config);
-
+import { PortalProvider } from 'tamagui';
 
 const RootLayout = () => {
 	return (
 		<SafeAreaProvider>
 			<GluestackUIProvider>
-				<TamaguiProvider config={tamaguiConfig}>
-					<SafeAreaView style={styles.container}>
-						<ContextProvider>
-							<Slot />
-							<Toast />
-						</ContextProvider>
-					</SafeAreaView>
+				<TamaguiProvider config={config}>
+					<PortalProvider>
+						<SafeAreaView style={styles.container}>
+							<ContextProvider>
+								<Slot />
+								<Toast />
+							</ContextProvider>
+						</SafeAreaView>
+					</PortalProvider>
 				</TamaguiProvider>
 			</GluestackUIProvider>
 		</SafeAreaProvider>

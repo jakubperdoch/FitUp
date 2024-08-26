@@ -1,8 +1,8 @@
 import * as themes from './theme/theme';
 import { tokens } from '@tamagui/config/v3';
-import { TamaguiProvider, createTamagui } from '@tamagui/core';
+import { createTamagui } from '@tamagui/core';
 import { shorthands } from '@tamagui/shorthands';
-
+import { createAnimations } from '@tamagui/animations-css';
 export default createTamagui({
 	themes,
 	tokens,
@@ -49,6 +49,12 @@ export default createTamagui({
 			},
 		},
 	},
+	animations: createAnimations({
+		fast: 'ease-in 150ms',
+		medium: 'ease-in 300ms',
+		slow: 'ease-in 450ms',
+	}),
+
 	media: {
 		xs: { maxWidth: 660 },
 		sm: { maxWidth: 800 },
