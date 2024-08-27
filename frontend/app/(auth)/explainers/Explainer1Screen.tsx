@@ -5,24 +5,21 @@ import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const ExplainerPageOne = () => {
-	const { setExplainerTitle, setExplainerDescription, setExplainerImage } =
-		useExplainer();
+	const { setExplainerTitle, setExplainerDescription } = useExplainer();
 	const insets = useSafeAreaInsets();
 	useEffect(() => {
 		setExplainerTitle('Track Your Goal');
 		setExplainerDescription(
 			"Don't worry if you have trouble determining your goals, We can help you determine your goals and track your goals"
 		);
-	}, [setExplainerTitle, setExplainerDescription, setExplainerImage]);
+	}, [setExplainerTitle, setExplainerDescription]);
 
 	return (
-		<>
-			<ExplainerImage
-				width='100%'
-				height='100%'
-				style={{ top: -insets.top }}
-			/>
-		</>
+		<ExplainerImage
+			width='100%'
+			height='100%'
+			style={{ top: -insets.top }}
+		/>
 	);
 };
 
