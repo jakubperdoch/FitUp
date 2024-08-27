@@ -10,16 +10,21 @@ import {
 	SelectDragIndicator,
 	SelectItem,
 } from '@/components/ui/select';
-
+import { Users } from 'lucide-react-native';
 const SelectComponent = () => {
+	const selectHandler = (value) => {
+		console.log(value);
+	};
+
 	return (
-		<Select className=''>
+		<Select onValueChange={(value) => selectHandler(value)}>
 			<SelectTrigger
-				variant='outline'
-				size='md'>
-				<SelectInput placeholder='Select option' />
+				variant='rounded'
+				size='xl'>
+				<SelectInput placeholder='Choose Gender' />
+				<SelectIcon as={Users} />
 			</SelectTrigger>
-			<SelectPortal className='px-5'>
+			<SelectPortal className='px-5 '>
 				<SelectBackdrop />
 				<SelectContent>
 					<SelectDragIndicatorWrapper>

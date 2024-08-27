@@ -1,8 +1,6 @@
 import { View, Text } from 'react-native';
 import InformationSVG from '@/assets/images/informations-image.svg';
 import SelectComponent from '@/components/custom/Select';
-import { useState } from 'react';
-
 const InformationsScreen = () => {
 	return (
 		<View className='flex justify-start items-center gap-2 h-full px-5 pt-5'>

@@ -62,7 +62,7 @@
 		"expo-secure-store": "~13.0.2",
 		"expo-status-bar": "~1.12.1",
 		"lottie-react-native": "6.7.0",
-		"lucide-react-native": "^0.428.0",
+		"lucide-react-native": "^0.436.0",
 		"nativewind": "^4.0.36",
 		"prop-types": "^15.8.1",
 		"react": "18.2.0",

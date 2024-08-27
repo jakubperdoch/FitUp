@@ -93,7 +93,7 @@ const SignUpScreen = () => {
 						setChecked(!isChecked);
 					}}
 				/>
-				<Text className='text-gray-500 text-md font-roboto'>
+				<Text className='text-gray-500 text-md font-poppins'>
 					I agree to the Terms of Service and Privacy Policy
 				</Text>
 			</View>
