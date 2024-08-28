@@ -1,5 +1,6 @@
 import { TextInput, TouchableOpacity, View, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Controller } from 'react-hook-form';
 
 const ConversionInputComponent = ({
 	placeholder,
@@ -8,21 +9,33 @@ const ConversionInputComponent = ({
 	inputChangeHandler,
 	metricChangeHandler,
 	children,
+	control,
+	controlName,
 }) => {
 	return (
 		<View className='flex flex-row w-full justify-between '>
-			<View className='w-4/5 h-16 flex-row items-center rounded-xl bg-[#F7F8F8] px-6 gap-4'>
-				{children}
-				<TextInput
-					value={inputValue}
-					onChangeText={(value) => inputChangeHandler(value)}
-					placeholder={placeholder}
-					placeholderClassName='opacity-40'
-					className='w-10/12 font-semibold font-poppins text-xl text-[#7B6F72]'
-					inputMode={'numeric'}
-					keyboardType={'number-pad'}
-				/>
-			</View>
+			<Controller
+				control={control}
+				rules={{ required: true }}
+				render={({ field: { onChange } }) => (
+					<View className='w-4/5 h-16 flex-row items-center rounded-xl bg-[#F7F8F8] px-6 gap-4'>
+						{children}
+						<TextInput
+							value={inputValue}
+							onChangeText={(value) => {
+								inputChangeHandler(value);
+								onChange(value);
+							}}
+							placeholder={placeholder}
+							placeholderClassName='opacity-40'
+							className='w-10/12 font-semibold font-poppins text-xl text-[#7B6F72]'
+							inputMode={'numeric'}
+							keyboardType={'number-pad'}
+						/>
+					</View>
+				)}
+				name={controlName}
+			/>
 
 			<TouchableOpacity
 				onPress={metricChangeHandler}

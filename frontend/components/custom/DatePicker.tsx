@@ -3,8 +3,8 @@ import { Text, TouchableOpacity } from 'react-native';
 import { useState, useEffect } from 'react';
 import ActionSheetComponent from './ActionSheet';
 import { CalendarDays } from 'lucide-react-native';
-
-const DatePickerComponent = () => {
+import { Controller } from 'react-hook-form';
+const DatePickerComponent = ({ control }) => {
 	const [date, setDate] = useState(new Date());
 	const [stringDate, setStringDate] = useState('');
 	const [minumumDate, setMinimumDate] = useState(null);
@@ -37,16 +37,26 @@ const DatePickerComponent = () => {
 				</Text>
 			</TouchableOpacity>
 
-			<ActionSheetComponent
-				showActionsheet={showActionsheet}
-				closeHandler={handleClose}>
-				<DatePicker
-					date={date}
-					mode='date'
-					onDateChange={setDate}
-					maximumDate={minumumDate}
-				/>
-			</ActionSheetComponent>
+			<Controller
+				control={control}
+				rules={{ required: true }}
+				render={({ field: { onChange } }) => (
+					<ActionSheetComponent
+						showActionsheet={showActionsheet}
+						closeHandler={handleClose}>
+						<DatePicker
+							date={date}
+							mode='date'
+							onDateChange={(value) => {
+								onChange(value);
+								setDate(value);
+							}}
+							maximumDate={minumumDate}
+						/>
+					</ActionSheetComponent>
+				)}
+				name='birth'
+			/>
 		</>
 	);
 };

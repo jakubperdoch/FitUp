@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import InformationSVG from '@/assets/images/informations-image.svg';
 import SelectComponent from '@/components/custom/Select';
 import DatePickerComponent from '@/components/custom/DatePicker';
@@ -6,6 +6,10 @@ import ConversionInputComponent from '@/components/custom/ConversionInput';
 import { useState } from 'react';
 import { Ruler, Weight } from 'lucide-react-native';
 import GradientButtonComponent from '@/components/custom/GradientButton';
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { router } from 'expo-router';
 
 const InformationsScreen = () => {
 	const [currentWeightIndex, setCurrentWeightIndex] = useState(0);
@@ -19,15 +23,55 @@ const InformationsScreen = () => {
 	const heightMetrics = ['cm', 'in'];
 
 	const metricChangeHandler = (
-		metricsArray,
-		currentIndex,
-		setMetric,
-		setIndex
+		metricsArray: string[],
+		currentIndex: number,
+		setMetric: (metric: string) => void,
+		setIndex: (index: number) => void
 	) => {
 		const nextIndex =
 			currentIndex === metricsArray.length - 1 ? 0 : currentIndex + 1;
 		setIndex(nextIndex);
 		setMetric(metricsArray[nextIndex]);
+	};
+
+	const informationSchema = yup.object().shape({
+		gender: yup.string().required('Gender is required'),
+		birth: yup.date().required('Date of Birth is required'),
+		weight: yup.number().required('Weight is required'),
+		height: yup.number().required('Height is required'),
+	});
+
+	const {
+		control,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		resolver: yupResolver(informationSchema),
+	});
+
+	const submitHandler = () => {
+		console.log('Correct');
+	};
+
+	const onError = (errors) => {
+		let errorMessage = '';
+
+		if (errors.gender) {
+			errorMessage += `Gender: ${errors.gender.message}\n`;
+		}
+		if (errors.birth) {
+			errorMessage += `Date of Birth: ${errors.birth.message}\n`;
+		}
+		if (errors.weight) {
+			errorMessage += `Weight: ${errors.weight.message}\n`;
+		}
+		if (errors.height) {
+			errorMessage += `Height: ${errors.height.message}\n`;
+		}
+
+		if (errorMessage) {
+			Alert.alert('Validation Errors', errorMessage);
+		}
 	};
 
 	return (
@@ -43,14 +87,16 @@ const InformationsScreen = () => {
 			</Text>
 
 			<View className='flex flex-col w-full gap-5 mt-5'>
-				<SelectComponent />
+				<SelectComponent control={control} />
 
-				<DatePickerComponent />
+				<DatePickerComponent control={control} />
 
 				<ConversionInputComponent
 					placeholder={'Your Weight'}
 					metric={weightMetric}
 					inputValue={weight}
+					control={control}
+					controlName={'weight'}
 					inputChangeHandler={setWeight}
 					metricChangeHandler={() =>
 						metricChangeHandler(
@@ -67,6 +113,8 @@ const InformationsScreen = () => {
 				</ConversionInputComponent>
 
 				<ConversionInputComponent
+					control={control}
+					controlName={'height'}
 					placeholder={'Your Height'}
 					metric={heightMetric}
 					inputValue={height}
@@ -86,7 +134,7 @@ const InformationsScreen = () => {
 				</ConversionInputComponent>
 
 				<GradientButtonComponent
-					handleSubmit={() => console.log('Routing')}
+					handleSubmit={handleSubmit(submitHandler, onError)}
 					title={'Next'}
 				/>
 			</View>
