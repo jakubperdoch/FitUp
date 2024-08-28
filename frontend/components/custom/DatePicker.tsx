@@ -15,7 +15,7 @@ const DatePickerComponent = () => {
 		if (date && showActionsheet) {
 			setStringDate(date.toLocaleDateString('en-US'));
 			setMinimumDate(
-				new Date(new Date().setFullYear(new Date().getFullYear() - 12))
+				new Date(new Date().setFullYear(new Date().getFullYear() - 10))
 			);
 		}
 	}, [date]);
@@ -24,15 +24,15 @@ const DatePickerComponent = () => {
 		<>
 			<TouchableOpacity
 				onPress={() => setShowActionsheet(true)}
-				className='px-6 gap-4 bg-[#F7F8F8] flex flex-row h-16 items-center justify-start w-full'>
+				className='px-6 gap-4 rounded-xl bg-[#F7F8F8] flex flex-row h-16 items-center justify-start w-full'>
 				<CalendarDays
 					color={'#7B6F72'}
 					size={30}
 				/>
 				<Text
 					className={`${
-						stringDate ? 'text-[#7B6F72] opacity-100' : 'text-[#7B6F72] opacity-40'
-					} font-semibold font-poppins text-xl`}>
+						stringDate ? 'opacity-100' : 'opacity-40'
+					} font-semibold font-poppins text-xl text-[#7B6F72]`}>
 					{stringDate ? stringDate : 'Date of Birth'}
 				</Text>
 			</TouchableOpacity>
