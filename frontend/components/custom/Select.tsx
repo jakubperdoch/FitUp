@@ -11,6 +11,7 @@ import {
 	SelectItem,
 } from '@/components/ui/select';
 import { Users } from 'lucide-react-native';
+
 const SelectComponent = () => {
 	const selectHandler = (value) => {
 		console.log(value);
@@ -43,7 +44,7 @@ const SelectComponent = () => {
 						value='Cross Platform Development Process'
 					/>
 					<SelectItem
-						className='mb-10'
+						className='mb-8'
 						label='UI Designing'
 						value='ui'
 					/>

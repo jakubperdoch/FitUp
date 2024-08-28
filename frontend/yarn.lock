@@ -1266,7 +1266,7 @@
     "@react-native-aria/focus" "^0.2.9"
     "@react-native-aria/interactions" "0.2.13"
 
-"@gluestack-ui/actionsheet@^0.2.43":
+"@gluestack-ui/actionsheet@^0.2.44":
   version "0.2.44"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/actionsheet/-/actionsheet-0.2.44.tgz#3cec30acfed7d590b2d783b34d40b24eb7074a0d"
   integrity sha512-sLw/Pq5iMNliiddX1wGao3rj+6Brb2NZg6z2jRIoe6bvZoZ2x6ggQt2QznNeu6qRg0/sw3nwJUs5ZGMHGr4VeA==
@@ -8621,6 +8621,11 @@ react-native-css-interop@0.1.1:
     babel-plugin-tester "^11.0.4"
     lightningcss "1.22.0"
     semver "^7.6.3"
+
+react-native-date-picker@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-date-picker/-/react-native-date-picker-5.0.5.tgz#3000c2b47f6c67160f1b2a8cf1e2aad1dcddfd45"
+  integrity sha512-a72rYzqiatQ126Wl2e5HPIfJwqfBMzI3pNT5STvPkRJs1n9DyClQmz6VTMf3em1JgLgVTZoaAGdljU+b8LiPFw==
 
 react-native-gesture-handler@~2.16.1:
   version "2.16.2"
