@@ -20,7 +20,7 @@ const ExplainerPageTwo = () => {
 			<ExplainerImage
 				width='100%'
 				height='100%'
-				style={[styles.imageContainer, { top: -insets.top }]}
+				style={{ top: -insets.top }}
 			/>
 		</>
 	);

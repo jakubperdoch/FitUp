@@ -28,8 +28,16 @@ const ExplainersLayout = () => {
 				<Slot />
 			</View>
 			<View style={styles.contentContainer}>
-				<Text style={styles.explainersTitle}>{explainerTitle}</Text>
-				<Text style={styles.explainersDesc}>{explainerDescription}</Text>
+				<Text
+					style={styles.explainersTitle}
+					className='font-poppins'>
+					{explainerTitle}
+				</Text>
+				<Text
+					style={styles.explainersDesc}
+					className='font-poppinsLight'>
+					{explainerDescription}
+				</Text>
 				<ProgressButton
 					progress={progressBar}
 					onPressHandler={onPressHandler}

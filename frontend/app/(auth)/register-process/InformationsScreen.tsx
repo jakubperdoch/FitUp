@@ -5,11 +5,30 @@ import DatePickerComponent from '@/components/custom/DatePicker';
 import ConversionInputComponent from '@/components/custom/ConversionInput';
 import { useState } from 'react';
 import { Ruler, Weight } from 'lucide-react-native';
+import GradientButtonComponent from '@/components/custom/GradientButton';
 
 const InformationsScreen = () => {
-	const [metric, setMetric] = useState('kg');
+	const [currentWeightIndex, setCurrentWeightIndex] = useState(0);
+	const [currentHeightIndex, setCurrentHeightIndex] = useState(0);
+	const [weightMetric, setWeightMetric] = useState('kg');
+	const [heightMetric, setHeightMetric] = useState('cm');
 	const [weight, setWeight] = useState(null);
 	const [height, setHeight] = useState(null);
+
+	const weightMetrics = ['kg', 'lb'];
+	const heightMetrics = ['cm', 'in'];
+
+	const metricChangeHandler = (
+		metricsArray,
+		currentIndex,
+		setMetric,
+		setIndex
+	) => {
+		const nextIndex =
+			currentIndex === metricsArray.length - 1 ? 0 : currentIndex + 1;
+		setIndex(nextIndex);
+		setMetric(metricsArray[nextIndex]);
+	};
 
 	return (
 		<View className='flex justify-start items-center gap-2 h-full px-5 pt-5'>
@@ -23,33 +42,54 @@ const InformationsScreen = () => {
 				It will help us to know more about you!
 			</Text>
 
-			<SelectComponent />
+			<View className='flex flex-col w-full gap-5 mt-5'>
+				<SelectComponent />
 
-			<DatePickerComponent />
+				<DatePickerComponent />
 
-			<ConversionInputComponent
-				placeholder={'Your Weight'}
-				metric={metric}
-				inputValue={weight}
-				inputChangeHandler={setWeight}
-				metricChangeHandler={setMetric}>
-				<Weight
-					color={'#7B6F72'}
-					size={30}
+				<ConversionInputComponent
+					placeholder={'Your Weight'}
+					metric={weightMetric}
+					inputValue={weight}
+					inputChangeHandler={setWeight}
+					metricChangeHandler={() =>
+						metricChangeHandler(
+							weightMetrics,
+							currentWeightIndex,
+							setWeightMetric,
+							setCurrentWeightIndex
+						)
+					}>
+					<Weight
+						color={'#7B6F72'}
+						size={30}
+					/>
+				</ConversionInputComponent>
+
+				<ConversionInputComponent
+					placeholder={'Your Height'}
+					metric={heightMetric}
+					inputValue={height}
+					inputChangeHandler={setHeight}
+					metricChangeHandler={() =>
+						metricChangeHandler(
+							heightMetrics,
+							currentHeightIndex,
+							setHeightMetric,
+							setCurrentHeightIndex
+						)
+					}>
+					<Ruler
+						color={'#7B6F72'}
+						size={30}
+					/>
+				</ConversionInputComponent>
+
+				<GradientButtonComponent
+					handleSubmit={() => console.log('Routing')}
+					title={'Next'}
 				/>
-			</ConversionInputComponent>
-
-			<ConversionInputComponent
-				placeholder={'Your Height'}
-				metric={metric}
-				inputValue={height}
-				inputChangeHandler={setHeight}
-				metricChangeHandler={setMetric}>
-				<Ruler
-					color={'#7B6F72'}
-					size={30}
-				/>
-			</ConversionInputComponent>
+			</View>
 		</View>
 	);
 };
