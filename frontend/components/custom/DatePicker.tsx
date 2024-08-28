@@ -12,11 +12,14 @@ const DatePickerComponent = ({ control }) => {
 	const handleClose = () => setShowActionsheet(false);
 
 	useEffect(() => {
+		setMinimumDate(
+			new Date(new Date().setFullYear(new Date().getFullYear() - 10))
+		);
+	}, []);
+
+	useEffect(() => {
 		if (date && showActionsheet) {
 			setStringDate(date.toLocaleDateString('en-US'));
-			setMinimumDate(
-				new Date(new Date().setFullYear(new Date().getFullYear() - 10))
-			);
 		}
 	}, [date]);
 
