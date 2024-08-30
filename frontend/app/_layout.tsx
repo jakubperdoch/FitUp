@@ -1,3 +1,4 @@
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import '@/global.css';
 import { StyleSheet } from 'react-native';
 import { Slot } from 'expo-router';
@@ -13,18 +14,20 @@ import { PortalProvider } from 'tamagui';
 const RootLayout = () => {
 	return (
 		<SafeAreaProvider>
-			<GluestackUIProvider>
-				<TamaguiProvider config={config}>
-					<PortalProvider>
-						<SafeAreaView style={styles.container}>
-							<ContextProvider>
-								<Slot />
-								<Toast />
-							</ContextProvider>
-						</SafeAreaView>
-					</PortalProvider>
-				</TamaguiProvider>
-			</GluestackUIProvider>
+			<GestureHandlerRootView style={{ flex: 1 }}>
+				<GluestackUIProvider>
+					<TamaguiProvider config={config}>
+						<PortalProvider>
+							<SafeAreaView style={styles.container}>
+								<ContextProvider>
+									<Slot />
+									<Toast />
+								</ContextProvider>
+							</SafeAreaView>
+						</PortalProvider>
+					</TamaguiProvider>
+				</GluestackUIProvider>
+			</GestureHandlerRootView>
 		</SafeAreaProvider>
 	);
 };

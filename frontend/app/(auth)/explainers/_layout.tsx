@@ -14,7 +14,8 @@ const ExplainersLayout = () => {
 	const onPressHandler = () => {
 		if (pageIndex >= 4) {
 			// router.replace('/SignUpScreen');
-			router.replace('/register-process/InformationsScreen');
+			// router.replace('/register-process/InformationsScreen');
+			router.replace('/register-process/SelectingGoalsScreen');
 			return;
 		}
 		setProgress((prevProgress) => prevProgress + 0.25);

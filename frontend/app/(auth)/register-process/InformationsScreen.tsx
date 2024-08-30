@@ -22,6 +22,21 @@ const InformationsScreen = () => {
 	const weightMetrics = ['kg', 'lb'];
 	const heightMetrics = ['cm', 'in'];
 
+	const genderOptions = [
+		{
+			label: 'Male',
+			value: 'male',
+		},
+		{
+			label: 'Female',
+			value: 'female',
+		},
+		{
+			label: 'Other',
+			value: 'other',
+		},
+	];
+
 	const metricChangeHandler = (
 		metricsArray: string[],
 		currentIndex: number,
@@ -51,6 +66,7 @@ const InformationsScreen = () => {
 
 	const submitHandler = () => {
 		console.log('Correct');
+		router.push('/register-process/SelectingGoalsScreen');
 	};
 
 	const onError = (errors) => {
@@ -86,8 +102,11 @@ const InformationsScreen = () => {
 				It will help us to know more about you!
 			</Text>
 
-			<View className='flex flex-col w-full gap-5 mt-5'>
-				<SelectComponent control={control} />
+			<View className='flex flex-col w-full gap-5 mt-3 mb-2'>
+				<SelectComponent
+					control={control}
+					options={genderOptions}
+				/>
 
 				<DatePickerComponent control={control} />
 
@@ -132,12 +151,11 @@ const InformationsScreen = () => {
 						size={30}
 					/>
 				</ConversionInputComponent>
-
-				<GradientButtonComponent
-					handleSubmit={handleSubmit(submitHandler, onError)}
-					title={'Next'}
-				/>
 			</View>
+			<GradientButtonComponent
+				handleSubmit={handleSubmit(submitHandler, onError)}
+				title={'Next'}
+			/>
 		</View>
 	);
 };

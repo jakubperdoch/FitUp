@@ -10,10 +10,14 @@ import {
 	SelectDragIndicator,
 	SelectItem,
 } from '@/components/ui/select';
+import { Text } from 'react-native';
+import { useEffect } from 'react';
 import { Controller } from 'react-hook-form';
 import { Users } from 'lucide-react-native';
 
-const SelectComponent = ({ control }) => {
+const SelectComponent = ({ control, options }) => {
+	let lastIndexOfArray = options.length - 1;
+
 	return (
 		<Controller
 			control={control}
@@ -32,23 +36,18 @@ const SelectComponent = ({ control }) => {
 							<SelectDragIndicatorWrapper>
 								<SelectDragIndicator />
 							</SelectDragIndicatorWrapper>
-							<SelectItem
-								label='UX Research'
-								value='ux'
-							/>
-							<SelectItem
-								label='Web Development'
-								value='web'
-							/>
-							<SelectItem
-								label='Cross Platform Development Process'
-								value='Cross Platform Development Process'
-							/>
-							<SelectItem
-								className='mb-8'
-								label='UI Designing'
-								value='ui'
-							/>
+							{options.map(
+								(anObjectMapped: { label: string; value: string }, index: string) => {
+									return (
+										<SelectItem
+											className={`${index == lastIndexOfArray.toString() ? 'mb-6' : 'mb-0'}`}
+											key={index}
+											label={anObjectMapped.label}
+											value={anObjectMapped.value}
+										/>
+									);
+								}
+							)}
 						</SelectContent>
 					</SelectPortal>
 				</Select>
