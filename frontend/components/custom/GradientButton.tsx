@@ -1,10 +1,10 @@
 import { TouchableOpacity, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const GradientButtonComponent = ({ handleSubmit,title }) => {
+const GradientButtonComponent = ({ handleSubmit, title }) => {
 	return (
 		<TouchableOpacity
-			className='w-full mt-auto'
+			className='w-full mt-auto shadow-lg'
 			onPress={handleSubmit}>
 			<LinearGradient
 				start={{ x: 0, y: 0.75 }}

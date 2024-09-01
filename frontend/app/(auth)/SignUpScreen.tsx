@@ -13,7 +13,6 @@ import GradientButtonComponent from '@/components/custom/GradientButton';
 
 const SignUpScreen = () => {
 	const [showPassword, setShowPassword] = useState(false);
-	const [checked, setChecked] = useState(false);
 
 	let userSchema = yup.object().shape({
 		name: yup.string().required('Name is required'),
@@ -68,7 +67,7 @@ const SignUpScreen = () => {
 		<View className='flex flex-col gap-5 justify-center items-center px-5 h-full'>
 			<View className='d-flex items-center mb-6 mt-4'>
 				<Text className='text-2xl text-primary-500 font-poppins'>Hey there,</Text>
-				<Text className='text-3xl font-bold font-poppinsLight mt-2'>
+				<Text className='text-3xl font-bold font-poppins mt-2'>
 					Create an Account
 				</Text>
 			</View>
@@ -80,9 +79,8 @@ const SignUpScreen = () => {
 				control={control}
 			/>
 
-			<View className='flex flex-row max-w-lg  justify-center items-center gap-3 mt-5'>
+			<View className='flex flex-row px-4  w-full justify-center items-center gap-3 mt-5'>
 				<BouncyCheckbox
-					isChecked={checked}
 					fillColor='#F77F00'
 					size={25}
 					disableText
@@ -91,12 +89,12 @@ const SignUpScreen = () => {
 					innerIconStyle={{
 						borderWidth: 0,
 					}}
-					onPress={(isChecked) => {
-						setChecked(!isChecked);
+					onPress={(isChecked: boolean) => {
+						console.log(isChecked);
 					}}
 				/>
-				<Text className='text-gray-500 text-md font-poppins'>
-					I agree to the Terms of Service and Privacy Policy
+				<Text className='text-gray-500 text-sm font-poppins'>
+					By continuing you accept our Privacy Policy and Term of Use
 				</Text>
 			</View>
 
@@ -118,12 +116,12 @@ const SignUpScreen = () => {
 			</View>
 			<TouchableOpacity>
 				<AppleLoginIcon
-					width={60}
-					height={60}
+					width={50}
+					height={50}
 				/>
 			</TouchableOpacity>
 
-			<View className='flex flex-col gap-2 mt-5  items-center justify-center'>
+			<View className='flex flex-col gap-2  items-center justify-center'>
 				<Text className='text-lg font-poppins'>Already have an account?</Text>
 				<TouchableOpacity onPress={() => router.push('/SignInScreen')}>
 					<Text className=' text-xl font-poppins font-bold text-[#F77F00]'>

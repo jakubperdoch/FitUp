@@ -91,14 +91,16 @@ const InformationsScreen = () => {
 	};
 
 	return (
-		<View className='flex justify-start items-center gap-2 h-full px-5 pt-5'>
+		<View className='flex justify-start items-center gap-2 h-full px-7 pt-5'>
 			<Text className='self-start text-4xl font-bold'>Track Your Goal</Text>
 			<InformationSVG
-				height={'40%'}
+				height={'30%'}
 				width={'100%'}
 			/>
-			<Text className='text-3xl font-bold mt-2'>Let’s complete your profile</Text>
-			<Text className='mt-1 text-[#7B6F72]'>
+			<Text className='text-3xl font-bold mt-2 font-poppins'>
+				Let’s complete your profile
+			</Text>
+			<Text className='mt-1 font-poppins text-[#7B6F72]'>
 				It will help us to know more about you!
 			</Text>
 
