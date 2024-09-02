@@ -10,22 +10,26 @@ import 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { PortalProvider } from 'tamagui';
+import { Provider } from 'react-redux';
+import { store } from '@/store/store';
 
 const RootLayout = () => {
 	return (
 		<SafeAreaProvider>
 			<GestureHandlerRootView style={{ flex: 1 }}>
 				<GluestackUIProvider>
-					<TamaguiProvider config={config}>
-						<PortalProvider>
-							<SafeAreaView style={styles.container}>
-								<ContextProvider>
-									<Slot />
-									<Toast />
-								</ContextProvider>
-							</SafeAreaView>
-						</PortalProvider>
-					</TamaguiProvider>
+					<Provider store={store}>
+						<TamaguiProvider config={config}>
+							<PortalProvider>
+								<SafeAreaView style={styles.container}>
+									<ContextProvider>
+										<Slot />
+										<Toast />
+									</ContextProvider>
+								</SafeAreaView>
+							</PortalProvider>
+						</TamaguiProvider>
+					</Provider>
 				</GluestackUIProvider>
 			</GestureHandlerRootView>
 		</SafeAreaProvider>
