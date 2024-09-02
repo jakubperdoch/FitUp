@@ -1,4 +1,4 @@
-import { Text, View, Dimensions, Image } from 'react-native';
+import { Text, View, Dimensions } from 'react-native';
 import { useCallback, useState } from 'react';
 import { interpolate, type AnimatedStyle } from 'react-native-reanimated';
 import Carousel from 'react-native-reanimated-carousel';
@@ -9,14 +9,17 @@ import InformationCardSecond from '@/assets/images/information-card--second.svg'
 import InformationCardThird from '@/assets/images/information-card--third.svg';
 import GradientButtonComponent from '@/components/custom/GradientButton';
 import { router } from 'expo-router';
+import { setGoal } from '@/store/user';
+import { useDispatch } from 'react-redux';
 
 const PAGE_WIDTH = Dimensions.get('window').width;
 type TAnimationStyle = (value: number) => AnimatedStyle<ViewStyle>;
 
 const SelectingGoalsScreen = () => {
+	const dispatch = useDispatch();
 	const itemSize = 300;
 	const centerOffset = PAGE_WIDTH / 2 - itemSize / 2;
-	const [goalIndex, setGoalIndex] = useState(null);
+	const [goalIndex, setGoalIndex] = useState(0);
 
 	const animationStyle: TAnimationStyle = useCallback(
 		(value: number) => {
@@ -50,14 +53,6 @@ const SelectingGoalsScreen = () => {
 		[centerOffset]
 	);
 
-	const onGaolChange = (index) => {
-		setGoalIndex(index);
-	};
-
-	const submitHandler = (formData: any) => {
-		router.replace('/register-process/InformationsScreen');
-	};
-
 	const ImageSwiperHandler = (index: number) => {
 		switch (index) {
 			case 0:
@@ -73,6 +68,15 @@ const SelectingGoalsScreen = () => {
 				<Text>No Image</Text>;
 				break;
 		}
+	};
+
+	const onGaolChange = (index: number) => {
+		setGoalIndex(index);
+	};
+
+	const submitHandler = (formData: any) => {
+		dispatch(setGoal(formData));
+		router.replace('/register-process/SuccessScreen');
 	};
 
 	return (

@@ -6,7 +6,7 @@ export interface UserState {
 	email: string;
 	password: string;
 	gender: string;
-	birthDate: string;
+	birthDate: Date;
 	weight: number;
 	height: number;
 	goal: string;
@@ -17,7 +17,7 @@ const initialState: UserState = {
 	email: '',
 	password: '',
 	gender: '',
-	birthDate: '',
+	birthDate: null,
 	weight: 0,
 	height: 0,
 	goal: '',
@@ -39,7 +39,7 @@ export const userSlice = createSlice({
 		setGender: (state, action: PayloadAction<string>) => {
 			state.gender = action.payload;
 		},
-		setBirthDate: (state, action: PayloadAction<string>) => {
+		setBirthDate: (state, action: PayloadAction<Date>) => {
 			state.birthDate = action.payload;
 		},
 		setWeight: (state, action: PayloadAction<number>) => {
@@ -54,6 +54,15 @@ export const userSlice = createSlice({
 	},
 });
 
-export const { setFullName, setEmail, setPassword, setGender, setBirthDate, setWeight, setHeight, setGoal } = userSlice.actions;
+export const {
+	setFullName,
+	setEmail,
+	setPassword,
+	setGender,
+	setBirthDate,
+	setWeight,
+	setHeight,
+	setGoal,
+} = userSlice.actions;
 
 export default userSlice.reducer;

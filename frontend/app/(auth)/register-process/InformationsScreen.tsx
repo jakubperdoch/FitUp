@@ -3,20 +3,23 @@ import InformationSVG from '@/assets/images/informations-image.svg';
 import SelectComponent from '@/components/custom/Select';
 import DatePickerComponent from '@/components/custom/DatePicker';
 import ConversionInputComponent from '@/components/custom/ConversionInput';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Ruler, Weight } from 'lucide-react-native';
 import GradientButtonComponent from '@/components/custom/GradientButton';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { router } from 'expo-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { setGender } from '@/store/user';
-import { RootState } from '@/store/store';
+import { useDispatch } from 'react-redux';
+import {
+	setGender,
+	setBirthDate,
+	setHeight as setReduxHeight,
+	setWeight as setReduxWeight,
+} from '@/store/user';
 
 const InformationsScreen = () => {
 	const dispatch = useDispatch();
-	const gender = useSelector((state: RootState) => state.user.gender);
 
 	const [currentWeightIndex, setCurrentWeightIndex] = useState(0);
 	const [currentHeightIndex, setCurrentHeightIndex] = useState(0);
@@ -73,14 +76,11 @@ const InformationsScreen = () => {
 
 	const watchedFields = watch(['gender', 'birth', 'weight', 'height']);
 
-	useEffect(() => {
-		console.log('Form changes:', watchedFields[0]);
-		dispatch(setGender(watchedFields[0]));
-
-		console.log(gender);
-	}, [watchedFields]);
-
 	const submitHandler = () => {
+		dispatch(setGender(watchedFields[0]));
+		dispatch(setBirthDate(watchedFields[1]));
+		dispatch(setReduxHeight(watchedFields[2]));
+		dispatch(setReduxWeight(watchedFields[3]));
 		console.log('Correct');
 		router.push('/register-process/SelectingGoalsScreen');
 	};

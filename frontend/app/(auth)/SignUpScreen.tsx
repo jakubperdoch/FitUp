@@ -1,7 +1,6 @@
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { useState } from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Separator } from 'tamagui';
 import AppleLoginIcon from '@/assets/icons/apple-login--icon.svg';
 import ValidationForm from '@/components/custom/ValidationForm';
@@ -10,9 +9,12 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import GradientButtonComponent from '@/components/custom/GradientButton';
+import { setPassword, setEmail, setFullName } from '@/store/user';
+import { useDispatch } from 'react-redux';
 
 const SignUpScreen = () => {
 	const [showPassword, setShowPassword] = useState(false);
+	const dispatch = useDispatch();
 
 	let userSchema = yup.object().shape({
 		name: yup.string().required('Name is required'),
@@ -27,15 +29,20 @@ const SignUpScreen = () => {
 		control,
 		handleSubmit,
 		formState: { errors },
+		watch,
 	} = useForm({
 		resolver: yupResolver(userSchema),
 	});
 
+	const watchFields = watch(['email', 'name', 'password']);
+
 	const submitHandler = (formData) => {
 		// push formData to the backend
-		// if successful, navigate to the next screen
 		// TODO: Implement the backend logic
 
+		dispatch(setEmail(watchFields[0]));
+		dispatch(setFullName(watchFields[1]));
+		dispatch(setPassword(watchFields[2]));
 		router.replace('/register-process/InformationsScreen');
 	};
 
