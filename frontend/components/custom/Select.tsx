@@ -30,6 +30,7 @@ const SelectComponent = ({ control, options }) => {
 						<SelectInput placeholder='Choose Gender' />
 						<SelectIcon
 							as={Users}
+							// FIXME: size
 							size={20}
 						/>
 					</SelectTrigger>
