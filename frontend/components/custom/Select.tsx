@@ -28,7 +28,10 @@ const SelectComponent = ({ control, options }) => {
 						variant='rounded'
 						size='xl'>
 						<SelectInput placeholder='Choose Gender' />
-						<SelectIcon as={Users} />
+						<SelectIcon
+							as={Users}
+							size={20}
+						/>
 					</SelectTrigger>
 					<SelectPortal className='px-5 '>
 						<SelectBackdrop />

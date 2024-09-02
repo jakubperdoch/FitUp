@@ -28,7 +28,7 @@ const ConversionInputComponent = ({
 							}}
 							placeholder={placeholder}
 							placeholderClassName='opacity-40'
-							className='w-10/12 font-semibold font-poppins text-xl text-[#7B6F72]'
+							className='w-10/12 font-semibold font-poppins text-lg text-[#7B6F72]'
 							inputMode={'numeric'}
 							keyboardType={'number-pad'}
 						/>
@@ -51,7 +51,7 @@ const ConversionInputComponent = ({
 						justifyContent: 'center',
 						alignItems: 'center',
 					}}>
-					<Text className='uppercase text-white text-xl font-poppins'>{metric}</Text>
+					<Text className='uppercase text-white text-lg font-poppins'>{metric}</Text>
 				</LinearGradient>
 			</TouchableOpacity>
 		</View>

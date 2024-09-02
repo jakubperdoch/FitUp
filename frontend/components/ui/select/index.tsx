@@ -78,10 +78,10 @@ const selectTriggerStyle = tva({
 
 const selectInputStyle = tva({
 	base:
-		'py-auto !opacity-100  font-semibold font-poppins web:w-full h-full text-[#7B6F72] pointer-events-none web:outline-none ios:leading-[0px]',
+		'py-auto !opacity-100  font-poppins web:w-full h-full text-[#7B6F72] pointer-events-none web:outline-none ios:leading-[0px]',
 	parentVariants: {
 		size: {
-			xl: 'text-xl',
+			xl: 'text-lg',
 			lg: 'text-lg',
 			md: 'text-base',
 			sm: 'text-sm',

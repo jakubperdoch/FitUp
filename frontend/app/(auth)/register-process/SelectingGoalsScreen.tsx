@@ -77,8 +77,8 @@ const SelectingGoalsScreen = () => {
 
 	return (
 		<View className='w-full h-full flex items-center pt-4 px-7'>
-			<Text className='text-3xl font-bold font-poppins'>What is your goal ?</Text>
-			<Text className='font-poppins text-[#7B6F72] w-2/3'>
+			<Text className='text-2xl font-bold font-poppins'>What is your goal ?</Text>
+			<Text className='font-poppins text-[#7B6F72] w-2/3 text-center'>
 				It will help us to choose a best program for you
 			</Text>
 			<Carousel

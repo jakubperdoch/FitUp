@@ -30,12 +30,12 @@ const DatePickerComponent = ({ control }) => {
 				className='px-6 gap-4 rounded-xl bg-[#F7F8F8] flex flex-row h-16 items-center justify-start w-full'>
 				<CalendarDays
 					color={'#7B6F72'}
-					size={30}
+					size={20}
 				/>
 				<Text
 					className={`${
 						stringDate ? 'opacity-100' : 'opacity-40'
-					} font-semibold font-poppins text-xl text-[#7B6F72]`}>
+					} font-semibold font-poppins text-lg text-[#7B6F72]`}>
 					{stringDate ? stringDate : 'Date of Birth'}
 				</Text>
 			</TouchableOpacity>
