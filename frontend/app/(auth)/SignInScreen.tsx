@@ -9,7 +9,6 @@ import { router } from 'expo-router';
 
 const SignInScreen = () => {
 	const [showPassword, setShowPassword] = useState(false);
-	const [checked, setChecked] = useState(false);
 
 	const handleState = () => {
 		setShowPassword((showState) => {
