@@ -177,6 +177,7 @@ module.exports = {
 				mono: undefined,
 				poppins: ['Poppins', 'sans-serif'],
 				poppinsLight: ['Poppins--Light', 'sans-serif'],
+				poppinsBold: ['Poppins--Bold', 'sans-serif'],
 			},
 			fontWeight: {
 				extrablack: '950',
