@@ -6,25 +6,73 @@ const DashBoardComponent = () => {
 	const [data, setData] = useState([
 		{
 			title: 'Carbs',
-			value: -0.5,
+			value: 0.3,
+			size: 'md',
+			colors: ['#FE9A05', '#F9CD8C', '#FFE4BC'],
+		},
+		{
+			value: 0.3,
+			size: 'sm',
+			icon: 'Footprints',
+			colors: ['#05FE00', '#74FF72', '#BDFFBC'],
+		},
+		{
+			title: 'Carbs',
+			value: 0.3,
+			size: 'md',
+			colors: ['#FE9A05', '#F9CD8C', '#FFE4BC'],
+		},
+		{
+			value: 0.3,
+			size: 'sm',
+			icon: 'Bed',
+			colors: ['#569AFF', '#91BDFF', '#BCD7FF'],
 		},
 		{
 			title: 'Fat',
-			value: 0.5,
+			value: 0.1,
+			size: 'lg',
+			colors: ['#FE9A05', '#F9CD8C', '#FFE4BC'],
+		},
+		{
+			value: 0.1,
+			size: 'sm',
+			icon: 'Droplet',
+			colors: ['#569AFF', '#91BDFF', '#BCD7FF'],
+		},
+		{
+			title: 'Carbs',
+			value: 0.3,
+			size: 'md',
+			colors: ['#FE9A05', '#F9CD8C', '#FFE4BC'],
+		},
+		{
+			value: 0.3,
+			size: 'sm',
+			icon: 'Dumbbell',
+			colors: ['#569AFF', '#91BDFF', '#BCD7FF'],
+		},
+		{
+			title: 'Carbs',
+			value: 0.3,
+			size: 'md',
+			colors: ['#FE9A05', '#F9CD8C', '#FFE4BC'],
 		},
 	]);
 
 	const colorVariations = ['#FE9A05', '#D62828'];
 
 	return (
-		<View>
-			{data.map((dataCircle: { title: string; value: number }, index: number) => {
+		<View className='bg-white shadow-soft-4 w-9/12 rounded-xl flex flex-row items-center justify-center flex-wrap gap-8 p-4'>
+			{data.map((dataCircle, index) => {
 				return (
 					<DashBoardCircle
 						key={index}
 						colorVariation={colorVariations}
 						title={dataCircle.title}
 						value={dataCircle.value}
+						size={dataCircle.size}
+						icon={dataCircle.icon}
 					/>
 				);
 			})}

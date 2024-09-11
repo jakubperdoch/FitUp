@@ -3,13 +3,13 @@ import Svg, { Circle, LinearGradient, Stop, Defs } from 'react-native-svg';
 import Animated from 'react-native-reanimated';
 import { useAnimatedProps, withTiming } from 'react-native-reanimated';
 import { useEffect, useState } from 'react';
-
+import GenericIcon from './Icon';
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const strokeWidth = 7;
 const circleLength = 200;
 const radius = circleLength / (2 * Math.PI);
 
-const DashBoardCircle = ({ value, colorVariation, title }) => {
+const DashBoardCircle = ({ value, colorVariation, title, size, icon }) => {
 	const [progress, setProgress] = useState(value);
 
 	useEffect(() => {
@@ -22,8 +22,10 @@ const DashBoardCircle = ({ value, colorVariation, title }) => {
 		};
 	});
 
+	const sizingHandler = () => {};
+
 	return (
-		<View>
+		<View className='relative w-20 h-20 items-center justify-center'>
 			<Svg
 				width={circleLength}
 				height={circleLength}>
@@ -49,6 +51,15 @@ const DashBoardCircle = ({ value, colorVariation, title }) => {
 					</LinearGradient>
 				</Defs>
 				<AnimatedCircle
+					stroke='#F9CD8C'
+					fill='none'
+					cx={circleLength / 2}
+					cy={circleLength / 2}
+					r={radius}
+					strokeWidth={strokeWidth}
+					strokeLinecap={'round'}
+				/>
+				<AnimatedCircle
 					stroke='url(#grad)'
 					fill='none'
 					cx={circleLength / 2}
@@ -61,7 +72,19 @@ const DashBoardCircle = ({ value, colorVariation, title }) => {
 				/>
 			</Svg>
 
-			{title ? <Text>{title}</Text> : <Text>Icon</Text>}
+			{title ? (
+				<Text className='absolute '>{size}</Text>
+			) : (
+				icon && (
+					<View className='absolute'>
+						<GenericIcon
+							name={icon}
+							size={32}
+							color='black'
+						/>
+					</View>
+				)
+			)}
 		</View>
 	);
 };

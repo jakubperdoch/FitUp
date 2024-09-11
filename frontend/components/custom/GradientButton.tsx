@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 const GradientButtonComponent = ({ handleSubmit, title }) => {
 	return (
 		<TouchableOpacity
-			className='w-full mt-auto shadow-lg'
+			className='w-full mt-auto shadow-md'
 			onPress={handleSubmit}>
 			<LinearGradient
 				start={{ x: 0, y: 0.75 }}
