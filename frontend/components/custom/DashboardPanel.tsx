@@ -14,7 +14,7 @@ const DashBoardComponent = () => {
 			value: 0.3,
 			size: 'sm',
 			icon: 'Footprints',
-			colors: ['#05FE00', '#74FF72', '#BDFFBC'],
+			colors: ['#05FE00', '#6FEE6D', '#BDFFBC'],
 		},
 		{
 			title: 'Carbs',
@@ -50,7 +50,7 @@ const DashBoardComponent = () => {
 			value: 0.3,
 			size: 'sm',
 			icon: 'Dumbbell',
-			colors: ['#569AFF', '#91BDFF', '#BCD7FF'],
+			colors: ['#569AFF', '#85B6FF', '#BCD7FF'],
 		},
 		{
 			title: 'Carbs',
@@ -60,15 +60,13 @@ const DashBoardComponent = () => {
 		},
 	]);
 
-	const colorVariations = ['#FE9A05', '#D62828'];
-
 	return (
-		<View className='bg-white shadow-soft-4 w-9/12 rounded-xl flex flex-row items-center justify-center flex-wrap gap-8 p-4'>
+		<View className='bg-white shadow-soft-4  rounded-xl flex flex-row items-center justify-center flex-wrap gap-8 p-4'>
 			{data.map((dataCircle, index) => {
 				return (
 					<DashBoardCircle
 						key={index}
-						colorVariation={colorVariations}
+						colorVariation={dataCircle.colors}
 						title={dataCircle.title}
 						value={dataCircle.value}
 						size={dataCircle.size}

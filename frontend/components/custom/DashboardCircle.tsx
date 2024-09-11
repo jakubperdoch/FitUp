@@ -8,6 +8,7 @@ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const strokeWidth = 7;
 const circleLength = 200;
 const radius = circleLength / (2 * Math.PI);
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 const DashBoardCircle = ({ value, colorVariation, title, size, icon }) => {
 	const [progress, setProgress] = useState(value);
@@ -25,33 +26,14 @@ const DashBoardCircle = ({ value, colorVariation, title, size, icon }) => {
 	const sizingHandler = () => {};
 
 	return (
-		<View className='relative w-20 h-20 items-center justify-center'>
+		<View
+			className={`rounded-full relative w-[6rem] h-[6rem] items-center justify-center`}
+			style={{ backgroundColor: colorVariation[2] }}>
 			<Svg
 				width={circleLength}
 				height={circleLength}>
-				<Defs>
-					<LinearGradient
-						id='grad'
-						x1='0'
-						y1='0'
-						x2='1'
-						y2='0'>
-						<Stop
-							offset='0'
-							stopColor={colorVariation[0] || '#FE9A05'}
-							stopOpacity='1'
-						/>
-						{colorVariation[1] && (
-							<Stop
-								offset='1'
-								stopColor={colorVariation[1]}
-								stopOpacity='1'
-							/>
-						)}
-					</LinearGradient>
-				</Defs>
 				<AnimatedCircle
-					stroke='#F9CD8C'
+					stroke={colorVariation[1]}
 					fill='none'
 					cx={circleLength / 2}
 					cy={circleLength / 2}
@@ -60,7 +42,7 @@ const DashBoardCircle = ({ value, colorVariation, title, size, icon }) => {
 					strokeLinecap={'round'}
 				/>
 				<AnimatedCircle
-					stroke='url(#grad)'
+					stroke={colorVariation[0]}
 					fill='none'
 					cx={circleLength / 2}
 					cy={circleLength / 2}
@@ -73,13 +55,13 @@ const DashBoardCircle = ({ value, colorVariation, title, size, icon }) => {
 			</Svg>
 
 			{title ? (
-				<Text className='absolute '>{size}</Text>
+				<Text className='absolute '>{title}</Text>
 			) : (
 				icon && (
 					<View className='absolute'>
 						<GenericIcon
 							name={icon}
-							size={32}
+							size={28}
 							color='black'
 						/>
 					</View>
