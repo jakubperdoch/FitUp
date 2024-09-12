@@ -3,14 +3,14 @@ import Svg, { Circle, LinearGradient, Stop, Defs } from 'react-native-svg';
 import Animated from 'react-native-reanimated';
 import { useAnimatedProps, withTiming } from 'react-native-reanimated';
 import { useEffect, useState } from 'react';
-import GenericIcon from './Icon';
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-const strokeWidth = 7;
-const circleLength = 200;
-const radius = circleLength / (2 * Math.PI);
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
 const DashBoardCircle = ({ value, colorVariation, title, size, icon }) => {
+	const strokeWidth = size / 35;
+	const circleLength = size;
+	const radius = circleLength / (2 * Math.PI);
 	const [progress, setProgress] = useState(value);
 
 	useEffect(() => {
@@ -25,10 +25,41 @@ const DashBoardCircle = ({ value, colorVariation, title, size, icon }) => {
 
 	const sizingHandler = () => {};
 
+	const contentHandler = () => {
+		if (title && !icon) {
+			return <Text className='absolute font-poppinsLight'>{title}</Text>;
+		} else if (icon && title) {
+			return (
+				<View className='absolute items-center gap-1'>
+					<FontAwesome6
+						name={icon}
+						size={30}
+						color='black'
+					/>
+					<Text className='font-poppinsLight'>{title}</Text>
+				</View>
+			);
+		} else {
+			return (
+				<View className='absolute'>
+					<FontAwesome6
+						name={icon}
+						size={25}
+						color='black'
+					/>
+				</View>
+			);
+		}
+	};
+
 	return (
 		<View
-			className={`rounded-full relative w-[6rem] h-[6rem] items-center justify-center`}
-			style={{ backgroundColor: colorVariation[2] }}>
+			className={`rounded-full relative  items-center justify-center`}
+			style={{
+				backgroundColor: colorVariation[2],
+				height: size / 2.4,
+				width: size / 2.4,
+			}}>
 			<Svg
 				width={circleLength}
 				height={circleLength}>
@@ -54,19 +85,7 @@ const DashBoardCircle = ({ value, colorVariation, title, size, icon }) => {
 				/>
 			</Svg>
 
-			{title ? (
-				<Text className='absolute '>{title}</Text>
-			) : (
-				icon && (
-					<View className='absolute'>
-						<GenericIcon
-							name={icon}
-							size={28}
-							color='black'
-						/>
-					</View>
-				)
-			)}
+			{contentHandler()}
 		</View>
 	);
 };
