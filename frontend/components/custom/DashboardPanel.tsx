@@ -14,7 +14,7 @@ const DashBoardComponent = () => {
 			value: 0.3,
 			size: 200,
 			icon: 'shoe-prints',
-			colors: ['#05FE00', '#6FEE6D', '#BDFFBC'],
+			colors: ['#2CBF29', '#6FEE6D', '#BDFFBC'],
 		},
 		{
 			title: 'Fat',
@@ -62,7 +62,7 @@ const DashBoardComponent = () => {
 	]);
 
 	return (
-		<View className='bg-white shadow-soft-4 rounded-xl flex flex-row items-center justify-center flex-wrap gap-5 p-4'>
+		<View className='bg-white shadow-soft-4 rounded-3xl flex flex-row items-center justify-center flex-wrap gap-4 p-4'>
 			{data.map((dataCircle, index) => {
 				return (
 					<DashBoardCircle

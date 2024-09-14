@@ -37,7 +37,7 @@ const RootLayout = () => {
 };
 
 const styles = StyleSheet.create({
-	container: { flex: 1, height: '100%' },
+	container: { flex: 1, height: '100%', backgroundColor: '#FFFFFF' },
 });
 
 export default RootLayout;

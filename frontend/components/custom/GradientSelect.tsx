@@ -11,21 +11,42 @@ import {
 	SelectItem,
 } from '@/components/ui/select';
 import { Controller } from 'react-hook-form';
-import { Users } from 'lucide-react-native';
+import { ChevronDown } from 'lucide-react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
-const SelectComponent = ({ control, options, placeholder, controllerName }) => {
+const GradientSelectComponent = ({
+	control,
+	options,
+	placeholder,
+	controllerName,
+}) => {
 	let lastIndexOfArray = options.length - 1;
 
 	const selectElement = (onChange) => (
 		<Select
 			onValueChange={onChange}
-			className='w-full'>
-			<SelectTrigger
-				variant='rounded'
-				size='xl'>
-				<SelectInput placeholder={placeholder} />
-				<SelectIcon as={Users} />
-			</SelectTrigger>
+			defaultValue={options[0].value}
+			initialLabel={options[0].label}
+			className='capitalize ms-auto'>
+			<LinearGradient
+				start={{ x: 0, y: 0.75 }}
+				end={{ x: 1.3, y: 0.25 }}
+				colors={['#F77F00', '#D62828']}
+				style={{
+					borderRadius: 50,
+				}}>
+				<SelectTrigger
+					variant='fullRounded'
+					size='lg'
+					className='gap-4 '>
+					<SelectInput placeholder={placeholder} />
+					<SelectIcon
+						className='!h-5 !w-5'
+						color='#FFFFFF'
+						as={ChevronDown}
+					/>
+				</SelectTrigger>
+			</LinearGradient>
 			<SelectPortal className='px-5 '>
 				<SelectBackdrop />
 				<SelectContent>
@@ -61,4 +82,4 @@ const SelectComponent = ({ control, options, placeholder, controllerName }) => {
 	);
 };
 
-export default SelectComponent;
+export default GradientSelectComponent;

@@ -122,6 +122,8 @@ const InformationsScreen = () => {
 
 			<View className='flex flex-col w-full gap-5 mt-3 mb-2'>
 				<SelectComponent
+					placeholder={'Choose Gender'}
+					controllerName={'gender'}
 					control={control}
 					options={genderOptions}
 				/>

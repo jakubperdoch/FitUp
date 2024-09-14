@@ -48,16 +48,19 @@ const selectIconStyle = tva({
 			lg: 'h-5 w-5',
 			xl: 'h-8 w-8',
 		},
+		variant: {
+			fullRounded: 'text-white ',
+		},
 	},
 });
 
 const selectStyle = tva({
-	base: 'w-full',
+	base: 'capitalize',
 });
 
 const selectTriggerStyle = tva({
 	base:
-		' px-6 bg-[#F7F8F8] border-background-300 rounded flex-row-reverse items-center justify-end overflow-hidden data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[hover=true]:border-background-300',
+		' px-6 capitalize bg-[#F7F8F8] border-background-300 rounded flex-row-reverse items-center justify-end overflow-hidden data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[hover=true]:border-background-300',
 	variants: {
 		size: {
 			xl: 'h-16',
@@ -72,13 +75,15 @@ const selectTriggerStyle = tva({
 				'data-[focus=true]:border-primary-700 data-[focus=true]:web:shadow-[inset_0_0_0_1px] data-[focus=true]:data-[hover=true]:web:shadow-primary-600 data-[invalid=true]:web:shadow-[inset_0_0_0_1px] data-[invalid=true]:border-error-700 data-[invalid=true]:web:shadow-error-700 data-[invalid=true]:data-[hover=true]:border-error-700',
 			rounded:
 				'rounded-xl data-[focus=true]:border-primary-700 data-[focus=true]:web:shadow-[inset_0_0_0_1px] data-[focus=true]:web:shadow-primary-700 data-[invalid=true]:border-error-700 data-[invalid=true]:web:shadow-error-700',
+			fullRounded:
+				'rounded-3xl bg-transparent  flex-row data-[focus=true]:border-primary-700 data-[focus=true]:web:shadow-[inset_0_0_0_1px] data-[focus=true]:web:shadow-primary-700 data-[invalid=true]:border-error-700 data-[invalid=true]:web:shadow-error-700',
 		},
 	},
 });
 
 const selectInputStyle = tva({
 	base:
-		'py-auto !opacity-100  font-poppins web:w-full h-full text-[#7B6F72] pointer-events-none web:outline-none ios:leading-[0px]',
+		'py-auto  !opacity-100 capitalize font-poppins web:w-full h-full text-[#7B6F72] pointer-events-none web:outline-none ios:leading-[0px]',
 	parentVariants: {
 		size: {
 			xl: 'text-lg',
@@ -89,7 +94,8 @@ const selectInputStyle = tva({
 		variant: {
 			underlined: 'px-0',
 			outline: '',
-			rounded: 'px-4',
+			rounded: 'px-4 ',
+			fullRounded: 'text-white ',
 		},
 	},
 });
@@ -262,7 +268,7 @@ const SelectIcon = React.forwardRef<
 	React.ElementRef<typeof UISelect.Icon>,
 	ISelectIcon
 >(({ className, size, ...props }, ref) => {
-	const { size: parentSize } = useStyleContext();
+	const { size: parentSize, variant: parentVariant } = useStyleContext();
 	if (typeof size === 'number') {
 		return (
 			<UISelect.Icon
@@ -291,6 +297,7 @@ const SelectIcon = React.forwardRef<
 				size,
 				parentVariants: {
 					size: parentSize,
+					variant: parentVariant,
 				},
 			})}
 			ref={ref}

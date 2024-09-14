@@ -54,11 +54,11 @@ const DashBoardCircle = ({ value, colorVariation, title, size, icon }) => {
 
 	return (
 		<View
-			className={`rounded-full relative  items-center justify-center`}
+			className={`rounded-full relative items-center justify-center`}
 			style={{
 				backgroundColor: colorVariation[2],
-				height: size / 2.4,
-				width: size / 2.4,
+				height: size / 2.5,
+				width: size / 2.5,
 			}}>
 			<Svg
 				width={circleLength}
