@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
 import { useExplainer } from '@/context/ExplainerContext';
-import ExplainerImage from '@/assets/images/explainers-first.svg';
+import ExplainerImage from '@/assets/images/explainers-second.svg';
 import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const ExplainerPageOne = () => {
+const ExplainerPageThree = () => {
 	const { setExplainerTitle, setExplainerDescription, setExplainerImage } =
 		useExplainer();
 	const insets = useSafeAreaInsets();
 	useEffect(() => {
-		setExplainerTitle('Track Your Goal');
+		setExplainerTitle('Get Burn');
 		setExplainerDescription(
-			"Don't worry if you have trouble determining your goals, We can help you determine your goals and track your goals"
+			'Let’s keep burning, to achive yours goals, it hurts only temporarily, if you give up now you will be in pain forever'
 		);
 	}, [setExplainerTitle, setExplainerDescription, setExplainerImage]);
 
@@ -19,8 +19,8 @@ const ExplainerPageOne = () => {
 		<>
 			<ExplainerImage
 				width='100%'
-				height='100%'
-				style={[styles.imageContainer, { top: -insets.top }]}
+				height='90%'
+				style={{ top: -insets.top }}
 			/>
 		</>
 	);
@@ -28,4 +28,4 @@ const ExplainerPageOne = () => {
 
 const styles = StyleSheet.create({});
 
-export default ExplainerPageOne;
+export default ExplainerPageThree;

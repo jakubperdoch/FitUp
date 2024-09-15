@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
 import { useExplainer } from '@/context/ExplainerContext';
-import ExplainerImage from '@/assets/images/explainers-fourth.svg';
+import ExplainerImage from '@/assets/images/explainers-third.svg';
 import { StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const ExplainerPageFour = () => {
+const ExplainerPageTwo = () => {
 	const { setExplainerTitle, setExplainerDescription, setExplainerImage } =
 		useExplainer();
 	const insets = useSafeAreaInsets();
 	useEffect(() => {
-		setExplainerTitle('Improve Sleep  Quality');
+		setExplainerTitle('Eat Well');
 		setExplainerDescription(
-			'Improve the quality of your sleep with us, good quality sleep can bring a good mood in the morning'
+			"Let's start a healthy lifestyle with us, we can determine your diet every day. healthy eating is fun"
 		);
 	}, [setExplainerTitle, setExplainerDescription, setExplainerImage]);
 
@@ -19,8 +19,8 @@ const ExplainerPageFour = () => {
 		<>
 			<ExplainerImage
 				width='100%'
-				height='90%'
-				style={[styles.imageContainer, { top: -insets.top }]}
+				height='100%'
+				style={{ top: -insets.top }}
 			/>
 		</>
 	);
@@ -28,4 +28,4 @@ const ExplainerPageFour = () => {
 
 const styles = StyleSheet.create({});
 
-export default ExplainerPageFour;
+export default ExplainerPageTwo;

@@ -14,7 +14,8 @@ const ExplainersLayout = () => {
 	const onPressHandler = () => {
 		if (pageIndex >= 4) {
 			// router.replace('/SignUpScreen');
-			router.replace('/register-process/InformationsScreen');
+			router.replace('/register-process/SuccessScreen');
+
 			return;
 		}
 		setProgress((prevProgress) => prevProgress + 0.25);
@@ -28,10 +29,17 @@ const ExplainersLayout = () => {
 				<Slot />
 			</View>
 			<View style={styles.contentContainer}>
-				<Text style={styles.explainersTitle}>{explainerTitle}</Text>
-				<Text style={styles.explainersDesc}>{explainerDescription}</Text>
+				<Text
+					style={styles.explainersTitle}
+					className='font-poppins'>
+					{explainerTitle}
+				</Text>
+				<Text
+					style={styles.explainersDesc}
+					className='font-poppinsLight'>
+					{explainerDescription}
+				</Text>
 				<ProgressButton
-					style={styles.progressButton}
 					progress={progressBar}
 					onPressHandler={onPressHandler}
 				/>
@@ -64,7 +72,6 @@ const styles = StyleSheet.create({
 	},
 	explainersDesc: {
 		fontSize: 16,
-		textAlign: 'center',
 		marginBottom: 20,
 		textAlign: 'left',
 		width: 320,

@@ -20,7 +20,6 @@ const SignUpForm = ({
 					}}
 					render={({ field: { onChange, value } }) => (
 						<Input
-							paddingHorizontal={15}
 							size='xl'
 							variant='rounded'>
 							<InputSlot>
@@ -36,7 +35,6 @@ const SignUpForm = ({
 								value={value}
 								onChangeText={onChange}
 								placeholder='Full Name'
-								fontFamily='Poppins'
 								autoCapitalize='words'
 								autoCorrect={false}
 							/>
@@ -53,7 +51,6 @@ const SignUpForm = ({
 				}}
 				render={({ field: { onChange, value } }) => (
 					<Input
-						paddingHorizontal={15}
 						size='xl'
 						variant='rounded'>
 						<InputSlot>
@@ -70,7 +67,6 @@ const SignUpForm = ({
 							type={'text'}
 							inputMode='email'
 							placeholder='Email'
-							fontFamily='Poppins'
 							autoCapitalize='none'
 							autoCorrect={false}
 						/>
@@ -86,7 +82,6 @@ const SignUpForm = ({
 				}}
 				render={({ field: { onChange, value } }) => (
 					<Input
-						paddingHorizontal={15}
 						size='xl'
 						variant='rounded'>
 						<InputSlot>
@@ -100,7 +95,6 @@ const SignUpForm = ({
 							className='text-lg'
 							value={value}
 							onChangeText={onChange}
-							fontFamily='Poppins'
 							placeholder='Password'
 							type={passwordVisibility ? 'text' : 'password'}
 							autoCorrect={false}

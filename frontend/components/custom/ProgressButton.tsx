@@ -4,10 +4,7 @@ import { useEffect, useState } from 'react';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { LinearGradient as ButtonGradient } from 'expo-linear-gradient';
 import Animated from 'react-native-reanimated';
-import {
-	useAnimatedProps,
-	withTiming,
-} from 'react-native-reanimated';
+import { useAnimatedProps, withTiming } from 'react-native-reanimated';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -54,7 +51,6 @@ const ProgressButton = ({ progress, onPressHandler }) => {
 					</LinearGradient>
 				</Defs>
 				<AnimatedCircle
-					style={styles.button_svg}
 					stroke='url(#grad)'
 					fill='none'
 					cx={circleLength / 2}

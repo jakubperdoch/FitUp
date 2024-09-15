@@ -1,7 +1,6 @@
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { useState } from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Separator } from 'tamagui';
 import AppleLoginIcon from '@/assets/icons/apple-login--icon.svg';
 import ValidationForm from '@/components/custom/ValidationForm';
@@ -9,10 +8,13 @@ import { router } from 'expo-router';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import GradientButtonComponent from '@/components/custom/GradientButton';
+import { setPassword, setEmail, setFullName } from '@/store/user';
+import { useDispatch } from 'react-redux';
 
 const SignUpScreen = () => {
 	const [showPassword, setShowPassword] = useState(false);
-	const [checked, setChecked] = useState(false);
+	const dispatch = useDispatch();
 
 	let userSchema = yup.object().shape({
 		name: yup.string().required('Name is required'),
@@ -27,15 +29,20 @@ const SignUpScreen = () => {
 		control,
 		handleSubmit,
 		formState: { errors },
+		watch,
 	} = useForm({
 		resolver: yupResolver(userSchema),
 	});
 
+	const watchFields = watch(['email', 'name', 'password']);
+
 	const submitHandler = (formData) => {
 		// push formData to the backend
-		// if successful, navigate to the next screen
 		// TODO: Implement the backend logic
-		
+
+		dispatch(setEmail(watchFields[0]));
+		dispatch(setFullName(watchFields[1]));
+		dispatch(setPassword(watchFields[2]));
 		router.replace('/register-process/InformationsScreen');
 	};
 
@@ -66,21 +73,21 @@ const SignUpScreen = () => {
 	return (
 		<View className='flex flex-col gap-5 justify-center items-center px-5 h-full'>
 			<View className='d-flex items-center mb-6 mt-4'>
-				<Text className='text-2xl text-primary-500'>Hey there,</Text>
-				<Text className='text-3xl font-bold'>Create an Account</Text>
+				<Text className='text-2xl text-primary-500 font-poppins'>Hey there,</Text>
+				<Text className='text-3xl font-bold font-poppins mt-2'>
+					Create an Account
+				</Text>
 			</View>
 
 			<ValidationForm
 				passwordVisibility={showPassword}
 				showPasswordHandler={handleState}
 				formType={'signup'}
-				errors={errors}
 				control={control}
 			/>
 
-			<View className='flex flex-row max-w-lg  justify-center items-center gap-3 mt-5'>
+			<View className='flex flex-row px-4  w-full justify-center items-center gap-3 mt-5'>
 				<BouncyCheckbox
-					isChecked={checked}
 					fillColor='#F77F00'
 					size={25}
 					disableText
@@ -89,31 +96,19 @@ const SignUpScreen = () => {
 					innerIconStyle={{
 						borderWidth: 0,
 					}}
-					onPress={(isChecked) => {
-						setChecked(!isChecked);
+					onPress={(isChecked: boolean) => {
+						console.log(isChecked);
 					}}
 				/>
-				<Text className='text-gray-500 text-md font-roboto'>
-					I agree to the Terms of Service and Privacy Policy
+				<Text className='text-gray-500 text-sm font-poppins'>
+					By continuing you accept our Privacy Policy and Term of Use
 				</Text>
 			</View>
 
-			<TouchableOpacity
-				className='w-full mt-auto'
-				onPress={handleSubmit(submitHandler, onError)}>
-				<LinearGradient
-					start={{ x: 0, y: 0.75 }}
-					end={{ x: 1.3, y: 0.25 }}
-					colors={['#F77F00', '#D62828']}
-					style={{
-						height: 60,
-						borderRadius: 50,
-						justifyContent: 'center',
-						alignItems: 'center',
-					}}>
-					<Text className='text-white text-2xl font-extrabold'>Register</Text>
-				</LinearGradient>
-			</TouchableOpacity>
+			<GradientButtonComponent
+				handleSubmit={handleSubmit(submitHandler, onError)}
+				title={'Register'}
+			/>
 
 			<View className='w-full flex flex-row items-center justify-center gap-2 mt-2'>
 				<Separator
@@ -128,15 +123,17 @@ const SignUpScreen = () => {
 			</View>
 			<TouchableOpacity>
 				<AppleLoginIcon
-					width={60}
-					height={60}
+					width={50}
+					height={50}
 				/>
 			</TouchableOpacity>
 
-			<View className='flex flex-col gap-2 mt-5  items-center justify-center'>
-				<Text className='text-xl'>Already have an account?</Text>
+			<View className='flex flex-col gap-2  items-center justify-center'>
+				<Text className='text-lg font-poppins'>Already have an account?</Text>
 				<TouchableOpacity onPress={() => router.push('/SignInScreen')}>
-					<Text className=' text-xl font-bold text-[#F77F00]'>Sign In</Text>
+					<Text className=' text-xl font-poppins font-bold text-[#F77F00]'>
+						Sign In
+					</Text>
 				</TouchableOpacity>
 			</View>
 		</View>

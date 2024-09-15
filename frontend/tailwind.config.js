@@ -172,10 +172,13 @@ module.exports = {
 				},
 			},
 			fontFamily: {
-				heading: ['Roboto', 'sans-serif'],
-				body: ['Roboto', 'sans-serif'],
+				heading: ['Poppins', 'sans-serif'],
+				body: ['Poppins', 'sans-serif'],
 				mono: undefined,
-				roboto: ['Roboto', 'sans-serif'],
+				poppins: ['Poppins', 'sans-serif'],
+				poppinsLight: ['Poppins--Light', 'sans-serif'],
+				poppinsSemiBold: ['Poppins--SemiBold', 'sans-serif'],
+				poppinsBold: ['Poppins--Bold', 'sans-serif'],
 			},
 			fontWeight: {
 				extrablack: '950',

@@ -102,7 +102,7 @@ const UIInput = createInput({
 
 const inputStyle = tva({
 	base:
-		'flex-row border-0 bg-[#F7F8F8] overflow-hidden content-center data-[hover=true]:border-outline-400  data-[focus=true]:hover:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:hover:border-background-300 items-center',
+		'flex-row px-6 border-0 bg-[#F7F8F8] overflow-hidden content-center data-[hover=true]:border-outline-400  data-[focus=true]:hover:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:hover:border-background-300 items-center',
 
 	variants: {
 		size: {
@@ -140,12 +140,13 @@ const inputIconStyle = tva({
 });
 
 const inputSlotStyle = tva({
-	base: 'justify-center items-center web:disabled:cursor-not-allowed',
+	base:
+		'justify-center items-center web:disabled:cursor-not-allowed',
 });
 
 const inputFieldStyle = tva({
 	base:
-		'flex-1 py-auto px-4 text-[#7B6F72]  h-full ios:leading-[0px] web:cursor-text web:data-[disabled=true]:cursor-not-allowed',
+		'flex-1 py-auto font-poppins px-4 text-[#7B6F72]  h-full ios:leading-[0px] web:cursor-text web:data-[disabled=true]:cursor-not-allowed',
 
 	parentVariants: {
 		variant: {
