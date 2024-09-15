@@ -31,6 +31,8 @@ const HomeScreen = () => {
 		{
 			name: 'Salmon Nigiri',
 			date: currentDate,
+			showSwitch: true,
+			onSwicthHandler: console.log('AHoj'),
 		},
 		{
 			name: 'Lowfat Milk',
@@ -67,13 +69,15 @@ const HomeScreen = () => {
 						/>
 					</View>
 					<View className='gap-5 mt-6 justify-center flex-col items-center'>
-						{meals.map((meal, index) => {
+						{meals.map((dataCircle, index) => {
 							return (
 								<MealItemComponent
-									name={meal.name}
-									date={meal.date}
+									name={dataCircle.name}
+									date={dataCircle.date}
 									id={index}
 									key={index}
+									showSwitch={dataCircle.showSwitch}
+									onSwitchHadnler={dataCircle.onSwicthHandler}
 								/>
 							);
 						})}

@@ -1,7 +1,13 @@
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Switch } from 'tamagui';
+import { Switch } from '@/components/ui/switch';
 
-const DashboardCardComponent = ({ id, name, date }) => {
+const DashboardCardComponent = ({
+	id,
+	name,
+	date,
+	showSwitch,
+	onSwitchHadnler,
+}) => {
 	const dateHandler = (date: string) => {
 		const currentDate = new Date().toLocaleDateString();
 		if (currentDate != date) {
@@ -13,15 +19,20 @@ const DashboardCardComponent = ({ id, name, date }) => {
 	return (
 		<TouchableOpacity className='w-full gap-1 bg-white shadow-soft-1  px-4 py-5 rounded-3xl'>
 			<Text className='font-poppins text-xl'>{name}</Text>
-			<View className='flex-row gap-2'>
+			<View className='flex-row gap-2 items-center w-full'>
 				<Text className='text-[#7B6F72] font-poppins text-lg'>
 					{dateHandler(date.date)}
 				</Text>
 				<Text className='text-[#7B6F72] font-poppins text-lg'>|</Text>
 				<Text className='text-[#7B6F72] font-poppins text-lg'>{date.time}</Text>
-				<Switch size='$4'>
-					<Switch.Thumb animation='bouncy' />
-				</Switch>
+				{showSwitch && (
+					<Switch
+						className='ms-auto'
+						size='md'
+						isDisabled={false}
+						trackColor={{ false: `#E4E4E4`, true: `#F77F00` }}
+					/>
+				)}
 			</View>
 		</TouchableOpacity>
 	);
