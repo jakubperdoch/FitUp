@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
+import { Switch } from 'tamagui';
 
-const MealItemComponent = ({ id, name, date }) => {
+const DashboardCardComponent = ({ id, name, date }) => {
 	const dateHandler = (date: string) => {
 		const currentDate = new Date().toLocaleDateString();
 		if (currentDate != date) {
@@ -18,9 +19,12 @@ const MealItemComponent = ({ id, name, date }) => {
 				</Text>
 				<Text className='text-[#7B6F72] font-poppins text-lg'>|</Text>
 				<Text className='text-[#7B6F72] font-poppins text-lg'>{date.time}</Text>
+				<Switch size='$4'>
+					<Switch.Thumb animation='bouncy' />
+				</Switch>
 			</View>
 		</TouchableOpacity>
 	);
 };
 
-export default MealItemComponent;
+export default DashboardCardComponent;
