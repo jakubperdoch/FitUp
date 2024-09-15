@@ -27,7 +27,7 @@ const GradientSelectComponent = ({
 			onValueChange={onChange}
 			defaultValue={options[0].value}
 			initialLabel={options[0].label}
-			className='capitalize ms-auto'>
+			className='capitalize '>
 			<LinearGradient
 				start={{ x: 0, y: 0.75 }}
 				end={{ x: 1.3, y: 0.25 }}
