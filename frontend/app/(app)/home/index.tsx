@@ -65,11 +65,13 @@ const HomeScreen = () => {
 					name: 'Upperbody Workout',
 					date: currentDate,
 					showSwitch: true,
+					onSwitchHadnler: (value: boolean) => console.log(value),
 				},
 				{
 					name: 'Fullbody Workout',
 					date: currentDate,
 					showSwitch: true,
+					onSwitchHadnler: (value: boolean) => console.log(value),
 				},
 			],
 		},
@@ -115,6 +117,8 @@ const HomeScreen = () => {
 										<MealItemComponent
 											name={card.name}
 											date={card.date}
+											showSwitch={card.showSwitch}
+											onSwitchHadnler={card.onSwitchHadnler}
 											id={cardIndex}
 											key={cardIndex}
 										/>

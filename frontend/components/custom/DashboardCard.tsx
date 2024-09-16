@@ -9,7 +9,7 @@ type ComponentProps = {
 		time: string;
 	};
 	showSwitch?: boolean;
-	onSwitchHadnler?: void;
+	onSwitchHadnler?: (value: boolean) => void;
 };
 
 const DashboardCardComponent = ({
@@ -37,9 +37,9 @@ const DashboardCardComponent = ({
 				<Text className='text-[#7B6F72] font-poppins text-lg'>{date.time}</Text>
 				{showSwitch && (
 					<Switch
+						onValueChange={(value) => onSwitchHadnler(value)}
 						className='ms-auto'
 						size='md'
-						isDisabled={false}
 						trackColor={{ false: `#E4E4E4`, true: `#F77F00` }}
 					/>
 				)}
