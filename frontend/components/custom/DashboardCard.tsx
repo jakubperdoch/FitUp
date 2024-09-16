@@ -1,13 +1,23 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Switch } from '@/components/ui/switch';
 
+type ComponentProps = {
+	id: number;
+	name: string;
+	date: {
+		date: string;
+		time: string;
+	};
+	showSwitch?: boolean;
+	onSwitchHadnler?: void;
+};
+
 const DashboardCardComponent = ({
-	id,
 	name,
 	date,
 	showSwitch,
 	onSwitchHadnler,
-}) => {
+}: ComponentProps) => {
 	const dateHandler = (date: string) => {
 		const currentDate = new Date().toLocaleDateString();
 		if (currentDate != date) {
