@@ -4,9 +4,10 @@ import GenericIcon from '@/components/custom/Icon';
 import GradientSelectComponent from '@/components/custom/GradientSelect';
 import MealItemComponent from '@/components/custom/DashboardCard';
 import useCurrentDateHandler from '@/utils/date';
+import { Alert } from 'react-native';
 
 const HomeScreen = () => {
-	const { currentDate, formattedDate, formattedTime } = useCurrentDateHandler();
+	const { currentDate } = useCurrentDateHandler();
 
 	const foodOptions = [
 		{
@@ -24,17 +25,6 @@ const HomeScreen = () => {
 		{
 			label: 'Custom',
 			value: 'custom',
-		},
-	];
-
-	const meals = [
-		{
-			name: 'Salmon Nigiri',
-			date: currentDate,
-		},
-		{
-			name: 'Lowfat Milk',
-			date: currentDate,
 		},
 	];
 
@@ -65,13 +55,41 @@ const HomeScreen = () => {
 					name: 'Upperbody Workout',
 					date: currentDate,
 					showSwitch: true,
-					onSwitchHadnler: (value: boolean) => console.log(value),
+					onSwitchHadnler: (value: boolean) =>
+						Alert.alert(
+							'Ahoj',
+							'Are you sure you want to switch?',
+							[
+								{
+									text: 'Cancel',
+									onPress: () => console.log('Cancel Pressed'),
+									style: 'cancel',
+								},
+								{ text: 'OK', onPress: () => console.log('OK Pressed') },
+							],
+							{ cancelable: false }
+						),
 				},
 				{
 					name: 'Fullbody Workout',
 					date: currentDate,
 					showSwitch: true,
-					onSwitchHadnler: (value: boolean) => console.log(value),
+					switchValue: false,
+					onSwitchHadnler: (value: boolean) =>
+						Alert.alert(
+							'Ahoj',
+							'Are you sure you want to switch?',
+							[
+								{
+									text: 'Cancel',
+									onPress: () => {
+										console.log(value);
+									},
+								},
+								{ text: 'OK', onPress: () => (value = false) },
+							],
+							{ cancelable: false }
+						),
 				},
 			],
 		},
@@ -119,6 +137,7 @@ const HomeScreen = () => {
 											date={card.date}
 											showSwitch={card.showSwitch}
 											onSwitchHadnler={card.onSwitchHadnler}
+											switchValue={card.switchValue}
 											id={cardIndex}
 											key={cardIndex}
 										/>

@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Switch } from '@/components/ui/switch';
+import { useEffect } from 'react';
 
 type ComponentProps = {
 	id: number;
@@ -9,6 +10,7 @@ type ComponentProps = {
 		time: string;
 	};
 	showSwitch?: boolean;
+	switchValue?: boolean;
 	onSwitchHadnler?: (value: boolean) => void;
 };
 
@@ -17,6 +19,7 @@ const DashboardCardComponent = ({
 	date,
 	showSwitch,
 	onSwitchHadnler,
+	switchValue,
 }: ComponentProps) => {
 	const dateHandler = (date: string) => {
 		const currentDate = new Date().toLocaleDateString();
@@ -25,6 +28,10 @@ const DashboardCardComponent = ({
 		}
 		return <Text>Today</Text>;
 	};
+
+	useEffect(() => {
+		console.log(switchValue);
+	}, [switchValue]);
 
 	return (
 		<TouchableOpacity className='w-full gap-1 bg-white shadow-soft-1  px-4 py-5 rounded-3xl'>
@@ -37,7 +44,7 @@ const DashboardCardComponent = ({
 				<Text className='text-[#7B6F72] font-poppins text-lg'>{date.time}</Text>
 				{showSwitch && (
 					<Switch
-						onValueChange={(value) => onSwitchHadnler(value)}
+						onToggle={(value) => onSwitchHadnler(value)}
 						className='ms-auto'
 						size='md'
 						trackColor={{ false: `#E4E4E4`, true: `#F77F00` }}
