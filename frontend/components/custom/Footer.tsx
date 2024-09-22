@@ -6,7 +6,6 @@ import Animated, {
 import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useEffect, useState } from 'react';
 import GenericIcon from './Icon';
 import Svg, { Circle, LinearGradient, Stop, Defs } from 'react-native-svg';
 import { useRef } from 'react';
