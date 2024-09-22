@@ -1,4 +1,3 @@
-// GenericIcon.js
 import React from 'react';
 import * as LucideIcons from 'lucide-react-native';
 

@@ -4,70 +4,107 @@ import Animated, {
 	withSpring,
 } from 'react-native-reanimated';
 import { View } from 'react-native';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useEffect, useState } from 'react';
+import GenericIcon from './Icon';
+import Svg, { Circle, LinearGradient, Stop, Defs } from 'react-native-svg';
+import { useRef } from 'react';
+
+const circleLength = 150;
+const radius = circleLength / (2 * Math.PI);
 
 const FooterComponent = () => {
 	const insets = useSafeAreaInsets();
-	const [selectedIcon, setSelectedIcon] = useState(2);
+	const iconPosition = useSharedValue<number>(0);
+	const iconElementRefs = useRef<any[]>([]);
 
 	const footerItems = [
-		{ icon: 'chart-area', position: 0 },
-		{ icon: 'cookie', position: 60 },
-		{ icon: 'home', position: 110 },
-		{ icon: 'dumbbell', position: 160 },
-		{ icon: 'user-alt', position: 210 },
+		{ icon: 'ChartArea' },
+		{ icon: 'Cookie' },
+		{ icon: 'House' },
+		{ icon: 'Dumbbell' },
+		{ icon: 'UserRound' },
 	];
 
-	const scaleValues = footerItems.map(() => useSharedValue(1));
+	const translateValues = footerItems.map(() => useSharedValue(1));
 
 	const handlePress = (index: number) => {
-		setSelectedIcon(index);
-		scaleValues.forEach((scale, i) => {
-			scale.value = withSpring(i === index ? 1.4 : 1);
+		translateValues.forEach((scale, i) => {
+			scale.value = withSpring(i === index ? -16 : 0);
 		});
+
+		const element = iconElementRefs.current[index];
+		if (element) {
+			element.measure((px: number) => {
+				iconPosition.value = px - 25;
+			});
+			console.log(iconPosition.value);
+		}
 	};
 
-	useEffect(() => {
-		scaleValues.forEach((scale, i) => {
-			scale.value = withSpring(selectedIcon == i ? 1.4 : 1);
-		});
-	}, []);
+	const circleAnimation = useAnimatedStyle(() => ({
+		transform: [
+			{
+				translateX: withSpring(iconPosition.value, { stiffness: 50, mass: 1 }),
+			},
+		],
+	}));
 
 	return (
 		<View
-			className='bg-[#F7F8F8] pb-11 pt-6 mt-0 rounded-3xl'
+			className='pb-11 pt-6 mt-0 rounded-3xl relative flex-row w-full justify-between px-8 bg-white shadow-soft-1'
 			style={{ bottom: -insets.bottom, marginTop: -35 }}>
-			<View className='relative flex-row w-full justify-between px-8'>
-				{footerItems.map((icon, index) => {
-					const animatedStyle = useAnimatedStyle(() => ({
-						transform: [{ scale: scaleValues[index].value }],
-					}));
-					return (
-						<Animated.View
-							style={[animatedStyle, { zIndex: 10 }]}
-							key={index}>
+			<Animated.View
+				className='absolute bottom-5'
+				style={[circleAnimation, { zIndex: 0 }]}>
+				<Svg
+					width={circleLength / 2.4}
+					height={circleLength / 2}>
+					<Defs>
+						<LinearGradient
+							id='grad'
+							x1='0'
+							y1='0'
+							x2='1'
+							y2='0'>
+							<Stop
+								offset='0'
+								stopColor='#F77F00'
+								stopOpacity='1'
+							/>
+							<Stop
+								offset='1'
+								stopColor='#D62828'
+								stopOpacity='1'
+							/>
+						</LinearGradient>
+					</Defs>
+					<Circle
+						fill='url(#grad)'
+						cx={circleLength / 4}
+						cy={circleLength / 5.5}
+						r={radius}
+					/>
+				</Svg>
+			</Animated.View>
+			{footerItems.map((item, index) => {
+				const animatedStyle = useAnimatedStyle(() => ({
+					transform: [{ translateY: translateValues[index].value }],
+				}));
+				return (
+					<View
+						ref={(el) => (iconElementRefs.current[index] = el)}
+						onLayout={() => handlePress(2)}
+						key={index}>
+						<Animated.View style={[animatedStyle, { zIndex: 10 }]}>
 							<TouchableOpacity onPress={() => handlePress(index)}>
-								{selectedIcon === index ? (
-									<FontAwesome5
-										name={icon.icon}
-										size={23}
-										color='#F77F00'
-									/>
-								) : (
-									<FontAwesome5
-										name={icon.icon}
-										size={23}
-										color='black'
-									/>
-								)}
+								<GenericIcon name={item.icon} />
 							</TouchableOpacity>
 						</Animated.View>
-					);
-				})}
-			</View>
+					</View>
+				);
+			})}
 		</View>
 	);
 };

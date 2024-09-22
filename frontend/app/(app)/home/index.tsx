@@ -98,14 +98,14 @@ const HomeScreen = () => {
 
 	return (
 		<ScrollView>
-			<View className='flex flex-col h-full items-center px-7 pt-5 w-full gap-6'>
+			<View className='flex flex-col h-full items-center px-7 pt-5 w-full gap-6 mb-4'>
 				<Text className='self-start font-poppinsSemiBold text-2xl'>Overview</Text>
 				<DashBoardComponent />
 
 				{dashBoardPanels.map((dashBoardPanel, panelIndex) => {
 					return (
 						<View
-							className='self-start w-full flex-col mb-3'
+							className='self-start w-full flex-col mb-4'
 							key={panelIndex}>
 							<View className='flex-row w-full items-center justify-between gap-3 mt-4'>
 								<View className='flex-row  items-center gap-3'>
