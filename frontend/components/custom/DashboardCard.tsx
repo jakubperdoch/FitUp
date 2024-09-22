@@ -29,10 +29,6 @@ const DashboardCardComponent = ({
 		return <Text>Today</Text>;
 	};
 
-	useEffect(() => {
-		console.log(switchValue);
-	}, [switchValue]);
-
 	return (
 		<TouchableOpacity className='w-full gap-1 bg-white shadow-soft-1  px-4 py-5 rounded-3xl'>
 			<Text className='font-poppins text-xl'>{name}</Text>

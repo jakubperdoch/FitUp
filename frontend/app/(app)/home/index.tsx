@@ -71,6 +71,7 @@ const HomeScreen = () => {
 						),
 				},
 				{
+					// FIXME: alert & switch state
 					name: 'Fullbody Workout',
 					date: currentDate,
 					showSwitch: true,

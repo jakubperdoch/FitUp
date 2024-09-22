@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import Svg, { Circle, LinearGradient, Stop, Defs } from 'react-native-svg';
+import Svg, { Circle } from 'react-native-svg';
 import Animated from 'react-native-reanimated';
 import { useAnimatedProps, withTiming } from 'react-native-reanimated';
 import { useEffect, useState } from 'react';
