@@ -1,10 +1,10 @@
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { useState } from 'react';
 import DashBoardComponent from '@/components/custom/DashboardPanel';
 import GenericIcon from '@/components/custom/Icon';
 import GradientSelectComponent from '@/components/custom/GradientSelect';
 import MealItemComponent from '@/components/custom/DashboardCard';
 import useCurrentDateHandler from '@/utils/date';
-import { Alert } from 'react-native';
 
 const HomeScreen = () => {
 	const { currentDate } = useCurrentDateHandler();
@@ -28,11 +28,11 @@ const HomeScreen = () => {
 		},
 	];
 
-	const dashBoardPanels = [
+	const [dashBoardPanels, setDashBoardPanels] = useState([
 		{
 			title: 'Today Meals',
 			onAddHandler: () => console.log('Add Meal'),
-			onShowMoreHandler: () => console.log('Show More Workouts'),
+			onShowMoreHandler: () => console.log('Show More Meals'),
 			showSelect: true,
 			cards: [
 				{
@@ -54,47 +54,18 @@ const HomeScreen = () => {
 				{
 					name: 'Upperbody Workout',
 					date: currentDate,
-					showSwitch: true,
-					onSwitchHadnler: (value: boolean) =>
-						Alert.alert(
-							'Ahoj',
-							'Are you sure you want to switch?',
-							[
-								{
-									text: 'Cancel',
-									onPress: () => console.log('Cancel Pressed'),
-									style: 'cancel',
-								},
-								{ text: 'OK', onPress: () => console.log('OK Pressed') },
-							],
-							{ cancelable: false }
-						),
+					showTimer: true,
+					timer: null,
 				},
 				{
-					// FIXME: alert & switch state
 					name: 'Fullbody Workout',
 					date: currentDate,
-					showSwitch: true,
-					switchValue: false,
-					onSwitchHadnler: (value: boolean) =>
-						Alert.alert(
-							'Ahoj',
-							'Are you sure you want to switch?',
-							[
-								{
-									text: 'Cancel',
-									onPress: () => {
-										console.log(value);
-									},
-								},
-								{ text: 'OK', onPress: () => (value = false) },
-							],
-							{ cancelable: false }
-						),
+					showTimer: true,
+					timer: null,
 				},
 			],
 		},
-	];
+	]);
 
 	return (
 		<ScrollView>
@@ -108,7 +79,7 @@ const HomeScreen = () => {
 							className='self-start w-full flex-col mb-4'
 							key={panelIndex}>
 							<View className='flex-row w-full items-center justify-between gap-3 mt-4'>
-								<View className='flex-row  items-center gap-3'>
+								<View className='flex-row items-center gap-3'>
 									<Text className='font-poppinsSemiBold text-2xl'>
 										{dashBoardPanel.title}
 									</Text>
@@ -130,15 +101,14 @@ const HomeScreen = () => {
 									/>
 								)}
 							</View>
+
 							<View className='gap-5 mt-6 justify-center flex-col items-center'>
-								{dashBoardPanel.cards.map((card, cardIndex: number) => {
+								{dashBoardPanel.cards.map((card, cardIndex) => {
 									return (
 										<MealItemComponent
 											name={card.name}
 											date={card.date}
-											showSwitch={card.showSwitch}
-											onSwitchHadnler={card.onSwitchHadnler}
-											switchValue={card.switchValue}
+											showTimer={card.showTimer}
 											id={cardIndex}
 											key={cardIndex}
 										/>

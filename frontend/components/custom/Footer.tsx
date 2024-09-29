@@ -38,7 +38,6 @@ const FooterComponent = () => {
 			element.measure((px: number) => {
 				iconPosition.value = px - 25;
 			});
-			console.log(iconPosition.value);
 		}
 	};
 
