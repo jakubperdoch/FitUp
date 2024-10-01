@@ -2,15 +2,26 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableOpacity, Text, View } from 'react-native';
 import GenericIcon from './Icon';
 import { useEffect, useState, useRef } from 'react';
+import Animated, {
+	useAnimatedStyle,
+	useSharedValue,
+	withDelay,
+	withTiming,
+} from 'react-native-reanimated';
 
 const TimeButton = () => {
-	const [buttonState, setButtonState] = useState(false);
+	// variables
+	const [isPaused, setIsPaused] = useState(false);
 	const [buttonIcon, setButtonIcon] = useState('Play');
+	const additionalButtons = useSharedValue(0);
 	const [time, setTime] = useState(0);
 	const intervalRef = useRef(null);
+	const DURATION = 1000;
+	const DELAY = 300;
 
+	// handlers
 	const buttonStateHandler = () => {
-		setButtonState((prevState) => !prevState);
+		setIsPaused((prevState) => !prevState);
 	};
 
 	const timeHandler = (timeValue: number) => {
@@ -31,7 +42,7 @@ const TimeButton = () => {
 	};
 
 	useEffect(() => {
-		if (buttonState) {
+		if (isPaused) {
 			setButtonIcon('Pause');
 			intervalRef.current = setInterval(() => {
 				setTime((prevSeconds) => prevSeconds + 1);
@@ -42,30 +53,103 @@ const TimeButton = () => {
 		}
 
 		return () => clearInterval(intervalRef.current);
-	}, [buttonState]);
+	}, [isPaused]);
+
+	const additionalButtonsHandler = () => {
+		if (!isPaused && time > 0) {
+			return (
+				<Animated.View
+					style={animatedStyle}
+					className='flex-row gap-3'>
+					<TouchableOpacity>
+						<LinearGradient
+							start={{ x: 0, y: 0.75 }}
+							end={{ x: 1.3, y: 0.25 }}
+							colors={['#F2EA00', '#FF6F00']}
+							style={{
+								height: 35,
+								width: 35,
+								alignItems: 'center',
+								justifyContent: 'center',
+								borderRadius: 50,
+							}}>
+							<GenericIcon
+								name='Check'
+								size={23}
+								color='white'
+							/>
+						</LinearGradient>
+					</TouchableOpacity>
+
+					<TouchableOpacity>
+						<LinearGradient
+							start={{ x: 0, y: 0.75 }}
+							end={{ x: 1.3, y: 0.25 }}
+							colors={['#D62828', '#D62828']}
+							style={{
+								height: 35,
+								width: 35,
+								alignItems: 'center',
+								justifyContent: 'center',
+								borderRadius: 50,
+							}}>
+							<GenericIcon
+								name='X'
+								size={23}
+								color='white'
+								fill='white'
+							/>
+						</LinearGradient>
+					</TouchableOpacity>
+				</Animated.View>
+			);
+		}
+	};
+
+	// animations
+	const animatedStyle = useAnimatedStyle(() => {
+		return {
+			opacity: additionalButtons.value,
+		};
+	});
+
+	useEffect(() => {
+		if (!isPaused && time > 0) {
+			additionalButtons.value = withDelay(
+				0 * DELAY,
+				withTiming(1, { duration: DURATION })
+			);
+		} else {
+			additionalButtons.value = withTiming(0, { duration: DURATION }); // Fade out
+		}
+	}, [isPaused, time]);
 
 	return (
-		<View className='flex flex-col items-center justify-center gap-1'>
-			<TouchableOpacity onPress={buttonStateHandler}>
-				<LinearGradient
-					start={{ x: 0, y: 0.75 }}
-					end={{ x: 1.3, y: 0.25 }}
-					colors={buttonState ? ['#D62828', '#D62828'] : ['#2CBF29', '#24E022']}
-					style={{
-						height: 35,
-						width: 35,
-						alignItems: 'center',
-						justifyContent: 'center',
-						borderRadius: 50,
-					}}>
-					<GenericIcon
-						name={buttonIcon}
-						size={15}
-						color='white'
-						fill='white'
-					/>
-				</LinearGradient>
-			</TouchableOpacity>
+		<View className='flex flex-col items-center justify-center gap-2'>
+			<View className='flex-row gap-3'>
+				<TouchableOpacity onPress={buttonStateHandler}>
+					<LinearGradient
+						start={{ x: 0, y: 0.75 }}
+						end={{ x: 1.3, y: 0.25 }}
+						colors={isPaused ? ['#D62828', '#D62828'] : ['#2CBF29', '#24E022']}
+						style={{
+							height: 35,
+							width: 35,
+							alignItems: 'center',
+							justifyContent: 'center',
+							borderRadius: 50,
+						}}>
+						<GenericIcon
+							name={buttonIcon}
+							size={15}
+							color='white'
+							fill='white'
+						/>
+					</LinearGradient>
+				</TouchableOpacity>
+				{additionalButtonsHandler()}
+			</View>
+
 			<Text>{timeHandler(time)}</Text>
 		</View>
 	);
