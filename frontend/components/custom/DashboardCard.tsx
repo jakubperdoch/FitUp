@@ -10,10 +10,17 @@ type ComponentProps = {
 		time: string;
 	};
 	showTimer?: boolean;
-	onSwitchHadnler?: (value: boolean) => void;
+	timer?: number | null;
+	timerHandler?: (timer) => void;
 };
 
-const DashboardCardComponent = ({ name, date, showTimer }: ComponentProps) => {
+const DashboardCardComponent = ({
+	name,
+	date,
+	showTimer,
+	timer,
+	timerHandler,
+}: ComponentProps) => {
 	const dateHandler = (date: string) => {
 		const currentDate = new Date().toLocaleDateString();
 		if (currentDate != date) {
@@ -35,7 +42,12 @@ const DashboardCardComponent = ({ name, date, showTimer }: ComponentProps) => {
 				</View>
 			</View>
 
-			{showTimer && <TimeButton />}
+			{showTimer && (
+				<TimeButton
+					timer={timer}
+					timerHandler={timerHandler}
+				/>
+			)}
 		</TouchableOpacity>
 	);
 };

@@ -9,7 +9,12 @@ import Animated, {
 	withTiming,
 } from 'react-native-reanimated';
 
-const TimeButton = () => {
+type ComponentProps = {
+	timer: number | null;
+	timerHandler: (timer: number) => void;
+};
+
+const TimeButton = ({ timer, timerHandler }: ComponentProps) => {
 	// variables
 	const [isPaused, setIsPaused] = useState(false);
 	const [buttonIcon, setButtonIcon] = useState('Play');
@@ -22,6 +27,17 @@ const TimeButton = () => {
 	// handlers
 	const buttonStateHandler = () => {
 		setIsPaused((prevState) => !prevState);
+	};
+
+	const finishWorkoutHandler = () => {
+		timer = time;
+		timerHandler(timer);
+	};
+
+	const deleteWorkoutHandler = () => {
+		timer = 0;
+		setTime(0);
+		setIsPaused(false);
 	};
 
 	const timeHandler = (timeValue: number) => {
@@ -60,28 +76,8 @@ const TimeButton = () => {
 			return (
 				<Animated.View
 					style={animatedStyle}
-					className='flex-row gap-3'>
-					<TouchableOpacity>
-						<LinearGradient
-							start={{ x: 0, y: 0.75 }}
-							end={{ x: 1.3, y: 0.25 }}
-							colors={['#F2EA00', '#FF6F00']}
-							style={{
-								height: 35,
-								width: 35,
-								alignItems: 'center',
-								justifyContent: 'center',
-								borderRadius: 50,
-							}}>
-							<GenericIcon
-								name='Check'
-								size={23}
-								color='white'
-							/>
-						</LinearGradient>
-					</TouchableOpacity>
-
-					<TouchableOpacity>
+					className='flex-row gap-4'>
+					<TouchableOpacity onPress={() => deleteWorkoutHandler()}>
 						<LinearGradient
 							start={{ x: 0, y: 0.75 }}
 							end={{ x: 1.3, y: 0.25 }}
@@ -98,6 +94,26 @@ const TimeButton = () => {
 								size={23}
 								color='white'
 								fill='white'
+							/>
+						</LinearGradient>
+					</TouchableOpacity>
+
+					<TouchableOpacity onPress={() => finishWorkoutHandler()}>
+						<LinearGradient
+							start={{ x: 0, y: 0.75 }}
+							end={{ x: 1.3, y: 0.25 }}
+							colors={['#F2EA00', '#FF6F00']}
+							style={{
+								height: 35,
+								width: 35,
+								alignItems: 'center',
+								justifyContent: 'center',
+								borderRadius: 50,
+							}}>
+							<GenericIcon
+								name='Check'
+								size={23}
+								color='white'
 							/>
 						</LinearGradient>
 					</TouchableOpacity>
@@ -125,8 +141,8 @@ const TimeButton = () => {
 	}, [isPaused, time]);
 
 	return (
-		<View className='flex flex-col items-center justify-center gap-2'>
-			<View className='flex-row gap-3'>
+		<View className='flex flex-col items-center justify-center gap-3'>
+			<View className='flex-row gap-4'>
 				<TouchableOpacity onPress={buttonStateHandler}>
 					<LinearGradient
 						start={{ x: 0, y: 0.75 }}

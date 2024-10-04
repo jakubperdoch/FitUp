@@ -56,12 +56,38 @@ const HomeScreen = () => {
 					date: currentDate,
 					showTimer: true,
 					timer: null,
+					timerHandler: (value: number, id: number) => {
+						const newPanel = [...dashBoardPanels];
+
+						newPanel[1].cards[id] = {
+							...newPanel[1].cards[id],
+							timer: value,
+						};
+
+						setDashBoardPanels(() => {
+							return newPanel;
+						});
+						console.log(value);
+					},
 				},
 				{
 					name: 'Fullbody Workout',
 					date: currentDate,
 					showTimer: true,
 					timer: null,
+					timerHandler: (value: number, id: number) => {
+						const newPanel = [...dashBoardPanels];
+
+						newPanel[1].cards[id] = {
+							...newPanel[1].cards[id],
+							timer: value,
+						};
+
+						setDashBoardPanels(() => {
+							return newPanel;
+						});
+						console.log(value);
+					},
 				},
 			],
 		},
@@ -109,6 +135,8 @@ const HomeScreen = () => {
 											name={card.name}
 											date={card.date}
 											showTimer={card.showTimer}
+											timer={card.timer}
+											timerHandler={(value) => card.timerHandler(value, cardIndex)}
 											id={cardIndex}
 											key={cardIndex}
 										/>
