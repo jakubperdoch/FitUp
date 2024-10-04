@@ -3,6 +3,7 @@ import Animated, {
 	useSharedValue,
 	withSpring,
 } from 'react-native-reanimated';
+import * as Haptics from 'expo-haptics';
 import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -32,6 +33,8 @@ const FooterComponent = () => {
 		translateValues.forEach((scale, i) => {
 			scale.value = withSpring(i === index ? -16 : 0);
 		});
+		
+		Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
 		const element = iconElementRefs.current[index];
 		if (element) {
