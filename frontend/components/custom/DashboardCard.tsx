@@ -30,7 +30,7 @@ const DashboardCardComponent = ({
 	};
 
 	return (
-		<TouchableOpacity className='w-full gap-1 bg-white shadow-soft-1  px-5 py-5 rounded-3xl flex-row justify-between'>
+		<TouchableOpacity className='w-full gap-2 bg-white shadow-soft-1  px-4 py-5 rounded-3xl flex-row justify-between'>
 			<View className='gap-1'>
 				<Text className='font-poppins text-lg'>{name}</Text>
 				<View className='flex-row gap-2'>

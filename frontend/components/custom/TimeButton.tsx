@@ -76,7 +76,7 @@ const TimeButton = ({ timer, timerHandler }: ComponentProps) => {
 			return (
 				<Animated.View
 					style={animatedStyle}
-					className='flex-row gap-4'>
+					className='flex-row gap-3'>
 					<TouchableOpacity onPress={() => deleteWorkoutHandler()}>
 						<LinearGradient
 							start={{ x: 0, y: 0.75 }}
@@ -142,7 +142,7 @@ const TimeButton = ({ timer, timerHandler }: ComponentProps) => {
 
 	return (
 		<View className='flex flex-col items-center justify-center gap-3'>
-			<View className='flex-row gap-4'>
+			<View className='flex-row gap-3'>
 				<TouchableOpacity onPress={buttonStateHandler}>
 					<LinearGradient
 						start={{ x: 0, y: 0.75 }}
