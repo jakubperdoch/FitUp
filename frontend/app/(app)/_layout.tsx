@@ -1,12 +1,14 @@
 import { Slot } from 'expo-router';
 import { Text, View } from 'react-native';
 import TopNavigationComponent from '@/components/custom/TopNavigation';
-const AppLayout = () => {
+import FooterComponent from '@/components/custom/Footer';
 
+const AppLayout = () => {
 	return (
 		<>
 			<TopNavigationComponent />
 			<Slot />
+			<FooterComponent />
 		</>
 	);
 };

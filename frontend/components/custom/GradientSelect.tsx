@@ -37,7 +37,7 @@ const GradientSelectComponent = ({
 				}}>
 				<SelectTrigger
 					variant='fullRounded'
-					size='lg'
+					size='md'
 					className='gap-4 '>
 					<SelectInput placeholder={placeholder} />
 					<SelectIcon

@@ -11,12 +11,12 @@ const GradientButtonComponent = ({ handleSubmit, title }) => {
 				end={{ x: 1.3, y: 0.25 }}
 				colors={['#F77F00', '#D62828']}
 				style={{
-					height: 60,
+					height: 55,
 					borderRadius: 50,
 					justifyContent: 'center',
 					alignItems: 'center',
 				}}>
-				<Text className='text-white text-2xl font-extrabold font-poppins'>
+				<Text className='text-white text-xl font-extrabold font-poppins'>
 					{title}
 				</Text>
 			</LinearGradient>
