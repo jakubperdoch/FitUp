@@ -1,9 +1,15 @@
 // here user will have see all entered meals in specific day
-import { ScrollView, Text, View, FlatList } from 'react-native';
+import {
+	ScrollView,
+	Text,
+	View,
+	FlatList,
+	TouchableOpacity,
+} from 'react-native';
 import DateCardComponent from '@/components/custom/DateCard';
 import { useEffect, useState } from 'react';
 import { Spinner } from '@/components/ui/spinner';
-import { set } from 'react-hook-form';
+import GenericIcon from '@/components/custom/Icon';
 
 const MealsPage = () => {
 	const [dates, setDates] = useState([]);
@@ -51,13 +57,10 @@ const MealsPage = () => {
 		}
 
 		setMonths(monthsArray);
-		console.log(monthsArray);
 	};
 
 	const selectDateHandler = (date: Date) => {
 		setSelectedDate(date);
-		console.log(date.getMonth());
-		console.log(selectedDate.getMonth());
 	};
 
 	const getCurrentMonth = () => {
@@ -92,9 +95,24 @@ const MealsPage = () => {
 				</View>
 			) : (
 				<>
-					<Text className='text-center text-[#ADA4A5] text-2xl mt-2'>
-						{getCurrentMonth()}
-					</Text>
+					<View className='flex flex-row items-center justify-center gap-8 my-2'>
+						<TouchableOpacity>
+							<GenericIcon
+								name={'ChevronLeft'}
+								color='#ADA4A5'
+							/>
+						</TouchableOpacity>
+						<Text className='text-center text-[#ADA4A5] text-2xl'>
+							{getCurrentMonth()}
+						</Text>
+						<TouchableOpacity>
+							<GenericIcon
+								name={'ChevronRight'}
+								color='#ADA4A5'
+							/>
+						</TouchableOpacity>
+					</View>
+
 					<FlatList
 						data={dates}
 						renderItem={({ item }) => (
