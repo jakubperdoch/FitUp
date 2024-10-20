@@ -36,7 +36,7 @@ const ExplainersLayout = () => {
 				</Text>
 				<Text
 					style={styles.explainersDesc}
-					className='font-poppinsLight'>
+					className='font-poppins text-[#7B6F72]'>
 					{explainerDescription}
 				</Text>
 				<ProgressButton
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
 		marginTop: -20,
 	},
 	explainersTitle: {
-		fontSize: 24,
+		fontSize: 27,
 		fontWeight: 'bold',
 		marginBottom: 10,
 	},

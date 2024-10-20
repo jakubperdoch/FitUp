@@ -6,6 +6,7 @@ const pathNameHandler = () => {
 	const customPaths = [
 		{ path: '/home', label: 'Fit Up' },
 		{ path: '/workouts', label: 'Workout Tracker' },
+		{ path: '/meals', label: 'Meal Plan' },
 	];
 
 	for (const route of customPaths) {

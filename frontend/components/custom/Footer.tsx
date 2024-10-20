@@ -10,9 +10,15 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import GenericIcon from './Icon';
 import Svg, { Circle, LinearGradient, Stop, Defs } from 'react-native-svg';
 import { useRef } from 'react';
+import { router } from 'expo-router';
 
 const circleLength = 150;
 const radius = circleLength / (2 * Math.PI);
+
+type FooterItem = {
+	icon: string;
+	route?: string;
+};
 
 const FooterComponent = () => {
 	const insets = useSafeAreaInsets();
@@ -20,20 +26,20 @@ const FooterComponent = () => {
 	const iconElementRefs = useRef<any[]>([]);
 
 	const footerItems = [
-		{ icon: 'ChartArea' },
-		{ icon: 'Cookie' },
-		{ icon: 'House' },
-		{ icon: 'Dumbbell' },
-		{ icon: 'UserRound' },
+		{ icon: 'ChartArea', route: '/home' },
+		{ icon: 'Cookie', route: '/meals' },
+		{ icon: 'House', route: '/home' },
+		{ icon: 'Dumbbell', route: '' },
+		{ icon: 'UserRound', route: '' },
 	];
 
 	const translateValues = footerItems.map(() => useSharedValue(1));
 
-	const handlePress = (index: number) => {
+	const handlePress = (index, item?: FooterItem) => {
 		translateValues.forEach((scale, i) => {
 			scale.value = withSpring(i === index ? -16 : 0);
 		});
-		
+
 		Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
 		const element = iconElementRefs.current[index];
@@ -41,6 +47,10 @@ const FooterComponent = () => {
 			element.measure((px: number) => {
 				iconPosition.value = px - 25;
 			});
+		}
+
+		if (item) {
+			router.push(item.route);
 		}
 	};
 
@@ -99,7 +109,7 @@ const FooterComponent = () => {
 						onLayout={() => handlePress(2)}
 						key={index}>
 						<Animated.View style={[animatedStyle, { zIndex: 10 }]}>
-							<TouchableOpacity onPress={() => handlePress(index)}>
+							<TouchableOpacity onPress={() => handlePress(index, item)}>
 								<GenericIcon name={item.icon} />
 							</TouchableOpacity>
 						</Animated.View>
