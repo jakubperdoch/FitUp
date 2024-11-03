@@ -115,19 +115,13 @@ const DatePanelComponent = (props: ComponentProps) => {
 				<>
 					<View className='flex flex-row items-center mx-auto justify-between w-64  my-2'>
 						<TouchableOpacity onPress={() => dateChangeHandler(-1)}>
-							<GenericIcon
-								name={'ChevronLeft'}
-								color='#ADA4A5'
-							/>
+							<GenericIcon name={'ChevronLeft'} color='#ADA4A5' />
 						</TouchableOpacity>
 						<Text className='text-center text-[#ADA4A5] text-2xl'>
 							{currentDate || ''}
 						</Text>
 						<TouchableOpacity onPress={() => dateChangeHandler(+1)}>
-							<GenericIcon
-								name={'ChevronRight'}
-								color='#ADA4A5'
-							/>
+							<GenericIcon name={'ChevronRight'} color='#ADA4A5' />
 						</TouchableOpacity>
 					</View>
 					<FlatList
@@ -142,7 +136,7 @@ const DatePanelComponent = (props: ComponentProps) => {
 						)}
 						keyExtractor={(item) => item.date.toISOString()}
 						horizontal
-						className='w-full mt-5 '
+						className='w-full mt-5 mb-8'
 						initialScrollIndex={
 							props.dates.length > 0
 								? Math.max(
