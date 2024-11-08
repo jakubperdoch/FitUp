@@ -3,6 +3,7 @@ import { ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
 import DatePanelComponent from '@/components/custom/DatePanel';
 import FoodCardComponent from '@/components/custom/FoodCard';
+import MealDrawerComponent from '@/components/custom/MealDrawer';
 
 const MealsPage = () => {
 	const [dates, setDates] = useState([]);
@@ -76,6 +77,8 @@ const MealsPage = () => {
 					meals={section.meals}
 				/>
 			))}
+
+			<MealDrawerComponent />
 		</ScrollView>
 	);
 };
