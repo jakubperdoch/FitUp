@@ -50,7 +50,7 @@ const FooterComponent = () => {
 		}
 
 		if (item) {
-			router.push(item.route);
+			router.replace(item.route);
 		}
 	};
 
@@ -69,26 +69,11 @@ const FooterComponent = () => {
 			<Animated.View
 				className='absolute bottom-5'
 				style={[circleAnimation, { zIndex: 0 }]}>
-				<Svg
-					width={circleLength / 2.4}
-					height={circleLength / 2}>
+				<Svg width={circleLength / 2.4} height={circleLength / 2}>
 					<Defs>
-						<LinearGradient
-							id='grad'
-							x1='0'
-							y1='0'
-							x2='1'
-							y2='0'>
-							<Stop
-								offset='0'
-								stopColor='#F77F00'
-								stopOpacity='1'
-							/>
-							<Stop
-								offset='1'
-								stopColor='#D62828'
-								stopOpacity='1'
-							/>
+						<LinearGradient id='grad' x1='0' y1='0' x2='1' y2='0'>
+							<Stop offset='0' stopColor='#F77F00' stopOpacity='1' />
+							<Stop offset='1' stopColor='#D62828' stopOpacity='1' />
 						</LinearGradient>
 					</Defs>
 					<Circle

@@ -1,16 +1,31 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import GenericIcon from './Icon';
 import ActionSheetComponent from './ActionSheet';
 import { useState } from 'react';
 
-const MealDrawerComponent = () => {
+type DrawerOption = {
+	title: string;
+	value: string;
+};
+
+type ComponentProps = {
+	drawerOptions: Array<DrawerOption>;
+	pressHandler: (option) => void;
+};
+
+const MealDrawerComponent = ({
+	drawerOptions,
+	pressHandler,
+}: ComponentProps) => {
 	const [showActionsheet, setShowActionsheet] = useState(false);
 	const handleClose = () => setShowActionsheet(false);
 
 	return (
 		<>
-			<TouchableOpacity onPress={() => setShowActionsheet(true)}>
+			<TouchableOpacity
+				onPress={() => setShowActionsheet(true)}
+				className='ms-auto me-4 mt-2'>
 				<LinearGradient
 					start={{ x: 0, y: 0.75 }}
 					end={{ x: 1.3, y: 0.25 }}
@@ -29,7 +44,16 @@ const MealDrawerComponent = () => {
 			<ActionSheetComponent
 				showActionsheet={showActionsheet}
 				closeHandler={handleClose}>
-				<Text>Ahooj</Text>
+				<View className='w-full my-3'>
+					{drawerOptions.map((option, index) => (
+						<TouchableOpacity
+							onPress={() => pressHandler(option)}
+							key={index}
+							className='py-3 w-full flex items-center'>
+							<Text className=' font-semibold font-poppins'>{option.title}</Text>
+						</TouchableOpacity>
+					))}
+				</View>
 			</ActionSheetComponent>
 		</>
 	);

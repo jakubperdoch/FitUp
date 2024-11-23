@@ -1,4 +1,5 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native';
+
 import GenericIcon from './Icon';
 
 type Food = {

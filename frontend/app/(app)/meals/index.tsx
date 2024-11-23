@@ -57,6 +57,37 @@ const MealsPage = () => {
 		},
 	];
 
+	const mealOptions = [
+		{
+			title: 'Breakfast',
+			value: 'breakfast',
+		},
+		{
+			title: 'Morning Snack',
+			value: 'morningSnack',
+		},
+		{
+			title: 'Lunch',
+			value: 'lunch',
+		},
+		{
+			title: 'Afternoon Snack',
+			value: 'afternoonSnack',
+		},
+		{
+			title: 'Dinner',
+			value: 'dinner',
+		},
+		{
+			title: 'Late Night Snack',
+			value: 'lateNightSnack',
+		},
+	];
+
+	const pressHandler = (option) => {
+		console.log(option);
+	};
+
 	return (
 		<ScrollView>
 			<DatePanelComponent
@@ -78,7 +109,10 @@ const MealsPage = () => {
 				/>
 			))}
 
-			<MealDrawerComponent />
+			<MealDrawerComponent
+				drawerOptions={mealOptions}
+				pressHandler={pressHandler}
+			/>
 		</ScrollView>
 	);
 };
