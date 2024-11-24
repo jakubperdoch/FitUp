@@ -29,7 +29,6 @@ const MealsPage = () => {
 						'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
 					foodName: 'Burger',
 					time: '07:30am',
-					detailsRoute: '',
 				},
 			],
 		},
@@ -44,14 +43,12 @@ const MealsPage = () => {
 						'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
 					foodName: 'Burger',
 					time: '07:00am',
-					detailsRoute: '',
 				},
 				{
 					image:
 						'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
 					foodName: 'Burger',
 					time: '07:30am',
-					detailsRoute: '',
 				},
 			],
 		},

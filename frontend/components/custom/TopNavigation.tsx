@@ -10,7 +10,6 @@ const TopNavigationComponent = () => {
 
 	useEffect(() => {
 		setPathName(customPath);
-		console.log(customPath);
 	}, [pathname]);
 
 	return (

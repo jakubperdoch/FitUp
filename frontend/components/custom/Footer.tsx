@@ -9,8 +9,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import GenericIcon from './Icon';
 import Svg, { Circle, LinearGradient, Stop, Defs } from 'react-native-svg';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { useRoute } from '@react-navigation/native';
 import { router } from 'expo-router';
+import { usePathname } from 'expo-router';
 
 const circleLength = 150;
 const radius = circleLength / (2 * Math.PI);
@@ -24,23 +26,22 @@ const FooterComponent = () => {
 	const insets = useSafeAreaInsets();
 	const iconPosition = useSharedValue<number>(0);
 	const iconElementRefs = useRef<any[]>([]);
+	const route = usePathname();
 
 	const footerItems = [
-		{ icon: 'ChartArea', route: '/home' },
+		{ icon: 'ChartArea', route: '/chart' },
 		{ icon: 'Cookie', route: '/meals' },
 		{ icon: 'House', route: '/home' },
-		{ icon: 'Dumbbell', route: '' },
-		{ icon: 'UserRound', route: '' },
+		{ icon: 'Dumbbell', route: '/workouts' },
+		{ icon: 'UserRound', route: '/profile' },
 	];
 
 	const translateValues = footerItems.map(() => useSharedValue(1));
 
-	const handlePress = (index, item?: FooterItem) => {
+	const updateIconPosition = (index) => {
 		translateValues.forEach((scale, i) => {
 			scale.value = withSpring(i === index ? -16 : 0);
 		});
-
-		Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
 		const element = iconElementRefs.current[index];
 		if (element) {
@@ -48,10 +49,29 @@ const FooterComponent = () => {
 				iconPosition.value = px - 25;
 			});
 		}
+	};
 
-		if (item) {
-			router.replace(item.route);
+	useEffect(() => {
+		const currentRoute = footerItems.find(
+			(footerRoute) => footerRoute.route && route.startsWith(footerRoute.route)
+		);
+
+		const currentRouteIndex = footerItems.findIndex(
+			(footerRoute) => footerRoute === currentRoute
+		);
+
+		if (currentRoute) {
+			updateIconPosition(currentRouteIndex);
+			Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 		}
+	}, [route]);
+
+	const handlePress = (index, item?: FooterItem) => {
+		if (item?.route && route !== item.route) {
+			router.push(item.route);
+		}
+		updateIconPosition(index);
+		Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 	};
 
 	const circleAnimation = useAnimatedStyle(() => ({

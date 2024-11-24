@@ -1,12 +1,12 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 
 import GenericIcon from './Icon';
+import { router } from 'expo-router';
 
 type Food = {
 	image: string;
 	foodName: string;
 	time: string;
-	detailsRoute: string;
 };
 
 type ComponentProps = {
@@ -34,7 +34,7 @@ const FoodCardComponent = ({
 
 			<View className='flex flex-col gap-3'>
 				{meals.map((meal, id) => (
-					<View key={id} className='flex flex-row w-full gap-4 items-center '>
+					<View key={id} className='flex flex-row w-full gap-4 items-center'>
 						<Image className='h-16 w-16 rounded-2xl' source={{ uri: meal.image }} />
 
 						<View className='flex flex-col gap-1'>
@@ -42,7 +42,9 @@ const FoodCardComponent = ({
 							<Text className='font-poppins text-[#ADA4A5] font-sm '>{meal.time}</Text>
 						</View>
 
-						<TouchableOpacity className='ms-auto border border-[#ADA4A5] rounded-full p-1'>
+						<TouchableOpacity
+							className='ms-auto border border-[#ADA4A5] rounded-full p-1'
+							onPress={() => router.push(`/meals/details/${meal.foodName}`)}>
 							<GenericIcon name={'ChevronRight'} color='#ADA4A5' size={22} />
 						</TouchableOpacity>
 					</View>
