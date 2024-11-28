@@ -30,7 +30,7 @@ const DatePanelComponent = (props: ComponentProps) => {
 	const [currentDate, setCurrentDate] = useState<string | null>(null);
 	const [isLoading, setLoading] = useState(true);
 
-	const ITEM_WIDTH = 80;
+	const ITEM_WIDTH = 89.5;
 	const date = new Date();
 
 	const getDatesInMonth = (year: number, month: number) => {

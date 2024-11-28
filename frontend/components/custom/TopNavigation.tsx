@@ -16,7 +16,6 @@ const TopNavigationComponent = () => {
 		if (customPath?.visibile == false) {
 			return;
 		} else {
-			console.log(customPath);
 			return (
 				<View className='flex flex-row items-center justify-center px-7 pt-4 w-full mb-5'>
 					<Text className='text-2xl font-poppinsBold'>{pathName}</Text>
