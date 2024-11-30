@@ -4,12 +4,19 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Feather from '@expo/vector-icons/Feather';
 import { Controller } from 'react-hook-form';
 
+type SignUpFormProps = {
+	passwordVisibility: boolean;
+	showPasswordHandler: () => void;
+	formType: string;
+	control: any;
+};
+
 const SignUpForm = ({
 	passwordVisibility,
 	showPasswordHandler,
 	formType,
 	control,
-}) => {
+}: SignUpFormProps) => {
 	return (
 		<View className='w-full gap-5 flex '>
 			{formType === 'signup' ? (
@@ -19,15 +26,9 @@ const SignUpForm = ({
 						required: true,
 					}}
 					render={({ field: { onChange, value } }) => (
-						<Input
-							size='xl'
-							variant='rounded'>
+						<Input size='xl' variant='rounded'>
 							<InputSlot>
-								<FontAwesome
-									name='user-o'
-									size={20}
-									color='#7B6F72'
-								/>
+								<FontAwesome name='user-o' size={20} color='#7B6F72' />
 							</InputSlot>
 							<InputField
 								className='text-lg'
@@ -50,15 +51,9 @@ const SignUpForm = ({
 					required: true,
 				}}
 				render={({ field: { onChange, value } }) => (
-					<Input
-						size='xl'
-						variant='rounded'>
+					<Input size='xl' variant='rounded'>
 						<InputSlot>
-							<Feather
-								name='mail'
-								size={20}
-								color='#7B6F72'
-							/>
+							<Feather name='mail' size={20} color='#7B6F72' />
 						</InputSlot>
 						<InputField
 							className='text-lg'
@@ -81,15 +76,9 @@ const SignUpForm = ({
 					required: true,
 				}}
 				render={({ field: { onChange, value } }) => (
-					<Input
-						size='xl'
-						variant='rounded'>
+					<Input size='xl' variant='rounded'>
 						<InputSlot>
-							<Feather
-								name='lock'
-								size={20}
-								color='#7B6F72'
-							/>
+							<Feather name='lock' size={20} color='#7B6F72' />
 						</InputSlot>
 						<InputField
 							className='text-lg'
@@ -99,9 +88,7 @@ const SignUpForm = ({
 							type={passwordVisibility ? 'text' : 'password'}
 							autoCorrect={false}
 						/>
-						<InputSlot
-							className='pr-3'
-							onPress={showPasswordHandler}>
+						<InputSlot className='pr-3' onPress={showPasswordHandler}>
 							<Feather
 								name={passwordVisibility ? 'eye' : 'eye-off'}
 								size={22}

@@ -11,6 +11,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import GradientButtonComponent from '@/components/custom/GradientButton';
 import { setPassword, setEmail, setFullName } from '@/store/user';
 import { useDispatch } from 'react-redux';
+import { Controller } from 'react-hook-form';
+import startCase from 'lodash/startCase';
 
 const SignUpScreen = () => {
 	const [showPassword, setShowPassword] = useState(false);
@@ -23,6 +25,10 @@ const SignUpScreen = () => {
 			.string()
 			.required('Password is required')
 			.min(8, 'Password must contain at least 8 characters'),
+		checkBox: yup
+			.boolean()
+			.required()
+			.oneOf([true], 'You must accept the terms and conditions'),
 	});
 
 	const {
@@ -34,15 +40,28 @@ const SignUpScreen = () => {
 		resolver: yupResolver(userSchema),
 	});
 
-	const watchFields = watch(['email', 'name', 'password']);
+	const watchFields = watch(['email', 'name', 'password', 'checkBox']);
+
+	function validateFullName(fullName: string) {
+		const fullNamePattern = /^[a-zA-Z]+(\s[a-zA-Z]+)*$/;
+		return fullNamePattern.test(fullName);
+	}
+
+	function splitCamelCaseName(fullName: string) {
+		return startCase(fullName).split(' ');
+	}
 
 	const submitHandler = (formData) => {
 		// push formData to the backend
 		// TODO: Implement the backend logic
 
 		dispatch(setEmail(watchFields[0]));
-		dispatch(setFullName(watchFields[1]));
 		dispatch(setPassword(watchFields[2]));
+
+		validateFullName(watchFields[1])
+			? dispatch(setFullName(watchFields[1]))
+			: dispatch(setFullName(splitCamelCaseName(watchFields[1])));
+
 		router.replace('/register-process/InformationsScreen');
 	};
 
@@ -59,17 +78,17 @@ const SignUpScreen = () => {
 			errorMessage += `Password: ${errors.password.message}\n`;
 		}
 
+		if (errors.checkBox) {
+			errorMessage += `CheckBox: ${errors.checkBox.message}\n`;
+		}
+
 		if (errorMessage) {
 			Alert.alert('Validation Errors', errorMessage);
 		}
 	};
 
-	const handleState = () => {
-		setShowPassword((showState) => {
-			return !showState;
-		});
-	};
-
+	const handleState = () => setShowPassword((prev) => !prev);
+	
 	return (
 		<View className='flex flex-col gap-5 justify-center items-center px-5 h-full'>
 			<View className='d-flex items-center mb-6 mt-4'>
@@ -87,18 +106,27 @@ const SignUpScreen = () => {
 			/>
 
 			<View className='flex flex-row px-4  w-full justify-center items-center gap-3 mt-5'>
-				<BouncyCheckbox
-					fillColor='#F77F00'
-					size={25}
-					disableText
-					className='max-w-8'
-					iconStyle={{ borderRadius: 5, borderWidth: 1, borderColor: '#F77F00' }}
-					innerIconStyle={{
-						borderWidth: 0,
+				<Controller
+					control={control}
+					rules={{
+						required: true,
 					}}
-					onPress={(isChecked: boolean) => {
-						console.log(isChecked);
-					}}
+					render={({ field: { onChange, value } }) => (
+						<BouncyCheckbox
+							fillColor='#F77F00'
+							size={25}
+							disableText
+							className='max-w-8'
+							iconStyle={{ borderRadius: 5, borderWidth: 1, borderColor: '#F77F00' }}
+							innerIconStyle={{
+								borderWidth: 0,
+							}}
+							onPress={(isChecked: boolean) => {
+								onChange(isChecked);
+							}}
+						/>
+					)}
+					name='checkBox'
 				/>
 				<Text className='text-gray-500 text-sm font-poppins'>
 					By continuing you accept our Privacy Policy and Term of Use
@@ -111,21 +139,12 @@ const SignUpScreen = () => {
 			/>
 
 			<View className='w-full flex flex-row items-center justify-center gap-2 mt-2'>
-				<Separator
-					borderColor='#DDDADA'
-					borderWidth={1}
-				/>
+				<Separator borderColor='#DDDADA' borderWidth={1} />
 				<Text className='text-lg'>Or</Text>
-				<Separator
-					borderColor='#DDDADA'
-					borderWidth={1}
-				/>
+				<Separator borderColor='#DDDADA' borderWidth={1} />
 			</View>
 			<TouchableOpacity>
-				<AppleLoginIcon
-					width={50}
-					height={50}
-				/>
+				<AppleLoginIcon width={50} height={50} />
 			</TouchableOpacity>
 
 			<View className='flex flex-col gap-2  items-center justify-center'>

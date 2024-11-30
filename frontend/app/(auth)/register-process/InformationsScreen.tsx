@@ -78,7 +78,7 @@ const InformationsScreen = () => {
 
 	const submitHandler = () => {
 		dispatch(setGender(watchedFields[0]));
-		dispatch(setBirthDate(watchedFields[1]));
+		dispatch(setBirthDate(new Date(watchedFields[1]).toISOString()));
 		dispatch(setReduxHeight(watchedFields[2]));
 		dispatch(setReduxWeight(watchedFields[3]));
 		console.log('Correct');
@@ -109,10 +109,7 @@ const InformationsScreen = () => {
 	return (
 		<View className='flex justify-start items-center gap-2 h-full px-7 pt-5'>
 			<Text className='self-start text-4xl font-bold'>Track Your Goal</Text>
-			<InformationSVG
-				height={'30%'}
-				width={'100%'}
-			/>
+			<InformationSVG height={'30%'} width={'100%'} />
 			<Text className='text-2xl font-bold mt-2 font-poppins'>
 				Let’s complete your profile
 			</Text>
@@ -145,10 +142,7 @@ const InformationsScreen = () => {
 							setCurrentWeightIndex
 						)
 					}>
-					<Weight
-						color={'#7B6F72'}
-						size={20}
-					/>
+					<Weight color={'#7B6F72'} size={20} />
 				</ConversionInputComponent>
 
 				<ConversionInputComponent
@@ -166,10 +160,7 @@ const InformationsScreen = () => {
 							setCurrentHeightIndex
 						)
 					}>
-					<Ruler
-						color={'#7B6F72'}
-						size={20}
-					/>
+					<Ruler color={'#7B6F72'} size={20} />
 				</ConversionInputComponent>
 			</View>
 			<GradientButtonComponent

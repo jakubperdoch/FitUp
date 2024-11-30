@@ -15,11 +15,8 @@ const SuccessScreen = () => {
 
 	return (
 		<View className=' flex flex-col items-center px-7 h-full pt-5'>
-			<View className='justify-start items-center h-full w-full'>
-				<SuccessImage
-					height={'50%'}
-					width={350}
-				/>
+			<View className='justify-start items-center  w-full'>
+				<SuccessImage height={'60%'} width={350} />
 				<Text className='text-3xl mt-12 font-bold font-poppins'>
 					Welcome, {user.fullName || 'Friend'}
 				</Text>
@@ -28,10 +25,7 @@ const SuccessScreen = () => {
 				</Text>
 			</View>
 
-			<GradientButtonComponent
-				handleSubmit={submitHandler}
-				title={'Go To Home'}
-			/>
+			<GradientButtonComponent handleSubmit={submitHandler} title={'Go To Home'} />
 		</View>
 	);
 };
