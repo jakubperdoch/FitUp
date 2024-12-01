@@ -35,16 +35,9 @@ const GradientSelectComponent = ({
 				style={{
 					borderRadius: 50,
 				}}>
-				<SelectTrigger
-					variant='fullRounded'
-					size='md'
-					className='gap-4 '>
+				<SelectTrigger variant='fullRounded' size='md' className='gap-4 '>
 					<SelectInput placeholder={placeholder} />
-					<SelectIcon
-						className='!h-5 !w-5'
-						color='#FFFFFF'
-						as={ChevronDown}
-					/>
+					<SelectIcon className='!h-5 !w-5' color='#FFFFFF' as={ChevronDown} />
 				</SelectTrigger>
 			</LinearGradient>
 			<SelectPortal className='px-5 '>
@@ -54,12 +47,12 @@ const GradientSelectComponent = ({
 						<SelectDragIndicator />
 					</SelectDragIndicatorWrapper>
 					{options.map(
-						(anObjectMapped: { label: string; value: string }, index: string) => {
+						(anObjectMapped: { name: string; value: string }, index: string) => {
 							return (
 								<SelectItem
 									className={`${index == lastIndexOfArray.toString() ? 'mb-6' : 'mb-0'}`}
 									key={index}
-									label={anObjectMapped.label}
+									label={anObjectMapped.name}
 									value={anObjectMapped.value}
 								/>
 							);

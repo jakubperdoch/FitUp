@@ -18,6 +18,7 @@ const MealsPage = () => {
 
 			meals: [
 				{
+					id: 6,
 					image:
 						'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
 					foodName: 'Burger',
@@ -26,6 +27,7 @@ const MealsPage = () => {
 					totalCals: '300kCal',
 				},
 				{
+					id: 7,
 					image:
 						'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
 					foodName: 'Burger',
@@ -41,6 +43,7 @@ const MealsPage = () => {
 
 			meals: [
 				{
+					id: 10,
 					image:
 						'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
 					foodName: 'Burger',
@@ -48,6 +51,7 @@ const MealsPage = () => {
 					quantity: '200g',
 				},
 				{
+					id: 11,
 					image:
 						'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
 					foodName: 'Burger',
@@ -90,7 +94,7 @@ const MealsPage = () => {
 	};
 
 	return (
-		<ScrollView >
+		<ScrollView>
 			<DatePanelComponent
 				dates={dates}
 				selectedDate={selectedDate}

@@ -5,26 +5,35 @@ import GenericIcon from '@/components/custom/Icon';
 import GradientSelectComponent from '@/components/custom/GradientSelect';
 import MealItemComponent from '@/components/custom/DashboardCard';
 import useCurrentDateHandler from '@/utils/date';
+import { router } from 'expo-router';
 
 const HomeScreen = () => {
 	const { currentDate } = useCurrentDateHandler();
 
 	const foodOptions = [
 		{
-			label: 'Breakfast',
+			name: 'Breakfast',
 			value: 'breakfast',
 		},
 		{
-			label: 'Lunch',
+			name: 'Morning Snack',
+			value: 'morningSnack',
+		},
+		{
+			name: 'Lunch',
 			value: 'lunch',
 		},
 		{
-			label: 'Dinner',
+			name: 'Afternoon Snack',
+			value: 'afternoonSnack',
+		},
+		{
+			name: 'Dinner',
 			value: 'dinner',
 		},
 		{
-			label: 'Custom',
-			value: 'custom',
+			name: 'Late Night Snack',
+			value: 'lateNightSnack',
 		},
 	];
 
@@ -32,16 +41,21 @@ const HomeScreen = () => {
 		{
 			title: 'Today Meals',
 			onAddHandler: () => console.log('Add Meal'),
-			onShowMoreHandler: () => console.log('Show More Meals'),
+			onShowMoreHandler: () => router.push('/meals'),
+			detailsHandler: (id: number) => router.push(`/meals/details/${id}`),
 			showSelect: true,
 			cards: [
 				{
+					id: 10,
 					name: 'Salmon Nigiri',
-					date: currentDate,
+					totalCals: '300kCal',
+					quantity: '200g',
 				},
 				{
+					id: 11,
 					name: 'Lowfat Milk',
-					date: currentDate,
+					totalCals: '300kCal',
+					quantity: '200g',
 				},
 			],
 		},
@@ -101,20 +115,14 @@ const HomeScreen = () => {
 
 				{dashBoardPanels.map((dashBoardPanel, panelIndex) => {
 					return (
-						<View
-							className='self-start w-full flex-col mb-4'
-							key={panelIndex}>
+						<View className='self-start w-full flex-col mb-4' key={panelIndex}>
 							<View className='flex-row w-full items-center justify-between gap-3 mt-4'>
 								<View className='flex-row items-center gap-3'>
 									<Text className='font-poppinsSemiBold text-2xl'>
 										{dashBoardPanel.title}
 									</Text>
 									<TouchableOpacity onPress={() => dashBoardPanel.onAddHandler()}>
-										<GenericIcon
-											name='Plus'
-											color='#F77F00'
-											size={25}
-										/>
+										<GenericIcon name='Plus' color='#F77F00' size={25} />
 									</TouchableOpacity>
 								</View>
 
@@ -134,10 +142,13 @@ const HomeScreen = () => {
 										<MealItemComponent
 											name={card.name}
 											date={card.date}
+											totalCal={card.totalCals}
+											quantity={card.quantity}
 											showTimer={card.showTimer}
+											detailsHandler={dashBoardPanel.detailsHandler}
 											timer={card.timer}
 											timerHandler={(value) => card.timerHandler(value, cardIndex)}
-											id={cardIndex}
+											id={card.id}
 											key={cardIndex}
 										/>
 									);

@@ -4,6 +4,7 @@ import GenericIcon from './Icon';
 import { router } from 'expo-router';
 
 type Food = {
+	id: number;
 	image: string;
 	foodName: string;
 	totalCals: string;
@@ -50,7 +51,7 @@ const FoodCardComponent = ({
 
 							<TouchableOpacity
 								className='border border-[#ADA4A5] rounded-full p-1'
-								onPress={() => router.push(`/meals/details/${meal.foodName}`)}>
+								onPress={() => router.push(`/meals/details/${meal.id}`)}>
 								<GenericIcon name={'ChevronRight'} color='#ADA4A5' size={22} />
 							</TouchableOpacity>
 						</View>
