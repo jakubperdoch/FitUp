@@ -90,7 +90,7 @@ const MealsPage = () => {
 	};
 
 	return (
-		<ScrollView>
+		<ScrollView >
 			<DatePanelComponent
 				dates={dates}
 				selectedDate={selectedDate}
