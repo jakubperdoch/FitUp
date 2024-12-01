@@ -49,8 +49,8 @@ const MealDrawerComponent = ({
 						<TouchableOpacity
 							onPress={() => pressHandler(option)}
 							key={index}
-							className='py-3 w-full flex items-center'>
-							<Text className=' font-semibold font-poppins'>{option.title}</Text>
+							className='py-4 w-full flex items-center'>
+							<Text className='font-poppins'>{option.title}</Text>
 						</TouchableOpacity>
 					))}
 				</View>

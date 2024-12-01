@@ -6,7 +6,8 @@ import { router } from 'expo-router';
 type Food = {
 	image: string;
 	foodName: string;
-	time: string;
+	totalCals: string;
+	quantity: string;
 };
 
 type ComponentProps = {
@@ -38,15 +39,21 @@ const FoodCardComponent = ({
 						<Image className='h-16 w-16 rounded-2xl' source={{ uri: meal.image }} />
 
 						<View className='flex flex-col gap-1'>
-							<Text className='font-poppins'>{meal.foodName}</Text>
-							<Text className='font-poppins text-[#ADA4A5] font-sm '>{meal.time}</Text>
+							<Text className='font-poppins text-lg '>{meal.foodName}</Text>
+							<Text className='font-poppins text-[#ADA4A5] font-sm '>
+								{meal.quantity}
+							</Text>
 						</View>
 
-						<TouchableOpacity
-							className='ms-auto border border-[#ADA4A5] rounded-full p-1'
-							onPress={() => router.push(`/meals/details/${meal.foodName}`)}>
-							<GenericIcon name={'ChevronRight'} color='#ADA4A5' size={22} />
-						</TouchableOpacity>
+						<View className='flex flex-row ms-auto items-center gap-5'>
+							<Text className='text-lg font-poppins'>{meal.totalCals}</Text>
+
+							<TouchableOpacity
+								className='border border-[#ADA4A5] rounded-full p-1'
+								onPress={() => router.push(`/meals/details/${meal.foodName}`)}>
+								<GenericIcon name={'ChevronRight'} color='#ADA4A5' size={22} />
+							</TouchableOpacity>
+						</View>
 					</View>
 				))}
 			</View>

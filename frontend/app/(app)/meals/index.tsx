@@ -21,14 +21,16 @@ const MealsPage = () => {
 					image:
 						'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
 					foodName: 'Burger',
-					time: '07:00am',
+					quantity: '200g',
 					detailsRoute: '',
+					totalCals: '300kCal',
 				},
 				{
 					image:
 						'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
 					foodName: 'Burger',
-					time: '07:30am',
+					quantity: '200g',
+					totalCals: '300kCal',
 				},
 			],
 		},
@@ -42,13 +44,15 @@ const MealsPage = () => {
 					image:
 						'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
 					foodName: 'Burger',
-					time: '07:00am',
+					totalCals: '300kCal',
+					quantity: '200g',
 				},
 				{
 					image:
 						'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
 					foodName: 'Burger',
-					time: '07:30am',
+					quantity: '200g',
+					totalCals: '300kCal',
 				},
 			],
 		},
