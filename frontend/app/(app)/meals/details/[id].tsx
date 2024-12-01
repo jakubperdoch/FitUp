@@ -3,6 +3,7 @@ import { Text, Image, ScrollView, View, FlatList } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import ServingInputComponent from '@/components/custom/ServingInput';
+import { useEffect, useState } from 'react';
 
 const DetailsScreen = () => {
 	const { id } = useLocalSearchParams();
@@ -85,6 +86,38 @@ const DetailsScreen = () => {
 		},
 	];
 
+	const [servingTypes, setServingTypes] = useState([
+		{
+			serving_id: '50321',
+			serving_description: '100 g',
+			metric_serving_amount: '100.000',
+			metric_serving_unit: 'g',
+		},
+		{
+			serving_id: '5034',
+			serving_description: '1/2 small (yield after cooking, bone removed)',
+			metric_serving_amount: '84.000',
+			metric_serving_unit: 'g',
+		},
+		{
+			serving_id: '4833',
+			serving_description: '1 oz boneless, cooked',
+			metric_serving_amount: '28.350',
+			metric_serving_unit: 'g',
+		},
+		{
+			serving_id: '5043',
+			serving_description: '1 serving (98 g)',
+			metric_serving_amount: '98.000',
+			metric_serving_unit: 'g',
+		},
+	]);
+
+	const [servingAmount, setServingAmount] = useState(1);
+	const [selectedServingType, setSelectedServingType] = useState(
+		servingTypes[0]
+	);
+
 	return (
 		<>
 			<Image
@@ -93,7 +126,10 @@ const DetailsScreen = () => {
 				source={require('@/assets/images/mealsDetails.png')}
 			/>
 
-			<ScrollView className='bg-white rounded-[4rem] py-12  mt-72'>
+			<ScrollView
+				className='bg-white rounded-t-[4rem] py-12  mt-72'
+				showsVerticalScrollIndicator={false}
+				automaticallyAdjustKeyboardInsets={true}>
 				<Text className='font-bold text-2xl ms-11'>{id}</Text>
 
 				<View className='mt-10 ms-6'>
@@ -140,9 +176,15 @@ const DetailsScreen = () => {
 					</View>
 				</View>
 
-				<View className='mt-10 ms-6'>
-					<Text className='font-semibold text-2xl mb-5'>Serving Size</Text>
-					<ServingInputComponent />
+				<View className='mt-10 mx-6 flex flex-row items-center  justify-between'>
+					<Text className='font-semibold text-2xl'>Serving Size</Text>
+					<ServingInputComponent
+						setSelectedServingType={setSelectedServingType}
+						selectedServingType={selectedServingType}
+						servingAmount={servingAmount}
+						servingTypes={servingTypes}
+						setServingAmount={setServingAmount}
+					/>
 				</View>
 
 				<View className='mt-10 ms-6'>
