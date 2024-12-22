@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 
-import GenericIcon from './Icon';
+import GenericIcon from '../Icon';
 import { router } from 'expo-router';
 
 type Food = {

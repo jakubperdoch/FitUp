@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableOpacity, Text, View } from 'react-native';
-import GenericIcon from './Icon';
-import ActionSheetComponent from './ActionSheet';
+import GenericIcon from '../Icon';
+import ActionSheetComponent from '../ActionSheet';
 import { useState } from 'react';
 
 type DrawerOption = {

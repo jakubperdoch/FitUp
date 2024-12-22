@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, FlatList } from 'react-native';
 import GenericIcon from '@/components/custom/Icon';
-import DateCardComponent from '@/components/custom/DateCard';
+import DateCardComponent from '@/components/custom/Button/DateCard';
 import { Spinner } from '../ui/spinner';
 
 type DateType = {

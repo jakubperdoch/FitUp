@@ -7,7 +7,7 @@ import type { ViewStyle } from 'react-native';
 import InformationCardFirst from '@/assets/images/information-card--first.svg';
 import InformationCardSecond from '@/assets/images/information-card--second.svg';
 import InformationCardThird from '@/assets/images/information-card--third.svg';
-import GradientButtonComponent from '@/components/custom/GradientButton';
+import GradientButtonComponent from '@/components/custom/Button/GradientButton';
 import { router } from 'expo-router';
 import { setGoal } from '@/store/user';
 import { useDispatch } from 'react-redux';

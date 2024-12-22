@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
-import ActionSheetComponent from './ActionSheet';
+import ActionSheetComponent from '../ActionSheet';
 import { SetStateAction, useState, Dispatch } from 'react';
 
 type ServingType = {

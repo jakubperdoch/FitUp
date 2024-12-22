@@ -1,7 +1,7 @@
 import { router, Slot } from 'expo-router';
 import { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import ProgressButton from '@/components/custom/ProgressButton';
+import ProgressButton from '@/components/custom/Button/ProgressButton';
 import { useExplainer } from '@/context/ExplainerContext';
 import { usePathname } from 'expo-router';
 

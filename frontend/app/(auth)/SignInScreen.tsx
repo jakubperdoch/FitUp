@@ -2,14 +2,14 @@ import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { useState } from 'react';
 import { Separator } from 'tamagui';
 import AppleLoginIcon from '@/assets/icons/apple-login--icon.svg';
-import ValidationForm from '@/components/custom/ValidationForm';
+import ValidationForm from '@/components/custom/Inputs/ValidationForm';
 import { router } from 'expo-router';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { setPassword, setEmail } from '@/store/user';
-import GradientButtonComponent from '@/components/custom/GradientButton';
+import GradientButtonComponent from '@/components/custom/Button/GradientButton';
 
 const SignInScreen = () => {
 	const [showPassword, setShowPassword] = useState<boolean>(false);

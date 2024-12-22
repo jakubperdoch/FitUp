@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableOpacity, Text, View } from 'react-native';
-import GenericIcon from './Icon';
+import GenericIcon from '../Icon';
 import { useEffect, useState, useRef } from 'react';
 import Animated, {
 	useAnimatedStyle,
@@ -74,9 +74,7 @@ const TimeButton = ({ timer, timerHandler }: ComponentProps) => {
 	const additionalButtonsHandler = () => {
 		if (!isPaused && time > 0) {
 			return (
-				<Animated.View
-					style={animatedStyle}
-					className='flex-row gap-3'>
+				<Animated.View style={animatedStyle} className='flex-row gap-3'>
 					<TouchableOpacity onPress={() => deleteWorkoutHandler()}>
 						<LinearGradient
 							start={{ x: 0, y: 0.75 }}
@@ -89,12 +87,7 @@ const TimeButton = ({ timer, timerHandler }: ComponentProps) => {
 								justifyContent: 'center',
 								borderRadius: 50,
 							}}>
-							<GenericIcon
-								name='X'
-								size={23}
-								color='white'
-								fill='white'
-							/>
+							<GenericIcon name='X' size={23} color='white' fill='white' />
 						</LinearGradient>
 					</TouchableOpacity>
 
@@ -110,11 +103,7 @@ const TimeButton = ({ timer, timerHandler }: ComponentProps) => {
 								justifyContent: 'center',
 								borderRadius: 50,
 							}}>
-							<GenericIcon
-								name='Check'
-								size={23}
-								color='white'
-							/>
+							<GenericIcon name='Check' size={23} color='white' />
 						</LinearGradient>
 					</TouchableOpacity>
 				</Animated.View>
@@ -155,12 +144,7 @@ const TimeButton = ({ timer, timerHandler }: ComponentProps) => {
 							justifyContent: 'center',
 							borderRadius: 50,
 						}}>
-						<GenericIcon
-							name={buttonIcon}
-							size={15}
-							color='white'
-							fill='white'
-						/>
+						<GenericIcon name={buttonIcon} size={15} color='white' fill='white' />
 					</LinearGradient>
 				</TouchableOpacity>
 				{additionalButtonsHandler()}

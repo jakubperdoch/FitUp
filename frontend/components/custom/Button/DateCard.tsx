@@ -10,7 +10,7 @@ type DateCardProps = {
 };
 
 type DateCardState = {
-	colors: string[];
+	colors: [string, string];
 	fontColor: string;
 };
 
@@ -52,14 +52,10 @@ const DateCardComponent = (props: DateCardProps) => {
 					marginHorizontal: 10,
 					borderRadius: 20,
 				}}>
-				<Text
-					className='text-base capitalize'
-					style={{ color: content.fontColor }}>
+				<Text className='text-base capitalize' style={{ color: content.fontColor }}>
 					{props.day}
 				</Text>
-				<Text
-					className='font-bold text-lg'
-					style={{ color: content.fontColor }}>
+				<Text className='font-bold text-lg' style={{ color: content.fontColor }}>
 					{props.date.getDate()}
 				</Text>
 			</LinearGradient>

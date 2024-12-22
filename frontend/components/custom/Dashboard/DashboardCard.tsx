@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 
-import TimeButton from './TimeButton';
+import TimeButton from '../Button/TimeButton';
 
 type ComponentProps = {
 	id: number;

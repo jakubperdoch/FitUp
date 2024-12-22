@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 import SuccessImage from '@/assets/images/success-image.svg';
-import GradientButtonComponent from '@/components/custom/GradientButton';
+import GradientButtonComponent from '@/components/custom/Button/GradientButton';
 import { router } from 'expo-router';
 
 const SuccessScreen = () => {

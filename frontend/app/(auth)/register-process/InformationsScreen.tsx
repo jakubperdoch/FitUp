@@ -1,11 +1,11 @@
 import { View, Text, Alert } from 'react-native';
 import InformationSVG from '@/assets/images/informations-image.svg';
-import SelectComponent from '@/components/custom/Select';
-import DatePickerComponent from '@/components/custom/DatePicker';
-import ConversionInputComponent from '@/components/custom/ConversionInput';
+import SelectComponent from '@/components/custom/Inputs/Select';
+import DatePickerComponent from '@/components/custom/Inputs/DatePicker';
+import ConversionInputComponent from '@/components/custom/Inputs/ConversionInput';
 import { useState } from 'react';
 import { Ruler, Weight } from 'lucide-react-native';
-import GradientButtonComponent from '@/components/custom/GradientButton';
+import GradientButtonComponent from '@/components/custom/Button/GradientButton';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';

@@ -3,12 +3,12 @@ import { useState } from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { Separator } from 'tamagui';
 import AppleLoginIcon from '@/assets/icons/apple-login--icon.svg';
-import ValidationForm from '@/components/custom/ValidationForm';
+import ValidationForm from '@/components/custom/Inputs/ValidationForm';
 import { router } from 'expo-router';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import GradientButtonComponent from '@/components/custom/GradientButton';
+import GradientButtonComponent from '@/components/custom/Button/GradientButton';
 import { setPassword, setEmail, setFullName } from '@/store/user';
 import { useDispatch } from 'react-redux';
 import { Controller } from 'react-hook-form';
@@ -88,7 +88,7 @@ const SignUpScreen = () => {
 	};
 
 	const handleState = () => setShowPassword((prev) => !prev);
-	
+
 	return (
 		<View className='flex flex-col gap-5 justify-center items-center px-5 h-full'>
 			<View className='d-flex items-center mb-6 mt-4'>
