@@ -1,8 +1,26 @@
 import { View, TouchableOpacity } from 'react-native';
 import { router, Slot } from 'expo-router';
 import GenericIcon from '@/components/custom/Icon';
+import { useNavbar } from '@/context/NavbarContaxt';
+import { useEffect } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { useCallback } from 'react';
 
 const MealDetailsLayout = () => {
+	const { setIsVisible } = useNavbar();
+
+	useEffect(() => {
+		setIsVisible(false);
+	}, []);
+
+	useFocusEffect(
+		useCallback(() => {
+			return () => {
+				setIsVisible(true);
+			};
+		}, [])
+	);
+
 	return (
 		<>
 			<View className='flex z-10 flex-row items-center justify-between px-7 pt-4 w-full mb-5'>

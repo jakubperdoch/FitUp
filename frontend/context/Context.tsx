@@ -1,10 +1,13 @@
 import { AuthProvider } from './AuthContext';
 import { ExplainerProvider } from './ExplainerContext';
+import { NavbarProvider } from './NavbarContaxt';
 
 export const ContextProvider = ({ children }) => {
 	return (
 		<AuthProvider>
-			<ExplainerProvider>{children}</ExplainerProvider>
+			<NavbarProvider>
+				<ExplainerProvider>{children}</ExplainerProvider>
+			</NavbarProvider>
 		</AuthProvider>
 	);
 };

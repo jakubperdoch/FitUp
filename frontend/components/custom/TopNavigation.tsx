@@ -1,30 +1,46 @@
-import { Text, View } from 'react-native';
-import { useEffect, useState } from 'react';
-import { usePathname } from 'expo-router';
-import pathNameHandler from '@/utils/pathName';
+import { Text, View, TouchableOpacity } from 'react-native';
 
-const TopNavigationComponent = () => {
-	const pathname = usePathname();
-	const [pathName, setPathName] = useState('');
-	const customPath = pathNameHandler();
+import { router } from 'expo-router';
+import GenericIcon from '@/components/custom/Icon';
 
-	useEffect(() => {
-		setPathName(customPath?.label);
-	}, [pathname]);
+type ComponentProps = {
+	title?: string;
+	isBackButton?: boolean;
+	isDetailsButton?: boolean;
+	isVisible?: boolean;
+};
 
-	const showNavigation = () => {
-		if (customPath?.visibile == false) {
-			return;
-		} else {
-			return (
+const TopNavigationComponent = ({
+	title,
+	isBackButton,
+	isDetailsButton,
+	isVisible,
+}: ComponentProps) => {
+	return (
+		<>
+			{isVisible && (
 				<View className='flex flex-row items-center justify-center px-7 pt-4 w-full mb-5'>
-					<Text className='text-2xl font-poppinsBold'>{pathName}</Text>
-				</View>
-			);
-		}
-	};
+					{isBackButton ? (
+						<TouchableOpacity
+							className='bg-[#F7F8F8] h-12 w-12 flex items-center justify-center rounded-xl'
+							onPress={() => router.back()}>
+							<GenericIcon name={'ChevronLeft'} size={28} />
+						</TouchableOpacity>
+					) : null}
 
-	return <View>{showNavigation()}</View>;
+					<Text className='text-2xl font-poppinsBold'>
+						{title ? title : 'Title'}
+					</Text>
+
+					{isDetailsButton ? (
+						<TouchableOpacity className='bg-[#F7F8F8] h-12 w-12 flex items-center justify-center rounded-xl'>
+							<GenericIcon name={'Ellipsis'} size={28} />
+						</TouchableOpacity>
+					) : null}
+				</View>
+			)}
+		</>
+	);
 };
 
 export default TopNavigationComponent;

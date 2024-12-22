@@ -7,6 +7,7 @@ import { useState } from 'react';
 type DrawerOption = {
 	title: string;
 	value: string;
+	route: any;
 };
 
 type ComponentProps = {

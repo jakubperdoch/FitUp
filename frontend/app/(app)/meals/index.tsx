@@ -4,11 +4,20 @@ import { useState, useEffect } from 'react';
 import DatePanelComponent from '@/components/custom/DatePanel';
 import FoodCardComponent from '@/components/custom/Meals/FoodCard';
 import MealDrawerComponent from '@/components/custom/Meals/MealDrawer';
+import { useRouter } from 'expo-router';
+import { useNavbar } from '@/context/NavbarContaxt';
 
 const MealsPage = () => {
 	const [dates, setDates] = useState([]);
 	const [selectedDate, setSelectedDate] = useState(new Date());
 	const [index, setIndex] = useState(3);
+	const router = useRouter();
+
+	const { setNavbarTitle } = useNavbar();
+
+	useEffect(() => {
+		setNavbarTitle('Meal Schedule');
+	}, []);
 
 	const ComponentData = [
 		{
@@ -66,31 +75,37 @@ const MealsPage = () => {
 		{
 			title: 'Breakfast',
 			value: 'breakfast',
+			route: '/meals/search/breakfast',
 		},
 		{
 			title: 'Morning Snack',
 			value: 'morningSnack',
+			route: '/meals/search/morningSnack',
 		},
 		{
 			title: 'Lunch',
 			value: 'lunch',
+			route: '/meals/search/lunch',
 		},
 		{
 			title: 'Afternoon Snack',
 			value: 'afternoonSnack',
+			route: '/meals/search/afternoonSnack',
 		},
 		{
 			title: 'Dinner',
 			value: 'dinner',
+			route: '/meals/search/dinner',
 		},
 		{
 			title: 'Late Night Snack',
 			value: 'lateNightSnack',
+			route: '/meals/search/lateNightSnack',
 		},
 	];
 
 	const pressHandler = (option) => {
-		console.log(option);
+		router.push(option.route);
 	};
 
 	return (

@@ -1,14 +1,20 @@
 import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DashBoardComponent from '@/components/custom/Dashboard/DashboardPanel';
 import GenericIcon from '@/components/custom/Icon';
 import GradientSelectComponent from '@/components/custom/Inputs/GradientSelect';
 import MealItemComponent from '@/components/custom/Dashboard/DashboardCard';
 import useCurrentDateHandler from '@/utils/date';
 import { router } from 'expo-router';
+import { useNavbar } from '@/context/NavbarContaxt';
 
 const HomeScreen = () => {
 	const { currentDate } = useCurrentDateHandler();
+	const { setNavbarTitle } = useNavbar();
+
+	useEffect(() => {
+		setNavbarTitle('Fit Up');
+	}, []);
 
 	const foodOptions = [
 		{

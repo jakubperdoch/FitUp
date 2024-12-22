@@ -6,12 +6,11 @@ import {
 	View,
 	FlatList,
 	TouchableOpacity,
-	TextInput,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import ServingInputComponent from '@/components/custom/Inputs/ServingInput';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import GenericIcon from '@/components/custom/Icon';
 import DateTimePicker from 'react-native-ui-datepicker';
 import dayjs from 'dayjs';
