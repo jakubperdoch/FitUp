@@ -115,7 +115,7 @@ const HomeScreen = () => {
 
 	return (
 		<ScrollView>
-			<View className='flex flex-col h-full items-center px-7 pt-5 w-full gap-6 mb-4'>
+			<View className='flex flex-col h-full items-center px-7 pt-5 w-full gap-6 mb-20'>
 				<Text className='self-start font-poppinsSemiBold text-2xl'>Overview</Text>
 				<DashBoardComponent />
 

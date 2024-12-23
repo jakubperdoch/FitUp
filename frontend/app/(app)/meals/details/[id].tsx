@@ -182,6 +182,7 @@ const DetailsScreen = () => {
 					borderRadius: 50,
 					paddingVertical: 40,
 					marginTop: 250,
+					marginBottom: 50,
 				}}
 				contentContainerClassName='pb-10'
 				showsVerticalScrollIndicator={false}
