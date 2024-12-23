@@ -1,14 +1,16 @@
-// here user will able to search meals
+import { Input, InputField, InputSlot } from '@/components/ui/input';
 import { View, Text } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { useNavbar } from '@/context/NavbarContaxt';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import FoodScrollComponent from '@/components/custom/Meals/Scroll';
 import CategoryScrollComponent from '@/components/custom/Meals/Scroll/CategoryScroll';
+import GenericIcon from '@/components/custom/Icon';
 
 const MealsSearchPage = () => {
 	const { name } = useLocalSearchParams();
 	const { setNavbarTitle } = useNavbar();
+	const [searchQuery, setSearchQuery] = useState<string>('');
 
 	useEffect(() => {
 		const nameString = Array.isArray(name) ? name[0] : name;
@@ -67,7 +69,20 @@ const MealsSearchPage = () => {
 
 	return (
 		<View className='flex flex-col gap-7'>
-			<Text>Search for {name}</Text>
+			<Input size='xl' variant='rounded' className='mx-7 '>
+				<InputSlot>
+					<GenericIcon name='Search' size={20} color='#7B6F72' />
+				</InputSlot>
+				<InputField
+					className='text-lg'
+					value={searchQuery}
+					onChangeText={setSearchQuery}
+					type={'text'}
+					placeholder='Search for meals'
+					autoCapitalize='words'
+					autoCorrect={false}
+				/>
+			</Input>
 
 			<CategoryScrollComponent categories={categories} onClick={onClick} />
 

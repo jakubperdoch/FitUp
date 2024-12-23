@@ -16,7 +16,7 @@ const FoodScrollComponent = (props: ComponentProps) => {
 	return (
 		<>
 			<Text className='ms-7 text-2xl font-semibold font-poppins '>Meals</Text>
-			<ScrollView className='px-7 h-3/5'>
+			<ScrollView className='px-7 h-2/4'>
 				{props.meals.map((meal) => {
 					return (
 						<FoodScrollCardComponent

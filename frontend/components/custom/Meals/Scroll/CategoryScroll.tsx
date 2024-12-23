@@ -19,7 +19,7 @@ const CategoryScrollComponent = (props: ComponentProps) => {
 			<ScrollView
 				horizontal
 				showsHorizontalScrollIndicator={false}
-				className='px-7 h-2'>
+				className='px-7 h-20 '>
 				{props.categories.map((category) => {
 					return (
 						<CategoryCardComponent
