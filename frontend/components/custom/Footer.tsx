@@ -83,44 +83,46 @@ const FooterComponent = () => {
 	}));
 
 	return (
-		<View
-			className='pb-11 pt-6 mt-0 rounded-3xl relative flex-row w-full justify-between px-8 bg-white shadow-soft-1'
-			style={{ bottom: -insets.bottom, marginTop: -35 }}>
-			<Animated.View
-				className='absolute bottom-5'
-				style={[circleAnimation, { zIndex: 0 }]}>
-				<Svg width={circleLength / 2.4} height={circleLength / 2}>
-					<Defs>
-						<LinearGradient id='grad' x1='0' y1='0' x2='1' y2='0'>
-							<Stop offset='0' stopColor='#F77F00' stopOpacity='1' />
-							<Stop offset='1' stopColor='#D62828' stopOpacity='1' />
-						</LinearGradient>
-					</Defs>
-					<Circle
-						fill='url(#grad)'
-						cx={circleLength / 4}
-						cy={circleLength / 5.5}
-						r={radius}
-					/>
-				</Svg>
-			</Animated.View>
-			{footerItems.map((item, index) => {
-				const animatedStyle = useAnimatedStyle(() => ({
-					transform: [{ translateY: translateValues[index].value }],
-				}));
-				return (
-					<View
-						ref={(el) => (iconElementRefs.current[index] = el)}
-						onLayout={() => handlePress(2)}
-						key={index}>
-						<Animated.View style={[animatedStyle, { zIndex: 10 }]}>
-							<TouchableOpacity onPress={() => handlePress(index, item)}>
-								<GenericIcon name={item.icon} />
-							</TouchableOpacity>
-						</Animated.View>
-					</View>
-				);
-			})}
+		<View className='absolute bottom-0 w-full'>
+			<View
+				className='pb-11 pt-6 mt-0 rounded-3xl relative flex-row w-full justify-between px-8 bg-white shadow-soft-1'
+				style={{ bottom: -insets.bottom, marginTop: -35 }}>
+				<Animated.View
+					className='absolute bottom-5'
+					style={[circleAnimation, { zIndex: 0 }]}>
+					<Svg width={circleLength / 2.4} height={circleLength / 2}>
+						<Defs>
+							<LinearGradient id='grad' x1='0' y1='0' x2='1' y2='0'>
+								<Stop offset='0' stopColor='#F77F00' stopOpacity='1' />
+								<Stop offset='1' stopColor='#D62828' stopOpacity='1' />
+							</LinearGradient>
+						</Defs>
+						<Circle
+							fill='url(#grad)'
+							cx={circleLength / 4}
+							cy={circleLength / 5.5}
+							r={radius}
+						/>
+					</Svg>
+				</Animated.View>
+				{footerItems.map((item, index) => {
+					const animatedStyle = useAnimatedStyle(() => ({
+						transform: [{ translateY: translateValues[index].value }],
+					}));
+					return (
+						<View
+							ref={(el) => (iconElementRefs.current[index] = el)}
+							onLayout={() => handlePress(2)}
+							key={index}>
+							<Animated.View style={[animatedStyle, { zIndex: 10 }]}>
+								<TouchableOpacity onPress={() => handlePress(index, item)}>
+									<GenericIcon name={item.icon} />
+								</TouchableOpacity>
+							</Animated.View>
+						</View>
+					);
+				})}
+			</View>
 		</View>
 	);
 };
