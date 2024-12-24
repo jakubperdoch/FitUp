@@ -1,16 +1,18 @@
 import { Input, InputField, InputSlot } from '@/components/ui/input';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { useNavbar } from '@/context/NavbarContaxt';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import FoodScrollComponent from '@/components/custom/Meals/Scroll';
 import CategoryScrollComponent from '@/components/custom/Meals/Scroll/CategoryScroll';
 import GenericIcon from '@/components/custom/Icon';
+import debounce from 'lodash/debounce';
 
 const MealsSearchPage = () => {
 	const { name } = useLocalSearchParams();
 	const { setNavbarTitle } = useNavbar();
 	const [searchQuery, setSearchQuery] = useState<string>('');
+	const [meals, setMeals] = useState([]);
 
 	useEffect(() => {
 		const nameString = Array.isArray(name) ? name[0] : name;
@@ -23,7 +25,29 @@ const MealsSearchPage = () => {
 		}
 	}, [name, setNavbarTitle]);
 
-	const meals = [
+	const debouncedSearch = useCallback(
+		debounce(async (query: string) => {
+			if (query.trim() === '') {
+				setMeals([]);
+				return;
+			}
+
+			try {
+				setMeals(mealsData);
+			} catch (err) {
+			} finally {
+			}
+		}, 1000),
+		[]
+	);
+
+	useEffect(() => {
+		debouncedSearch(searchQuery);
+
+		return debouncedSearch.cancel;
+	}, [searchQuery, debouncedSearch]);
+
+	const mealsData = [
 		{ id: 1, name: 'Chicken', calories: 200 },
 		{ id: 2, name: 'Beef', calories: 300 },
 		{ id: 3, name: 'Fish', calories: 150 },

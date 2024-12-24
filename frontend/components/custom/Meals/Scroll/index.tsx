@@ -1,4 +1,4 @@
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import FoodScrollCardComponent from './Card';
 
 type Meal = {
@@ -14,20 +14,24 @@ type ComponentProps = {
 
 const FoodScrollComponent = (props: ComponentProps) => {
 	return (
-		<>
+		<View className='h-full flex flex-col gap-5'>
 			<Text className='ms-7 text-2xl font-semibold font-poppins '>Meals</Text>
-			<ScrollView className='px-7 h-2/4'>
-				{props.meals.map((meal) => {
-					return (
-						<FoodScrollCardComponent
-							key={meal?.id}
-							meal={meal}
-							onClick={props.onClick}
-						/>
-					);
-				})}
+			<ScrollView className='px-7  h-full' contentContainerClassName='pb-[30rem]'>
+				{props.meals.length > 0 ? (
+					props.meals.map((meal) => {
+						return (
+							<FoodScrollCardComponent
+								key={meal.id}
+								meal={meal}
+								onClick={props.onClick}
+							/>
+						);
+					})
+				) : (
+					<Text className='mx-auto text-[#ADA4A5]'>Nothing to show</Text>
+				)}
 			</ScrollView>
-		</>
+		</View>
 	);
 };
 

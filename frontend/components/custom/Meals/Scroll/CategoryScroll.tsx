@@ -13,13 +13,13 @@ type ComponentProps = {
 
 const CategoryScrollComponent = (props: ComponentProps) => {
 	return (
-		<>
+		<View className='flex flex-col gap-5'>
 			<Text className='ms-7 text-2xl font-semibold font-poppins '>Category</Text>
 
 			<ScrollView
 				horizontal
 				showsHorizontalScrollIndicator={false}
-				className='px-7 h-20 '>
+				className='px-7  '>
 				{props.categories.map((category) => {
 					return (
 						<CategoryCardComponent
@@ -30,7 +30,7 @@ const CategoryScrollComponent = (props: ComponentProps) => {
 					);
 				})}
 			</ScrollView>
-		</>
+		</View>
 	);
 };
 
