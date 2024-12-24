@@ -130,7 +130,11 @@ const DetailsScreen = () => {
 	const [selectedServingType, setSelectedServingType] = useState(
 		servingTypes[0]
 	);
-	const [selectedTimeOfDay, setSelectedTimeOfDay] = useState(null);
+	const [selectedTimeOfDay, setSelectedTimeOfDay] = useState({
+		name: 'Breakfast',
+		value: 'breakfast',
+	});
+
 	const [date, setDate] = useState(null);
 	const partsOfDayData = [
 		{
