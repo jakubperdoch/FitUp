@@ -13,6 +13,7 @@ const DashBoardCircle = ({ value, colorVariation, title, size, icon }) => {
 	const radius = circleLength / (2 * Math.PI);
 	const [progress, setProgress] = useState(value);
 
+
 	useEffect(() => {
 		setProgress(value);
 	}, [value]);
@@ -81,6 +82,7 @@ const DashBoardCircle = ({ value, colorVariation, title, size, icon }) => {
 					animatedProps={animatedProps}
 					strokeLinecap={'round'}
 				/>
+
 			</Svg>
 
 			{contentHandler()}
