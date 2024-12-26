@@ -1,4 +1,4 @@
-import { useLocalSearchParams } from "expo-router";
+import { useFocusEffect, useLocalSearchParams } from "expo-router";
 import {
   Text,
   Image,
@@ -10,18 +10,35 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import ServingInputComponent from "@/components/custom/Inputs/ServingInput";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import GenericIcon from "@/components/custom/Icon";
 import DateTimePicker from "react-native-ui-datepicker";
 import dayjs from "dayjs";
 import ModalComponent from "@/components/custom/Modal";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
+import { useLayout } from "@/context/LayoutContext";
 
 const DetailsScreen = () => {
+  const { setShowFooter, setNavbarTitle, setShowBackButton } = useLayout();
   const params = useLocalSearchParams();
   const insets = useSafeAreaInsets();
   dayjs.extend(localizedFormat);
+
+  useEffect(() => {
+    setShowFooter(false);
+    setNavbarTitle(null);
+    setShowBackButton(true);
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        setShowFooter(true);
+        setShowBackButton(false);
+      };
+    }, []),
+  );
 
   // Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -177,7 +194,7 @@ const DetailsScreen = () => {
     <>
       <Image
         style={{ top: -insets.top, height: 500 }}
-        className="absolute w-full "
+        className="absolute w-full -z-10"
         source={require("@/assets/images/mealsDetails.png")}
       />
 
@@ -187,7 +204,6 @@ const DetailsScreen = () => {
           borderRadius: 50,
           paddingVertical: 40,
           marginTop: 250,
-          marginBottom: 50,
         }}
         contentContainerClassName="pb-10"
         showsVerticalScrollIndicator={false}

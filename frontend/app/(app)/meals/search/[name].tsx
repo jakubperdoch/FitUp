@@ -1,7 +1,7 @@
 import { Input, InputField, InputSlot } from "@/components/ui/input";
 import { View } from "react-native";
 import { useLocalSearchParams, router } from "expo-router";
-import { useNavbar } from "@/context/NavbarContaxt";
+import { useLayout } from "@/context/LayoutContext";
 import { useEffect, useState, useCallback } from "react";
 import FoodScrollComponent from "@/components/custom/Meals/Scroll";
 import CategoryScrollComponent from "@/components/custom/Meals/Scroll/CategoryScroll";
@@ -10,7 +10,7 @@ import debounce from "lodash/debounce";
 
 const MealsSearchPage = () => {
   const { name } = useLocalSearchParams();
-  const { setNavbarTitle } = useNavbar();
+  const { setNavbarTitle } = useLayout();
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [meals, setMeals] = useState([]);
 

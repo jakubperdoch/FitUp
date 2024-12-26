@@ -1,13 +1,13 @@
-import { AuthProvider } from './AuthContext';
-import { ExplainerProvider } from './ExplainerContext';
-import { NavbarProvider } from './NavbarContaxt';
+import { AuthProvider } from "./AuthContext";
+import { ExplainerProvider } from "./ExplainerContext";
+import { LayoutProvider } from "./LayoutContext";
 
 export const ContextProvider = ({ children }) => {
-	return (
-		<AuthProvider>
-			<NavbarProvider>
-				<ExplainerProvider>{children}</ExplainerProvider>
-			</NavbarProvider>
-		</AuthProvider>
-	);
+  return (
+    <AuthProvider>
+      <LayoutProvider>
+        <ExplainerProvider>{children}</ExplainerProvider>
+      </LayoutProvider>
+    </AuthProvider>
+  );
 };
