@@ -192,11 +192,22 @@ const DetailsScreen = () => {
 
   return (
     <>
-      <Image
-        style={{ top: -insets.top, height: 500 }}
-        className="absolute w-full -z-10"
-        source={require("@/assets/images/mealsDetails.png")}
-      />
+      <LinearGradient
+        start={{ x: 1, y: 0 }}
+        end={{ x: 0.1, y: 0.8 }}
+        colors={["#D62828", "#F77F00"]}
+        style={{
+          alignItems: "center",
+          position: "absolute",
+          width: "100%",
+          top: -insets.top,
+          paddingTop: insets.top + 50,
+          zIndex: -1,
+          height: "100%",
+        }}
+      >
+        <Image source={require("@/assets/images/meals-details--example.png")} />
+      </LinearGradient>
 
       <ScrollView
         style={{
