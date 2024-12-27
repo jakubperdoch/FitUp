@@ -22,7 +22,7 @@ const WorkoutsPage = () => {
   );
 
   return (
-    <View>
+    <View className="px-6">
       <Text>Workouts Page</Text>
     </View>
   );
