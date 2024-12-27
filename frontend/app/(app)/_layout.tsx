@@ -11,11 +11,13 @@ const AppLayout = () => {
     isVisible,
     showDetailsButton,
     showFooter,
+    navbarColor,
   } = useLayout();
 
   return (
     <View className="relative h-full">
       <TopNavigationComponent
+        navbarColor={navbarColor}
         isVisible={isVisible}
         isDetailsButton={showDetailsButton}
         title={navbarTitle}

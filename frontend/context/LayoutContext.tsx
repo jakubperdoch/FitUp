@@ -9,6 +9,7 @@ export const LayoutProvider = ({ children }) => {
   const [showBackButton, setShowBackButton] = useState(false);
   const [showDetailsButton, setShowDetailsButton] = useState(false);
   const [showFooter, setShowFooter] = useState(true);
+  const [navbarColor, setNavbarColor] = useState("text-white");
 
   return (
     <LayoutContext.Provider
@@ -23,6 +24,8 @@ export const LayoutProvider = ({ children }) => {
         setIsVisible,
         showFooter,
         setShowFooter,
+        navbarColor,
+        setNavbarColor,
       }}
     >
       {children}

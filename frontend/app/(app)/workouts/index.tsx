@@ -20,6 +20,7 @@ const WorkoutsPage = () => {
       };
     }, []),
   );
+
   return (
     <View>
       <Text>Workouts Page</Text>

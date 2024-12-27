@@ -59,7 +59,7 @@ const FooterComponent = () => {
       (footerRoute) => footerRoute === currentRoute,
     );
 
-    if (currentRoute) {
+    if (currentRoute && currentRouteIndex) {
       updateIconPosition(currentRouteIndex);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     }
@@ -113,7 +113,6 @@ const FooterComponent = () => {
           return (
             <View
               ref={(el) => (iconElementRefs.current[index] = el)}
-              onLayout={() => handlePress(2)}
               key={index}
             >
               <Animated.View style={[animatedStyle, { zIndex: 10 }]}>

@@ -8,6 +8,7 @@ type ComponentProps = {
   isBackButton?: boolean;
   isDetailsButton?: boolean;
   isVisible?: boolean;
+  navbarColor?: string;
 };
 
 const TopNavigationComponent = ({
@@ -15,6 +16,7 @@ const TopNavigationComponent = ({
   isBackButton,
   isDetailsButton,
   isVisible,
+  navbarColor,
 }: ComponentProps) => {
   return (
     <>
@@ -31,7 +33,11 @@ const TopNavigationComponent = ({
             <View className="h-12 w-12"></View>
           )}
 
-          <Text className="text-2xl font-poppinsBold">
+          <Text
+            className={`text-2xl font-poppinsBold ${
+              navbarColor ? navbarColor : "text-black"
+            }`}
+          >
             {title ? title : null}
           </Text>
 
