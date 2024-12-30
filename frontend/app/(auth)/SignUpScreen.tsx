@@ -149,13 +149,16 @@ const SignUpScreen = () => {
         <Text className="text-lg">Or</Text>
         <Separator borderColor="#DDDADA" borderWidth={1} />
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity activeOpacity={0.7}>
         <AppleLoginIcon width={50} height={50} />
       </TouchableOpacity>
 
       <View className="flex flex-col gap-2  items-center justify-center">
         <Text className="text-lg font-poppins">Already have an account?</Text>
-        <TouchableOpacity onPress={() => router.push("/SignInScreen")}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => router.push("/SignInScreen")}
+        >
           <Text className=" text-xl font-poppins font-bold text-[#F77F00]">
             Sign In
           </Text>

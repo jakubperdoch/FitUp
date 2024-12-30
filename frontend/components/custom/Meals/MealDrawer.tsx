@@ -25,6 +25,7 @@ const MealDrawerComponent = ({
   return (
     <>
       <TouchableOpacity
+        activeOpacity={0.7}
         onPress={() => setShowActionsheet(true)}
         className="ms-auto me-4 mt-2"
       >
@@ -51,6 +52,7 @@ const MealDrawerComponent = ({
         <View className="w-full my-3">
           {drawerOptions.map((option, index) => (
             <TouchableOpacity
+              activeOpacity={0.7}
               onPress={() => pressHandler(option)}
               key={index}
               className="py-4 w-full flex items-center"

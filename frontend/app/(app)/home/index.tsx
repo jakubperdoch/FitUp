@@ -97,7 +97,7 @@ const HomeScreen = () => {
               <Text className="font-poppinsSemiBold text-2xl">
                 Today's Meals
               </Text>
-              <TouchableOpacity>
+              <TouchableOpacity activeOpacity={0.7}>
                 <GenericIcon name="Plus" color="#F77F00" size={25} />
               </TouchableOpacity>
             </View>
@@ -126,7 +126,7 @@ const HomeScreen = () => {
                 }
               />
             ))}
-            <TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.7}>
               <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
                 See More
               </Text>
@@ -142,7 +142,7 @@ const HomeScreen = () => {
               <Text className="font-poppinsSemiBold text-2xl">
                 Upcoming Workouts
               </Text>
-              <TouchableOpacity>
+              <TouchableOpacity activeOpacity={0.7}>
                 <GenericIcon name="Plus" color="#F77F00" size={25} />
               </TouchableOpacity>
             </View>
@@ -153,6 +153,7 @@ const HomeScreen = () => {
               <DashboardCard
                 key={workout.id}
                 id={workout.id}
+                showTimer={workout.showTimer}
                 name={workout.name}
                 date={workout.date}
                 timer={workout.timer}
@@ -165,7 +166,7 @@ const HomeScreen = () => {
                 }
               />
             ))}
-            <TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.7}>
               <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
                 See More
               </Text>

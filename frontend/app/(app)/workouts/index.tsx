@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSortedWorkouts } from "@/utils/workouts";
 import WorkoutPlanCardComponent from "@/components/custom/Workouts/WorkoutPlanCard";
 import { router } from "expo-router";
+import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 
 const WorkoutsPage = () => {
   const finishWorkoutHandler = (time: number, cardId: number) => {
@@ -41,11 +42,13 @@ const WorkoutsPage = () => {
             Upcoming Workout
           </Text>
 
-          <TouchableOpacity>
-            <Text className="text-[#ADA4A5] font-poppins text-lg ">
-              See more
-            </Text>
-          </TouchableOpacity>
+          <View className="w-1/2  flex items-center justify-center">
+            <GradientButtonComponent
+              size={"sm"}
+              title="Add new"
+              handleSubmit={() => console.log("Add new Workout Plan")}
+            />
+          </View>
         </View>
 
         <View className="flex flex-col gap-6">

@@ -116,7 +116,10 @@ const FooterComponent = () => {
               key={index}
             >
               <Animated.View style={[animatedStyle, { zIndex: 10 }]}>
-                <TouchableOpacity onPress={() => handlePress(index, item)}>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() => handlePress(index, item)}
+                >
                   <GenericIcon name={item.icon} />
                 </TouchableOpacity>
               </Animated.View>

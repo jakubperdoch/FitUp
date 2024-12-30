@@ -287,6 +287,7 @@ const DetailsScreen = () => {
           <View className="flex flex-wrap flex-row gap-3 w-full">
             {partsOfDayData.map((time) => (
               <TouchableOpacity
+                activeOpacity={0.7}
                 key={time.value}
                 onPress={() => setSelectedTimeOfDay(time)}
                 className={`px-3 py-1 rounded-xl ${
@@ -305,6 +306,7 @@ const DetailsScreen = () => {
           <Text className="font-semibold text-2xl mb-5">Date</Text>
 
           <TouchableOpacity
+            activeOpacity={0.7}
             onPress={() => setIsModalOpen(true)}
             className="px-6 gap-4 rounded-xl bg-[#F7F8F8] flex flex-row h-16 items-center justify-start w-full"
           >

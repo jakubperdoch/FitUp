@@ -53,6 +53,7 @@ const FoodCardComponent = ({
               <Text className="text-lg font-poppins">{meal.totalCals}</Text>
 
               <TouchableOpacity
+                activeOpacity={0.7}
                 className="border border-[#ADA4A5] rounded-full p-1"
                 onPress={() =>
                   router.push({

@@ -10,6 +10,7 @@ type ComponentProps = {
     time: string;
   };
   timer?: number | null;
+  showTimer?: boolean;
   timerHandler?: (timer: number, id: number) => void;
 
   quantity?: string;
@@ -60,7 +61,7 @@ const DashboardCardComponent = (props: ComponentProps) => {
         </View>
       </View>
 
-      {props.timer && (
+      {props.showTimer && (
         <TimeButton
           id={props.id}
           timer={props.timer}
