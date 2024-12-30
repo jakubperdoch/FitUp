@@ -8,7 +8,7 @@ import { useAuth } from "@/context/AuthContext";
 
 const RootPage = () => {
   const logoAnimation = useRef(null);
-  const { userToken, logIn, logOut } = useAuth();
+  const { userToken } = useAuth();
 
   useEffect(() => {
     const isDataLoading = async () => {

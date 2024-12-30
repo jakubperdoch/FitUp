@@ -9,7 +9,7 @@ export const LayoutProvider = ({ children }) => {
   const [showBackButton, setShowBackButton] = useState(false);
   const [showDetailsButton, setShowDetailsButton] = useState(false);
   const [showFooter, setShowFooter] = useState(true);
-  const [navbarColor, setNavbarColor] = useState("text-white");
+  const [navbarColor, setNavbarColor] = useState("text-black");
 
   return (
     <LayoutContext.Provider

@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: Refactor components to improve UX and remove unused file">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Refactor TimeButton and workout state management with Redux">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/GradientButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/GradientButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/TopNavigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/TopNavigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/context/LayoutContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/context/LayoutContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/store/workout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workout.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +98,7 @@
       <workItem from="1735442061824" duration="1928000" />
       <workItem from="1735507541534" duration="17896000" />
       <workItem from="1735595042444" duration="297000" />
-      <workItem from="1735595345658" duration="1820000" />
+      <workItem from="1735595345658" duration="4242000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -184,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735597042809</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fix: Refactor GradientButton">
+      <option name="closed" value="true" />
+      <created>1735597177487</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1735597177487</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,6 +236,8 @@
     <MESSAGE value="Remove yarn.lock file from frontend&#10;&#10;This commit deletes the `yarn.lock` file in the frontend directory. The removal may signify a migration to a different package manager, a cleanup, or reliance on external lock files. Ensure dependencies are managed appropriately without the lock file." />
     <MESSAGE value="add: Add workout sorting, new components, and update dependencies" />
     <MESSAGE value="fix: Refactor components to improve UX and remove unused file" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: Refactor components to improve UX and remove unused file" />
+    <MESSAGE value="fix: Refactor GradientButton" />
+    <MESSAGE value="add: Refactor TimeButton and workout state management with Redux" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: Refactor TimeButton and workout state management with Redux" />
   </component>
 </project>

@@ -8,6 +8,9 @@ import Animated, {
   withDelay,
   withTiming,
 } from "react-native-reanimated";
+import { useDispatch, useSelector } from "react-redux";
+import { setInactive, setActive } from "@/store/workout";
+import { RootState } from "@/store/store";
 
 type ComponentProps = {
   id: number;
@@ -23,22 +26,31 @@ const TimeButton = ({ timer, timerHandler, id }: ComponentProps) => {
   const [time, setTime] = useState(0);
   const intervalRef = useRef(null);
   const DURATION = 1000;
-  const DELAY = 300;
+
+  const dispatch = useDispatch();
+  const { isActive } = useSelector((state: RootState) => state.workout);
 
   // handlers
   const buttonStateHandler = () => {
+    if (isActive && time === 0) {
+      return;
+    }
     setIsPaused((prevState) => !prevState);
   };
 
   const finishWorkoutHandler = () => {
-    timer = time;
-    timerHandler(timer, id);
+    const updatedTimer = time;
+    timerHandler(updatedTimer, id);
+    setIsPaused(false);
+    setTime(0);
+    dispatch(setInactive());
   };
 
   const deleteWorkoutHandler = () => {
     timer = 0;
     setTime(0);
     setIsPaused(false);
+    dispatch(setInactive());
   };
 
   const timeHandler = (timeValue: number) => {
@@ -63,6 +75,7 @@ const TimeButton = ({ timer, timerHandler, id }: ComponentProps) => {
 
   useEffect(() => {
     if (isPaused) {
+      dispatch(setActive());
       setButtonIcon("Pause");
       intervalRef.current = setInterval(() => {
         setTime((prevSeconds) => prevSeconds + 1);
