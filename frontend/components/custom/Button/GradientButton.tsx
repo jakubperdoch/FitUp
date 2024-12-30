@@ -39,7 +39,10 @@ const GradientButtonComponent = ({
           <Text
             style={[
               styles.text,
-              { fontSize: styles[size]?.fontSize },
+              {
+                fontSize: styles[size]?.fontSize,
+                fontWeight: styles[size]?.fontWeight,
+              },
               disabled && styles.disabledText,
             ]}
           >
@@ -64,18 +67,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  xs: {
-    height: 35,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    width: 100,
-    fontSize: 10,
-  },
   sm: {
     height: 40,
     paddingHorizontal: 15,
-    width: 120,
+    width: 100,
     fontSize: 13,
+    fontWeight: "600",
   },
   md: {
     height: 55,
