@@ -155,7 +155,6 @@ const HomeScreen = () => {
                 id={workout.id}
                 name={workout.name}
                 date={workout.date}
-                showTimer={workout.showTimer}
                 timer={workout.timer}
                 timerHandler={finishWorkoutHandler}
                 detailsHandler={() =>

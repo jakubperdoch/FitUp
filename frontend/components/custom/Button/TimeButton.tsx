@@ -53,7 +53,7 @@ const TimeButton = ({ timer, timerHandler, id }: ComponentProps) => {
       const hours = Math.floor(timeValue / 3600);
       const minutes = Math.floor((timeValue % 3600) / 60);
       return (
-        <Text>
+        <Text className="h-min">
           {hours} hour{hours > 1 ? "s" : ""}{" "}
           {minutes > 0 ? `${minutes} min` : ""}
         </Text>
@@ -78,7 +78,7 @@ const TimeButton = ({ timer, timerHandler, id }: ComponentProps) => {
   const additionalButtonsHandler = () => {
     if (!isPaused && time > 0) {
       return (
-        <Animated.View style={animatedStyle} className="flex-row gap-3">
+        <Animated.View style={animatedStyle} className="flex-row gap-3 ">
           <TouchableOpacity onPress={() => deleteWorkoutHandler()}>
             <LinearGradient
               start={{ x: 0, y: 0.75 }}
@@ -136,7 +136,7 @@ const TimeButton = ({ timer, timerHandler, id }: ComponentProps) => {
   }, [isPaused, time]);
 
   return (
-    <View className="flex flex-col items-center justify-center gap-3">
+    <View className="flex flex-col items-center justify-center gap-1.5">
       <View className="flex-row gap-3">
         <TouchableOpacity onPress={buttonStateHandler}>
           <LinearGradient
@@ -161,8 +161,6 @@ const TimeButton = ({ timer, timerHandler, id }: ComponentProps) => {
         </TouchableOpacity>
         {additionalButtonsHandler()}
       </View>
-
-      <Text>{timeHandler(time)}</Text>
     </View>
   );
 };

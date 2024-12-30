@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
-import useCurrentDateHandler from "@/utils/date";
-import WorkoutTimerCard from "@/components/custom/Workouts/WorkoutTimerCard";
-import useSortedWorkouts from "@/utils/workouts";
+import { useSortedWorkouts } from "@/utils/workouts";
+import WorkoutPlanCardComponent from "@/components/custom/Workouts/WorkoutPlanCard";
+import { router } from "expo-router";
 
 const WorkoutsPage = () => {
   const finishWorkoutHandler = (time: number, cardId: number) => {
@@ -18,12 +18,16 @@ const WorkoutsPage = () => {
       name: "Upperbody Workout",
       day: "Friday",
       timer: null,
+      timeOfWorkout: 32,
+      numberOfExercises: 11,
     },
     {
       id: 2,
       name: "Fullbody Workout",
       day: "Tuesday",
       timer: null,
+      timeOfWorkout: 32,
+      numberOfExercises: 11,
     },
   ]);
 
@@ -44,16 +48,21 @@ const WorkoutsPage = () => {
           </TouchableOpacity>
         </View>
 
-        {sortedWorkouts.map((card, index) => (
-          <WorkoutTimerCard
-            key={index}
-            id={card.id}
-            title={card.name}
-            day={card.day}
-            timer={card.timer}
-            finishWorkoutHandler={finishWorkoutHandler}
-          />
-        ))}
+        <View className="flex flex-col gap-6">
+          {sortedWorkouts.map((card, index) => (
+            <WorkoutPlanCardComponent
+              key={index}
+              id={card.id}
+              title={card.name}
+              day={card.day}
+              timer={card.timer}
+              timeOfWorkout={card.timeOfWorkout}
+              numberOfExercises={card.numberOfExercises}
+              detailsHandler={() => router.push("workout")}
+              finishWorkoutHandler={finishWorkoutHandler}
+            />
+          ))}
+        </View>
       </View>
     </View>
   );

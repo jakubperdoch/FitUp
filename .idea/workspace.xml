@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: meal-related example images and header SVG">
-      <change afterPath="$PROJECT_DIR$/frontend/components/custom/RandomImage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/utils/workouts.ts" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Add sorting workouts &amp; workout cards">
+      <change afterPath="$PROJECT_DIR$/frontend/store/workout.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/_layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/WorkoutTimerCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/WorkoutTimerCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/utils/date.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utils/date.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/RandomImage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/RandomImage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/WorkoutPlanCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/WorkoutPlanCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/utils/workouts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utils/workouts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +70,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/Users/jakubperdoch/Developer/FitUp/frontend/node_modules/prettier",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.notifications",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "ts.external.directory.path": "/Users/jakubperdoch/Developer/FitUp/frontend/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -98,7 +103,7 @@
       <workItem from="1735233532930" duration="14340000" />
       <workItem from="1735318947089" duration="14288000" />
       <workItem from="1735442061824" duration="1928000" />
-      <workItem from="1735507541534" duration="5378000" />
+      <workItem from="1735507541534" duration="17896000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -164,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735351382411</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add: Add sorting workouts &amp; workout cards">
+      <option name="closed" value="true" />
+      <created>1735513112418</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1735513112418</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +210,9 @@
     <MESSAGE value="fix: Replace background image with linear gradient in meals page" />
     <MESSAGE value="fix: Refactor dashboard components and optimize workout logic" />
     <MESSAGE value="add: meal-related example images and header SVG" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: meal-related example images and header SVG" />
+    <MESSAGE value="Add Discord settings file and new SVG asset&#10;&#10;Introduce a new `.idea/discord.xml` for project-specific Discord settings. Additionally, include a new SVG asset `information-card--fifth.svg` for frontend graphical use." />
+    <MESSAGE value="Add discord.xml and new SVG asset  &#10;&#10;This commit adds the Discord project settings file (`discord.xml`) under `.idea/` for IDE configurations. Additionally, it includes a new SVG asset (`information-card--fifth.svg`) to the project, potentially used for frontend UI." />
+    <MESSAGE value="add: Add sorting workouts &amp; workout cards" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: Add sorting workouts &amp; workout cards" />
   </component>
 </project>

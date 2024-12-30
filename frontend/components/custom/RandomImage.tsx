@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import InformationCardFirst from "@/assets/images/information-card--first.svg";
 import InformationCardSecond from "@/assets/images/information-card--second.svg";
 import InformationCardThird from "@/assets/images/information-card--third.svg";
@@ -14,7 +14,12 @@ const RandomImageComponent = ({ height, width }) => {
     <InformationCardFifth height={height} width={width} />,
   ];
 
-  return images[Math.floor(Math.random() * images.length)];
+  const [image] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    return images[randomIndex];
+  });
+
+  return <>{image}</>;
 };
 
 export default RandomImageComponent;
