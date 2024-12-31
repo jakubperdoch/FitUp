@@ -8,12 +8,10 @@ import { useCallback, useEffect } from "react";
 
 const WorkoutLayout = () => {
   const insets = useSafeAreaInsets();
-  const { setNavbarColor, setShowFooter, setNavbarTitle, setShowBackButton } =
-    useLayout();
+  const { setNavbarColor, setNavbarTitle, setShowBackButton } = useLayout();
 
   useEffect(() => {
     setNavbarColor("text-white");
-    setShowFooter(false);
     setNavbarTitle("Workout Tracker");
     setShowBackButton(true);
   }, []);
@@ -22,7 +20,6 @@ const WorkoutLayout = () => {
     useCallback(() => {
       return () => {
         setNavbarColor("text-black");
-        setShowFooter(true);
         setShowBackButton(false);
       };
     }, []),

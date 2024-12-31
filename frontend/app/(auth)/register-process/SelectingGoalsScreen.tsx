@@ -119,6 +119,7 @@ const SelectingGoalsScreen = () => {
       <GradientButtonComponent
         handleSubmit={() => submitHandler(goalIndex)}
         title={"Confirm"}
+        size={"full"}
       />
     </View>
   );

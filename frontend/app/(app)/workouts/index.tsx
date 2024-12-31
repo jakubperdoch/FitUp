@@ -51,7 +51,7 @@ const WorkoutsPage = () => {
           </View>
         </View>
 
-        <View className="flex flex-col gap-6">
+        <View className="flex flex-col gap-6 mb-12">
           {sortedWorkouts.map((card, index) => (
             <WorkoutPlanCardComponent
               key={index}

@@ -17,7 +17,12 @@ const GradientButtonComponent = ({
 }) => {
   return (
     <TouchableOpacity
-      style={[styles.touchable]}
+      style={[
+        styles.touchable,
+        {
+          width: styles[size]?.width,
+        },
+      ]}
       onPress={handleSubmit}
       activeOpacity={0.7}
       disabled={disabled || loading}
@@ -37,6 +42,7 @@ const GradientButtonComponent = ({
           <ActivityIndicator size="small" color="#fff" />
         ) : (
           <Text
+            className="font-poppins"
             style={[
               styles.text,
               {
@@ -79,10 +85,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     fontSize: 17,
   },
+  full: {
+    width: "100%",
+    height: 60,
+    paddingHorizontal: 20,
+    fontSize: 18,
+    fontWeight: "bold",
+  },
   text: {
     color: "#fff",
     fontWeight: "800",
-    fontFamily: "Poppins", // Ensure you've added the Poppins font
   },
   disabledGradient: {
     opacity: 0.6,

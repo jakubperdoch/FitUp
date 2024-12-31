@@ -4,13 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Refactor TimeButton and workout state management with Redux">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Add AlertDialog component and refactor workout logic">
+      <change afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/_layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Inputs/Alert.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationsScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SelectingGoalsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SelectingGoalsScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/DateCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/DateCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/GradientButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/GradientButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/DatePanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/DatePanel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/TopNavigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/TopNavigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/context/LayoutContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/context/LayoutContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/store/workout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workout.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +77,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/components/custom/Meals" />
       <recent name="$PROJECT_DIR$/frontend/assets/images" />
     </key>
   </component>
@@ -98,7 +106,7 @@
       <workItem from="1735442061824" duration="1928000" />
       <workItem from="1735507541534" duration="17896000" />
       <workItem from="1735595042444" duration="297000" />
-      <workItem from="1735595345658" duration="4242000" />
+      <workItem from="1735595345658" duration="6846000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -196,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735597177487</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add: Add AlertDialog component and refactor workout logic">
+      <option name="closed" value="true" />
+      <created>1735599672270</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1735599672270</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,6 +254,7 @@
     <MESSAGE value="fix: Refactor components to improve UX and remove unused file" />
     <MESSAGE value="fix: Refactor GradientButton" />
     <MESSAGE value="add: Refactor TimeButton and workout state management with Redux" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: Refactor TimeButton and workout state management with Redux" />
+    <MESSAGE value="add: Add AlertDialog component and refactor workout logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: Add AlertDialog component and refactor workout logic" />
   </component>
 </project>
