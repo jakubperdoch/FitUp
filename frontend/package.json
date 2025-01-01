@@ -79,6 +79,7 @@
 		"react-dom": "^18.3.1",
 		"react-hook-form": "^7.53.0",
 		"react-native": "0.76.5",
+		"react-native-background-actions": "^4.0.1",
 		"react-native-bouncy-checkbox": "^4.0.1",
 		"react-native-date-picker": "^5.0.5",
 		"react-native-gesture-handler": "~2.20.2",

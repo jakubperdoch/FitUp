@@ -1,7 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
-
 import TimeButton from "../Button/TimeButton";
-
+import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
 type ComponentProps = {
   id: number;
   name: string;
@@ -9,18 +8,18 @@ type ComponentProps = {
     date: string;
     time: string;
   };
-  timer?: number | null;
+  day?: string;
+  timeOfWorkout?: number;
   showTimer?: boolean;
-  timerHandler?: (timer: number, id: number) => void;
-
-  quantity?: string;
-  totalCal?: string;
+  finishWorkoutHandler?: () => void;
   detailsHandler?: (id: number) => void;
+  workoutSelectHandler?: (id: number) => void;
 };
 
 const DashboardCardComponent = (props: ComponentProps) => {
   const dateHandler = (date: string) => {
     const currentDate = new Date().toLocaleDateString();
+
     if (currentDate != date) {
       return <Text>{date}</Text>;
     }
@@ -28,47 +27,45 @@ const DashboardCardComponent = (props: ComponentProps) => {
   };
 
   return (
-    <TouchableOpacity
-      onPress={() => props.detailsHandler(props.id)}
-      className="w-full gap-2 bg-white shadow-soft-1  px-4 py-5 rounded-3xl flex-row justify-between"
-    >
-      <View className="gap-1">
-        <Text className="font-poppins text-lg">{props.name}</Text>
-        <View className="flex-row gap-2">
-          {props.date && (
-            <>
-              <Text className="text-[#7B6F72] font-poppins">
-                {dateHandler(props.date.date)}
-              </Text>
-              <Text className="text-[#7B6F72] font-poppins">|</Text>
-              <Text className="text-[#7B6F72] font-poppins">
-                {props.date.time}
-              </Text>
-            </>
-          )}
+    <Animated.View entering={ZoomIn} className="w-full">
+      <TouchableOpacity
+        onPress={() => props.detailsHandler(props.id)}
+        className="w-full gap-2 bg-white shadow-soft-1  px-4 py-5 rounded-3xl flex-row justify-between"
+      >
+        <View className="gap-1">
+          <Text className="font-poppins text-lg">{props.name}</Text>
+          <View className="flex-row gap-2">
+            {props.date && (
+              <>
+                <Text className="text-[#7B6F72] font-poppins">
+                  {dateHandler(props.date.date)}
+                </Text>
+                <Text className="text-[#7B6F72] font-poppins">|</Text>
+                <Text className="text-[#7B6F72] font-poppins">
+                  {props.date.time}
+                </Text>
+              </>
+            )}
 
-          {props.totalCal && (
-            <>
-              <Text className="text-[#7B6F72] font-poppins">
-                {props.totalCal}
-              </Text>
-              <Text className="text-[#7B6F72] font-poppins">|</Text>
-              <Text className="text-[#7B6F72] font-poppins">
-                {props.quantity}
-              </Text>
-            </>
-          )}
+            {props.day && (
+              <>
+                <Text className="text-[#7B6F72] font-poppins">
+                  {props?.day} | {props?.timeOfWorkout} min
+                </Text>
+              </>
+            )}
+          </View>
         </View>
-      </View>
 
-      {props.showTimer && (
-        <TimeButton
-          id={props.id}
-          timer={props.timer}
-          timerHandler={props.timerHandler}
-        />
-      )}
-    </TouchableOpacity>
+        {props.showTimer && (
+          <TimeButton
+            id={props.id}
+            workoutSelectHandler={props.workoutSelectHandler}
+            finishWorkoutHandler={props.finishWorkoutHandler}
+          />
+        )}
+      </TouchableOpacity>
+    </Animated.View>
   );
 };
 

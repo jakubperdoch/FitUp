@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import DashboardPanel from "@/components/custom/Dashboard/DashboardPanel";
 import GenericIcon from "@/components/custom/Icon";
 import GradientSelectComponent from "@/components/custom/Inputs/GradientSelect";
@@ -7,22 +7,25 @@ import DashboardCard from "@/components/custom/Dashboard/DashboardCard";
 import useCurrentDateHandler from "@/utils/date";
 import { router } from "expo-router";
 import { useLayout } from "@/context/LayoutContext";
+import { useSortedWorkouts } from "@/utils/workouts";
+import { clearWorkout, setWorkout } from "@/store/workout";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+
+// TODO: make global interfaces & types
 
 const HomeScreen = () => {
   const { currentDate } = useCurrentDateHandler();
   const { setNavbarTitle } = useLayout();
+  const { workout } = useSelector((state: RootState) => state.workout);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setNavbarTitle("Fit Up");
   }, []);
 
-  const finishWorkoutHandler = (time: number, cardId: number) => {
-    const workouts = [...workoutCards];
-
-    workouts[cardId] = { ...workouts[cardId], timer: time };
-    setWorkoutCards(workouts);
-  };
-
+  //TODO: Move all like this data to jsons
   const foodOptions = [
     {
       name: "Breakfast",
@@ -53,32 +56,62 @@ const HomeScreen = () => {
   const [workoutCards, setWorkoutCards] = useState([
     {
       id: 1,
-      name: "Upperbody Workout",
-      date: currentDate,
-      showTimer: true,
+      name: "Upper body Workout",
+      day: "Friday",
       timer: null,
+      timeOfWorkout: 22,
     },
     {
       id: 2,
-      name: "Fullbody Workout",
-      date: currentDate,
-      showTimer: true,
+      name: "Full body Workout",
+      day: "Wednesday",
       timer: null,
+      timeOfWorkout: 12,
     },
   ]);
+
+  const { sortedWorkouts } = useSortedWorkouts(workoutCards);
+  const [workouts, setWorkouts] = useState(sortedWorkouts);
+
+  const workoutSelectHandler = useCallback(
+    (id: number) => {
+      {
+        const selectedWorkout = workouts.find((item) => item?.id === id);
+        if (selectedWorkout) {
+          dispatch(setWorkout(selectedWorkout));
+        }
+      }
+    },
+    [workouts, workout],
+  );
+
+  const finishWorkoutHandler = () => {
+    if (!workout) {
+      return;
+    }
+    const workoutsArr =
+      workout?.timer > 0 ? [...workouts, workout] : [workout, ...workouts];
+    setWorkouts(workoutsArr);
+    dispatch(clearWorkout());
+  };
+
+  useEffect(() => {
+    if (workout) {
+      const filteredArr = workouts.filter((item) => item?.id !== workout?.id);
+      setWorkouts(filteredArr);
+    }
+  }, [workout]);
 
   const [mealCards, setMealCards] = useState([
     {
       id: 10,
       name: "Salmon Nigiri",
-      totalCals: "300kCal",
-      quantity: "200g",
+      date: currentDate,
     },
     {
       id: 11,
       name: "Lowfat Milk",
-      totalCals: "300kCal",
-      quantity: "200g",
+      date: currentDate,
     },
   ]);
 
@@ -89,6 +122,25 @@ const HomeScreen = () => {
           Overview
         </Text>
         <DashboardPanel />
+
+        {workout && (
+          <DashboardCard
+            key={workout.id}
+            id={workout.id}
+            showTimer={true}
+            name={workout.name}
+            day={workout.day}
+            timeOfWorkout={workout.timeOfWorkout}
+            finishWorkoutHandler={finishWorkoutHandler}
+            workoutSelectHandler={workoutSelectHandler}
+            detailsHandler={() =>
+              router.push({
+                pathname: "/workouts/details",
+                params: { id: workout.id },
+              })
+            }
+          />
+        )}
 
         {/*Today's meals*/}
         <View className="self-start w-full flex-col mb-4">
@@ -116,8 +168,7 @@ const HomeScreen = () => {
                 key={meal.id}
                 id={meal.id}
                 name={meal.name}
-                totalCal={meal.totalCals}
-                quantity={meal.quantity}
+                date={meal.date}
                 detailsHandler={() =>
                   router.push({
                     pathname: "/meals/details",
@@ -149,15 +200,16 @@ const HomeScreen = () => {
           </View>
 
           <View className="gap-5 mt-6 justify-center flex-col items-center">
-            {workoutCards.map((workout) => (
+            {workouts.map((workout) => (
               <DashboardCard
                 key={workout.id}
                 id={workout.id}
-                showTimer={workout.showTimer}
+                showTimer={true}
                 name={workout.name}
-                date={workout.date}
-                timer={workout.timer}
-                timerHandler={finishWorkoutHandler}
+                day={workout.day}
+                timeOfWorkout={workout.timeOfWorkout}
+                finishWorkoutHandler={finishWorkoutHandler}
+                workoutSelectHandler={workoutSelectHandler}
                 detailsHandler={() =>
                   router.push({
                     pathname: "/workouts/details",

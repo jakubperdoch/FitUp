@@ -36,6 +36,9 @@
       "eas": {
         "projectId": "f61b7435-88d8-47c8-8ece-dcdcb02eaefa"
       }
+    },
+    "android": {
+      "package": "com.jakubperdoch.FitUp"
     }
   }
 }
