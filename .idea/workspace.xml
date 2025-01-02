@@ -4,23 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Add active workout section &amp; updated redux workout management">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/babel.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/PulseBorder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/PulseBorder.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ActiveWorkoutCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ActiveWorkoutCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/WorkoutPlanCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/WorkoutPlanCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/metro.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/metro.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="main" />
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="frontend" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -28,6 +29,24 @@
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;jakubperdoch&quot;
   }
+}</component>
+  <component name="GitHubPullRequestState">{
+  &quot;prStates&quot;: [
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMcTQKM6GjDh4&quot;,
+        &quot;number&quot;: 7
+      },
+      &quot;lastSeen&quot;: 1735789773030
+    },
+    {
+      &quot;id&quot;: {
+        &quot;id&quot;: &quot;PR_kwDOMcTQKM6GjGvx&quot;,
+        &quot;number&quot;: 8
+      },
+      &quot;lastSeen&quot;: 1735791615237
+    }
+  ]
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
@@ -106,6 +125,7 @@
       <workItem from="1735595345658" duration="26337000" />
       <workItem from="1735696103452" duration="3187000" />
       <workItem from="1735699804814" duration="26719000" />
+      <workItem from="1735831255510" duration="629000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -227,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735703675256</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fix">
+      <option name="closed" value="true" />
+      <created>1735791371383</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1735791371383</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,6 +301,7 @@
     <MESSAGE value="add: Refactor components and add AlertDialog integration" />
     <MESSAGE value="add: Add RunningWorkout section &amp; Redux workout management" />
     <MESSAGE value="add: Add active workout section &amp; updated redux workout management" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: Add active workout section &amp; updated redux workout management" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
 </project>
