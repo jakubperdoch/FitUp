@@ -27,7 +27,7 @@ const WorkoutPlanCardComponent = (props: ComponentProps) => {
         padding: 20,
       }}
     >
-      <View className="flex flex-col gap-2">
+      <View className="flex flex-col gap-1">
         <Text className="text-lg font-poppins font-semibold">
           {props.title}
         </Text>

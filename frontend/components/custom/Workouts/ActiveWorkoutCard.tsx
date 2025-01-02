@@ -1,7 +1,6 @@
 import { Text, View } from "react-native";
-import PulseBorder from "@/components/custom/PulseBorder";
 import TimeButton from "@/components/custom/Button/TimeButton";
-
+import { LinearGradient } from "expo-linear-gradient";
 type ComponentProps = {
   id: number;
   name: string;
@@ -15,23 +14,33 @@ type ComponentProps = {
 
 const ActiveWorkoutCardComponent = (props: ComponentProps) => {
   return (
-    <PulseBorder>
-      <View className="w-full bg-white shadow-soft-1 rounded-3xl ">
-        <View className="gap-2 px-4 py-5 flex-row justify-between">
-          <View className="flex-col">
-            <Text>{props.name}</Text>
-            <Text>{props.day}</Text>
-            <Text>{props.timeOfWorkout}</Text>
-          </View>
+    <LinearGradient
+      start={{ x: 1, y: 0 }}
+      end={{ x: 0.1, y: 0.8 }}
+      colors={["rgba(214, 40, 40, 0.3)", "rgba(247, 127, 0, 0.3)"]}
+      style={{ borderRadius: 20 }}
+    >
+      <View className="gap-2 px-4 py-5 flex-row justify-between">
+        <View className="flex-col gap-1">
+          <Text className="text-lg font-poppins font-semibold">
+            {props.name}
+          </Text>
 
-          <TimeButton
-            id={props.id}
-            workoutSelectHandler={props.workoutSelectHandler}
-            finishWorkoutHandler={props.finishWorkoutHandler}
-          />
+          <Text className="font-poppins  text-[#7B6F72]">{props.day}</Text>
+
+          <Text className="font-poppins  text-[#7B6F72]">
+            {props.numberOfExercises} Exercises | {props.timeOfWorkout}min
+          </Text>
         </View>
+
+        <TimeButton
+          id={props.id}
+          showTimer={true}
+          workoutSelectHandler={props.workoutSelectHandler}
+          finishWorkoutHandler={props.finishWorkoutHandler}
+        />
       </View>
-    </PulseBorder>
+    </LinearGradient>
   );
 };
 

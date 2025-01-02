@@ -54,6 +54,7 @@ const PulseBorder = ({ children }) => {
   return (
     <View className="w-full">
       {[...Array(3).keys()].map((layerIndex) => {
+        // @ts-ignore
         const animatedStyle = useAnimatedStyle(() => {
           const sX = scaleXs[layerIndex].value;
           const sY = scaleYs[layerIndex].value;

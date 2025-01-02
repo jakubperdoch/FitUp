@@ -12,6 +12,8 @@ import { clearWorkout, setWorkout } from "@/store/workout";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import ActiveWorkoutCardComponent from "@/components/custom/Workouts/ActiveWorkoutCard";
+import PulseBorder from "@/components/custom/PulseBorder";
+import Animated, { ZoomIn } from "react-native-reanimated";
 
 // TODO: make global interfaces & types
 
@@ -132,25 +134,30 @@ const HomeScreen = () => {
         <Text className="self-start font-poppinsSemiBold text-2xl">
           Overview
         </Text>
+
         <DashboardPanel />
 
         {workout && (
-          <ActiveWorkoutCardComponent
-            key={workout.id}
-            id={workout.id}
-            name={workout.name}
-            day={workout.day}
-            numberOfExercises={workout.numberOfExercises}
-            timeOfWorkout={workout.timeOfWorkout}
-            finishWorkoutHandler={finishWorkoutHandler}
-            workoutSelectHandler={workoutSelectHandler}
-            detailsHandler={() =>
-              router.push({
-                pathname: "/workouts/details",
-                params: { id: workout.id },
-              })
-            }
-          />
+          <Animated.View className="w-full" entering={ZoomIn}>
+            <PulseBorder>
+              <ActiveWorkoutCardComponent
+                key={workout.id}
+                id={workout.id}
+                name={workout.name}
+                day={workout.day}
+                numberOfExercises={workout.numberOfExercises}
+                timeOfWorkout={workout.timeOfWorkout}
+                finishWorkoutHandler={finishWorkoutHandler}
+                workoutSelectHandler={workoutSelectHandler}
+                detailsHandler={() =>
+                  router.push({
+                    pathname: "/workouts/details",
+                    params: { id: workout.id },
+                  })
+                }
+              />
+            </PulseBorder>
+          </Animated.View>
         )}
 
         {/*Today's meals*/}
