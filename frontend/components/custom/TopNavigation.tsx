@@ -1,35 +1,58 @@
-import { Text, View, TouchableOpacity } from 'react-native';
-import { useEffect, useState } from 'react';
-import { usePathname, useRouter } from 'expo-router';
-import pathNameHandler from '@/utils/pathName';
-import { ChevronLeft } from 'lucide-react-native';
+import { Text, View, TouchableOpacity } from "react-native";
 
-const TopNavigationComponent = () => {
-	const pathname = usePathname();
-	const [pathName, setPathName] = useState('');
-	const customPath = pathNameHandler();
+import { router } from "expo-router";
+import GenericIcon from "@/components/custom/Icon";
 
-	useEffect(() => {
-		setPathName(customPath);
-		console.log(customPath);
-	}, [pathname]);
+type ComponentProps = {
+  title?: string;
+  isBackButton?: boolean;
+  isDetailsButton?: boolean;
+  isVisible?: boolean;
+  navbarColor?: string;
+};
 
-	return (
-		<View className='flex flex-row items-center justify-between px-7 w-full mb-5'>
-			<TouchableOpacity className='p-3 bg-[#f7f8f7] rounded-2xl'>
-				<ChevronLeft color='#1D1617' />
-			</TouchableOpacity>
+const TopNavigationComponent = ({
+  title,
+  isBackButton,
+  isDetailsButton,
+  isVisible,
+  navbarColor,
+}: ComponentProps) => {
+  return (
+    <>
+      {isVisible && (
+        <View className=" flex flex-row items-center justify-between px-7 pt-4 w-full mb-5">
+          {isBackButton ? (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              className="bg-[#F7F8F8] h-12 w-12 flex items-center justify-center rounded-xl"
+              onPress={() => router.back()}
+            >
+              <GenericIcon name={"ChevronLeft"} size={28} />
+            </TouchableOpacity>
+          ) : (
+            <View className="h-12 w-12"></View>
+          )}
 
-			<Text className='text-2xl font-poppinsBold'>{pathName}</Text>
+          <Text
+            className={`text-2xl font-poppinsBold ${
+              navbarColor ? navbarColor : "text-black"
+            }`}
+          >
+            {title ? title : null}
+          </Text>
 
-			<View className='p-3'>
-				<ChevronLeft
-					color='#1D1617'
-					strokeWidth={0}
-				/>
-			</View>
-		</View>
-	);
+          {isDetailsButton ? (
+            <TouchableOpacity className="bg-[#F7F8F8] h-12 w-12 flex items-center justify-center  rounded-xl">
+              <GenericIcon name={"Ellipsis"} size={28} />
+            </TouchableOpacity>
+          ) : (
+            <View className="h-12 w-12"></View>
+          )}
+        </View>
+      )}
+    </>
+  );
 };
 
 export default TopNavigationComponent;

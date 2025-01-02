@@ -1,16 +1,32 @@
-import { Slot } from 'expo-router';
-import { Text, View } from 'react-native';
-import TopNavigationComponent from '@/components/custom/TopNavigation';
-import FooterComponent from '@/components/custom/Footer';
+import { Slot } from "expo-router";
+import TopNavigationComponent from "@/components/custom/TopNavigation";
+import FooterComponent from "@/components/custom/Footer";
+import { useLayout } from "@/context/LayoutContext";
+import { View } from "react-native";
 
 const AppLayout = () => {
-	return (
-		<>
-			<TopNavigationComponent />
-			<Slot />
-			<FooterComponent />
-		</>
-	);
+  const {
+    navbarTitle,
+    showBackButton,
+    isVisible,
+    showDetailsButton,
+    showFooter,
+    navbarColor,
+  } = useLayout();
+
+  return (
+    <View className="relative h-full">
+      <TopNavigationComponent
+        navbarColor={navbarColor}
+        isVisible={isVisible}
+        isDetailsButton={showDetailsButton}
+        title={navbarTitle}
+        isBackButton={showBackButton}
+      />
+      <Slot />
+      {showFooter && <FooterComponent />}
+    </View>
+  );
 };
 
 export default AppLayout;

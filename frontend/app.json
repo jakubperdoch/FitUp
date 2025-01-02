@@ -1,26 +1,44 @@
 {
-	"expo": {
-		"name": "FitUp",
-		"slug": "FitUp",
-		"scheme": "fitup",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"icon": "./assets/icons/icon.png",
-		"splash": {
-			"image": "./assets/images/splash.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
-		},
-		"userInterfaceStyle": "light",
-		"assetBundlePatterns": ["**/*"],
-		"ios": {
-			"supportsTablet": false,
+  "expo": {
+    "name": "FitUp",
+    "slug": "FitUp",
+    "scheme": "fitup",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icons/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "newArchEnabled": true,
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
       "requireFullScreen": true,
-			"config": {
-				"usesNonExemptEncryption": false
-			},
-			"bundleIdentifier": "com.jakubperdoch.FitUp"
-		},
-		"plugins": ["expo-router", "expo-font", "expo-secure-store"]
-	}
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.jakubperdoch.FitUp"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-secure-store"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "f61b7435-88d8-47c8-8ece-dcdcb02eaefa"
+      }
+    },
+    "android": {
+      "package": "com.jakubperdoch.FitUp"
+    }
+  }
 }

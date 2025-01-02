@@ -6,7 +6,7 @@ export interface UserState {
 	email: string;
 	password: string;
 	gender: string;
-	birthDate: Date;
+	birthDate: string;
 	weight: number;
 	height: number;
 	goal: string;
@@ -39,7 +39,7 @@ export const userSlice = createSlice({
 		setGender: (state, action: PayloadAction<string>) => {
 			state.gender = action.payload;
 		},
-		setBirthDate: (state, action: PayloadAction<Date>) => {
+		setBirthDate: (state, action: PayloadAction<string>) => {
 			state.birthDate = action.payload;
 		},
 		setWeight: (state, action: PayloadAction<number>) => {

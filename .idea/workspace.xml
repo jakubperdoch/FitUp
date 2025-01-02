@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Add active workout section &amp; updated redux workout management">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/babel.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/PulseBorder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/PulseBorder.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ActiveWorkoutCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ActiveWorkoutCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/WorkoutPlanCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/WorkoutPlanCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/metro.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/metro.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jakubperdoch&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jakubperdoch/FitUp.git&quot;,
+    &quot;accountId&quot;: &quot;376ac8ec-2fe0-43bf-ba07-ca213f5ff6f6&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2qgFefhhOD3y4tWlnzRGjlZJIZZ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;frontend&quot;,
+    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
+    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jakubperdoch/Developer/FitUp&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/components/custom" />
+      <recent name="$PROJECT_DIR$/frontend/components/custom/Meals" />
+      <recent name="$PROJECT_DIR$/frontend/assets/images" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.222" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="" />
+      <created>1735076407388</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1735076407388</updated>
+      <workItem from="1735076408440" duration="662000" />
+      <workItem from="1735077075244" duration="97000" />
+      <workItem from="1735089289408" duration="9072000" />
+      <workItem from="1735144300720" duration="6010000" />
+      <workItem from="1735184758520" duration="550000" />
+      <workItem from="1735233532930" duration="14340000" />
+      <workItem from="1735318947089" duration="14288000" />
+      <workItem from="1735442061824" duration="1928000" />
+      <workItem from="1735507541534" duration="17896000" />
+      <workItem from="1735595042444" duration="297000" />
+      <workItem from="1735595345658" duration="26337000" />
+      <workItem from="1735696103452" duration="3187000" />
+      <workItem from="1735699804814" duration="26719000" />
+    </task>
+    <task id="LOCAL-00001" summary="add: passing params and modal button">
+      <option name="closed" value="true" />
+      <created>1735172486707</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1735172486707</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update: Add new files for future folder structure">
+      <option name="closed" value="true" />
+      <created>1735184582927</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1735184582927</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update: Refactor layout context and update components">
+      <option name="closed" value="true" />
+      <created>1735242063143</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1735242063143</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add: support for dynamic navbar color and new workout layout">
+      <option name="closed" value="true" />
+      <created>1735268193193</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1735268193193</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix: Add CarouselCard component">
+      <option name="closed" value="true" />
+      <created>1735335600886</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1735335600886</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix: Replace background image with linear gradient in meals page">
+      <option name="closed" value="true" />
+      <created>1735336062187</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1735336062187</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix: Refactor dashboard components and optimize workout logic">
+      <option name="closed" value="true" />
+      <created>1735351344340</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1735351344340</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add: meal-related example images and header SVG">
+      <option name="closed" value="true" />
+      <created>1735351382411</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1735351382411</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add: Add sorting workouts &amp; workout cards">
+      <option name="closed" value="true" />
+      <created>1735513112418</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1735513112418</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add: Add workout sorting, new components, and update dependencies">
+      <option name="closed" value="true" />
+      <created>1735595252223</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1735595252223</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix: Refactor components to improve UX and remove unused file">
+      <option name="closed" value="true" />
+      <created>1735597042809</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1735597042809</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix: Refactor GradientButton">
+      <option name="closed" value="true" />
+      <created>1735597177487</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1735597177487</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add: Add AlertDialog component and refactor workout logic">
+      <option name="closed" value="true" />
+      <created>1735599672270</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1735599672270</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add: Refactor components and add AlertDialog integration">
+      <option name="closed" value="true" />
+      <created>1735606149400</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1735606149400</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add: Add RunningWorkout section &amp; Redux workout management">
+      <option name="closed" value="true" />
+      <created>1735703675256</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1735703675256</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add: passing params and modal button" />
+    <MESSAGE value="update: future folder structure " />
+    <MESSAGE value="update: Add new files for future folder structure" />
+    <MESSAGE value="update: Refactor layout context and update components" />
+    <MESSAGE value="add: support for dynamic navbar color and new workout layout" />
+    <MESSAGE value="fix: Add CarouselCard component" />
+    <MESSAGE value="fix: Replace background image with linear gradient in meals page" />
+    <MESSAGE value="fix: Refactor dashboard components and optimize workout logic" />
+    <MESSAGE value="add: meal-related example images and header SVG" />
+    <MESSAGE value="Add Discord settings file and new SVG asset&#10;&#10;Introduce a new `.idea/discord.xml` for project-specific Discord settings. Additionally, include a new SVG asset `information-card--fifth.svg` for frontend graphical use." />
+    <MESSAGE value="Add discord.xml and new SVG asset  &#10;&#10;This commit adds the Discord project settings file (`discord.xml`) under `.idea/` for IDE configurations. Additionally, it includes a new SVG asset (`information-card--fifth.svg`) to the project, potentially used for frontend UI." />
+    <MESSAGE value="add: Add sorting workouts &amp; workout cards" />
+    <MESSAGE value="Remove yarn.lock from version control&#10;&#10;The `yarn.lock` file was removed from version control, often done to avoid lockfile discrepancies in multi-environment projects or encourage dependency resolution flexibility. Ensure your environment manages dependencies consistently if required." />
+    <MESSAGE value="Remove yarn.lock file from frontend&#10;&#10;This commit deletes the `yarn.lock` file in the frontend directory. The removal may signify a migration to a different package manager, a cleanup, or reliance on external lock files. Ensure dependencies are managed appropriately without the lock file." />
+    <MESSAGE value="add: Add workout sorting, new components, and update dependencies" />
+    <MESSAGE value="fix: Refactor components to improve UX and remove unused file" />
+    <MESSAGE value="fix: Refactor GradientButton" />
+    <MESSAGE value="add: Refactor TimeButton and workout state management with Redux" />
+    <MESSAGE value="add: Add AlertDialog component and refactor workout logic" />
+    <MESSAGE value="add: Refactor components and add AlertDialog integration" />
+    <MESSAGE value="add: Add RunningWorkout section &amp; Redux workout management" />
+    <MESSAGE value="add: Add active workout section &amp; updated redux workout management" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: Add active workout section &amp; updated redux workout management" />
+  </component>
+</project>
