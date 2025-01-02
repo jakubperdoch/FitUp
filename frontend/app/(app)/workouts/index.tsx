@@ -42,10 +42,10 @@ const WorkoutsPage = () => {
             Upcoming Workout
           </Text>
 
-          <View className="w-1/2  flex items-center justify-center">
+          <View className="w-1/2 flex items-center justify-center">
             <GradientButtonComponent
               size={"sm"}
-              title="Add new"
+              title="Create new"
               handleSubmit={() => console.log("Add new Workout Plan")}
             />
           </View>

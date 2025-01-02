@@ -23,7 +23,6 @@ type FooterItem = {
 
 const FooterComponent = () => {
   const insets = useSafeAreaInsets();
-  const iconPosition = useSharedValue<number>(0);
   const iconElementRefs = useRef<any[]>([]);
   const route = usePathname();
 
@@ -39,15 +38,8 @@ const FooterComponent = () => {
 
   const updateIconPosition = (index) => {
     translateValues.forEach((scale, i) => {
-      scale.value = withSpring(i === index ? -16 : 0);
+      scale.value = withSpring(i === index ? -10 : 0);
     });
-
-    const element = iconElementRefs.current[index];
-    if (element) {
-      element.measure((px: number) => {
-        iconPosition.value = px - 25;
-      });
-    }
   };
 
   useEffect(() => {
@@ -73,39 +65,12 @@ const FooterComponent = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
   };
 
-  const circleAnimation = useAnimatedStyle(() => ({
-    transform: [
-      {
-        translateX: withSpring(iconPosition.value, { stiffness: 50, mass: 1 }),
-      },
-    ],
-  }));
-
   return (
     <View className="absolute bottom-0 w-full">
       <View
         className="pb-11 pt-6 mt-0 rounded-3xl relative flex-row w-full justify-between px-8 bg-white shadow-soft-1"
         style={{ bottom: -insets.bottom, marginTop: -35 }}
       >
-        <Animated.View
-          className="absolute bottom-5"
-          style={[circleAnimation, { zIndex: 0 }]}
-        >
-          <Svg width={circleLength / 2.4} height={circleLength / 2}>
-            <Defs>
-              <LinearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
-                <Stop offset="0" stopColor="#F77F00" stopOpacity="1" />
-                <Stop offset="1" stopColor="#D62828" stopOpacity="1" />
-              </LinearGradient>
-            </Defs>
-            <Circle
-              fill="url(#grad)"
-              cx={circleLength / 4}
-              cy={circleLength / 5.5}
-              r={radius}
-            />
-          </Svg>
-        </Animated.View>
         {footerItems.map((item, index) => {
           const animatedStyle = useAnimatedStyle(() => ({
             transform: [{ translateY: translateValues[index].value }],
@@ -120,7 +85,10 @@ const FooterComponent = () => {
                   activeOpacity={0.7}
                   onPress={() => handlePress(index, item)}
                 >
-                  <GenericIcon name={item.icon} />
+                  <GenericIcon
+                    name={item.icon}
+                    color={route == item.route ? "#F77F00" : "black"}
+                  />
                 </TouchableOpacity>
               </Animated.View>
             </View>
