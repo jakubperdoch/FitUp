@@ -2,16 +2,17 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity, View, Text } from "react-native";
 import GenericIcon from "../Icon";
-import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
+import Animated, { ZoomIn } from "react-native-reanimated";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { setTimer, updateTimer } from "@/store/workout";
+import { setTimer } from "@/store/workout";
 import { useWorkoutTimer } from "@/utils/workouts";
 
 type ComponentProps = {
   id: number;
   workoutSelectHandler: (id: number) => void;
-  finishWorkoutHandler: () => void;
+  finishWorkoutHandler: (isTimerClear: boolean) => void;
+  showTimer?: boolean;
 };
 
 const TimeButton = (props: ComponentProps) => {
@@ -40,15 +41,34 @@ const TimeButton = (props: ComponentProps) => {
 
   const finishWorkoutHandler = async () => {
     await stopTimer();
-    props.finishWorkoutHandler();
     dispatch(setTimer(false));
+    props.finishWorkoutHandler(false);
   };
 
   const deleteWorkoutHandler = async () => {
     await stopTimer();
-    props.finishWorkoutHandler();
     dispatch(setTimer(false));
-    dispatch(updateTimer(0));
+    props.finishWorkoutHandler(true);
+  };
+
+  const timeHandler = (timeValue: number) => {
+    if (timeValue <= 0) {
+      return;
+    } else if (timeValue < 60) {
+      return <Text>{timeValue}s</Text>;
+    } else if (timeValue < 3600) {
+      const minutes = Math.floor(timeValue / 60);
+      return <Text>{minutes} min</Text>;
+    } else {
+      const hours = Math.floor(timeValue / 3600);
+      const minutes = Math.floor((timeValue % 3600) / 60);
+      return (
+        <Text className="h-min">
+          {hours} hour{hours > 1 ? "s" : ""}{" "}
+          {minutes > 0 ? `${minutes} min` : ""}
+        </Text>
+      );
+    }
   };
 
   const buttonIcon = isCurrentWorkoutActive ? "Pause" : "Play";
@@ -126,6 +146,8 @@ const TimeButton = (props: ComponentProps) => {
           </Animated.View>
         )}
       </View>
+
+      {props.showTimer && workout && timeHandler(workout?.timer)}
     </Animated.View>
   );
 };

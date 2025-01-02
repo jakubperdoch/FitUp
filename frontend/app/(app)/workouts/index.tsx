@@ -1,5 +1,5 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import { useEffect, useState } from "react";
+import { View, Text } from "react-native";
+import { useState } from "react";
 import { useSortedWorkouts } from "@/utils/workouts";
 import WorkoutPlanCardComponent from "@/components/custom/Workouts/WorkoutPlanCard";
 import { router } from "expo-router";
@@ -58,7 +58,6 @@ const WorkoutsPage = () => {
               id={card.id}
               title={card.name}
               day={card.day}
-              timer={card.timer}
               timeOfWorkout={card.timeOfWorkout}
               numberOfExercises={card.numberOfExercises}
               detailsHandler={() => router.push("workout")}

@@ -11,6 +11,7 @@ import { useSortedWorkouts } from "@/utils/workouts";
 import { clearWorkout, setWorkout } from "@/store/workout";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import ActiveWorkoutCardComponent from "@/components/custom/Workouts/ActiveWorkoutCard";
 
 // TODO: make global interfaces & types
 
@@ -60,6 +61,7 @@ const HomeScreen = () => {
       day: "Friday",
       timer: null,
       timeOfWorkout: 22,
+      numberOfExercises: 11,
     },
     {
       id: 2,
@@ -67,6 +69,7 @@ const HomeScreen = () => {
       day: "Wednesday",
       timer: null,
       timeOfWorkout: 12,
+      numberOfExercises: 11,
     },
   ]);
 
@@ -85,12 +88,20 @@ const HomeScreen = () => {
     [workouts, workout],
   );
 
-  const finishWorkoutHandler = () => {
+  const finishWorkoutHandler = (isTimerClear: boolean) => {
     if (!workout) {
       return;
     }
-    const workoutsArr =
-      workout?.timer > 0 ? [...workouts, workout] : [workout, ...workouts];
+
+    const workoutsArr = isTimerClear
+      ? [
+          {
+            ...workout,
+            timer: 0,
+          },
+          ...workouts,
+        ]
+      : [...workouts, workout];
     setWorkouts(workoutsArr);
     dispatch(clearWorkout());
   };
@@ -124,12 +135,12 @@ const HomeScreen = () => {
         <DashboardPanel />
 
         {workout && (
-          <DashboardCard
+          <ActiveWorkoutCardComponent
             key={workout.id}
             id={workout.id}
-            showTimer={true}
             name={workout.name}
             day={workout.day}
+            numberOfExercises={workout.numberOfExercises}
             timeOfWorkout={workout.timeOfWorkout}
             finishWorkoutHandler={finishWorkoutHandler}
             workoutSelectHandler={workoutSelectHandler}

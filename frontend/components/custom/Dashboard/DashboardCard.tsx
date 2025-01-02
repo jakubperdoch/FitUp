@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import TimeButton from "../Button/TimeButton";
-import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
+import Animated, { ZoomIn } from "react-native-reanimated";
 type ComponentProps = {
   id: number;
   name: string;
@@ -11,7 +11,7 @@ type ComponentProps = {
   day?: string;
   timeOfWorkout?: number;
   showTimer?: boolean;
-  finishWorkoutHandler?: () => void;
+  finishWorkoutHandler?: (isTimerClear: boolean) => void;
   detailsHandler?: (id: number) => void;
   workoutSelectHandler?: (id: number) => void;
 };
@@ -30,7 +30,7 @@ const DashboardCardComponent = (props: ComponentProps) => {
     <Animated.View entering={ZoomIn} className="w-full">
       <TouchableOpacity
         onPress={() => props.detailsHandler(props.id)}
-        className="w-full gap-2 bg-white shadow-soft-1  px-4 py-5 rounded-3xl flex-row justify-between"
+        className="w-full gap-2 bg-white shadow-soft-1 px-4 py-5 rounded-3xl flex-row justify-between"
       >
         <View className="gap-1">
           <Text className="font-poppins text-lg">{props.name}</Text>

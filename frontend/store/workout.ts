@@ -7,6 +7,7 @@ export interface Workout {
   day: string;
   timer: number | null;
   timeOfWorkout: number;
+  numberOfExercises: number;
 }
 
 export interface WorkoutState {

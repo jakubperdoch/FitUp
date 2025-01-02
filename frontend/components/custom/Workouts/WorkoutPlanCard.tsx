@@ -1,16 +1,14 @@
 import { LinearGradient } from "expo-linear-gradient";
 import RandomImageComponent from "@/components/custom/RandomImage";
 import { View, Text, TouchableOpacity } from "react-native";
-import TimeButton from "@/components/custom/Button/TimeButton";
 
 type ComponentProps = {
   id: number;
   title: string;
   timeOfWorkout: number;
-  numberOfExercises: string;
+  numberOfExercises: number;
   detailsHandler: () => void;
   day: string;
-  timer: number | null;
   finishWorkoutHandler: (timer: number, id: number) => void;
 };
 
