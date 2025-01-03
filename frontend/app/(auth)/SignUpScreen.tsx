@@ -140,6 +140,7 @@ const SignUpScreen = () => {
       </View>
 
       <GradientButtonComponent
+        size={"full"}
         handleSubmit={handleSubmit(submitHandler, onError)}
         title={"Register"}
       />

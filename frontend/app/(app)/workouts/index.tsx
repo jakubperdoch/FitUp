@@ -60,7 +60,12 @@ const WorkoutsPage = () => {
               day={card.day}
               timeOfWorkout={card.timeOfWorkout}
               numberOfExercises={card.numberOfExercises}
-              detailsHandler={() => router.push("workout")}
+              detailsHandler={() =>
+                router.push({
+                  pathname: "/workouts/details",
+                  params: { id: card.id },
+                })
+              }
               finishWorkoutHandler={finishWorkoutHandler}
             />
           ))}

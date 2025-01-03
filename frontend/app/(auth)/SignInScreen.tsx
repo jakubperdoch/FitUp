@@ -87,6 +87,7 @@ const SignInScreen = () => {
       />
 
       <GradientButtonComponent
+        size={"full"}
         handleSubmit={handleSubmit(submitHandler, onError)}
         title={"Login"}
       />

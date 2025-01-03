@@ -1426,6 +1426,24 @@
   resolved "https://registry.yarnpkg.com/@freakycoder/react-native-bounceable/-/react-native-bounceable-1.0.3.tgz#79de6fa99fb8357a5e52cc095ecdb1786f4b1514"
   integrity sha512-+iMq2tnqxCwFjitbPUz9nZ+VfJ8OU9waIlDJAAsoq1229QEwCmERCNy5zVtDsz75q3i4FLXX/n7fimdMzmP21A==
 
+"@gluestack-style/animation-resolver@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/animation-resolver/-/animation-resolver-1.0.4.tgz#93be3e67221ccb0ce064ddd260852bcc13612240"
+  integrity sha512-AeAQ61u41j9F2fxWTGiR6C7G3KG7qSCAYVi3jCE+aUiOEPEctfurUCT70DnrKp1Tg/Bl29a+OUwutaW/3YKvQw==
+
+"@gluestack-style/legend-motion-animation-driver@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/legend-motion-animation-driver/-/legend-motion-animation-driver-1.0.3.tgz#e2408ff8515ced92cb75f096f5eeff1f9636a0da"
+  integrity sha512-sD6aFS6Tq5XpyjrboFEIc8LrRY4TA4kodFYHzk6mDchvbkdLODijtjnaDQB1UqihOkMRg49e7ANRAOzc7eymaQ==
+
+"@gluestack-style/react@^1.0.57":
+  version "1.0.57"
+  resolved "https://registry.yarnpkg.com/@gluestack-style/react/-/react-1.0.57.tgz#96dbf667e373c5eed9f2314e7885a9a5b5df6775"
+  integrity sha512-jaG78zurLNiZyJleZnCbgugTpL6OWtBkE7XKur9C9FYUicekMh11RY++2gyN4T7GJx80v5S/NHIwm/GxAAxtRw==
+  dependencies:
+    inline-style-prefixer "^6.0.1"
+    normalize-css-color "^1.0.2"
+
 "@gluestack-ui/accordion@^1.0.5":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/accordion/-/accordion-1.0.8.tgz#29486b7ce125a880abf7d55e966f04987989e2d1"
@@ -1495,6 +1513,11 @@
     "@react-native-aria/interactions" "0.2.13"
     "@react-native-aria/utils" "0.2.11"
     "@react-stately/checkbox" "^3.4.2"
+
+"@gluestack-ui/config@^1.1.20":
+  version "1.1.20"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/config/-/config-1.1.20.tgz#d1dcdde67fc91ff3217638b6faa24c04ba7a5c9e"
+  integrity sha512-kgIzcRZfrzdNiKry7TcgsS85SgACxSRxaLTWdxoNPB/WaJ+XrCbKbaBuQOiELW33dgl2IdyUw60V8XlsLM+f2A==
 
 "@gluestack-ui/divider@^0.1.9":
   version "0.1.10"
@@ -8648,6 +8671,11 @@ node-rsa@^1.1.1:
   integrity sha512-Jd4cvbJMryN21r5HgxQOpMEqv+ooke/korixNNK3mGqfGJmy0M77WDDzo/05969+OkMy3XW1UuZsSmW9KQm7Fw==
   dependencies:
     asn1 "^0.2.4"
+
+normalize-css-color@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/normalize-css-color/-/normalize-css-color-1.0.2.tgz#02991e97cccec6623fe573afbbf0de6a1f3e9f8d"
+  integrity sha512-jPJ/V7Cp1UytdidsPqviKEElFQJs22hUUgK5BOPHTwOonNCk7/2qOxhhqzEajmFrWJowADFfOFh1V+aWkRfy+w==
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
