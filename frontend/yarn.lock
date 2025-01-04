@@ -1077,10 +1077,10 @@
     resolve-from "^5.0.0"
     semver "^7.6.0"
 
-"@expo/html-elements@^0.10.1":
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.10.1.tgz#ec2625370cf1d4cb78efa954df45d422532d5ab6"
-  integrity sha512-3PTmtkV15D7+lykXVtvkH1jQ5Y6JE+e3zCaoMMux7z2cSLGQUNwDEUwG37gew3OEB1/E4/SEWgjvg8m7E6/e2Q==
+"@expo/html-elements@0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@expo/html-elements/-/html-elements-0.4.2.tgz#4e9f6b9250af8d0befe3242fd42704cca2421e0e"
+  integrity sha512-lNioCgdtOrCMMqzHY+PCTdyuWBTU4yMBlOzPSkS4YFIWt9bq0zexM2ZJkpybTXmowNdE3zHO93xxAmiA2yDi2w==
 
 "@expo/image-utils@^0.6.0":
   version "0.6.3"
@@ -1444,7 +1444,7 @@
     inline-style-prefixer "^6.0.1"
     normalize-css-color "^1.0.2"
 
-"@gluestack-ui/accordion@^1.0.5":
+"@gluestack-ui/accordion@^1.0.8":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/accordion/-/accordion-1.0.8.tgz#29486b7ce125a880abf7d55e966f04987989e2d1"
   integrity sha512-Hcq/mJ6zDaQuqh/2pVbJB8UbB5vyNSYmuRc5dFP5DFZredywPrkEpz2awJodaQRCMBIh8jm6NEYfndMIuRFBTA==

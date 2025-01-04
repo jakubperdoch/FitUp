@@ -1,6 +1,17 @@
+interface ExerciseSet {
+  reps: number;
+  weight: number;
+  specialType?: string;
+}
+
 interface Exercise {
-  exerciseId: number;
+  exerciseId: string;
   name: string;
+
+  sets?: Array<ExerciseSet>;
+}
+
+interface ExerciseDetails extends Exercise {
   giftUrl: string;
   instructions: Array<string>;
   targetMuscles: Array<string>;
@@ -10,8 +21,11 @@ interface Exercise {
 }
 
 interface Workout {
-  id: string;
+  id: number;
+  name: string;
   timeOfWorkout: number;
-  day: string;
-  timer: number | null;
+  days: Array<string>;
+  timer?: number | null;
+
+  exercises: Array<Exercise>;
 }
