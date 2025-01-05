@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { useState } from "react";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { Separator } from "tamagui";
+import { Divider } from "@/components/ui/divider";
 import AppleLoginIcon from "@/assets/icons/apple-login--icon.svg";
 import ValidationForm from "@/components/custom/Inputs/ValidationForm";
 import { router } from "expo-router";
@@ -146,9 +146,9 @@ const SignUpScreen = () => {
       />
 
       <View className="w-full flex flex-row items-center justify-center gap-2 mt-2">
-        <Separator borderColor="#DDDADA" borderWidth={1} />
-        <Text className="text-lg">Or</Text>
-        <Separator borderColor="#DDDADA" borderWidth={1} />
+        <Divider />
+        <Text className="text-lg font-poppins">Or</Text>
+        <Divider />
       </View>
       <TouchableOpacity activeOpacity={0.7}>
         <AppleLoginIcon width={50} height={50} />
