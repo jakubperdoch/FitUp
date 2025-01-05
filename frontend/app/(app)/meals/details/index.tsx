@@ -1,13 +1,5 @@
 import { useFocusEffect, useLocalSearchParams } from "expo-router";
-import {
-  Text,
-  Image,
-  ScrollView,
-  View,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Text, Image, View, FlatList, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import ServingInputComponent from "@/components/custom/Inputs/ServingInput";
 import { useCallback, useEffect, useState } from "react";
@@ -22,8 +14,12 @@ import { useLayout } from "@/context/LayoutContext";
 const DetailsScreen = () => {
   const { setShowFooter, setNavbarTitle, setShowBackButton } = useLayout();
   const params = useLocalSearchParams();
-  const insets = useSafeAreaInsets();
+  const [maximumDate, setMaximumDate] = useState(null);
   dayjs.extend(localizedFormat);
+
+  useEffect(() => {
+    setMaximumDate(new Date(new Date().setMonth(new Date().getMonth() + 1)));
+  }, []);
 
   useEffect(() => {
     setShowFooter(false);
@@ -323,6 +319,7 @@ const DetailsScreen = () => {
           onChange={(params) => setDate(params.date)}
           headerButtonColor={theme?.mainColor}
           selectedItemColor={theme?.mainColor}
+          maxDate={maximumDate}
           selectedTextStyle={{
             fontWeight: "bold",
             color: theme?.activeTextColor,
