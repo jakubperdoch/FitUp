@@ -42,7 +42,7 @@ const WorkoutsPage = () => {
             Upcoming Workout
           </Text>
 
-          <View className="w-1/2 flex items-center justify-center">
+          <View className="flex items-center justify-center">
             <GradientButtonComponent
               size={"sm"}
               title="Create new"

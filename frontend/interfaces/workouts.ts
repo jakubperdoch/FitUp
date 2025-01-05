@@ -1,13 +1,18 @@
 interface ExerciseSet {
-  reps: number;
-  weight: number;
+  reps?: number;
+  weight?: number;
   specialType?: string;
 }
 
+interface Superset {
+  type: "superset";
+  exercises: Array<Exercise>;
+}
+
 interface Exercise {
+  type: "exercise";
   exerciseId: string;
   name: string;
-
   sets?: Array<ExerciseSet>;
 }
 
@@ -27,5 +32,5 @@ interface Workout {
   days: Array<string>;
   timer?: number | null;
 
-  exercises: Array<Exercise>;
+  exercises: Array<Exercise | Superset>;
 }

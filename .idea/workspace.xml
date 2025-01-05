@@ -4,13 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: Horror fix. Deleted tailwind safelist and now it works smooth as butter">
-      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ScheduleAccordion.tsx" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Add ScheduleAccordion &amp; starting structure of Workout details">
+      <change afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/_layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer1Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer1Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer4Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer4Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/WorkoutPlanCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/WorkoutPlanCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/ui/accordion/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/ui/accordion/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/ui/modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/ui/modal/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/constants/fonts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/constants/fonts.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/interfaces/workouts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/interfaces/workouts.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/utils/workouts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utils/workouts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tailwind.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,6 +112,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable" />
       <recent name="$PROJECT_DIR$/frontend/app/(app)/workouts/create" />
       <recent name="$PROJECT_DIR$/frontend/components/custom" />
       <recent name="$PROJECT_DIR$/frontend/components/custom/Meals" />
@@ -133,7 +149,8 @@
       <workItem from="1735699804814" duration="26719000" />
       <workItem from="1735831255510" duration="13083000" />
       <workItem from="1735873832817" duration="2749000" />
-      <workItem from="1736003489392" duration="6998000" />
+      <workItem from="1736003489392" duration="29686000" />
+      <workItem from="1736044973844" duration="1000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -287,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735875228851</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="add: Add ScheduleAccordion &amp; starting structure of Workout details">
+      <option name="closed" value="true" />
+      <created>1736016108185</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1736016108185</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,7 +336,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: passing params and modal button" />
     <MESSAGE value="update: future folder structure " />
     <MESSAGE value="update: Add new files for future folder structure" />
     <MESSAGE value="update: Refactor layout context and update components" />
@@ -336,6 +360,17 @@
     <MESSAGE value="fix" />
     <MESSAGE value="add: new footer style" />
     <MESSAGE value="fix: Horror fix. Deleted tailwind safelist and now it works smooth as butter" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: Horror fix. Deleted tailwind safelist and now it works smooth as butter" />
+    <MESSAGE value="add: Add ScheduleAccordion &amp; starting structure of Workout details" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: Add ScheduleAccordion &amp; starting structure of Workout details" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Modal.tsx</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

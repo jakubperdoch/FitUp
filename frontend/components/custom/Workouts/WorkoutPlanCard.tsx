@@ -43,7 +43,7 @@ const WorkoutPlanCardComponent = (props: ComponentProps) => {
           activeOpacity={0.7}
           className="bg-white/80 p-4 mt-2 flex items-center justify-center  rounded-full"
         >
-          <Text className="text-[#D62828]">View more</Text>
+          <Text className="text-[#D62828] font-poppins">View more</Text>
         </TouchableOpacity>
       </View>
 

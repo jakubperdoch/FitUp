@@ -8,13 +8,10 @@ import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import GenericIcon from "./Icon";
-import Svg, { Circle, LinearGradient, Stop, Defs } from "react-native-svg";
 import { useEffect, useRef } from "react";
 import { router } from "expo-router";
 import { usePathname } from "expo-router";
-
-const circleLength = 150;
-const radius = circleLength / (2 * Math.PI);
+import { useResponsive } from "react-native-responsive-hook";
 
 type FooterItem = {
   icon: string;
@@ -25,6 +22,7 @@ const FooterComponent = () => {
   const insets = useSafeAreaInsets();
   const iconElementRefs = useRef<any[]>([]);
   const route = usePathname();
+  const { wp, hp, vw, vh, rem } = useResponsive();
 
   const footerItems = [
     { icon: "ChartArea", route: "/chart" },
@@ -68,8 +66,8 @@ const FooterComponent = () => {
   return (
     <View className="absolute bottom-0 w-full">
       <View
-        className="pb-11 pt-6 mt-0 rounded-3xl relative flex-row w-full justify-between px-8 bg-white shadow-soft-1"
-        style={{ bottom: -insets.bottom, marginTop: -35 }}
+        className="pt-6 mt-0 rounded-3xl relative flex-row w-full justify-between px-8 bg-white shadow-soft-1"
+        style={{ bottom: -insets.bottom, paddingBottom: vh(4) }}
       >
         {footerItems.map((item, index) => {
           const animatedStyle = useAnimatedStyle(() => ({

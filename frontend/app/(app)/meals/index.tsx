@@ -108,7 +108,7 @@ const MealsPage = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerClassName="pb-32" className="!mt-0">
       <DatePanelComponent
         dates={dates}
         selectedDate={selectedDate}

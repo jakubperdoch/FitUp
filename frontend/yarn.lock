@@ -9411,6 +9411,11 @@ react-native-pager-view@6.5.1:
   resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-6.5.1.tgz#e639e8c975f4c749aae1c3120dc4208265fce4cc"
   integrity sha512-YdX7bP+rPYvATMU7HzlMq9JaG3ui/+cVRbFZFGW+QshDULANFg9ECR1BA7H7JTIcO/ZgWCwF+1aVmYG5yBA9Og==
 
+react-native-popup-menu@^0.16.1:
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/react-native-popup-menu/-/react-native-popup-menu-0.16.1.tgz#b1bb56be5c0838bbc2f532af7b1f554b7ceef566"
+  integrity sha512-xRS7mRh0exwu7Iw8PPVHdM11d13A/KzYjy0/fZx3zVtxISxPkNaDGayau6oa7HqO3Nj0oS9ulFCYjcQfG6vahA==
+
 react-native-reanimated-carousel@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/react-native-reanimated-carousel/-/react-native-reanimated-carousel-3.5.1.tgz#3605b9959ffc0aa1c6b8b8736d98f91f46e36b17"
@@ -9432,6 +9437,11 @@ react-native-reanimated@^3.16.6:
     "@babel/preset-typescript" "^7.16.7"
     convert-source-map "^2.0.0"
     invariant "^2.2.4"
+
+react-native-responsive-hook@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-responsive-hook/-/react-native-responsive-hook-1.0.4.tgz#4b13da43af4720aa6a819095908ae41e1a56a9e6"
+  integrity sha512-Y4sYzcabFB5bNR5X2F6HuJW/QEQQl95x3x3AcDLqMIfTYPYkz/F/Dj/gPVYx6/sb8uv734Vqhwe+zWIq21GxUQ==
 
 react-native-safe-area-context@4.12.0:
   version "4.12.0"

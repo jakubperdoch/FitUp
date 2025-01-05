@@ -16,7 +16,11 @@ const ExplainerPageFour = () => {
 
   return (
     <>
-      <ExplainerImage width="100%" height="90%" style={{ top: -insets.top }} />
+      <ExplainerImage
+        width="100%"
+        height="100%"
+        style={{ top: -insets.top - 10 }}
+      />
     </>
   );
 };
