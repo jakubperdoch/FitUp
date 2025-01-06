@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: Add maximum date for meal creation">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: Edit Yup warnings">
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/SwipeToDelete.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Inputs/ValidationForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Inputs/ValidationForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/utils/date.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/date.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/utils/workouts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/workouts.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,11 +99,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/hooks" />
       <recent name="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable" />
       <recent name="$PROJECT_DIR$/frontend/app/(app)/workouts/create" />
       <recent name="$PROJECT_DIR$/frontend/components/custom" />
       <recent name="$PROJECT_DIR$/frontend/components/custom/Meals" />
-      <recent name="$PROJECT_DIR$/frontend/assets/images" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -135,7 +138,7 @@
       <workItem from="1735873832817" duration="2749000" />
       <workItem from="1736003489392" duration="29686000" />
       <workItem from="1736044973844" duration="1000" />
-      <workItem from="1736117487724" duration="5159000" />
+      <workItem from="1736117487724" duration="11997000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -321,7 +324,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736118569839</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="fix: Edit Yup warnings">
+      <option name="closed" value="true" />
+      <created>1736122696188</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1736122696188</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +356,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update: Refactor layout context and update components" />
     <MESSAGE value="add: support for dynamic navbar color and new workout layout" />
     <MESSAGE value="fix: Add CarouselCard component" />
     <MESSAGE value="fix: Replace background image with linear gradient in meals page" />
@@ -370,7 +380,8 @@
     <MESSAGE value="fix" />
     <MESSAGE value="fix: removed Tamagui" />
     <MESSAGE value="fix: Add maximum date for meal creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: Add maximum date for meal creation" />
+    <MESSAGE value="fix: Edit Yup warnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: Edit Yup warnings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

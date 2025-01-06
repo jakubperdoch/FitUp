@@ -6,7 +6,7 @@ import Animated, { ZoomIn } from "react-native-reanimated";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { setTimer } from "@/store/workout";
-import { useWorkoutTimer } from "@/utils/workouts";
+import { useWorkoutTimer } from "@/hooks/workouts";
 
 type ComponentProps = {
   id: number;

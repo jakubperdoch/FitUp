@@ -22,7 +22,7 @@ const FooterComponent = () => {
   const insets = useSafeAreaInsets();
   const iconElementRefs = useRef<any[]>([]);
   const route = usePathname();
-  const { wp, hp, vw, vh, rem } = useResponsive();
+  const { vh } = useResponsive();
 
   const footerItems = [
     { icon: "ChartArea", route: "/chart" },

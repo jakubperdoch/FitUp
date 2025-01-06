@@ -2,7 +2,6 @@ import { useLocalSearchParams } from "expo-router";
 import { Text, View } from "react-native";
 import { useState } from "react";
 import ScheduleAccordion from "@/components/custom/Workouts/ScheduleAccordion";
-import workout from "@/store/workout";
 import ExerciseTable from "@/components/custom/Workouts/ExerciseTable";
 
 const WorkoutDetailsScreen = () => {
