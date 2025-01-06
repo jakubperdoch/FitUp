@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity, View } from "react-native";
-import GenericIcon from "@/components/custom/Icon";
+import Popover from "@/components/custom/Workouts/ExerciseTable/Popover";
 
 type WorkoutExercise = Exercise | Superset;
 
@@ -18,11 +18,10 @@ const ExerciseTableCell = ({ exercise, index }: ExerciseTableCellProps) => {
         </Text>
 
         <View className="flex-row mb-6">
-          <Text>Set</Text>
+          <Text className="font-poppins text-sm text-black/50">Set</Text>
           <View className="flex-row ms-auto w-2/4 gap-10">
-            <Text className="font-poppins w-16">Reps</Text>
-            <Text className="font-poppins w-16">Weight</Text>
-            <Text className="font-poppins w-16"></Text>
+            <Text className="font-poppins text-sm text-black/50">Reps</Text>
+            <Text className="font-poppins text-sm text-black/50">Weight</Text>
           </View>
         </View>
 
@@ -41,7 +40,7 @@ const ExerciseTableCell = ({ exercise, index }: ExerciseTableCellProps) => {
               </Text>
             )}
 
-            <View className="flex-row items-center justify-end gap-5 w-2/4 ms-auto">
+            <View className="flex-row  items-center justify-end gap-5 w-2/4 ms-auto">
               <View className="bg-[#F7F8F8] w-14 py-1 px-2 items-end rounded-lg">
                 <Text
                   className="font-poppins text-[#F77F00] text-lg"
@@ -60,9 +59,7 @@ const ExerciseTableCell = ({ exercise, index }: ExerciseTableCellProps) => {
                 </Text>
               </View>
 
-              <TouchableOpacity className="py-1 px-2">
-                <GenericIcon name={"Ellipsis"} />
-              </TouchableOpacity>
+              <Popover />
             </View>
           </TouchableOpacity>
         ))}

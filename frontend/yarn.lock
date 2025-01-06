@@ -1448,7 +1448,7 @@
   dependencies:
     "@gluestack-ui/utils" "^0.1.14"
 
-"@gluestack-ui/button@^1.0.7":
+"@gluestack-ui/button@^1.0.8":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/button/-/button-1.0.8.tgz#fb6c1a3e6c59561d0cd6e7d8d0f519034144c66d"
   integrity sha512-60ZcFd0XWIwoWe35GSf5jdcgpDI4R1LcQr098SYMUoYg3cWNFrbKUIa+cdCtD7oV/crVFjrmyj+6wZpiyDtx5g==
@@ -1588,7 +1588,7 @@
     "@react-native-aria/interactions" "0.2.13"
     "@react-native-aria/overlays" "^0.3.12"
 
-"@gluestack-ui/popover@^0.1.37":
+"@gluestack-ui/popover@^0.1.43":
   version "0.1.43"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/popover/-/popover-0.1.43.tgz#7a9a4af29fecac0019cbec204a4f063c82ac5e0d"
   integrity sha512-O+pcLWze+H/1fIzn+0Kx7rPgjOzXoUM4eVAM2f/vmqZ0g3hciT/2voNi2lV5mwwtfZOfNlWkgJZQHQ+DIkQx6g==

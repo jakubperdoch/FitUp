@@ -85,7 +85,7 @@ const FooterComponent = () => {
                 >
                   <GenericIcon
                     name={item.icon}
-                    color={route == item.route ? "#F77F00" : "black"}
+                    color={route.includes(item.route) ? "#F77F00" : "black"}
                   />
                 </TouchableOpacity>
               </Animated.View>
