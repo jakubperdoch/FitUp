@@ -1,5 +1,4 @@
 import { RootState } from "@/store/store";
-import { useEffect } from "react";
 import { View, Text } from "react-native";
 import { useSelector } from "react-redux";
 import SuccessImage from "@/assets/images/success-image.svg";
@@ -25,11 +24,13 @@ const SuccessScreen = () => {
         </Text>
       </View>
 
-      <GradientButtonComponent
-        size={"full"}
-        handleSubmit={submitHandler}
-        title={"Go To Home"}
-      />
+      <View className="w-full mt-auto mb-6">
+        <GradientButtonComponent
+          size={"full"}
+          handleSubmit={submitHandler}
+          title={"Go To Home"}
+        />
+      </View>
     </View>
   );
 };

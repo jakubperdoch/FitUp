@@ -3,19 +3,21 @@ import { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import ProgressButton from "@/components/custom/Button/ProgressButton";
 import { useExplainer } from "@/context/ExplainerContext";
-import { usePathname } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useResponsive } from "react-native-responsive-hook";
 
 const ExplainersLayout = () => {
   const [progressBar, setProgress] = useState(-0.75);
   const [pageIndex, setIndex] = useState(1);
   const { explainerDescription, explainerTitle } = useExplainer();
-  const pathname = usePathname();
+  const { styles } = useStyles();
+  const insets = useSafeAreaInsets();
 
   const onPressHandler = () => {
     if (pageIndex >= 4) {
       // router.replace("/SignUpScreen");
-      // router.replace('/register-process/SuccessScreen');
-      router.push("/register-process/SelectingGoalsScreen");
+      router.replace("/register-process/SuccessScreen");
+      // router.push("/register-process/InformationScreen");
 
       return;
     }
@@ -25,7 +27,7 @@ const ExplainersLayout = () => {
   };
 
   return (
-    <View style={styles.explainersLayout}>
+    <View style={[styles.explainersLayout, { marginTop: -insets.top }]}>
       <View style={styles.explainersImage}>
         <Slot />
       </View>
@@ -39,43 +41,47 @@ const ExplainersLayout = () => {
         >
           {explainerDescription}
         </Text>
-        <ProgressButton
-          progress={progressBar}
-          onPressHandler={onPressHandler}
-        />
+        <View className="ms-auto mt-auto">
+          <ProgressButton
+            progress={progressBar}
+            onPressHandler={onPressHandler}
+          />
+        </View>
       </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  explainersLayout: {
-    alignItems: "center",
-    justifyContent: "flex-start",
-    flex: 1,
-  },
-  contentContainer: {
-    paddingHorizontal: 30,
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-    height: "37%",
-  },
-  explainersImage: {
-    width: "100%",
-    height: "65%",
-    marginTop: -20,
-  },
-  explainersTitle: {
-    fontSize: 27,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  explainersDesc: {
-    fontSize: 16,
-    marginBottom: 20,
-    textAlign: "left",
-    width: 320,
-  },
-});
+const useStyles = () => {
+  const { vh } = useResponsive();
+
+  const styles = StyleSheet.create({
+    explainersLayout: {
+      alignItems: "center",
+      flex: 1,
+    },
+    contentContainer: {
+      alignItems: "flex-start",
+      justifyContent: "flex-start",
+      flex: 1,
+    },
+    explainersImage: {
+      width: "100%",
+      height: vh(68),
+    },
+    explainersTitle: {
+      fontSize: 27,
+      fontWeight: "bold",
+      marginBottom: 10,
+    },
+    explainersDesc: {
+      fontSize: 16,
+      textAlign: "left",
+      width: 320,
+    },
+  });
+
+  return { styles };
+};
 
 export default ExplainersLayout;

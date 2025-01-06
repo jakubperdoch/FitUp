@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { useState } from "react";
-import { Separator } from "tamagui";
+import { Divider } from "@/components/ui/divider";
 import AppleLoginIcon from "@/assets/icons/apple-login--icon.svg";
 import ValidationForm from "@/components/custom/Inputs/ValidationForm";
 import { router } from "expo-router";
@@ -47,25 +47,7 @@ const SignInScreen = () => {
 
     dispatch(setEmail(watchFields[0]));
     dispatch(setPassword(watchFields[1]));
-    router.replace("/register-process/InformationsScreen");
-  };
-
-  const onError = (errors) => {
-    let errorMessage = "";
-
-    if (errors.name) {
-      errorMessage += `Name: ${errors.name.message}\n`;
-    }
-    if (errors.email) {
-      errorMessage += `Email: ${errors.email.message}\n`;
-    }
-    if (errors.password) {
-      errorMessage += `Password: ${errors.password.message}\n`;
-    }
-
-    if (errorMessage) {
-      Alert.alert("Validation Errors", errorMessage);
-    }
+    router.replace("/register-process/InformationScreen");
   };
 
   return (
@@ -81,20 +63,22 @@ const SignInScreen = () => {
 
       <ValidationForm
         control={control}
+        errors={errors}
         passwordVisibility={showPassword}
         showPasswordHandler={handleState}
         formType={"signin"}
       />
 
       <GradientButtonComponent
-        handleSubmit={handleSubmit(submitHandler, onError)}
+        size={"full"}
+        handleSubmit={handleSubmit(submitHandler)}
         title={"Login"}
       />
 
       <View className="w-full flex flex-row items-center justify-center gap-2 mt-2">
-        <Separator borderColor="#DDDADA" borderWidth={1} />
+        <Divider />
         <Text className="text-lg">Or</Text>
-        <Separator borderColor="#DDDADA" borderWidth={1} />
+        <Divider />
       </View>
       <TouchableOpacity activeOpacity={0.7}>
         <AppleLoginIcon width={60} height={60} />
@@ -103,7 +87,9 @@ const SignInScreen = () => {
       <View className="flex flex-col gap-2 mt-5  items-center justify-center">
         <Text className="text-lg font-poppins">Don't have an account?</Text>
         <TouchableOpacity onPress={() => router.push("/SignUpScreen")}>
-          <Text className=" text-xl font-bold text-[#F77F00]">Register</Text>
+          <Text className="font-poppins text-xl font-bold text-[#F77F00]">
+            Sign Up
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

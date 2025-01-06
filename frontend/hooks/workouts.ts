@@ -30,10 +30,8 @@ export const useSortedWorkouts = (workoutsArr: Array<any>) => {
   return { sortedWorkouts };
 };
 
-// Define a delay function using a Promise
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));
 
-// TODO: fix background counting
 export const useWorkoutTimer = () => {
   const options = {
     taskName: "Workout Timer",

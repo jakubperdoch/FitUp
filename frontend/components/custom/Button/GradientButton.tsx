@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   sm: {
     height: 40,
     paddingHorizontal: 15,
-    width: 100,
+    width: 110,
     fontSize: 13,
     fontWeight: "600",
   },
