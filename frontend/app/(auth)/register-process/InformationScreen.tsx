@@ -1,4 +1,4 @@
-import { View, Text, Alert } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import InformationSVG from "@/assets/images/informations-image.svg";
 import SelectComponent from "@/components/custom/Inputs/Select";
 import DatePickerComponent from "@/components/custom/Inputs/DatePicker";
@@ -17,9 +17,13 @@ import {
   setHeight as setReduxHeight,
   setWeight as setReduxWeight,
 } from "@/store/user";
+import { useResponsive } from "react-native-responsive-hook";
+import Animated, { ZoomIn } from "react-native-reanimated";
+import GenericIcon from "@/components/custom/Icon";
 
-const InformationsScreen = () => {
+const InformationScreen = () => {
   const dispatch = useDispatch();
+  const { vh } = useResponsive();
 
   const [currentWeightIndex, setCurrentWeightIndex] = useState(0);
   const [currentHeightIndex, setCurrentHeightIndex] = useState(0);
@@ -85,31 +89,15 @@ const InformationsScreen = () => {
     router.push("/register-process/SelectingGoalsScreen");
   };
 
-  const onError = (errors) => {
-    let errorMessage = "";
-
-    if (errors.gender) {
-      errorMessage += `Gender: ${errors.gender.message}\n`;
-    }
-    if (errors.birth) {
-      errorMessage += `Date of Birth: ${errors.birth.message}\n`;
-    }
-    if (errors.weight) {
-      errorMessage += `Weight: ${errors.weight.message}\n`;
-    }
-    if (errors.height) {
-      errorMessage += `Height: ${errors.height.message}\n`;
-    }
-
-    if (errorMessage) {
-      Alert.alert("Validation Errors", errorMessage);
-    }
-  };
-
   return (
-    <View className="flex justify-start items-center gap-2 h-full px-7 pt-5">
+    <ScrollView
+      className="flex-1"
+      contentContainerClassName="justify-start items-center gap-2 px-7 pt-5 pb-3"
+      automaticallyAdjustKeyboardInsets={true}
+      showsVerticalScrollIndicator={false}
+    >
       <Text className="self-start text-4xl font-bold">Track Your Goal</Text>
-      <InformationSVG height={"30%"} width={"100%"} />
+      <InformationSVG height={vh(30)} width={"100%"} />
       <Text className="text-2xl font-bold mt-2 font-poppins">
         Let’s complete your profile
       </Text>
@@ -117,7 +105,7 @@ const InformationsScreen = () => {
         It will help us to know more about you!
       </Text>
 
-      <View className="flex flex-col w-full gap-5 mt-3 mb-2">
+      <View className="flex flex-col w-full  gap-5 mt-3 mb-2">
         <SelectComponent
           placeholder={"Choose Gender"}
           controllerName={"gender"}
@@ -125,7 +113,31 @@ const InformationsScreen = () => {
           options={genderOptions}
         />
 
+        {errors?.gender && (
+          <Animated.View
+            entering={ZoomIn}
+            className="flex-row items-center gap-2"
+          >
+            <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
+            <Text className="font-poppins text-[#F77F00]">
+              {errors?.gender?.message}
+            </Text>
+          </Animated.View>
+        )}
+
         <DatePickerComponent control={control} />
+
+        {errors?.birth && (
+          <Animated.View
+            entering={ZoomIn}
+            className="flex-row items-center gap-2"
+          >
+            <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
+            <Text className="font-poppins text-[#F77F00]">
+              {errors?.birth?.message}
+            </Text>
+          </Animated.View>
+        )}
 
         <ConversionInputComponent
           placeholder={"Your Weight"}
@@ -146,6 +158,18 @@ const InformationsScreen = () => {
           <Weight color={"#7B6F72"} size={20} />
         </ConversionInputComponent>
 
+        {errors?.weight && (
+          <Animated.View
+            entering={ZoomIn}
+            className="flex-row items-center gap-2"
+          >
+            <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
+            <Text className="font-poppins text-[#F77F00]">
+              {errors?.weight?.message}
+            </Text>
+          </Animated.View>
+        )}
+
         <ConversionInputComponent
           control={control}
           controlName={"height"}
@@ -164,15 +188,28 @@ const InformationsScreen = () => {
         >
           <Ruler color={"#7B6F72"} size={20} />
         </ConversionInputComponent>
+
+        {errors?.height && (
+          <Animated.View
+            entering={ZoomIn}
+            className="flex-row items-center gap-2"
+          >
+            <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
+            <Text className="font-poppins text-[#F77F00]">
+              {errors?.height?.message}
+            </Text>
+          </Animated.View>
+        )}
       </View>
+
       <GradientButtonComponent
-        handleSubmit={handleSubmit(submitHandler, onError)}
+        handleSubmit={handleSubmit(submitHandler)}
         title={"Next"}
         size={"full"}
       />
-    </View>
+    </ScrollView>
   );
 };
 
-export default InformationsScreen;
+export default InformationScreen;
 9;

@@ -17,7 +17,7 @@ const ExplainersLayout = () => {
     if (pageIndex >= 4) {
       // router.replace("/SignUpScreen");
       router.replace("/register-process/SuccessScreen");
-      // router.push("/register-process/InformationsScreen");
+      // router.push("/register-process/InformationScreen");
 
       return;
     }
