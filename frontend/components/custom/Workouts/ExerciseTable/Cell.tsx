@@ -1,71 +1,118 @@
 import { Text, TouchableOpacity, View } from "react-native";
-import Popover from "@/components/custom/Workouts/ExerciseTable/Popover";
-
-type WorkoutExercise = Exercise | Superset;
+import { useState } from "react";
+import ActionSheetComponent from "@/components/custom/ActionSheet";
+import GenericIcon from "@/components/custom/Icon";
+import SpecialTypeActionSheet from "@/components/custom/Workouts/ExerciseTable/SpecialTypeActionSheet";
+import ExerciseModalComponent from "@/components/custom/Workouts/ExerciseTable/Modal";
 
 interface ExerciseTableCellProps {
-  index: number;
-  exercise: WorkoutExercise;
+  exercise: Exercise;
+  exerciseIndex: number;
+  superSetIndex?: number;
 }
 
-const ExerciseTableCell = ({ exercise, index }: ExerciseTableCellProps) => {
-  if (exercise.type === "exercise") {
-    return (
-      <View className="border-b mb-4 border-black/20 ">
-        <Text className="font-poppins text-[#F77F00] text-lg">{index + 1}</Text>
-        <Text className="text-xl capitalize font-poppinsMedium mb-6">
-          {exercise.name}
-        </Text>
+interface SetType {
+  reps: number;
+  weight: number;
+  specialType: string;
+}
 
-        <View className="flex-row mb-6">
-          <Text className="font-poppins text-sm text-black/50">Set</Text>
-          <View className="flex-row ms-auto w-2/4 gap-10">
-            <Text className="font-poppins text-sm text-black/50">Reps</Text>
-            <Text className="font-poppins text-sm text-black/50">Weight</Text>
-          </View>
+const ExerciseTableCell = (props: ExerciseTableCellProps) => {
+  const [isActionSheetVisible, setIsActionSheetVisible] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [activeSet, setActiveSet] = useState<Partial<SetType> | null>(null);
+
+  const handleSetPress = (set: Partial<SetType>) => {
+    setActiveSet(set);
+    setShowModal(true);
+  };
+
+  return (
+    <>
+      <Text className="text-xl capitalize font-poppinsMedium mb-6">
+        {props.exercise.name}
+      </Text>
+
+      <View className="flex-row mb-6">
+        <Text className="font-poppins text-sm text-black/50">Set</Text>
+        <View className="flex-row ms-auto w-2/4 gap-10">
+          <Text className="font-poppins text-sm text-black/50">Reps</Text>
+          <Text className="font-poppins text-sm text-black/50">Weight</Text>
         </View>
-
-        {exercise.sets.map((set, index) => (
-          <TouchableOpacity
-            activeOpacity={0.7}
-            key={index}
-            className="flex-row items-center mb-4"
-          >
-            <Text className="font-poppins text-lg" numberOfLines={1}>
-              Set {index + 1}
-            </Text>
-            {set.specialType && (
-              <Text className="font-poppins ms-3 text-lg text-black/50">
-                {set.specialType}
-              </Text>
-            )}
-
-            <View className="flex-row  items-center justify-end gap-5 w-2/4 ms-auto">
-              <View className="bg-[#F7F8F8] w-14 py-1 px-2 items-end rounded-lg">
-                <Text
-                  className="font-poppins text-[#F77F00] text-lg"
-                  numberOfLines={1}
-                >
-                  {set.reps ? set.reps : "reps"}
-                </Text>
-              </View>
-
-              <View className="bg-[#F7F8F8] w-14 items-end py-1 px-2 overflow-scroll rounded-lg">
-                <Text
-                  className="font-poppins text-[#F77F00] text-lg"
-                  numberOfLines={1}
-                >
-                  {set.weight ? set.weight : "kg"}
-                </Text>
-              </View>
-
-              <Popover />
-            </View>
-          </TouchableOpacity>
-        ))}
       </View>
-    );
-  }
+
+      {props.exercise.sets.map((set, index) => (
+        <TouchableOpacity
+          activeOpacity={0.7}
+          key={index}
+          onPress={() => {
+            handleSetPress(set);
+            setActiveIndex(index);
+          }}
+          className="flex-row items-center mb-4"
+        >
+          <Text className="font-poppins text-lg" numberOfLines={1}>
+            Set {index + 1}
+          </Text>
+          {set.specialType && set.specialType !== "normal" && (
+            <Text className="font-poppins ms-3 text-lg capitalize  text-black/50">
+              {set.specialType}
+            </Text>
+          )}
+
+          <View className="flex-row  items-center justify-end gap-5  ms-auto">
+            <View className="bg-[#F7F8F8] w-16 py-1 px-2 items-end rounded-lg">
+              <Text
+                className="font-poppins text-[#F77F00] text-lg"
+                numberOfLines={1}
+              >
+                {set.reps ? set.reps : "reps"}
+              </Text>
+            </View>
+
+            <View className="bg-[#F7F8F8] w-16 items-end py-1 px-2 overflow-scroll rounded-lg">
+              <Text
+                className="font-poppins text-[#F77F00] text-lg"
+                numberOfLines={1}
+              >
+                {set.weight ? set.weight : "kg"}
+              </Text>
+            </View>
+
+            <TouchableOpacity
+              className="py-1 px-2"
+              onPress={() => {
+                setActiveIndex(index);
+                setIsActionSheetVisible(true);
+              }}
+            >
+              <GenericIcon name={"Ellipsis"} />
+            </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
+      ))}
+
+      {activeSet && (
+        <ExerciseModalComponent
+          setIndex={activeIndex}
+          exerciseIndex={props.exerciseIndex}
+          superSetIndex={props.superSetIndex}
+          numberValue={[activeSet.reps, activeSet.weight]}
+          showModal={showModal}
+          setShowModal={() => setShowModal(false)}
+        />
+      )}
+
+      <SpecialTypeActionSheet
+        setIndex={activeIndex}
+        exerciseIndex={props.exerciseIndex}
+        superSetIndex={props.superSetIndex}
+        setIsActive={setIsActionSheetVisible}
+        isActive={isActionSheetVisible}
+      />
+    </>
+  );
 };
 
 export default ExerciseTableCell;

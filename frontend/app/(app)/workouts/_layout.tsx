@@ -1,10 +1,10 @@
-import { ScrollView } from "react-native";
 import { Slot, useFocusEffect } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import MealsHeaderImage from "@/assets/images/meals-header.svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useLayout } from "@/context/LayoutContext";
 import { useCallback, useEffect } from "react";
+import { ScrollView } from "react-native-gesture-handler";
 
 const WorkoutLayout = () => {
   const insets = useSafeAreaInsets();
@@ -36,7 +36,7 @@ const WorkoutLayout = () => {
           position: "absolute",
           width: "100%",
           top: -insets.top,
-          paddingTop: insets.top + 50,
+          paddingTop: insets.top + 40,
           zIndex: -1,
         }}
       >
@@ -48,9 +48,9 @@ const WorkoutLayout = () => {
           backgroundColor: "white",
           borderRadius: 50,
           paddingVertical: 40,
-          marginTop: 250,
+          marginTop: 200,
         }}
-        contentContainerClassName="pb-10"
+        contentContainerClassName="pb-24"
         showsVerticalScrollIndicator={false}
         automaticallyAdjustKeyboardInsets={true}
       >

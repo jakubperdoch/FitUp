@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: Edit Yup warnings">
-      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Popover.tsx" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Add Popover for special type of workout">
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/DigitInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/SpecialTypeActionSheet.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/context/WorkoutContext.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/en.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/i18n.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/sk.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/GradientButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/GradientButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Popover.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
@@ -96,11 +106,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/frontend/hooks" />
       <recent name="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable" />
+      <recent name="$PROJECT_DIR$/frontend/components/custom/Inputs" />
+      <recent name="$PROJECT_DIR$/frontend/hooks" />
       <recent name="$PROJECT_DIR$/frontend/app/(app)/workouts/create" />
       <recent name="$PROJECT_DIR$/frontend/components/custom" />
-      <recent name="$PROJECT_DIR$/frontend/components/custom/Meals" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -136,6 +146,12 @@
       <workItem from="1736003489392" duration="29686000" />
       <workItem from="1736044973844" duration="1000" />
       <workItem from="1736117487724" duration="11997000" />
+      <workItem from="1736206716332" duration="12957000" />
+      <workItem from="1736227945199" duration="599000" />
+      <workItem from="1736328672687" duration="3450000" />
+      <workItem from="1736501902417" duration="2069000" />
+      <workItem from="1736624314308" duration="18675000" />
+      <workItem from="1736752388112" duration="331000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -379,15 +395,5 @@
     <MESSAGE value="fix: Add maximum date for meal creation" />
     <MESSAGE value="fix: Edit Yup warnings" />
     <option name="LAST_COMMIT_MESSAGE" value="fix: Edit Yup warnings" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Modal.tsx</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

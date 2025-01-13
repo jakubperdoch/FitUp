@@ -14,6 +14,7 @@ const GradientButtonComponent = ({
   borderRadius = 50,
   disabled = false,
   loading = false,
+  colors = ["#F77F00", "#D62828"],
 }) => {
   return (
     <TouchableOpacity
@@ -30,7 +31,8 @@ const GradientButtonComponent = ({
       <LinearGradient
         start={{ x: 0, y: 0.75 }}
         end={{ x: 1.3, y: 0.25 }}
-        colors={["#F77F00", "#D62828"]}
+        //@ts-ignore
+        colors={colors}
         style={[
           styles.gradient,
           styles[size],
