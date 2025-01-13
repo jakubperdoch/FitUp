@@ -5,7 +5,6 @@ import {
   AccordionTrigger,
   AccordionTitleText,
   AccordionContent,
-  AccordionContentText,
   AccordionIcon,
 } from "@/components/ui/accordion";
 import { ChevronUpIcon, ChevronDownIcon } from "lucide-react-native";

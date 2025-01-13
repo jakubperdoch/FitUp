@@ -20,7 +20,7 @@ const WorkoutsPage = () => {
     setWorkoutCards(updatedArr);
   };
 
-  const [workoutCards, setWorkoutCards] = useState([
+  const [workoutCards, setWorkoutCards] = useState<Workout[]>([
     {
       id: 1,
       name: "Upperbody Workout",

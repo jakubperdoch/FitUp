@@ -1,15 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface Workout {
-  id: number;
-  name: string;
-  day: string;
-  timer: number | null;
-  timeOfWorkout: number;
-  numberOfExercises: number;
-}
-
 export interface WorkoutState {
   workout: Workout | null;
   isTimerActive: boolean;

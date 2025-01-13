@@ -29,8 +29,12 @@ interface Workout {
   id: number;
   name: string;
   timeOfWorkout: number;
-  days: Array<string>;
+  day?: string;
   timer?: number | null;
+  numberOfExercises: number;
+}
 
+interface WorkoutDetails extends Workout {
   exercises: Array<Exercise | Superset>;
+  days: Array<string>;
 }

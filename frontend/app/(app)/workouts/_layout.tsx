@@ -50,7 +50,7 @@ const WorkoutLayout = () => {
           paddingVertical: 40,
           marginTop: 200,
         }}
-        contentContainerClassName="pb-24"
+        contentContainerStyle={{ paddingBottom: 80 }}
         showsVerticalScrollIndicator={false}
         automaticallyAdjustKeyboardInsets={true}
       >

@@ -1,17 +1,31 @@
 import { useLocalSearchParams } from "expo-router";
 import { Text, View, Alert } from "react-native";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ScheduleAccordion from "@/components/custom/Workouts/ScheduleAccordion";
 import ExerciseTable from "@/components/custom/Workouts/ExerciseTable";
 import GradientButton from "@/components/custom/Button/GradientButton";
 import { WorkoutContext } from "@/context/WorkoutContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setWorkout, clearWorkout, setTimer } from "@/store/workout";
+import { useWorkoutTimer } from "@/hooks/workouts";
+import { RootState } from "@/store/store";
+import Animated, { ZoomIn } from "react-native-reanimated";
 
 const WorkoutDetailsScreen = () => {
-  const [data, setData] = useState<Workout>({
-    id: 2,
+  const dispatch = useDispatch();
+  const { startTimer, stopTimer } = useWorkoutTimer();
+  const { workout, isTimerActive } = useSelector(
+    (state: RootState) => state.workout,
+  );
+
+  const [isWorkoutActive, setIsWorkoutActive] = useState(false);
+
+  const [data, setData] = useState<WorkoutDetails>({
+    id: 1,
     name: "fullbody workout",
     timeOfWorkout: 32,
     days: ["Monday"],
+    numberOfExercises: 11,
     exercises: [
       {
         type: "exercise",
@@ -46,6 +60,25 @@ const WorkoutDetailsScreen = () => {
       },
     ],
   });
+
+  const changeDateHandler = (newValue: string) => {
+    if (data?.days.includes(newValue)) {
+      const daysArr = data.days.filter((day) => day !== newValue);
+
+      setData((prevState) => ({
+        ...prevState,
+        days: daysArr,
+      }));
+    } else {
+      const daysArr = [...data?.days];
+      daysArr.push(newValue);
+
+      setData((prevState) => ({
+        ...prevState,
+        days: daysArr,
+      }));
+    }
+  };
 
   const updateSets = (
     exerciseIndex: number,
@@ -119,6 +152,66 @@ const WorkoutDetailsScreen = () => {
     });
   };
 
+  const isCurrentWorkoutActive = isTimerActive && workout?.id === data.id;
+  const isOtherWorkoutActive = isTimerActive && workout.id !== data.id;
+
+  const buttonStateHandler = async () => {
+    if (isOtherWorkoutActive) {
+      Alert.alert(
+        "Workout Active",
+        "Another workout is already active. Please finish or stop the current workout before starting a new one.",
+      );
+      return;
+    }
+
+    if (isTimerActive && workout.id !== data.id) {
+      console.log("isTimerActive && workout.id !== data.id");
+      return;
+    }
+
+    if (isCurrentWorkoutActive) {
+      console.log("stopTimer");
+      await stopTimer();
+      dispatch(setTimer(false));
+    } else {
+      if (!workout) {
+        dispatch(setWorkout(data));
+      }
+      console.log("startTimer");
+      await startTimer();
+      dispatch(setTimer(true));
+    }
+  };
+
+  const stopWorkoutHandler = async () => {
+    dispatch(clearWorkout());
+    dispatch(setTimer(false));
+    await stopTimer();
+  };
+
+  const finishWorkoutHandler = async (isTimerClear: boolean) => {
+    if (!workout) {
+      return;
+    }
+    if (isTimerClear) {
+      setData((prevState) => ({
+        ...prevState,
+        timer: 0,
+      }));
+    }
+    await stopTimer();
+    dispatch(setTimer(false));
+    dispatch(clearWorkout());
+  };
+
+  useEffect(() => {
+    if (workout) {
+      setIsWorkoutActive(true);
+    } else {
+      setIsWorkoutActive(false);
+    }
+  }, []);
+
   return (
     <WorkoutContext.Provider
       value={{ specialTypeHandler, workoutInputHandler }}
@@ -133,26 +226,42 @@ const WorkoutDetailsScreen = () => {
           </Text>
         </View>
 
-        <ScheduleAccordion days={data?.days} changeDateHandler={() => {}} />
+        <ScheduleAccordion
+          days={data?.days}
+          changeDateHandler={changeDateHandler}
+        />
         <ExerciseTable workout={data} />
 
-        <GradientButton
-          size="full"
-          handleSubmit={() => console.log("Start workout")}
-          title="Start the Workout"
-        />
-        <GradientButton
-          size="full"
-          colors={["#F2EA00", "#FF6F00"]}
-          handleSubmit={() => console.log("Pause workout")}
-          title="Pause the Workout"
-        />
-        <GradientButton
-          size="full"
-          colors={["#D62828", "#D62828"]}
-          handleSubmit={() => console.log("Stop workout")}
-          title="Stop the Workout"
-        />
+        <Animated.View entering={ZoomIn} className="flex-col gap-5">
+          <GradientButton
+            size="full"
+            colors={
+              isCurrentWorkoutActive
+                ? ["rgba(214, 40, 40, 0.9)", "rgba(247, 127, 0, 0.8)"]
+                : ["#2CBF29", "#24E022"]
+            }
+            handleSubmit={buttonStateHandler}
+            title={isCurrentWorkoutActive ? "Pause Workout" : "Start Workout"}
+            disabled={isOtherWorkoutActive}
+          />
+        </Animated.View>
+        {isCurrentWorkoutActive && (
+          <Animated.View entering={ZoomIn} className="flex-col gap-5">
+            <GradientButton
+              size="full"
+              colors={["#F2EA00", "#FF6F00"]}
+              handleSubmit={finishWorkoutHandler}
+              title="Finish Workout"
+            />
+
+            <GradientButton
+              size="full"
+              colors={["#D62828", "#D62828"]}
+              handleSubmit={stopWorkoutHandler}
+              title="Stop Workout"
+            />
+          </Animated.View>
+        )}
       </View>
     </WorkoutContext.Provider>
   );
