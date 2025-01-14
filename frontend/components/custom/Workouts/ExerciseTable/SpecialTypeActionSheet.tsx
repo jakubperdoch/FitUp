@@ -12,7 +12,7 @@ interface ComponentProps {
 }
 
 const SpecialTypeActionSheetComponent = (props: ComponentProps) => {
-  const { specialTypeHandler } = useContext(WorkoutContext);
+  const { specialTypeHandler, deleteSetHandler } = useContext(WorkoutContext);
 
   const specialTypeActions = [
     {
@@ -31,10 +31,6 @@ const SpecialTypeActionSheetComponent = (props: ComponentProps) => {
       name: "Mark as drop set",
       action: "dropSet",
     },
-    {
-      name: "Delete set",
-      action: "delete",
-    },
   ];
 
   return (
@@ -45,7 +41,7 @@ const SpecialTypeActionSheetComponent = (props: ComponentProps) => {
       {specialTypeActions.map((action, index) => (
         <TouchableOpacity
           key={index}
-          className="p-3"
+          className="p-3 mb-1"
           onPress={() =>
             specialTypeHandler(
               props.exerciseIndex,
@@ -62,6 +58,19 @@ const SpecialTypeActionSheetComponent = (props: ComponentProps) => {
           </Text>
         </TouchableOpacity>
       ))}
+
+      <TouchableOpacity
+        className="mb-5"
+        onPress={() =>
+          deleteSetHandler(
+            props.exerciseIndex,
+            props.setIndex,
+            props.superSetIndex,
+          )
+        }
+      >
+        <Text className="font-poppins text-red-700">Delete Set</Text>
+      </TouchableOpacity>
     </ActionSheetComponent>
   );
 };

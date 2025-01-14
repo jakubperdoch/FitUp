@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import ExerciseTableCell from "@/components/custom/Workouts/ExerciseTable/Cell";
 
 type ComponentProps = {
-  workout: Workout;
+  workout: WorkoutDetails;
 };
 
 const ExerciseTableComponent = (props: ComponentProps) => {

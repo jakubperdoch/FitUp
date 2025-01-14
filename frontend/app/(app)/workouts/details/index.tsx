@@ -1,6 +1,5 @@
-import { useLocalSearchParams } from "expo-router";
 import { Text, View, Alert } from "react-native";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import ScheduleAccordion from "@/components/custom/Workouts/ScheduleAccordion";
 import ExerciseTable from "@/components/custom/Workouts/ExerciseTable";
 import GradientButton from "@/components/custom/Button/GradientButton";
@@ -10,6 +9,7 @@ import { setWorkout, clearWorkout, setTimer } from "@/store/workout";
 import { useWorkoutTimer } from "@/hooks/workouts";
 import { RootState } from "@/store/store";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const WorkoutDetailsScreen = () => {
   const dispatch = useDispatch();
@@ -17,8 +17,6 @@ const WorkoutDetailsScreen = () => {
   const { workout, isTimerActive } = useSelector(
     (state: RootState) => state.workout,
   );
-
-  const [isWorkoutActive, setIsWorkoutActive] = useState(false);
 
   const [data, setData] = useState<WorkoutDetails>({
     id: 1,
@@ -55,6 +53,12 @@ const WorkoutDetailsScreen = () => {
               { reps: 8, weight: 120 },
               { reps: 12, weight: 110, specialType: "Drop set" },
             ],
+          },
+          {
+            type: "exercise",
+            exerciseId: "guT8YnS",
+            name: "biceps pull-up",
+            sets: [{ weight: 100 }, { reps: 8 }, { reps: 12, weight: 110 }],
           },
         ],
       },
@@ -111,28 +115,61 @@ const WorkoutDetailsScreen = () => {
     superSetIndex: number | null,
     specialType: string,
   ) => {
-    if (specialType === "delete") {
-      Alert.alert("Set deletion", "Are you sure you want to delete this set?", [
-        { text: "Cancel", style: "cancel" },
-        {
-          text: "Confirm",
-          style: "destructive",
-          onPress: () =>
-            updateSets(exerciseIndex, setIndex, superSetIndex, (sets) =>
-              sets.filter((_, index) => index !== setIndex),
-            ),
+    updateSets(exerciseIndex, setIndex, superSetIndex, (sets) => {
+      if (specialType === "normal") {
+        delete sets[setIndex].specialType;
+      } else {
+        sets[setIndex].specialType = specialType;
+      }
+      return sets;
+    });
+  };
+
+  const deleteSetHandler = (
+    exerciseIndex: number,
+    setIndex: number,
+    superSetIndex: number | null,
+  ) => {
+    Alert.alert("Delete Set", "Are you sure you want to delete this set?", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Delete",
+        style: "destructive",
+        onPress: () => {
+          updateSets(exerciseIndex, setIndex, superSetIndex, (sets) => {
+            sets.splice(setIndex, 1);
+            return sets;
+          });
         },
-      ]);
-    } else {
-      updateSets(exerciseIndex, setIndex, superSetIndex, (sets) => {
-        if (specialType === "normal") {
-          delete sets[setIndex].specialType;
-        } else {
-          sets[setIndex].specialType = specialType;
-        }
-        return sets;
-      });
-    }
+      },
+    ]);
+  };
+
+  const deleteExerciseHandler = (exerciseIndex: number) => {
+    Alert.alert(
+      "Delete Exercise",
+      "Are you sure you want to delete this exercise?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => {
+            setData((prevState) => {
+              const exercises = [...prevState.exercises];
+              exercises.splice(exerciseIndex, 1);
+              return { ...prevState, exercises };
+            });
+          },
+        },
+      ],
+    );
   };
 
   const workoutInputHandler = (
@@ -155,6 +192,16 @@ const WorkoutDetailsScreen = () => {
   const isCurrentWorkoutActive = isTimerActive && workout?.id === data.id;
   const isOtherWorkoutActive = isTimerActive && workout.id !== data.id;
 
+  const buttonTitleHandler = () => {
+    if (isCurrentWorkoutActive) {
+      return "Pause Workout";
+    } else if (!isCurrentWorkoutActive && workout?.timer > 0) {
+      return "Resume Workout";
+    } else {
+      return "Start Workout";
+    }
+  };
+
   const buttonStateHandler = async () => {
     if (isOtherWorkoutActive) {
       Alert.alert(
@@ -165,19 +212,16 @@ const WorkoutDetailsScreen = () => {
     }
 
     if (isTimerActive && workout.id !== data.id) {
-      console.log("isTimerActive && workout.id !== data.id");
       return;
     }
 
     if (isCurrentWorkoutActive) {
-      console.log("stopTimer");
       await stopTimer();
       dispatch(setTimer(false));
     } else {
       if (!workout) {
         dispatch(setWorkout(data));
       }
-      console.log("startTimer");
       await startTimer();
       dispatch(setTimer(true));
     }
@@ -204,17 +248,14 @@ const WorkoutDetailsScreen = () => {
     dispatch(clearWorkout());
   };
 
-  useEffect(() => {
-    if (workout) {
-      setIsWorkoutActive(true);
-    } else {
-      setIsWorkoutActive(false);
-    }
-  }, []);
-
   return (
     <WorkoutContext.Provider
-      value={{ specialTypeHandler, workoutInputHandler }}
+      value={{
+        specialTypeHandler,
+        workoutInputHandler,
+        deleteSetHandler,
+        deleteExerciseHandler,
+      }}
     >
       <View className="px-8 flex-col gap-7">
         <View>
@@ -230,6 +271,7 @@ const WorkoutDetailsScreen = () => {
           days={data?.days}
           changeDateHandler={changeDateHandler}
         />
+
         <ExerciseTable workout={data} />
 
         <Animated.View entering={ZoomIn} className="flex-col gap-5">
@@ -241,10 +283,11 @@ const WorkoutDetailsScreen = () => {
                 : ["#2CBF29", "#24E022"]
             }
             handleSubmit={buttonStateHandler}
-            title={isCurrentWorkoutActive ? "Pause Workout" : "Start Workout"}
+            title={buttonTitleHandler()}
             disabled={isOtherWorkoutActive}
           />
         </Animated.View>
+
         {isCurrentWorkoutActive && (
           <Animated.View entering={ZoomIn} className="flex-col gap-5">
             <GradientButton

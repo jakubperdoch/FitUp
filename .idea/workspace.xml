@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Workout details additional component">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Add Workout details timer &amp; updated redux, interfacies">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ScheduleAccordion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ScheduleAccordion.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/interfaces/workouts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/interfaces/workouts.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/store/workout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workout.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/SpecialTypeActionSheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/SpecialTypeActionSheet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/context/WorkoutContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/context/WorkoutContext.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +143,8 @@
       <workItem from="1736624314308" duration="18675000" />
       <workItem from="1736752388112" duration="2380000" />
       <workItem from="1736755222274" duration="4748000" />
-      <workItem from="1736789154269" duration="2524000" />
+      <workItem from="1736789154269" duration="5970000" />
+      <workItem from="1736882718508" duration="286000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -347,7 +346,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736752825717</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="add: Add Workout details timer &amp; updated redux, interfacies">
+      <option name="closed" value="true" />
+      <created>1736791708791</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1736791708791</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,7 +378,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: Add CarouselCard component" />
     <MESSAGE value="fix: Replace background image with linear gradient in meals page" />
     <MESSAGE value="fix: Refactor dashboard components and optimize workout logic" />
     <MESSAGE value="add: meal-related example images and header SVG" />
@@ -396,6 +402,7 @@
     <MESSAGE value="fix: Add maximum date for meal creation" />
     <MESSAGE value="fix: Edit Yup warnings" />
     <MESSAGE value="add: Workout details additional component" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: Workout details additional component" />
+    <MESSAGE value="add: Add Workout details timer &amp; updated redux, interfacies" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: Add Workout details timer &amp; updated redux, interfacies" />
   </component>
 </project>

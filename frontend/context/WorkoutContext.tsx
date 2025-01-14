@@ -7,6 +7,7 @@ type WorkoutContextType = {
     superSetIndex: number,
     specialType: string,
   ) => void;
+
   workoutInputHandler: (
     exerciseIndex: number,
     setIndex: number,
@@ -14,6 +15,14 @@ type WorkoutContextType = {
     repsValue?: number,
     weightValue?: number,
   ) => void;
+
+  deleteSetHandler: (
+    exerciseIndex: number,
+    setIndex: number,
+    superSetIndex: number | null,
+  ) => void;
+
+  deleteExerciseHandler: (exerciseIndex: number) => void;
 };
 
 export const WorkoutContext = createContext<WorkoutContextType | null>(null);

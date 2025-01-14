@@ -1,9 +1,10 @@
 import { Text, TouchableOpacity, View } from "react-native";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ActionSheetComponent from "@/components/custom/ActionSheet";
 import GenericIcon from "@/components/custom/Icon";
 import SpecialTypeActionSheet from "@/components/custom/Workouts/ExerciseTable/SpecialTypeActionSheet";
 import ExerciseModalComponent from "@/components/custom/Workouts/ExerciseTable/Modal";
+import { WorkoutContext } from "@/context/WorkoutContext";
 
 interface ExerciseTableCellProps {
   exercise: Exercise;
@@ -22,6 +23,7 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [activeSet, setActiveSet] = useState<Partial<SetType> | null>(null);
+  const { deleteExerciseHandler } = useContext(WorkoutContext);
 
   const handleSetPress = (set: Partial<SetType>) => {
     setActiveSet(set);
@@ -30,9 +32,18 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
 
   return (
     <>
-      <Text className="text-xl capitalize font-poppinsMedium mb-6">
-        {props.exercise.name}
-      </Text>
+      <View className="flex-row items-center  justify-between mb-6">
+        <Text className="text-xl capitalize font-poppinsMedium ">
+          {props.exercise.name}
+        </Text>
+
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => deleteExerciseHandler(props.exerciseIndex)}
+        >
+          <GenericIcon name={"Trash"} size={20} color={"#F77F00"} />
+        </TouchableOpacity>
+      </View>
 
       <View className="flex-row mb-6">
         <Text className="font-poppins text-sm text-black/50">Set</Text>
