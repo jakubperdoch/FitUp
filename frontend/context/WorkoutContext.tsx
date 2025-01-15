@@ -23,6 +23,8 @@ type WorkoutContextType = {
   ) => void;
 
   deleteExerciseHandler: (exerciseIndex: number) => void;
+
+  isWorkoutEditable: boolean;
 };
 
 export const WorkoutContext = createContext<WorkoutContextType | null>(null);

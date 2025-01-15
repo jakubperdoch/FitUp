@@ -14,12 +14,12 @@ interface Exercise {
   exerciseId: string;
   name: string;
   sets?: Array<ExerciseSet>;
+  targetMuscles?: Array<string>;
 }
 
 interface ExerciseDetails extends Exercise {
   giftUrl: string;
   instructions: Array<string>;
-  targetMuscles: Array<string>;
   bodyParts: Array<string>;
   equipments: Array<string>;
   secondaryMuscles: Array<string>;

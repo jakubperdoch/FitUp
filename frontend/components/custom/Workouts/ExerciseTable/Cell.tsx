@@ -23,7 +23,8 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [activeSet, setActiveSet] = useState<Partial<SetType> | null>(null);
-  const { deleteExerciseHandler } = useContext(WorkoutContext);
+  const { deleteExerciseHandler, isWorkoutEditable } =
+    useContext(WorkoutContext);
 
   const handleSetPress = (set: Partial<SetType>) => {
     setActiveSet(set);
@@ -37,17 +38,21 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
           {props.exercise.name}
         </Text>
 
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => deleteExerciseHandler(props.exerciseIndex)}
-        >
-          <GenericIcon name={"Trash"} size={20} color={"#F77F00"} />
-        </TouchableOpacity>
+        {isWorkoutEditable && (
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => deleteExerciseHandler(props.exerciseIndex)}
+          >
+            <GenericIcon name={"Trash"} size={20} color={"#F77F00"} />
+          </TouchableOpacity>
+        )}
       </View>
 
       <View className="flex-row mb-6">
         <Text className="font-poppins text-sm text-black/50">Set</Text>
-        <View className="flex-row ms-auto w-2/4 gap-10">
+        <View
+          className={`flex-row ms-auto gap-10 ${isWorkoutEditable ? "w-2/4" : ""}`}
+        >
           <Text className="font-poppins text-sm text-black/50">Reps</Text>
           <Text className="font-poppins text-sm text-black/50">Weight</Text>
         </View>
@@ -91,15 +96,17 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
               </Text>
             </View>
 
-            <TouchableOpacity
-              className="py-1 px-2"
-              onPress={() => {
-                setActiveIndex(index);
-                setIsActionSheetVisible(true);
-              }}
-            >
-              <GenericIcon name={"Ellipsis"} />
-            </TouchableOpacity>
+            {isWorkoutEditable && (
+              <TouchableOpacity
+                className="py-1 px-2"
+                onPress={() => {
+                  setActiveIndex(index);
+                  setIsActionSheetVisible(true);
+                }}
+              >
+                <GenericIcon name={"Ellipsis"} />
+              </TouchableOpacity>
+            )}
           </View>
         </TouchableOpacity>
       ))}
