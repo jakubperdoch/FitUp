@@ -8,14 +8,15 @@ import {
   AccordionContentText,
 } from "@/components/ui/accordion";
 import { Spinner } from "@/components/ui/spinner";
-import { useEffect, useMemo } from "react";
-import { Text } from "react-native";
+import { useMemo } from "react";
 import SearchCard from "@/components/custom/Workouts/Search/SearchCard";
 import Animated, { ZoomIn } from "react-native-reanimated";
 
 interface ComponentProps {
   muscleGroups: string[];
   exercises: Exercise[];
+  handleExercisePress: (exercise: Exercise) => void;
+  selectedExercises: Exercise[];
   accordionSearch: (query: string) => void;
   isLoaded: boolean;
   error?: string;
@@ -24,6 +25,8 @@ interface ComponentProps {
 const MuscleGroupAccordionComponent = ({
   muscleGroups,
   exercises,
+  handleExercisePress,
+  selectedExercises,
   accordionSearch,
   isLoaded,
 }: ComponentProps) => {
@@ -65,8 +68,16 @@ const MuscleGroupAccordionComponent = ({
               <Spinner className="mx-auto  mb-3" size="small" color="#F77F00" />
             ) : (
               groupedExercises[muscleGroup].map((exercise) => (
-                <Animated.View entering={ZoomIn}>
-                  <SearchCard key={exercise.exerciseId} exercise={exercise} />
+                <Animated.View key={exercise.exerciseId} entering={ZoomIn}>
+                  <SearchCard
+                    selectedExercises={selectedExercises}
+                    isSelected={selectedExercises.some(
+                      (ex) => ex.exerciseId === exercise.exerciseId,
+                    )}
+                    handleExercisePress={handleExercisePress}
+                    key={exercise.exerciseId}
+                    exercise={exercise}
+                  />
                 </Animated.View>
               ))
             )}

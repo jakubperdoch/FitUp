@@ -18,7 +18,7 @@ interface Exercise {
 }
 
 interface ExerciseDetails extends Exercise {
-  giftUrl: string;
+  gifUrl: string;
   instructions: Array<string>;
   bodyParts: Array<string>;
   equipments: Array<string>;

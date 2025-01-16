@@ -7,6 +7,7 @@ import MuscleGroupAccordion from "@/components/custom/Workouts/Search/MuscleGrou
 import Animated, { ZoomIn } from "react-native-reanimated";
 import SearchCard from "@/components/custom/Workouts/Search/SearchCard";
 import { Spinner } from "@/components/ui/spinner";
+import GradientButton from "@/components/custom/Button/GradientButton";
 
 const exercisesData: Exercise[] = [
   {
@@ -43,6 +44,7 @@ const WorkoutSearchPage = () => {
   const [muscleGroups, setMuscleGroups] = useState<Array<string>>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState<string | null>(null);
+  const [selectedExercises, setSelectedExercises] = useState<Exercise[]>([]);
 
   const debouncedSearch = useCallback(
     debounce(async (query: string) => {
@@ -89,6 +91,16 @@ const WorkoutSearchPage = () => {
     accordionSearch(muscle);
   };
 
+  const handleExerciseSelection = (exercise: Exercise) => {
+    setSelectedExercises((prev) => {
+      if (prev.find((ex) => ex.exerciseId === exercise.exerciseId)) {
+        return prev.filter((ex) => ex.exerciseId !== exercise.exerciseId);
+      } else {
+        return [...prev, exercise];
+      }
+    });
+  };
+
   useEffect(() => {
     setMuscleGroups(musclesData);
   }, []);
@@ -123,7 +135,15 @@ const WorkoutSearchPage = () => {
         <Animated.View entering={ZoomIn} className="gap-5">
           {isLoaded ? (
             exercises.map((exercise) => (
-              <SearchCard key={exercise.exerciseId} exercise={exercise} />
+              <SearchCard
+                selectedExercises={selectedExercises}
+                isSelected={selectedExercises.some(
+                  (ex) => ex.exerciseId === exercise.exerciseId,
+                )}
+                key={exercise.exerciseId}
+                handleExercisePress={handleExerciseSelection}
+                exercise={exercise}
+              />
             ))
           ) : (
             <Spinner className="mx-auto mb-3" size="small" color="#F77F00" />
@@ -132,6 +152,8 @@ const WorkoutSearchPage = () => {
       ) : (
         <Animated.View entering={ZoomIn}>
           <MuscleGroupAccordion
+            selectedExercises={selectedExercises}
+            handleExercisePress={handleExerciseSelection}
             isLoaded={isLoaded}
             muscleGroups={muscleGroups}
             exercises={exercises}
@@ -139,6 +161,8 @@ const WorkoutSearchPage = () => {
           />
         </Animated.View>
       )}
+
+      {/*<GradientButton/>*/}
     </View>
   );
 };
