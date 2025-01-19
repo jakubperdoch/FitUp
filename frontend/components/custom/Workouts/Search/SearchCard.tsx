@@ -1,6 +1,7 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import GenericIcon from "@/components/custom/Icon";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { router } from "expo-router";
 
 interface ComponentProps {
   exercise: Exercise;
@@ -41,7 +42,15 @@ const SearchCardComponent = ({
         </Text>
       </View>
 
-      <TouchableOpacity activeOpacity={0.7}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() =>
+          router.push({
+            pathname: "/workouts/search/instructions",
+            params: { exerciseId: exercise.exerciseId },
+          })
+        }
+      >
         <GenericIcon name={"Info"} color="#F77F00" />
       </TouchableOpacity>
     </TouchableOpacity>

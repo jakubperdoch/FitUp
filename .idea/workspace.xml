@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Add search engine &amp; search components for workouts">
-      <change afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Add exercise selection in SearchPage">
+      <change afterPath="$PROJECT_DIR$/frontend/assets/animations/gifs/2gPfomN.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/InstructionsSteps.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/intructions.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/MuscleGroupAccordion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/MuscleGroupAccordion.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/SearchCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/SearchCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/interfaces/workouts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/interfaces/workouts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/context/WorkoutContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/context/WorkoutContext.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,11 +97,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/assets/animations/gifs" />
       <recent name="$PROJECT_DIR$/frontend/hooks" />
       <recent name="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable" />
       <recent name="$PROJECT_DIR$/frontend/components/custom/Inputs" />
       <recent name="$PROJECT_DIR$/frontend/app/(app)/workouts/create" />
-      <recent name="$PROJECT_DIR$/frontend/components/custom" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -146,7 +146,10 @@
       <workItem from="1736755222274" duration="4748000" />
       <workItem from="1736789154269" duration="5970000" />
       <workItem from="1736882718508" duration="23008000" />
-      <workItem from="1737043997771" duration="696000" />
+      <workItem from="1737043997771" duration="8371000" />
+      <workItem from="1737105606341" duration="1000" />
+      <workItem from="1737239998228" duration="68000" />
+      <workItem from="1737311474734" duration="756000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -372,7 +375,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736980424312</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="add: Add exercise selection in SearchPage">
+      <option name="closed" value="true" />
+      <created>1737044896746</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1737044896746</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -396,7 +407,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: meal-related example images and header SVG" />
     <MESSAGE value="Add Discord settings file and new SVG asset&#10;&#10;Introduce a new `.idea/discord.xml` for project-specific Discord settings. Additionally, include a new SVG asset `information-card--fifth.svg` for frontend graphical use." />
     <MESSAGE value="Add discord.xml and new SVG asset  &#10;&#10;This commit adds the Discord project settings file (`discord.xml`) under `.idea/` for IDE configurations. Additionally, it includes a new SVG asset (`information-card--fifth.svg`) to the project, potentially used for frontend UI." />
     <MESSAGE value="add: Add sorting workouts &amp; workout cards" />
@@ -421,6 +431,7 @@
     <MESSAGE value="add: Add Workout details timer &amp; updated redux, interfacies" />
     <MESSAGE value="add: Workout details additional features (delete,timer)" />
     <MESSAGE value="add: Add search engine &amp; search components for workouts" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: Add search engine &amp; search components for workouts" />
+    <MESSAGE value="add: Add exercise selection in SearchPage" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: Add exercise selection in SearchPage" />
   </component>
 </project>

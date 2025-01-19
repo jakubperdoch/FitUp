@@ -1,6 +1,9 @@
-import { Text, View } from "react-native";
-import { useLocalSearchParams } from "expo-router";
-import { useEffect, useState } from "react";
+import { Image, Text, View } from "react-native";
+import { useFocusEffect, useLocalSearchParams } from "expo-router";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { WorkoutContext } from "@/context/WorkoutContext";
+import InstructionsSteps from "@/components/custom/Workouts/Search/InstructionsSteps";
+import GradientButton from "@/components/custom/Button/GradientButton";
 
 const Data: ExerciseDetails = {
   type: "exercise",
@@ -20,8 +23,11 @@ const Data: ExerciseDetails = {
   ],
 };
 const InstructionsPage = () => {
-  const [exerciseId, setExerciseId] = useState<string | null>(null);
+  const { setIsWorkoutImageVisible } = useContext(WorkoutContext);
   const params = useLocalSearchParams();
+
+  const [data, setData] = useState<ExerciseDetails | null>(null);
+  const [exerciseId, setExerciseId] = useState<string | null>(null);
 
   useEffect(() => {
     if (params.exerciseId) {
@@ -30,12 +36,48 @@ const InstructionsPage = () => {
       } else {
         setExerciseId(params.exerciseId);
       }
+
+      setData(Data);
     }
   }, []);
 
+  useEffect(() => {
+    setIsWorkoutImageVisible(false);
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        setIsWorkoutImageVisible(true);
+      };
+    }, []),
+  );
+
   return (
-    <View>
-      <Text>Instructions</Text>
+    <View className="px-7 gap-16">
+      <View className="flex-row items-start justify-between">
+        <View className="gap-2">
+          <Text className="capitalize font-poppinsSemiBold text-xl">
+            {data?.name}
+          </Text>
+          <Text className="font-poppins capitalize text-[#7B6F72] text-lg">
+            {data?.targetMuscles} | {data?.equipments}
+          </Text>
+        </View>
+
+        <Image
+          className="h-24 w-40"
+          source={require(`@/assets/animations/gifs/2gPfomN.gif`)}
+        />
+      </View>
+
+      {data?.instructions && <InstructionsSteps steps={data?.instructions} />}
+
+      <GradientButton
+        size={"full"}
+        title={"Add Exercise"}
+        handleSubmit={() => console.log("add")}
+      />
     </View>
   );
 };

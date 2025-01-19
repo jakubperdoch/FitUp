@@ -23,8 +23,9 @@ type WorkoutContextType = {
   ) => void;
 
   deleteExerciseHandler: (exerciseIndex: number) => void;
-
   isWorkoutEditable: boolean;
+  isWorkoutImageVisible: boolean;
+  setIsWorkoutImageVisible: (value: boolean) => void;
 };
 
-export const WorkoutContext = createContext<WorkoutContextType | null>(null);
+export const WorkoutContext = createContext<Partial<WorkoutContextType>>(null);
