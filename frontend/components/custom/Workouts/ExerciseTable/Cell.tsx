@@ -1,6 +1,5 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { useContext, useState } from "react";
-import ActionSheetComponent from "@/components/custom/ActionSheet";
 import GenericIcon from "@/components/custom/Icon";
 import SpecialTypeActionSheet from "@/components/custom/Workouts/ExerciseTable/SpecialTypeActionSheet";
 import ExerciseModalComponent from "@/components/custom/Workouts/ExerciseTable/Modal";
@@ -23,7 +22,8 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [activeSet, setActiveSet] = useState<Partial<SetType> | null>(null);
-  const { deleteExerciseHandler, isWorkoutEditable } =
+
+  const { deleteExerciseHandler, isWorkoutEditable, addSetHandler } =
     useContext(WorkoutContext);
 
   const handleSetPress = (set: Partial<SetType>) => {
@@ -58,58 +58,69 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
         </View>
       </View>
 
-      {props.exercise.sets.map((set, index) => (
-        <TouchableOpacity
-          activeOpacity={0.7}
-          key={index}
-          onPress={() => {
-            handleSetPress(set);
-            setActiveIndex(index);
-          }}
-          className="flex-row items-center mb-4"
-        >
-          <Text className="font-poppins text-lg" numberOfLines={1}>
-            Set {index + 1}
-          </Text>
-          {set.specialType && set.specialType !== "normal" && (
-            <Text className="font-poppins ms-3 text-lg capitalize  text-black/50">
-              {set.specialType}
+      {props.exercise.sets &&
+        props.exercise.sets?.length > 0 &&
+        props.exercise.sets.map((set, index) => (
+          <TouchableOpacity
+            activeOpacity={0.7}
+            key={index}
+            onPress={() => {
+              handleSetPress(set);
+              setActiveIndex(index);
+            }}
+            className="flex-row items-center mb-4"
+          >
+            <Text className="font-poppins text-lg" numberOfLines={1}>
+              Set {index + 1}
             </Text>
-          )}
-
-          <View className="flex-row  items-center justify-end gap-5  ms-auto">
-            <View className="bg-[#F7F8F8] w-16 py-1 px-2 items-end rounded-lg">
-              <Text
-                className="font-poppins text-[#F77F00] text-lg"
-                numberOfLines={1}
-              >
-                {set.reps ? set.reps : "reps"}
+            {set.specialType && set.specialType !== "normal" && (
+              <Text className="font-poppins ms-3 text-lg capitalize  text-black/50">
+                {set.specialType}
               </Text>
-            </View>
-
-            <View className="bg-[#F7F8F8] w-16 items-end py-1 px-2 overflow-scroll rounded-lg">
-              <Text
-                className="font-poppins text-[#F77F00] text-lg"
-                numberOfLines={1}
-              >
-                {set.weight ? set.weight : "kg"}
-              </Text>
-            </View>
-
-            {isWorkoutEditable && (
-              <TouchableOpacity
-                className="py-1 px-2"
-                onPress={() => {
-                  setActiveIndex(index);
-                  setIsActionSheetVisible(true);
-                }}
-              >
-                <GenericIcon name={"Ellipsis"} />
-              </TouchableOpacity>
             )}
-          </View>
-        </TouchableOpacity>
-      ))}
+
+            <View className="flex-row  items-center justify-end gap-5  ms-auto">
+              <View className="bg-[#F7F8F8] w-16 py-1 px-2 items-end rounded-lg">
+                <Text
+                  className="font-poppins text-[#F77F00] text-lg"
+                  numberOfLines={1}
+                >
+                  {set.reps ? set.reps : "reps"}
+                </Text>
+              </View>
+
+              <View className="bg-[#F7F8F8] w-16 items-end py-1 px-2 overflow-scroll rounded-lg">
+                <Text
+                  className="font-poppins text-[#F77F00] text-lg"
+                  numberOfLines={1}
+                >
+                  {set.weight ? set.weight : "kg"}
+                </Text>
+              </View>
+
+              {isWorkoutEditable && (
+                <TouchableOpacity
+                  className="py-1 px-2"
+                  onPress={() => {
+                    setActiveIndex(index);
+                    setIsActionSheetVisible(true);
+                  }}
+                >
+                  <GenericIcon name={"Ellipsis"} />
+                </TouchableOpacity>
+              )}
+            </View>
+          </TouchableOpacity>
+        ))}
+
+      <TouchableOpacity
+        onPress={() => addSetHandler(props.exerciseIndex, props.superSetIndex)}
+        activeOpacity={0.7}
+      >
+        <Text className="font-poppins text-[#F77F00] text-lg my-3 text-center">
+          Add Set
+        </Text>
+      </TouchableOpacity>
 
       {activeSet && (
         <ExerciseModalComponent

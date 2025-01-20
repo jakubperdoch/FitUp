@@ -4,9 +4,18 @@ import { useState } from "react";
 import { RootState } from "@/store/store";
 import { Alert } from "react-native";
 import { clearWorkout, setTimer, setWorkout } from "@/store/workout";
+import {
+  addSet,
+  removeExercise,
+  removeSet,
+  resetExercises,
+  updateSet,
+} from "@/store/exercise";
+import { useRouter } from "expo-router";
 
 const useWorkoutDetails = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { startTimer, stopTimer } = useWorkoutTimer();
   const { workout, isTimerActive } = useSelector(
     (state: RootState) => state.workout,
@@ -59,6 +68,8 @@ const useWorkoutDetails = () => {
     ],
   });
 
+  const [newData, setNewData] = useState<Partial<WorkoutDetails>>({});
+
   const changeDateHandler = (newValue: string) => {
     if (data?.days.includes(newValue)) {
       const daysArr = data.days.filter((day) => day !== newValue);
@@ -89,13 +100,16 @@ const useWorkoutDetails = () => {
       const selectedExercise = { ...exercises[exerciseIndex] };
 
       if (selectedExercise.type === "superset" && superSetIndex !== null) {
+        selectedExercise.exercises = [...selectedExercise.exercises];
+
         const supersetExercise = {
           ...selectedExercise.exercises[superSetIndex],
         };
-        supersetExercise.sets = callback([...supersetExercise.sets]);
+
+        supersetExercise.sets = callback([...(supersetExercise.sets || [])]);
         selectedExercise.exercises[superSetIndex] = supersetExercise;
       } else if (selectedExercise.type === "exercise") {
-        selectedExercise.sets = callback([...selectedExercise.sets]);
+        selectedExercise.sets = callback([...(selectedExercise.sets || [])]);
       }
 
       exercises[exerciseIndex] = selectedExercise;
@@ -137,9 +151,34 @@ const useWorkoutDetails = () => {
             sets.splice(setIndex, 1);
             return sets;
           });
+
+          dispatch(
+            removeSet({
+              exerciseIndex,
+              setIndex,
+              supersetIndex: superSetIndex ?? undefined,
+            }),
+          );
         },
       },
     ]);
+  };
+
+  const addSetHandler = (
+    exerciseIndex: number,
+    superSetIndex: number | null,
+  ) => {
+    updateSets(exerciseIndex, 0, superSetIndex, (sets) => {
+      sets.push({});
+      return sets;
+    });
+    if (superSetIndex !== null) {
+      dispatch(
+        addSet({ exerciseIndex: exerciseIndex, supersetIndex: superSetIndex }),
+      );
+    } else {
+      dispatch(addSet({ exerciseIndex: exerciseIndex }));
+    }
   };
 
   const deleteExerciseHandler = (exerciseIndex: number) => {
@@ -160,6 +199,8 @@ const useWorkoutDetails = () => {
               exercises.splice(exerciseIndex, 1);
               return { ...prevState, exercises };
             });
+
+            dispatch(removeExercise(exerciseIndex));
           },
         },
       ],
@@ -181,6 +222,16 @@ const useWorkoutDetails = () => {
       };
       return sets;
     });
+
+    dispatch(
+      updateSet({
+        exerciseIndex,
+        setIndex,
+        superSetIndex: superSetIndex ?? undefined,
+        repsValue,
+        weightValue,
+      }),
+    );
   };
 
   const isCurrentWorkoutActive = isTimerActive && workout?.id === data.id;
@@ -242,9 +293,32 @@ const useWorkoutDetails = () => {
     dispatch(clearWorkout());
   };
 
+  const clearWorkoutHandler = () => {
+    Alert.alert(
+      "Delete Workout",
+      "Are you sure you want to delete this workout?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Clear",
+          style: "destructive",
+          onPress: () => {
+            dispatch(resetExercises());
+            router.push("/workouts/create");
+          },
+        },
+      ],
+    );
+  };
+
   return {
+    newData,
     data,
     setData,
+    addSetHandler,
     specialTypeHandler,
     workoutInputHandler,
     deleteSetHandler,
@@ -254,6 +328,7 @@ const useWorkoutDetails = () => {
     buttonTitleHandler,
     finishWorkoutHandler,
     stopWorkoutHandler,
+    clearWorkoutHandler,
     isCurrentWorkoutActive,
     isOtherWorkoutActive,
   };

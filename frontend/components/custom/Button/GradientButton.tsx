@@ -83,9 +83,11 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   md: {
-    height: 55,
-    paddingHorizontal: 20,
-    fontSize: 17,
+    height: 40,
+    fontSize: 13,
+    paddingHorizontal: 15,
+    fontWeight: "600",
+    width: 130,
   },
   full: {
     width: "100%",

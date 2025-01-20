@@ -29,16 +29,6 @@ const WorkoutDetailsScreen = () => {
     isOtherWorkoutActive,
   } = useWorkoutDetails();
 
-  useEffect(() => {
-    const workoutId = params?.id;
-
-    if (workoutId) {
-      setIsWorkoutEditable(false);
-    } else {
-      setIsWorkoutEditable(true);
-    }
-  }, []);
-
   return (
     <WorkoutContext.Provider
       value={{
@@ -76,40 +66,36 @@ const WorkoutDetailsScreen = () => {
 
         <ExerciseTable workout={data} />
 
-        {!isWorkoutEditable && (
-          <>
-            <Animated.View entering={ZoomIn} className="flex-col gap-5">
-              <GradientButton
-                size="full"
-                colors={
-                  isCurrentWorkoutActive
-                    ? ["rgba(214, 40, 40, 0.9)", "rgba(247, 127, 0, 0.8)"]
-                    : ["#2CBF29", "#24E022"]
-                }
-                handleSubmit={buttonStateHandler}
-                title={buttonTitleHandler()}
-                disabled={isOtherWorkoutActive}
-              />
-            </Animated.View>
+        <Animated.View entering={ZoomIn} className="flex-col gap-5">
+          <GradientButton
+            size="full"
+            colors={
+              isCurrentWorkoutActive
+                ? ["rgba(214, 40, 40, 0.9)", "rgba(247, 127, 0, 0.8)"]
+                : ["#2CBF29", "#24E022"]
+            }
+            handleSubmit={buttonStateHandler}
+            title={buttonTitleHandler()}
+            disabled={isOtherWorkoutActive}
+          />
+        </Animated.View>
 
-            {isCurrentWorkoutActive && (
-              <Animated.View entering={ZoomIn} className="flex-col gap-5">
-                <GradientButton
-                  size="full"
-                  colors={["#F2EA00", "#FF6F00"]}
-                  handleSubmit={finishWorkoutHandler}
-                  title="Finish Workout"
-                />
+        {isCurrentWorkoutActive && (
+          <Animated.View entering={ZoomIn} className="flex-col gap-5">
+            <GradientButton
+              size="full"
+              colors={["#F2EA00", "#FF6F00"]}
+              handleSubmit={finishWorkoutHandler}
+              title="Finish Workout"
+            />
 
-                <GradientButton
-                  size="full"
-                  colors={["#D62828", "#D62828"]}
-                  handleSubmit={stopWorkoutHandler}
-                  title="Stop Workout"
-                />
-              </Animated.View>
-            )}
-          </>
+            <GradientButton
+              size="full"
+              colors={["#D62828", "#D62828"]}
+              handleSubmit={stopWorkoutHandler}
+              title="Stop Workout"
+            />
+          </Animated.View>
         )}
       </View>
     </WorkoutContext.Provider>

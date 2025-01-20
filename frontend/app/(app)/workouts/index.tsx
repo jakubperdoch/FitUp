@@ -54,7 +54,7 @@ const WorkoutsPage = () => {
               <GradientButtonComponent
                 size={"sm"}
                 title="Create new"
-                handleSubmit={() => router.push("/workouts/search")}
+                handleSubmit={() => router.push("/workouts/create")}
               />
             </View>
           </View>

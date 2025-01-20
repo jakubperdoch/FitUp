@@ -53,7 +53,7 @@ const WorkoutLayout = () => {
         <ScrollView
           style={[
             isWorkoutImageVisible
-              ? { marginTop: 200, borderRadius: 50 }
+              ? { marginTop: 170, borderRadius: 50 }
               : { marginTop: 0 },
             {
               backgroundColor: "white",

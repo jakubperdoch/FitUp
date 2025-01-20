@@ -22,6 +22,8 @@ type WorkoutContextType = {
     superSetIndex: number | null,
   ) => void;
 
+  addSetHandler: (exerciseIndex: number, superSetIndex: number | null) => void;
+
   deleteExerciseHandler: (exerciseIndex: number) => void;
   isWorkoutEditable: boolean;
   isWorkoutImageVisible: boolean;

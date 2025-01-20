@@ -8,8 +8,11 @@ import Animated, { ZoomIn } from "react-native-reanimated";
 import SearchCard from "@/components/custom/Workouts/Search/SearchCard";
 import { Spinner } from "@/components/ui/spinner";
 import GradientButton from "@/components/custom/Button/GradientButton";
-
-const exercisesData: Exercise[] = [
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/store/store";
+import { addSuperset, resetExercises, setExercises } from "@/store/exercise";
+import { router, useLocalSearchParams } from "expo-router";
+const exercisesDumbData: Exercise[] = [
   {
     type: "exercise",
     exerciseId: "2gPfomN",
@@ -40,25 +43,29 @@ const musclesData: string[] = ["abs", "lats", "pectorals"];
 
 const WorkoutSearchPage = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [exercises, setExercises] = useState<Array<Exercise>>([]);
+  const [exercisesData, setExercisesData] = useState<Array<Exercise>>([]);
   const [muscleGroups, setMuscleGroups] = useState<Array<string>>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState<string | null>(null);
   const [selectedExercises, setSelectedExercises] = useState<Exercise[]>([]);
 
+  const params = useLocalSearchParams();
+  const dispatch = useDispatch();
+  const exercises = useSelector((state: RootState) => state.exercises);
+
   const debouncedSearch = useCallback(
     debounce(async (query: string) => {
       if (query.trim() === "") {
-        setExercises([]);
+        setExercisesData([]);
         return;
       }
 
       try {
         setIsLoaded(false);
-        const filteredExercises = exercisesData.filter((exercise) =>
+        const filteredExercises = exercisesDumbData.filter((exercise) =>
           exercise.name.toLowerCase().includes(query.toLowerCase()),
         );
-        setExercises(filteredExercises);
+        setExercisesData(filteredExercises);
       } catch (err) {
         setIsError(err.message || "An unexpected error occurred.");
       } finally {
@@ -72,10 +79,10 @@ const WorkoutSearchPage = () => {
     debounce((query: string) => {
       try {
         setIsLoaded(false);
-        const filteredExercises = exercisesData.filter((exercise) =>
+        const filteredExercises = exercisesDumbData.filter((exercise) =>
           exercise.targetMuscles.includes(query),
         );
-        setExercises(filteredExercises);
+        setExercisesData(filteredExercises);
         setIsError(null);
       } catch (err: any) {
         setIsError(err.message || "An unexpected error occurred.");
@@ -99,6 +106,30 @@ const WorkoutSearchPage = () => {
         return [...prev, exercise];
       }
     });
+  };
+
+  const handleSubmit = () => {
+    if (params?.type === "exercise") {
+      if (exercises.length > 0) {
+        const isExercise = (ex: Exercise | Superset): ex is Exercise => {
+          return ex.type === "exercise";
+        };
+        const filteredExercises = exercises.filter(isExercise);
+
+        dispatch(setExercises([...filteredExercises, ...selectedExercises]));
+      } else {
+        dispatch(setExercises(selectedExercises));
+      }
+    } else if (params?.type === "superset") {
+      dispatch(
+        addSuperset({
+          type: "superset",
+          exercises: selectedExercises,
+        }),
+      );
+    }
+
+    router.push("/workouts/create");
   };
 
   useEffect(() => {
@@ -134,7 +165,7 @@ const WorkoutSearchPage = () => {
       {searchQuery ? (
         <Animated.View entering={ZoomIn} className="gap-5">
           {isLoaded ? (
-            exercises.map((exercise) => (
+            exercisesData.map((exercise) => (
               <SearchCard
                 selectedExercises={selectedExercises}
                 isSelected={selectedExercises.some(
@@ -156,13 +187,22 @@ const WorkoutSearchPage = () => {
             handleExercisePress={handleExerciseSelection}
             isLoaded={isLoaded}
             muscleGroups={muscleGroups}
-            exercises={exercises}
+            exercises={exercisesData}
             accordionSearch={handleAccordionSearch}
           />
         </Animated.View>
       )}
 
-      {/*<GradientButton/>*/}
+      <GradientButton
+        disabled={
+          params?.type === "superset"
+            ? selectedExercises.length < 2
+            : selectedExercises.length < 1
+        }
+        size={"full"}
+        title={params?.type === "superset" ? "Add Superset" : "Add Exercise"}
+        handleSubmit={() => handleSubmit()}
+      />
     </View>
   );
 };
