@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Add exercise instruction details page">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: workout creation process with redux">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/create/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/_layout.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/GradientButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/GradientButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/context/WorkoutContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/context/WorkoutContext.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/hooks/workout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/workout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/store/exercise.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/exercise.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/store/exercise.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workoutCreation.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +149,7 @@
       <workItem from="1737105606341" duration="1000" />
       <workItem from="1737239998228" duration="68000" />
       <workItem from="1737311474734" duration="11053000" />
-      <workItem from="1737394837697" duration="5989000" />
+      <workItem from="1737394837697" duration="9660000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -399,7 +391,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737312603445</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="add: workout creation process with redux">
+      <option name="closed" value="true" />
+      <created>1737403903886</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1737403903886</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,7 +423,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add discord.xml and new SVG asset  &#10;&#10;This commit adds the Discord project settings file (`discord.xml`) under `.idea/` for IDE configurations. Additionally, it includes a new SVG asset (`information-card--fifth.svg`) to the project, potentially used for frontend UI." />
     <MESSAGE value="add: Add sorting workouts &amp; workout cards" />
     <MESSAGE value="Remove yarn.lock from version control&#10;&#10;The `yarn.lock` file was removed from version control, often done to avoid lockfile discrepancies in multi-environment projects or encourage dependency resolution flexibility. Ensure your environment manages dependencies consistently if required." />
     <MESSAGE value="Remove yarn.lock file from frontend&#10;&#10;This commit deletes the `yarn.lock` file in the frontend directory. The removal may signify a migration to a different package manager, a cleanup, or reliance on external lock files. Ensure dependencies are managed appropriately without the lock file." />
@@ -448,6 +447,7 @@
     <MESSAGE value="add: Add search engine &amp; search components for workouts" />
     <MESSAGE value="add: Add exercise selection in SearchPage" />
     <MESSAGE value="add: Add exercise instruction details page" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: Add exercise instruction details page" />
+    <MESSAGE value="add: workout creation process with redux" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: workout creation process with redux" />
   </component>
 </project>

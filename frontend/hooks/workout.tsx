@@ -10,7 +10,7 @@ import {
   removeSet,
   resetExercises,
   updateSet,
-} from "@/store/exercise";
+} from "@/store/workoutCreation";
 import { useRouter } from "expo-router";
 
 const useWorkoutDetails = () => {
@@ -307,7 +307,7 @@ const useWorkoutDetails = () => {
           style: "destructive",
           onPress: () => {
             dispatch(resetExercises());
-            router.push("/workouts/create");
+            router.push("/workouts");
           },
         },
       ],

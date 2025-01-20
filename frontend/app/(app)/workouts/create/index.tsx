@@ -8,14 +8,17 @@ import { router, useLocalSearchParams } from "expo-router";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { Input, InputField, InputSlot } from "@/components/ui/input";
+import GenericIcon from "@/components/custom/Icon";
 
 const WorkoutDetailsScreen = () => {
   const params = useLocalSearchParams();
   const [isWorkoutEditable, setIsWorkoutEditable] = useState<boolean>(true);
-  const exercises = useSelector((state: RootState) => state.exercises);
+  const { exercises } = useSelector(
+    (state: RootState) => state.workoutCreation,
+  );
 
   const {
-    newData,
     data,
     setData,
     addSetHandler,
@@ -37,7 +40,7 @@ const WorkoutDetailsScreen = () => {
       exercises: [],
     });
 
-    if (exercises.length > 0) {
+    if (exercises && exercises.length > 0) {
       setData({
         ...data,
         exercises: exercises,
@@ -59,9 +62,18 @@ const WorkoutDetailsScreen = () => {
       <View className="px-8 flex-col gap-7">
         <View>
           <View className="mb-1 flex-row items-center justify-between">
-            <Text className="capitalize font-poppinsBold text-2xl ">
-              {data?.name}
-            </Text>
+            <Input size="xl" variant="rounded">
+              <InputSlot>
+                <GenericIcon name="Search" size={20} color="#7B6F72" />
+              </InputSlot>
+              <InputField
+                className="text-lg"
+                type={"text"}
+                placeholder="Search for exercises"
+                autoCapitalize="words"
+                autoCorrect={false}
+              />
+            </Input>
 
             {!isWorkoutEditable ? (
               <TouchableOpacity activeOpacity={0.7}>
