@@ -31,6 +31,36 @@ export const workoutSlice = createSlice({
       state.workout.timer = action.payload;
     },
 
+    // updateSet: (
+    //     state,
+    //     action: PayloadAction<{
+    //       exerciseIndex: number;
+    //       setIndex: number;
+    //       superSetIndex: number;
+    //       repsValue?: number;
+    //       weightValue?: number;
+    //     }>,
+    // ) => {
+    //   if (action.payload.superSetIndex !== undefined) {
+    //     const superset = state.exercises[
+    //         action.payload.exerciseIndex
+    //         ] as Superset;
+    //     const set =
+    //         superset.exercises[action.payload.superSetIndex].sets[
+    //             action.payload.setIndex
+    //             ];
+    //     set.reps = action.payload.repsValue ?? set.reps;
+    //     set.weight = action.payload.weightValue ?? set.weight;
+    //   } else {
+    //     const exercise = state.exercises[
+    //         action.payload.exerciseIndex
+    //         ] as Exercise;
+    //     const set = exercise.sets[action.payload.setIndex];
+    //     set.reps = action.payload.repsValue ?? set.reps;
+    //     set.weight = action.payload.weightValue ?? set.weight;
+    //   }
+    // },
+
     setTimer: (state, action: PayloadAction<boolean>) => {
       state.isTimerActive = action.payload;
     },

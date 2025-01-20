@@ -62,6 +62,7 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
         props.exercise.sets?.length > 0 &&
         props.exercise.sets.map((set, index) => (
           <TouchableOpacity
+            disabled={isWorkoutEditable}
             activeOpacity={0.7}
             key={index}
             onPress={() => {
@@ -80,7 +81,9 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
             )}
 
             <View className="flex-row  items-center justify-end gap-5  ms-auto">
-              <View className="bg-[#F7F8F8] w-16 py-1 px-2 items-end rounded-lg">
+              <View
+                className={`bg-[#F7F8F8] w-16 py-1 px-2 items-end rounded-lg ${isWorkoutEditable ? "opacity-60" : ""}`}
+              >
                 <Text
                   className="font-poppins text-[#F77F00] text-lg"
                   numberOfLines={1}
@@ -89,7 +92,9 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
                 </Text>
               </View>
 
-              <View className="bg-[#F7F8F8] w-16 items-end py-1 px-2 overflow-scroll rounded-lg">
+              <View
+                className={`bg-[#F7F8F8] w-16 py-1 px-2 items-end rounded-lg ${isWorkoutEditable ? "opacity-60" : ""}`}
+              >
                 <Text
                   className="font-poppins text-[#F77F00] text-lg"
                   numberOfLines={1}

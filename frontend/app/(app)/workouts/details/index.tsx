@@ -55,7 +55,7 @@ const WorkoutDetailsScreen = () => {
             )}
           </View>
           <Text className="font-poppins text-[#7B6F72]">
-            {data?.exercises.length} Exercises | {data?.timeOfWorkout} mins
+            {data?.exercises.length} Exercises
           </Text>
         </View>
 

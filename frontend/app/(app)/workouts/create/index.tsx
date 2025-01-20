@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View, TextInput } from "react-native";
 import { useEffect, useState } from "react";
 import ScheduleAccordion from "@/components/custom/Workouts/ScheduleAccordion";
 import ExerciseTable from "@/components/custom/Workouts/ExerciseTable";
@@ -8,8 +8,6 @@ import { router, useLocalSearchParams } from "expo-router";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { Input, InputField, InputSlot } from "@/components/ui/input";
-import GenericIcon from "@/components/custom/Icon";
 
 const WorkoutDetailsScreen = () => {
   const params = useLocalSearchParams();
@@ -62,35 +60,24 @@ const WorkoutDetailsScreen = () => {
       <View className="px-8 flex-col gap-7">
         <View>
           <View className="mb-1 flex-row items-center justify-between">
-            <Input size="xl" variant="rounded">
-              <InputSlot>
-                <GenericIcon name="Search" size={20} color="#7B6F72" />
-              </InputSlot>
-              <InputField
-                className="text-lg"
-                type={"text"}
-                placeholder="Search for exercises"
-                autoCapitalize="words"
-                autoCorrect={false}
-              />
-            </Input>
+            <TextInput
+              placeholder={"Enter name of workout"}
+              className="font-poppinsBold text-2xl"
+              placeholderTextColor={"#1D1617"}
+              autoCapitalize={"words"}
+              maxLength={15}
+            />
 
-            {!isWorkoutEditable ? (
+            {!isWorkoutEditable && (
               <TouchableOpacity activeOpacity={0.7}>
                 <Text className="font-poppinsSemiBold text-lg text-[#F77F00]">
                   Edit
                 </Text>
               </TouchableOpacity>
-            ) : (
-              <GradientButtonComponent
-                size={"sm"}
-                title={"Clear"}
-                handleSubmit={() => clearWorkoutHandler()}
-              />
             )}
           </View>
           <Text className="font-poppins text-[#7B6F72]">
-            {data?.exercises.length} Exercises | {data?.timeOfWorkout} mins
+            {data?.exercises.length} Exercises
           </Text>
         </View>
 
