@@ -5,14 +5,14 @@ import {
   AccordionTrigger,
   AccordionTitleText,
   AccordionContent,
-  AccordionContentText,
   AccordionIcon,
 } from "@/components/ui/accordion";
 import { ChevronUpIcon, ChevronDownIcon } from "lucide-react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import GenericIcon from "@/components/custom/Icon";
 import { Text, TouchableOpacity, View } from "react-native";
-
+import { useContext } from "react";
+import { WorkoutContext } from "@/context/WorkoutContext";
 type ComponentProps = {
   days?: Array<string>;
   changeDateHandler: (day: string) => void;
@@ -30,15 +30,17 @@ const days = [
 
 const ScheduleAccordionComponent = (props: ComponentProps) => {
   const concatenatedDays = props.days?.join(", ") || "";
+  const { isWorkoutEditable } = useContext(WorkoutContext);
+
   return (
     <Accordion
       size="md"
       type="single"
-      className="bg-transparent "
+      className="bg-transparent"
       isCollapsible={true}
       isDisabled={false}
     >
-      <AccordionItem value="a" style={{ borderRadius: 15 }}>
+      <AccordionItem value="day" style={{ borderRadius: 15 }}>
         <LinearGradient
           start={{ x: 1, y: 0 }}
           end={{ x: 0.1, y: 0.8 }}
@@ -84,6 +86,7 @@ const ScheduleAccordionComponent = (props: ComponentProps) => {
         <AccordionContent className="flex flex-wrap flex-row gap-3 mt-4">
           {days.map((day, index) => (
             <TouchableOpacity
+              disabled={!isWorkoutEditable}
               activeOpacity={0.7}
               key={index}
               onPress={() => props.changeDateHandler(day)}

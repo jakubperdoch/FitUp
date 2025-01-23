@@ -56,7 +56,7 @@ const HomeScreen = () => {
     },
   ];
 
-  const [workoutCards, setWorkoutCards] = useState([
+  const [workoutCards, setWorkoutCards] = useState<Workout[]>([
     {
       id: 1,
       name: "Upper body Workout",

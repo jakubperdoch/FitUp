@@ -14,12 +14,12 @@ interface Exercise {
   exerciseId: string;
   name: string;
   sets?: Array<ExerciseSet>;
+  targetMuscles?: Array<string>;
 }
 
 interface ExerciseDetails extends Exercise {
-  giftUrl: string;
+  gifUrl: string;
   instructions: Array<string>;
-  targetMuscles: Array<string>;
   bodyParts: Array<string>;
   equipments: Array<string>;
   secondaryMuscles: Array<string>;
@@ -29,8 +29,12 @@ interface Workout {
   id: number;
   name: string;
   timeOfWorkout: number;
-  days: Array<string>;
+  day?: string;
   timer?: number | null;
+  numberOfExercises: number;
+}
 
+interface WorkoutDetails extends Workout {
   exercises: Array<Exercise | Superset>;
+  days: Array<string>;
 }

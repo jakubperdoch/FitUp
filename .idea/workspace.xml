@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: Edit Yup warnings">
-      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Popover.tsx" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: workoutCreation redux slice">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/create/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/store/workout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workout.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/store/workoutCreation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workoutCreation.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,11 +97,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/assets/animations/gifs" />
       <recent name="$PROJECT_DIR$/frontend/hooks" />
       <recent name="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable" />
+      <recent name="$PROJECT_DIR$/frontend/components/custom/Inputs" />
       <recent name="$PROJECT_DIR$/frontend/app/(app)/workouts/create" />
-      <recent name="$PROJECT_DIR$/frontend/components/custom" />
-      <recent name="$PROJECT_DIR$/frontend/components/custom/Meals" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -136,6 +137,20 @@
       <workItem from="1736003489392" duration="29686000" />
       <workItem from="1736044973844" duration="1000" />
       <workItem from="1736117487724" duration="11997000" />
+      <workItem from="1736206716332" duration="12957000" />
+      <workItem from="1736227945199" duration="599000" />
+      <workItem from="1736328672687" duration="3450000" />
+      <workItem from="1736501902417" duration="2069000" />
+      <workItem from="1736624314308" duration="18675000" />
+      <workItem from="1736752388112" duration="2380000" />
+      <workItem from="1736755222274" duration="4748000" />
+      <workItem from="1736789154269" duration="5970000" />
+      <workItem from="1736882718508" duration="23008000" />
+      <workItem from="1737043997771" duration="8371000" />
+      <workItem from="1737105606341" duration="1000" />
+      <workItem from="1737239998228" duration="68000" />
+      <workItem from="1737311474734" duration="11053000" />
+      <workItem from="1737394837697" duration="11437000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -329,7 +344,71 @@
       <option name="project" value="LOCAL" />
       <updated>1736122696188</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="add: Workout details additional component">
+      <option name="closed" value="true" />
+      <created>1736752825717</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1736752825717</updated>
+    </task>
+    <task id="LOCAL-00026" summary="add: Add Workout details timer &amp; updated redux, interfacies">
+      <option name="closed" value="true" />
+      <created>1736791708791</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1736791708791</updated>
+    </task>
+    <task id="LOCAL-00027" summary="add: Workout details additional features (delete,timer)">
+      <option name="closed" value="true" />
+      <created>1736883044816</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1736883044816</updated>
+    </task>
+    <task id="LOCAL-00028" summary="add: Add search engine &amp; search components for workouts">
+      <option name="closed" value="true" />
+      <created>1736980424312</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1736980424312</updated>
+    </task>
+    <task id="LOCAL-00029" summary="add: Add exercise selection in SearchPage">
+      <option name="closed" value="true" />
+      <created>1737044896746</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1737044896746</updated>
+    </task>
+    <task id="LOCAL-00030" summary="add: Add exercise instruction details page">
+      <option name="closed" value="true" />
+      <created>1737312603445</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1737312603445</updated>
+    </task>
+    <task id="LOCAL-00031" summary="add: workout creation process with redux">
+      <option name="closed" value="true" />
+      <created>1737403903886</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1737403903886</updated>
+    </task>
+    <task id="LOCAL-00032" summary="fix: workoutCreation redux slice">
+      <option name="closed" value="true" />
+      <created>1737415710635</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1737415710635</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,14 +432,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: support for dynamic navbar color and new workout layout" />
-    <MESSAGE value="fix: Add CarouselCard component" />
-    <MESSAGE value="fix: Replace background image with linear gradient in meals page" />
-    <MESSAGE value="fix: Refactor dashboard components and optimize workout logic" />
-    <MESSAGE value="add: meal-related example images and header SVG" />
-    <MESSAGE value="Add Discord settings file and new SVG asset&#10;&#10;Introduce a new `.idea/discord.xml` for project-specific Discord settings. Additionally, include a new SVG asset `information-card--fifth.svg` for frontend graphical use." />
-    <MESSAGE value="Add discord.xml and new SVG asset  &#10;&#10;This commit adds the Discord project settings file (`discord.xml`) under `.idea/` for IDE configurations. Additionally, it includes a new SVG asset (`information-card--fifth.svg`) to the project, potentially used for frontend UI." />
-    <MESSAGE value="add: Add sorting workouts &amp; workout cards" />
     <MESSAGE value="Remove yarn.lock from version control&#10;&#10;The `yarn.lock` file was removed from version control, often done to avoid lockfile discrepancies in multi-environment projects or encourage dependency resolution flexibility. Ensure your environment manages dependencies consistently if required." />
     <MESSAGE value="Remove yarn.lock file from frontend&#10;&#10;This commit deletes the `yarn.lock` file in the frontend directory. The removal may signify a migration to a different package manager, a cleanup, or reliance on external lock files. Ensure dependencies are managed appropriately without the lock file." />
     <MESSAGE value="add: Add workout sorting, new components, and update dependencies" />
@@ -378,16 +449,14 @@
     <MESSAGE value="fix: removed Tamagui" />
     <MESSAGE value="fix: Add maximum date for meal creation" />
     <MESSAGE value="fix: Edit Yup warnings" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: Edit Yup warnings" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Modal.tsx</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="add: Workout details additional component" />
+    <MESSAGE value="add: Add Workout details timer &amp; updated redux, interfacies" />
+    <MESSAGE value="add: Workout details additional features (delete,timer)" />
+    <MESSAGE value="add: Add search engine &amp; search components for workouts" />
+    <MESSAGE value="add: Add exercise selection in SearchPage" />
+    <MESSAGE value="add: Add exercise instruction details page" />
+    <MESSAGE value="add: workout creation process with redux" />
+    <MESSAGE value="fix: workoutCreation redux slice" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: workoutCreation redux slice" />
   </component>
 </project>

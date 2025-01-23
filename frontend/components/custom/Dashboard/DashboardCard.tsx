@@ -50,7 +50,7 @@ const DashboardCardComponent = (props: ComponentProps) => {
             {props.day && (
               <>
                 <Text className="text-[#7B6F72] font-poppins">
-                  {props?.day} | {props?.timeOfWorkout} min
+                  {props?.day}
                 </Text>
               </>
             )}

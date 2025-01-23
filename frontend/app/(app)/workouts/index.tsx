@@ -20,7 +20,7 @@ const WorkoutsPage = () => {
     setWorkoutCards(updatedArr);
   };
 
-  const [workoutCards, setWorkoutCards] = useState([
+  const [workoutCards, setWorkoutCards] = useState<Workout[]>([
     {
       id: 1,
       name: "Upperbody Workout",
@@ -54,7 +54,7 @@ const WorkoutsPage = () => {
               <GradientButtonComponent
                 size={"sm"}
                 title="Create new"
-                handleSubmit={() => console.log("Add new Workout Plan")}
+                handleSubmit={() => router.push("/workouts/create")}
               />
             </View>
           </View>
