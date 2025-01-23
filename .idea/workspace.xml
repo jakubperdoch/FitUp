@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: workoutCreation redux slice">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: disabled inputs when editing workout">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/create/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/hooks/workout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/workout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/store/workout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workout.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/store/workoutCreation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workoutCreation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/store/workoutCreation.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +153,8 @@
       <workItem from="1737105606341" duration="1000" />
       <workItem from="1737239998228" duration="68000" />
       <workItem from="1737311474734" duration="11053000" />
-      <workItem from="1737394837697" duration="11437000" />
+      <workItem from="1737394837697" duration="17847000" />
+      <workItem from="1737668192611" duration="1142000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -408,7 +412,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737415710635</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="add: disabled inputs when editing workout">
+      <option name="closed" value="true" />
+      <created>1737417441262</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1737417441262</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +444,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove yarn.lock from version control&#10;&#10;The `yarn.lock` file was removed from version control, often done to avoid lockfile discrepancies in multi-environment projects or encourage dependency resolution flexibility. Ensure your environment manages dependencies consistently if required." />
     <MESSAGE value="Remove yarn.lock file from frontend&#10;&#10;This commit deletes the `yarn.lock` file in the frontend directory. The removal may signify a migration to a different package manager, a cleanup, or reliance on external lock files. Ensure dependencies are managed appropriately without the lock file." />
     <MESSAGE value="add: Add workout sorting, new components, and update dependencies" />
     <MESSAGE value="fix: Refactor components to improve UX and remove unused file" />
@@ -457,6 +468,7 @@
     <MESSAGE value="add: Add exercise instruction details page" />
     <MESSAGE value="add: workout creation process with redux" />
     <MESSAGE value="fix: workoutCreation redux slice" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: workoutCreation redux slice" />
+    <MESSAGE value="add: disabled inputs when editing workout" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: disabled inputs when editing workout" />
   </component>
 </project>

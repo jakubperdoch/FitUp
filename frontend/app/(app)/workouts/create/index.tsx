@@ -9,12 +9,13 @@ import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 
-const WorkoutDetailsScreen = () => {
+const WorkoutCreationScreen = () => {
   const params = useLocalSearchParams();
   const [isWorkoutEditable, setIsWorkoutEditable] = useState<boolean>(true);
-  const { exercises } = useSelector(
-    (state: RootState) => state.workoutCreation,
+  const exercises = useSelector(
+    (state: RootState) => state.workout.workout?.exercises || [],
   );
+  const workout = useSelector((state: RootState) => state.workout.workout);
 
   const {
     data,
@@ -81,6 +82,15 @@ const WorkoutDetailsScreen = () => {
           </Text>
         </View>
 
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => clearWorkoutHandler()}
+        >
+          <Text className="font-poppinsSemiBold  text-lg text-[#F77F00]">
+            Clear Workout
+          </Text>
+        </TouchableOpacity>
+
         <ScheduleAccordion
           days={data?.days}
           changeDateHandler={changeDateHandler}
@@ -112,6 +122,7 @@ const WorkoutDetailsScreen = () => {
         </View>
 
         <GradientButtonComponent
+          disabled={!workout.exercises || workout.exercises.length === 0}
           size={"full"}
           title={"Create Plan"}
           handleSubmit={() => console.log("submit")}
@@ -121,4 +132,4 @@ const WorkoutDetailsScreen = () => {
   );
 };
 
-export default WorkoutDetailsScreen;
+export default WorkoutCreationScreen;

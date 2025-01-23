@@ -20,7 +20,9 @@ import Animated, { ZoomIn } from "react-native-reanimated";
 const HomeScreen = () => {
   const { currentDate } = useCurrentDateHandler();
   const { setNavbarTitle } = useLayout();
-  const { workout } = useSelector((state: RootState) => state.workout);
+  const { workout, isTimerActive } = useSelector(
+    (state: RootState) => state.workout,
+  );
 
   const dispatch = useDispatch();
 
@@ -28,7 +30,7 @@ const HomeScreen = () => {
     setNavbarTitle("Fit Up");
   }, []);
 
-  //TODO: Move all like this data to jsons
+  //TODO: Move all dumb data like this to json
   const foodOptions = [
     {
       name: "Breakfast",
@@ -137,7 +139,7 @@ const HomeScreen = () => {
 
         <DashboardPanel />
 
-        {workout && (
+        {workout && isTimerActive && (
           <Animated.View className="w-full" entering={ZoomIn}>
             <PulseBorder>
               <ActiveWorkoutCardComponent
