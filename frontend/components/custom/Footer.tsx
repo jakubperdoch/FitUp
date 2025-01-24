@@ -25,7 +25,7 @@ const FooterComponent = () => {
   const { vh } = useResponsive();
 
   const footerItems = [
-    { icon: "ChartArea", route: "/chart" },
+    { icon: "ChartArea", route: "/stats" },
     { icon: "Cookie", route: "/meals" },
     { icon: "House", route: "/home" },
     { icon: "Dumbbell", route: "/workouts" },
