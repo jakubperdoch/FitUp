@@ -10,8 +10,8 @@ import { Spinner } from "@/components/ui/spinner";
 import GradientButton from "@/components/custom/Button/GradientButton";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
-import { addSuperset, setExercises } from "@/store/workoutCreation";
 import { router, useLocalSearchParams } from "expo-router";
+import { addSuperset, setExercises } from "@/store/workout";
 
 const exercisesDumbData: Exercise[] = [
   {
@@ -52,8 +52,8 @@ const WorkoutSearchPage = () => {
 
   const params = useLocalSearchParams();
   const dispatch = useDispatch();
-  const { exercises } = useSelector(
-    (state: RootState) => state.workoutCreation,
+  const exercises = useSelector(
+    (state: RootState) => state.workout.workout?.exercises || [],
   );
 
   const debouncedSearch = useCallback(

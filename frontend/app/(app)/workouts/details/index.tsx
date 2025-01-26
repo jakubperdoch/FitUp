@@ -1,11 +1,10 @@
 import { Text, TouchableOpacity, View } from "react-native";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ScheduleAccordion from "@/components/custom/Workouts/ScheduleAccordion";
 import ExerciseTable from "@/components/custom/Workouts/ExerciseTable";
 import GradientButton from "@/components/custom/Button/GradientButton";
 import { WorkoutContext } from "@/context/WorkoutContext";
 import useWorkoutDetails from "@/hooks/workout";
-
 import Animated, { ZoomIn } from "react-native-reanimated";
 import { useLocalSearchParams } from "expo-router";
 

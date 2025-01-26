@@ -3,14 +3,17 @@ import { useWorkoutTimer } from "@/hooks/workouts";
 import { useState } from "react";
 import { RootState } from "@/store/store";
 import { Alert } from "react-native";
-import { clearWorkout, setTimer, setWorkout } from "@/store/workout";
 import {
+  clearWorkout,
+  setTimer,
+  setWorkout,
   addSet,
   removeExercise,
   removeSet,
   resetExercises,
   updateSet,
-} from "@/store/workoutCreation";
+} from "@/store/workout";
+
 import { useRouter } from "expo-router";
 
 const useWorkoutDetails = () => {
@@ -26,6 +29,7 @@ const useWorkoutDetails = () => {
     name: "fullbody workout",
     timeOfWorkout: 32,
     days: ["Monday"],
+    day: "Monday",
     numberOfExercises: 11,
     exercises: [
       {

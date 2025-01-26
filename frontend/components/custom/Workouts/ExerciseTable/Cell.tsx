@@ -118,14 +118,18 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
           </TouchableOpacity>
         ))}
 
-      <TouchableOpacity
-        onPress={() => addSetHandler(props.exerciseIndex, props.superSetIndex)}
-        activeOpacity={0.7}
-      >
-        <Text className="font-poppins text-[#F77F00] text-lg my-3 text-center">
-          Add Set
-        </Text>
-      </TouchableOpacity>
+      {isWorkoutEditable && (
+        <TouchableOpacity
+          onPress={() =>
+            addSetHandler(props.exerciseIndex, props.superSetIndex)
+          }
+          activeOpacity={0.7}
+        >
+          <Text className="font-poppins text-[#F77F00] text-lg my-3 text-center">
+            Add Set
+          </Text>
+        </TouchableOpacity>
+      )}
 
       {activeSet && (
         <ExerciseModalComponent
