@@ -1,7 +1,12 @@
+interface totalWeightLifted {
+  label: number;
+  value: number;
+}
+
 interface WorkoutStats {
   totalWorkouts: number;
   totalWorkoutTime: number;
-  totalWeightLifted: number;
+  totalWeightLifted: totalWeightLifted[];
   avgReps: number;
   avgWeight: number;
   mostFrequentExercise: string;

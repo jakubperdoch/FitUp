@@ -1,17 +1,24 @@
-import { Dimensions, Text, View, type ViewStyle } from "react-native";
+import { Dimensions, View, type ViewStyle } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { useCallback, useEffect } from "react";
 import { type AnimatedStyle, interpolate } from "react-native-reanimated";
 import { useLayout } from "@/context/LayoutContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import WorkoutCard from "@/components/custom/Stats/WorkoutCard";
+import { setWorkoutStats } from "@/store/stats";
 
-const workoutStats: Partial<WorkoutStats> = {
+const workoutData: Partial<WorkoutStats> = {
   totalWorkouts: 10,
   totalWorkoutTime: 100,
-  totalWeightLifted: 1000,
+  totalWeightLifted: [
+    { label: 1, value: 100 },
+    { label: 2, value: 220 },
+    { label: 3, value: 90 },
+    { label: 4, value: 450 },
+    { label: 5, value: 400 },
+    { label: 6, value: 300 },
+  ],
   avgReps: 10,
   avgWeight: 100,
   mostFrequentExercise: "Bench Press",
@@ -36,19 +43,21 @@ const macroStats: Partial<MacroStats> = {
 
 const PAGE_WIDTH = Dimensions.get("window").width;
 const itemSize = 300;
+const itemHeight = 500;
 const centerOffset = PAGE_WIDTH / 2 - itemSize / 2;
 
 type TAnimationStyle = (value: number) => AnimatedStyle<ViewStyle>;
 
 const StatsScreen = () => {
   const { setNavbarTitle } = useLayout();
-
+  const dispatch = useDispatch();
   const macroStats = useSelector((state: RootState) => state.stats.macroStats);
   const workoutStats = useSelector(
     (state: RootState) => state.stats.workoutStats,
   );
 
   useEffect(() => {
+    dispatch(setWorkoutStats(workoutData));
     setNavbarTitle("Statistics");
   }, []);
 
@@ -85,28 +94,20 @@ const StatsScreen = () => {
   );
 
   return (
-    <View>
-      <WorkoutCard stats={workoutStats} />
-
-      {/*<Carousel*/}
-      {/*  width={itemSize}*/}
-      {/*  height={itemSize}*/}
-      {/*  style={{*/}
-      {/*    width: PAGE_WIDTH,*/}
-      {/*    height: "80%",*/}
-      {/*    overflow: "visible",*/}
-      {/*    alignItems: "flex-start",*/}
-      {/*  }}*/}
-      {/*  data={[...new Array(3).keys()]}*/}
-      {/*  renderItem={({ index }) => (*/}
-      {/*    <TouchableWithoutFeedback*/}
-      {/*      key={index}*/}
-      {/*      containerStyle={{ flex: 1 }}*/}
-      {/*      style={{ flex: 1 }}*/}
-      {/*    ></TouchableWithoutFeedback>*/}
-      {/*  )}*/}
-      {/*  customAnimation={animationStyle}*/}
-      {/*/>*/}
+    <View className="h-full">
+      <Carousel
+        width={itemSize}
+        height={itemHeight}
+        style={{
+          width: PAGE_WIDTH,
+          height: "100%",
+        }}
+        data={[...new Array(2).keys()]}
+        renderItem={({ index }) => (
+          <WorkoutCard key={index} stats={workoutData} />
+        )}
+        customAnimation={animationStyle}
+      />
     </View>
   );
 };

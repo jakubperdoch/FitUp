@@ -4,7 +4,7 @@ const initialState: Stats = {
   workoutStats: {
     totalWorkouts: 0,
     totalWorkoutTime: 0,
-    totalWeightLifted: 0,
+    totalWeightLifted: [],
     avgReps: 0,
     avgWeight: 0,
     mostFrequentExercise: "",
