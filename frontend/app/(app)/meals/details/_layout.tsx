@@ -2,7 +2,6 @@ import { useLayout } from "@/context/LayoutContext";
 import { useCallback, useEffect } from "react";
 import { Slot, useFocusEffect } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
-import MealsHeaderImage from "@/assets/images/meals-header.svg";
 import { Image, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 

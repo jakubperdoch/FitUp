@@ -3,12 +3,13 @@ import Poppins from "@/assets/fonts/Poppins-Medium.ttf";
 // @ts-ignore
 import PoppinsSemiBold from "@/assets/fonts/Poppins-SemiBold.ttf";
 import { useFont, Circle, Text as GraphText } from "@shopify/react-native-skia";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SharedValue, useDerivedValue } from "react-native-reanimated";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, RefreshControl } from "react-native";
 import { CartesianChart, Line, useChartPressState } from "victory-native";
 import { LinearGradient } from "expo-linear-gradient";
 import GenericIcon from "@/components/custom/Icon";
+import ButtonGroup from "@/components/custom/Button/ButtonGroup";
 
 interface ComponentProps {
   stats: Partial<WorkoutStats>;
@@ -25,10 +26,20 @@ const Tooltip = ({
 };
 
 const WorkoutStatsComponent = (props: ComponentProps) => {
+  const [data, setData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("Weekly");
+  const { state, isActive } = useChartPressState({ x: 0, y: { value: 0 } });
+
   const font = useFont(Poppins, 15);
   const titleFont = useFont(PoppinsSemiBold, 15);
-  const [data, setData] = useState([]);
-  const { state, isActive } = useChartPressState({ x: 0, y: { value: 0 } });
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
 
   useEffect(() => {
     if (props.stats.totalWeightLifted?.length) {
@@ -49,13 +60,22 @@ const WorkoutStatsComponent = (props: ComponentProps) => {
       colors={["rgba(214, 40, 40, 0.3)", "rgba(247, 127, 0, 0.3)"]}
       style={{
         borderRadius: 20,
-        padding: 20,
+        paddingHorizontal: 20,
+        paddingVertical: 30,
         marginHorizontal: 5,
       }}
     >
+      <ButtonGroup
+        activeOption={selectedOption}
+        options={["Weekly", "Monthly"]}
+        optionSelectHandler={(option: string) => setSelectedOption(option)}
+      />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerClassName="gap-7"
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       >
         <Text className="font-poppinsSemiBold text-xl">
           Your workout progress
@@ -158,7 +178,7 @@ const WorkoutStatsComponent = (props: ComponentProps) => {
             </Text>
           </View>
 
-          <View className="gap-3 border-b pb-3 border-black/30">
+          <View className="gap-3 pb-3 ">
             <GenericIcon name="Medal" size={17} />
 
             <Text className="font-poppins text-lg text-[#7B6F72]">

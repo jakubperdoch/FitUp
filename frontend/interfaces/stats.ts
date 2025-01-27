@@ -19,14 +19,14 @@ interface WorkoutStats {
 
 interface MacroStats {
   totalCalories: number;
-  totalProtein: number;
-  totalCarbs: number;
-  totalFat: number;
-  avgCalories: number;
-  avgProtein: number;
-  avgCarbs: number;
-  avgFat: number;
-  mostEatenFood: string;
+  mostFrequentMeal: string;
+  macros: {
+    protein: number;
+    carbs: number;
+    fat: number;
+    sugar: number;
+    fiber: number;
+  };
 }
 
 interface Stats {

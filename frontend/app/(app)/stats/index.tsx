@@ -6,7 +6,7 @@ import { useLayout } from "@/context/LayoutContext";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import WorkoutStatsComponent from "@/components/custom/Stats/WorkoutStats";
-import { setWorkoutStats } from "@/store/stats";
+import { setMacroStats, setWorkoutStats } from "@/store/stats";
 import MacroStatsComponent from "@/components/custom/Stats/MacroStats";
 
 const workoutData: Partial<WorkoutStats> = {
@@ -30,21 +30,21 @@ const workoutData: Partial<WorkoutStats> = {
   },
 };
 
-const macroStats: Partial<MacroStats> = {
+const macroData: Partial<MacroStats> = {
   totalCalories: 1000,
-  totalProtein: 100,
-  totalCarbs: 100,
-  totalFat: 100,
-  avgCalories: 100,
-  avgProtein: 100,
-  avgCarbs: 100,
-  avgFat: 100,
-  mostEatenFood: "Chicken",
+  mostFrequentMeal: "Chicken",
+  macros: {
+    protein: 90,
+    carbs: 120,
+    fat: 30,
+    sugar: 10,
+    fiber: 90,
+  },
 };
 
 const PAGE_WIDTH = Dimensions.get("window").width;
 const itemSize = 300;
-const itemHeight = 520;
+const itemHeight = 550;
 const centerOffset = PAGE_WIDTH / 2 - itemSize / 2;
 
 type TAnimationStyle = (value: number) => AnimatedStyle<ViewStyle>;
@@ -59,6 +59,7 @@ const StatsScreen = () => {
 
   useEffect(() => {
     dispatch(setWorkoutStats(workoutData));
+    dispatch(setMacroStats(macroData));
     setNavbarTitle("Statistics");
   }, []);
 
@@ -107,9 +108,9 @@ const StatsScreen = () => {
         renderItem={({ index }) => (
           <>
             {index === 0 ? (
-              <WorkoutStatsComponent key={index} stats={workoutData} />
+              <WorkoutStatsComponent key={index} stats={workoutStats} />
             ) : (
-              <MacroStatsComponent />
+              <MacroStatsComponent key={index} stats={macroStats} />
             )}
           </>
         )}
