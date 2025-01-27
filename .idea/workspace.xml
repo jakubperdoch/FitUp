@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: workout stats &amp; graph">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/stats/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/stats/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/interfaces/stats.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/interfaces/stats.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/store/stats.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/stats.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Stats/MacroStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Stats/MacroStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutStats.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +149,7 @@
       <workItem from="1737311474734" duration="11053000" />
       <workItem from="1737394837697" duration="17847000" />
       <workItem from="1737668192611" duration="7613000" />
-      <workItem from="1737903407569" duration="20553000" />
+      <workItem from="1737903407569" duration="21055000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -440,7 +439,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737678875601</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="add: workout stats &amp; graph">
+      <option name="closed" value="true" />
+      <created>1737935477829</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1737935477829</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +471,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: Refactor components to improve UX and remove unused file" />
     <MESSAGE value="fix: Refactor GradientButton" />
     <MESSAGE value="add: Refactor TimeButton and workout state management with Redux" />
     <MESSAGE value="add: Add AlertDialog component and refactor workout logic" />
@@ -489,6 +495,7 @@
     <MESSAGE value="add: workout creation redux slice" />
     <MESSAGE value="add: starting to work on charts &amp; stats" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="add: workout stats &amp; graph" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: workout stats &amp; graph" />
   </component>
 </project>

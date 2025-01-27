@@ -5,8 +5,9 @@ import { type AnimatedStyle, interpolate } from "react-native-reanimated";
 import { useLayout } from "@/context/LayoutContext";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import WorkoutCard from "@/components/custom/Stats/WorkoutCard";
+import WorkoutStatsComponent from "@/components/custom/Stats/WorkoutStats";
 import { setWorkoutStats } from "@/store/stats";
+import MacroStatsComponent from "@/components/custom/Stats/MacroStats";
 
 const workoutData: Partial<WorkoutStats> = {
   totalWorkouts: 10,
@@ -43,7 +44,7 @@ const macroStats: Partial<MacroStats> = {
 
 const PAGE_WIDTH = Dimensions.get("window").width;
 const itemSize = 300;
-const itemHeight = 500;
+const itemHeight = 520;
 const centerOffset = PAGE_WIDTH / 2 - itemSize / 2;
 
 type TAnimationStyle = (value: number) => AnimatedStyle<ViewStyle>;
@@ -104,7 +105,13 @@ const StatsScreen = () => {
         }}
         data={[...new Array(2).keys()]}
         renderItem={({ index }) => (
-          <WorkoutCard key={index} stats={workoutData} />
+          <>
+            {index === 0 ? (
+              <WorkoutStatsComponent key={index} stats={workoutData} />
+            ) : (
+              <MacroStatsComponent />
+            )}
+          </>
         )}
         customAnimation={animationStyle}
       />

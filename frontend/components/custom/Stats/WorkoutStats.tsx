@@ -24,7 +24,7 @@ const Tooltip = ({
   return <Circle r={5} cx={x} cy={y} color={"red"} opacity={0.5} />;
 };
 
-const WorkoutCardComponent = (props: ComponentProps) => {
+const WorkoutStatsComponent = (props: ComponentProps) => {
   const font = useFont(Poppins, 15);
   const titleFont = useFont(PoppinsSemiBold, 15);
   const [data, setData] = useState([]);
@@ -182,4 +182,4 @@ const WorkoutCardComponent = (props: ComponentProps) => {
   );
 };
 
-export default WorkoutCardComponent;
+export default WorkoutStatsComponent;
