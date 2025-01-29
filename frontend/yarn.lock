@@ -1770,7 +1770,7 @@
     "@react-native-aria/interactions" "0.2.13"
     "@react-stately/toggle" "^3.4.4"
 
-"@gluestack-ui/textarea@^0.1.23":
+"@gluestack-ui/textarea@^0.1.24":
   version "0.1.24"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/textarea/-/textarea-0.1.24.tgz#bf3f6379ec49fec21e30aea2ccf79865ecee3625"
   integrity sha512-maABWaI+Vif9S5twBVzcF1pqv43NMigYuKNM7aNZA5+Mzi3/cf3esPpYjB2VFg3r3VKLZq9JbVFkgLq9MauFxw==

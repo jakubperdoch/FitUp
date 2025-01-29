@@ -1,27 +1,23 @@
 import { Text, View } from "react-native";
+import { useCallback, useEffect } from "react";
+import { useLayout } from "@/context/LayoutContext";
+import { Textarea, TextareaInput } from "@/components/ui/textarea";
+import { router, useFocusEffect } from "expo-router";
 import { Input, InputField, InputSlot } from "@/components/ui/input";
-import GenericIcon from "@/components/custom/Icon";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
-import { router, useFocusEffect } from "expo-router";
-import GradientButton from "@/components/custom/Button/GradientButton";
+import GenericIcon from "@/components/custom/Icon";
 import Animated, { ZoomIn } from "react-native-reanimated";
-import { useLayout } from "@/context/LayoutContext";
-import { useCallback, useEffect } from "react";
+import GradientButton from "@/components/custom/Button/GradientButton";
 
-const PasswordScreen = () => {
+const ContactUsScreen = () => {
   const { setNavbarTitle, setShowBackButton } = useLayout();
 
-  const passwordSchema = yup.object().shape({
-    oldPassword: yup.string().required("Old Password is required"),
-    newPassword: yup
-      .string()
-      .required("New Password is required")
-      .min(8, "Password must contain at least 8 characters"),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("newPassword"), null], "Passwords must match"),
+  const feedbackSchema = yup.object().shape({
+    name: yup.string().required("Name is required"),
+    email: yup.string().email("Invalid email").required("Email is required"),
+    feedback: yup.string().required("Feedback is required"),
   });
 
   const {
@@ -30,18 +26,13 @@ const PasswordScreen = () => {
     formState: { errors },
     watch,
   } = useForm({
-    resolver: yupResolver(passwordSchema),
+    resolver: yupResolver(feedbackSchema),
   });
 
-  const watchFields = watch(["oldPassword", "newPassword", "confirmPassword"]);
-
-  const submitHandler = (formData) => {
-    // push formData to the backend
-    router.replace("/profile");
-  };
+  const watchFields = watch(["name", "email", "feedback"]);
 
   useEffect(() => {
-    setNavbarTitle("Change Password");
+    setNavbarTitle("Contact Us");
     setShowBackButton(true);
   }, []);
 
@@ -53,6 +44,11 @@ const PasswordScreen = () => {
     }, []),
   );
 
+  const submitHandler = (formData) => {
+    // push formData to the backend
+    router.replace("/profile");
+  };
+
   return (
     <View className="gap-7 mt-5 px-7">
       <Controller
@@ -61,29 +57,29 @@ const PasswordScreen = () => {
         render={({ field: { onChange, value } }) => (
           <Input size="xl" variant="rounded">
             <InputSlot>
-              <GenericIcon name={"Lock"} />
+              <GenericIcon name={"User"} />
             </InputSlot>
             <InputField
               className="text-lg"
               type={"text"}
               value={value}
               onChangeText={onChange}
-              placeholder="Old Password"
+              placeholder="Name"
               autoCorrect={false}
             />
           </Input>
         )}
-        name={"oldPassword"}
+        name={"name"}
       />
 
-      {errors?.oldPassword && (
+      {errors?.name && (
         <Animated.View
           entering={ZoomIn}
           className="flex-row items-center gap-2"
         >
           <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
           <Text className="font-poppins text-[#F77F00]">
-            {errors?.oldPassword?.message}
+            {errors?.name?.message}
           </Text>
         </Animated.View>
       )}
@@ -94,29 +90,30 @@ const PasswordScreen = () => {
         render={({ field: { onChange, value } }) => (
           <Input size="xl" variant="rounded">
             <InputSlot>
-              <GenericIcon name={"Lock"} />
+              <GenericIcon name={"Mail"} />
             </InputSlot>
             <InputField
               className="text-lg"
               type={"text"}
               value={value}
               onChangeText={onChange}
-              placeholder="New Password"
+              placeholder="Email"
+              autoCapitalize={"none"}
               autoCorrect={false}
             />
           </Input>
         )}
-        name={"newPassword"}
+        name={"email"}
       />
 
-      {errors?.newPassword && (
+      {errors?.email && (
         <Animated.View
           entering={ZoomIn}
           className="flex-row items-center gap-2"
         >
           <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
           <Text className="font-poppins text-[#F77F00]">
-            {errors?.newPassword?.message}
+            {errors?.email?.message}
           </Text>
         </Animated.View>
       )}
@@ -125,44 +122,47 @@ const PasswordScreen = () => {
         control={control}
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
-          <Input size="xl" variant="rounded">
-            <InputSlot>
-              <GenericIcon name={"Lock"} />
-            </InputSlot>
-            <InputField
-              className="text-lg"
-              type={"text"}
+          <Textarea
+            size="xl"
+            isReadOnly={false}
+            className="rounded-2xl p-2 bg-[#F7F8F8]"
+          >
+            <TextareaInput
               value={value}
               onChangeText={onChange}
-              placeholder="Confirm Password"
               autoCorrect={false}
+              autoCapitalize={"none"}
+              className="font-poppins text-lg"
+              placeholder={
+                "Please provide your feedback, questions, or concerns here."
+              }
             />
-          </Input>
+          </Textarea>
         )}
-        name={"confirmPassword"}
+        name={"feedback"}
       />
 
-      {errors?.confirmPassword && (
+      {errors?.feedback && (
         <Animated.View
           entering={ZoomIn}
           className="flex-row items-center gap-2"
         >
           <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
           <Text className="font-poppins text-[#F77F00]">
-            {errors?.confirmPassword?.message}
+            {errors?.feedback?.message}
           </Text>
         </Animated.View>
       )}
 
       <View className="mt-8">
         <GradientButton
-          size={"full"}
-          title={"Change Password"}
+          title={"Contact Us"}
           handleSubmit={handleSubmit(submitHandler)}
+          size={"full"}
         />
       </View>
     </View>
   );
 };
 
-export default PasswordScreen;
+export default ContactUsScreen;

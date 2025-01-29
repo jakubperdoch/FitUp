@@ -56,7 +56,7 @@ const ProfileSectionsData = [
       {
         title: "Contact Us",
         icon: "Mail",
-        route: "ContactUs",
+        route: "profile/ContactUsScreen",
       },
       {
         title: "Privacy Policy",
