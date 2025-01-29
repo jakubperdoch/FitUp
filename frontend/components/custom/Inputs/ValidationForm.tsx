@@ -4,7 +4,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Feather from "@expo/vector-icons/Feather";
 import { Controller } from "react-hook-form";
 import GenericIcon from "@/components/custom/Icon";
-import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
+import Animated, { ZoomIn } from "react-native-reanimated";
 
 type SignUpFormProps = {
   passwordVisibility: boolean;
