@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix">
-      <change afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/AttributionsScreen.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/ContactUsScreen.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/LanguagesScreen.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/PersonalInfoScreen.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/PrivacyPolicyScreen.tsx" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Contact Us page with form &amp; updated styling of profile pages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/PasswordScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/PasswordScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/LanguagesScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/LanguagesScreen.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
@@ -160,7 +155,9 @@
       <workItem from="1737973208746" duration="26391000" />
       <workItem from="1738113363723" duration="1000" />
       <workItem from="1738115122611" duration="12000" />
-      <workItem from="1738165911778" duration="7466000" />
+      <workItem from="1738165911778" duration="7562000" />
+      <workItem from="1738185470148" duration="2138000" />
+      <workItem from="1738197126341" duration="214000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -490,7 +487,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738169413777</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="add: Contact Us page with form &amp; updated styling of profile pages">
+      <option name="closed" value="true" />
+      <created>1738185420470</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1738185420470</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +519,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: Refactor components and add AlertDialog integration" />
     <MESSAGE value="add: Add RunningWorkout section &amp; Redux workout management" />
     <MESSAGE value="add: Add active workout section &amp; updated redux workout management" />
     <MESSAGE value="add: new footer style" />
@@ -539,6 +543,7 @@
     <MESSAGE value="add: MacroStats page and pie graph for better visualization" />
     <MESSAGE value="add: profile &amp; reset password page" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="add: Contact Us page with form &amp; updated styling of profile pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: Contact Us page with form &amp; updated styling of profile pages" />
   </component>
 </project>

@@ -1588,7 +1588,7 @@
   resolved "https://registry.yarnpkg.com/@gluestack-ui/hooks/-/hooks-0.1.12.tgz#4a92de73eec7b6ba6fc8e781c23417252993c95c"
   integrity sha512-jMZS+aIPYvouRKkWUzOYFKeWyt+YFIojYFuSq8sNZTjAq72xtiKZQKxNwOgTorEDD4CAIk0bncRS0TneNSuMAA==
 
-"@gluestack-ui/icon@^0.1.22":
+"@gluestack-ui/icon@^0.1.25":
   version "0.1.25"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/icon/-/icon-0.1.25.tgz#234a75896a388b39cd3c9f5b5a033cc5dcb546ee"
   integrity sha512-HCyiHHHZzHpP5MIy5F2hP8iBc+0yt2NNM+jhbPYeoRG4WY7wc1whaUs9EIQvj880cq/zxOQP0Bz4mnyhuKsEKQ==
@@ -1711,7 +1711,7 @@
     tsconfig "7"
     typescript "^5.6.3"
 
-"@gluestack-ui/radio@^0.1.31":
+"@gluestack-ui/radio@^0.1.34":
   version "0.1.34"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/radio/-/radio-0.1.34.tgz#939b18372ac6b032d563f0e54b2a730b84e3e196"
   integrity sha512-6izkm5t+rbmPemkpIh0k9F9E3UdIFqbzKT6+WMUbmcaiHeTmWhI0njPiA0S8ge+RpKHXZmXgbiRK1TVkvu17Hw==

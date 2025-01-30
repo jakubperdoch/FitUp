@@ -66,7 +66,7 @@ const ProfileSectionsData = [
       {
         title: "Language",
         icon: "Languages",
-        route: "Language",
+        route: "profile/LanguagesScreen",
       },
 
       {
