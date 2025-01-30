@@ -1,0 +1,40 @@
+interface ExerciseSet {
+  reps?: number;
+  weight?: number;
+  specialType?: string;
+}
+
+interface Superset {
+  type: "superset";
+  exercises: Array<Exercise>;
+}
+
+interface Exercise {
+  type: "exercise";
+  exerciseId: string;
+  name: string;
+  sets?: Array<ExerciseSet>;
+  targetMuscles?: Array<string>;
+}
+
+interface ExerciseDetails extends Exercise {
+  gifUrl: string;
+  instructions: Array<string>;
+  bodyParts: Array<string>;
+  equipments: Array<string>;
+  secondaryMuscles: Array<string>;
+}
+
+interface Workout {
+  id: number;
+  name: string;
+  timeOfWorkout: number;
+  day?: string;
+  timer?: number | null;
+  numberOfExercises: number;
+}
+
+interface WorkoutDetails extends Workout {
+  exercises: Array<Exercise | Superset>;
+  days: Array<string>;
+}
