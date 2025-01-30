@@ -16,14 +16,14 @@ const initialState: Stats = {
   },
   macroStats: {
     totalCalories: 0,
-    totalProtein: 0,
-    totalCarbs: 0,
-    totalFat: 0,
-    avgCalories: 0,
-    avgProtein: 0,
-    avgCarbs: 0,
-    avgFat: 0,
-    mostEatenFood: "",
+    mostFrequentMeal: "",
+    macros: {
+      protein: 0,
+      carbs: 0,
+      fat: 0,
+      sugar: 0,
+      fiber: 0,
+    },
   },
 };
 

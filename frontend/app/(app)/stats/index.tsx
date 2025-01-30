@@ -5,8 +5,9 @@ import { type AnimatedStyle, interpolate } from "react-native-reanimated";
 import { useLayout } from "@/context/LayoutContext";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import WorkoutCard from "@/components/custom/Stats/WorkoutCard";
-import { setWorkoutStats } from "@/store/stats";
+import WorkoutStatsComponent from "@/components/custom/Stats/WorkoutStats";
+import { setMacroStats, setWorkoutStats } from "@/store/stats";
+import MacroStatsComponent from "@/components/custom/Stats/MacroStats";
 
 const workoutData: Partial<WorkoutStats> = {
   totalWorkouts: 10,
@@ -29,21 +30,21 @@ const workoutData: Partial<WorkoutStats> = {
   },
 };
 
-const macroStats: Partial<MacroStats> = {
+const macroData: Partial<MacroStats> = {
   totalCalories: 1000,
-  totalProtein: 100,
-  totalCarbs: 100,
-  totalFat: 100,
-  avgCalories: 100,
-  avgProtein: 100,
-  avgCarbs: 100,
-  avgFat: 100,
-  mostEatenFood: "Chicken",
+  mostFrequentMeal: "Chicken",
+  macros: {
+    protein: 90,
+    carbs: 120,
+    fat: 30,
+    sugar: 10,
+    fiber: 90,
+  },
 };
 
 const PAGE_WIDTH = Dimensions.get("window").width;
 const itemSize = 300;
-const itemHeight = 500;
+const itemHeight = 550;
 const centerOffset = PAGE_WIDTH / 2 - itemSize / 2;
 
 type TAnimationStyle = (value: number) => AnimatedStyle<ViewStyle>;
@@ -58,6 +59,7 @@ const StatsScreen = () => {
 
   useEffect(() => {
     dispatch(setWorkoutStats(workoutData));
+    dispatch(setMacroStats(macroData));
     setNavbarTitle("Statistics");
   }, []);
 
@@ -104,7 +106,13 @@ const StatsScreen = () => {
         }}
         data={[...new Array(2).keys()]}
         renderItem={({ index }) => (
-          <WorkoutCard key={index} stats={workoutData} />
+          <>
+            {index === 0 ? (
+              <WorkoutStatsComponent key={index} stats={workoutStats} />
+            ) : (
+              <MacroStatsComponent key={index} stats={macroStats} />
+            )}
+          </>
         )}
         customAnimation={animationStyle}
       />

@@ -1,68 +1,65 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface UserState {
-	fullName: string;
-	email: string;
-	password: string;
-	gender: string;
-	birthDate: string;
-	weight: number;
-	height: number;
-	goal: string;
-}
-
-const initialState: UserState = {
-	fullName: '',
-	email: '',
-	password: '',
-	gender: '',
-	birthDate: null,
-	weight: 0,
-	height: 0,
-	goal: '',
+const initialState: Partial<User> = {
+  userCredentials: {
+    fullName: "",
+    email: "",
+    password: "",
+  },
+  userBiometrics: {
+    birthDate: "",
+    weight: 0,
+    height: 0,
+  },
+  gender: "",
+  goal: "",
 };
 
 export const userSlice = createSlice({
-	name: 'user',
-	initialState,
-	reducers: {
-		setFullName: (state, action: PayloadAction<string>) => {
-			state.fullName = action.payload;
-		},
-		setEmail: (state, action: PayloadAction<string>) => {
-			state.email = action.payload;
-		},
-		setPassword: (state, action: PayloadAction<string>) => {
-			state.password = action.payload;
-		},
-		setGender: (state, action: PayloadAction<string>) => {
-			state.gender = action.payload;
-		},
-		setBirthDate: (state, action: PayloadAction<string>) => {
-			state.birthDate = action.payload;
-		},
-		setWeight: (state, action: PayloadAction<number>) => {
-			state.weight = action.payload;
-		},
-		setHeight: (state, action: PayloadAction<number>) => {
-			state.height = action.payload;
-		},
-		setGoal: (state, action: PayloadAction<string>) => {
-			state.goal = action.payload;
-		},
-	},
+  name: "user",
+  initialState,
+  reducers: {
+    setFullName: (state, action: PayloadAction<string>) => {
+      state.userCredentials.fullName = action.payload;
+    },
+    setEmail: (state, action: PayloadAction<string>) => {
+      state.userCredentials.email = action.payload;
+    },
+    setPassword: (state, action: PayloadAction<string>) => {
+      state.userCredentials.password = action.payload;
+    },
+    setGender: (state, action: PayloadAction<string>) => {
+      state.gender = action.payload;
+    },
+    setBirthDate: (state, action: PayloadAction<string>) => {
+      state.userBiometrics.birthDate = action.payload;
+    },
+    setWeight: (state, action: PayloadAction<number>) => {
+      state.userBiometrics.weight = action.payload;
+    },
+    setHeight: (state, action: PayloadAction<number>) => {
+      state.userBiometrics.height = action.payload;
+    },
+    setGoal: (state, action: PayloadAction<string>) => {
+      state.goal = action.payload;
+    },
+    setUser: (state, action: PayloadAction<User>) => {
+      return { ...state, ...action.payload };
+    },
+  },
 });
 
 export const {
-	setFullName,
-	setEmail,
-	setPassword,
-	setGender,
-	setBirthDate,
-	setWeight,
-	setHeight,
-	setGoal,
+  setFullName,
+  setEmail,
+  setPassword,
+  setGender,
+  setBirthDate,
+  setWeight,
+  setHeight,
+  setGoal,
+  setUser,
 } = userSlice.actions;
 
 export default userSlice.reducer;

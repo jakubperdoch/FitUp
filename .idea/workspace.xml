@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: Contact Us page with form &amp; updated styling of profile pages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/stats/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/stats/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/interfaces/stats.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/interfaces/stats.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/store/stats.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/stats.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/LanguagesScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/LanguagesScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,18 +88,18 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;discord-application&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/assets/icons" />
       <recent name="$PROJECT_DIR$/frontend/assets/animations/gifs" />
       <recent name="$PROJECT_DIR$/frontend/hooks" />
       <recent name="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable" />
       <recent name="$PROJECT_DIR$/frontend/components/custom/Inputs" />
-      <recent name="$PROJECT_DIR$/frontend/app/(app)/workouts/create" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -150,7 +150,14 @@
       <workItem from="1737311474734" duration="11053000" />
       <workItem from="1737394837697" duration="17847000" />
       <workItem from="1737668192611" duration="7613000" />
-      <workItem from="1737903407569" duration="20553000" />
+      <workItem from="1737903407569" duration="22111000" />
+      <workItem from="1737973098527" duration="105000" />
+      <workItem from="1737973208746" duration="26391000" />
+      <workItem from="1738113363723" duration="1000" />
+      <workItem from="1738115122611" duration="12000" />
+      <workItem from="1738165911778" duration="7562000" />
+      <workItem from="1738185470148" duration="2138000" />
+      <workItem from="1738197126341" duration="214000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -440,7 +447,55 @@
       <option name="project" value="LOCAL" />
       <updated>1737678875601</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="add: workout stats &amp; graph">
+      <option name="closed" value="true" />
+      <created>1737935477829</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1737935477829</updated>
+    </task>
+    <task id="LOCAL-00038" summary="add: starting structure for diet stats">
+      <option name="closed" value="true" />
+      <created>1737936122380</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1737936122380</updated>
+    </task>
+    <task id="LOCAL-00039" summary="add: MacroStats page and pie graph for better visualization">
+      <option name="closed" value="true" />
+      <created>1738005771181</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1738005771181</updated>
+    </task>
+    <task id="LOCAL-00040" summary="add: profile &amp; reset password page">
+      <option name="closed" value="true" />
+      <created>1738169398620</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1738169398620</updated>
+    </task>
+    <task id="LOCAL-00041" summary="fix">
+      <option name="closed" value="true" />
+      <created>1738169413777</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1738169413777</updated>
+    </task>
+    <task id="LOCAL-00042" summary="add: Contact Us page with form &amp; updated styling of profile pages">
+      <option name="closed" value="true" />
+      <created>1738185420470</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1738185420470</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,11 +519,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: Refactor components to improve UX and remove unused file" />
-    <MESSAGE value="fix: Refactor GradientButton" />
-    <MESSAGE value="add: Refactor TimeButton and workout state management with Redux" />
-    <MESSAGE value="add: Add AlertDialog component and refactor workout logic" />
-    <MESSAGE value="add: Refactor components and add AlertDialog integration" />
     <MESSAGE value="add: Add RunningWorkout section &amp; Redux workout management" />
     <MESSAGE value="add: Add active workout section &amp; updated redux workout management" />
     <MESSAGE value="add: new footer style" />
@@ -488,7 +538,12 @@
     <MESSAGE value="add: disabled inputs when editing workout" />
     <MESSAGE value="add: workout creation redux slice" />
     <MESSAGE value="add: starting to work on charts &amp; stats" />
+    <MESSAGE value="add: workout stats &amp; graph" />
+    <MESSAGE value="add: starting structure for diet stats" />
+    <MESSAGE value="add: MacroStats page and pie graph for better visualization" />
+    <MESSAGE value="add: profile &amp; reset password page" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="add: Contact Us page with form &amp; updated styling of profile pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: Contact Us page with form &amp; updated styling of profile pages" />
   </component>
 </project>
