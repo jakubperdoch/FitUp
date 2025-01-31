@@ -57,7 +57,7 @@ const SelectingGoalsScreen = () => {
   const SwiperContent = [
     {
       title: "Improve Shape",
-      text: "I have a low amount of body fat and need / want to build more muscle",
+      text: "I have a low amount of body fat and want to build more muscle",
       image: <InformationCardFirst />,
     },
     {
@@ -77,6 +77,19 @@ const SelectingGoalsScreen = () => {
   };
 
   const submitHandler = (formData: any) => {
+    switch (formData) {
+      case 0:
+        formData = "gain";
+        break;
+      case 1:
+        formData = "lean";
+        break;
+      case 2:
+        formData = "lose";
+        break;
+      default:
+        break;
+    }
     dispatch(setGoal(formData));
     router.replace("/register-process/SuccessScreen");
   };

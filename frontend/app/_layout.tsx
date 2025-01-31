@@ -9,20 +9,25 @@ import Toast from "react-native-toast-message";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const RootLayout = () => {
   return (
     <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <GluestackUIProvider>
-          <Provider store={store}>
-            <SafeAreaView style={styles.container}>
-              <ContextProvider>
-                <Slot />
-                <Toast />
-              </ContextProvider>
-            </SafeAreaView>
-          </Provider>
+          <QueryClientProvider client={queryClient}>
+            <Provider store={store}>
+              <SafeAreaView style={styles.container}>
+                <ContextProvider>
+                  <Slot />
+                  <Toast />
+                </ContextProvider>
+              </SafeAreaView>
+            </Provider>
+          </QueryClientProvider>
         </GluestackUIProvider>
       </GestureHandlerRootView>
     </SafeAreaProvider>

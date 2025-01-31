@@ -52,9 +52,6 @@ const SignUpScreen = () => {
   }
 
   const submitHandler = (formData) => {
-    // push formData to the backend
-    // TODO: Implement the backend logic
-
     dispatch(setEmail(watchFields[0]));
     dispatch(setPassword(watchFields[2]));
 
@@ -90,7 +87,7 @@ const SignUpScreen = () => {
           control={control}
         />
 
-        <View className="flex flex-row px-4  w-full justify-center items-center gap-3 mt-5">
+        <View className="flex flex-row px-4  w-full justify-center items-center gap-3 mt-5 mb-3">
           <Controller
             control={control}
             rules={{

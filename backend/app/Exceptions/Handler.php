@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -46,5 +48,18 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        Log::warning('Unauthenticated access attempt.', [
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->header('User-Agent'),
+            'requested_url' => $request->fullUrl(),
+            'route' => $request->route() ? $request->route()->getName() : 'N/A',
+            'guards' => $exception->guards(),
+        ]);
+
+        return response()->json(['message' => 'Unauthorized.'], 401);
     }
 }

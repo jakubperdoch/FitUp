@@ -85,7 +85,6 @@ const InformationScreen = () => {
     dispatch(setBirthDate(new Date(watchedFields[1]).toISOString()));
     dispatch(setReduxHeight(watchedFields[2]));
     dispatch(setReduxWeight(watchedFields[3]));
-    console.log("Correct");
     router.push("/register-process/SelectingGoalsScreen");
   };
 
