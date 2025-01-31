@@ -2,27 +2,25 @@ import axios from "axios";
 import objectToQueryString from "@/utils/objectToQueryString";
 import handlePayload from "@/utils/handlePayload";
 import * as SecureStore from "expo-secure-store";
-import apiErrorMessageHandler from "@/utils/apiErrorMessageHandler";
+
 /**
  * Wrapper for axios that handles authentication and file uploads.
  * @param {string} url An API endpoint.
  * @param {object} options An options object.
  * @returns {Promise<any>} An API response.
  */
+
 const apiFetch = async (url, options = {}) => {
   const baseUrl = process.env.EXPO_PUBLIC_API_URL;
   let fullUrl = `${baseUrl}${url}`;
 
   const userToken = await SecureStore.getItemAsync("userToken");
 
-  // Handle query parameters
-
   if (options.query) {
     fullUrl += `?${objectToQueryString(options.query)}`;
     delete options.query;
   }
 
-  // Prepare axios configuration
   const axiosConfig = {
     url: fullUrl,
     method: options.method || "GET",
@@ -34,13 +32,11 @@ const apiFetch = async (url, options = {}) => {
     (axiosConfig.headers ??= {}).Accept = "application/json";
   }
 
-  // Handle request body
   if (options.body) {
     const { payload, hasFiles } = handlePayload(options.body);
     axiosConfig.data = payload;
     axiosConfig.headers["Accept"] = "application/json";
 
-    // Handle file uploads by changing method and adding _method query parameter
     if (
       hasFiles &&
       ["PUT", "PATCH"].includes((options.method || "GET").toUpperCase())

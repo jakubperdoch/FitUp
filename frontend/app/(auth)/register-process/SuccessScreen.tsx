@@ -5,9 +5,12 @@ import SuccessImage from "@/assets/images/success-image.svg";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { router } from "expo-router";
 import { useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
 
 const SuccessScreen = () => {
   const user = useSelector((state: RootState) => state.user);
+
+  const { mutate: registerMutation } = useMutation({});
 
   const submitHandler = () => {
     router.replace("/home");
