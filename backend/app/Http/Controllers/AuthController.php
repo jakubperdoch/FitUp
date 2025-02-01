@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
@@ -28,7 +30,7 @@ class AuthController extends Controller
             'full_name' => $request->full_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'onboarding' => false,
+            'onboarding' => 'false',
         ]);
 
         return response()->json([
@@ -61,6 +63,37 @@ class AuthController extends Controller
             'message' => 'Successfully logged in.',
             'access_token' => $token,
             'user' => $user,
+        ], 200);
+    }
+
+    public function addAdditionalData(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'birth_date' => ['required', 'date'],
+            'weight' => ['required', 'integer', 'max:255'],
+            'height' => ['required', 'integer', 'max:255'],
+            'gender' => ['required', 'string', 'max:255', Rule::in(['male', 'female', 'other'])],
+            'goal' => ['required', 'string', 'max:255', Rule::in(['lose', 'lean', 'gain'])],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        };
+
+        $user = $request->user();
+
+        $user->update([
+            'birth_date' => Carbon::parse($request->birth_date)->format('Y-m-d'),
+            'weight' => $request->weight,
+            'height' => $request->height,
+            'gender' => $request->gender,
+            'goal' => $request->goal,
+            'onboarding' => 'true',
+        ]);
+
+        return response()->json([
+            'message' => 'Additional data added',
         ], 200);
     }
 

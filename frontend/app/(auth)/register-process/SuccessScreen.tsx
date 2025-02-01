@@ -6,14 +6,34 @@ import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { router } from "expo-router";
 import { useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
 
 const SuccessScreen = () => {
   const user = useSelector((state: RootState) => state.user);
 
-  const { mutate: registerMutation } = useMutation({});
+  const { mutate: finishAccount } = useMutation<string, Error, Partial<User>>({
+    mutationFn: (data: Partial<User>) =>
+      apiFetch("/auth/finish-account", {
+        method: "POST",
+        body: {
+          birth_date: data.userBiometrics.birthDate,
+          weight: data.userBiometrics.weight,
+          height: data.userBiometrics.height,
+          gender: data.gender,
+          goal: data.goal,
+        },
+      }),
+    onSuccess: (response) => {
+      router.replace("/home");
+    },
+    onError: (error) => {
+      console.log(error);
+      router.replace("/SignInScreen");
+    },
+  });
 
   const submitHandler = () => {
-    router.replace("/home");
+    finishAccount(user);
   };
 
   useEffect(() => {

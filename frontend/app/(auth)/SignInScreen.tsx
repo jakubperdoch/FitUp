@@ -18,8 +18,8 @@ import GenericIcon from "@/components/custom/Icon";
 const SignInScreen = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [localError, setLocalError] = useState<string | null>(null);
-  const { logIn } = useAuth();
 
+  const { logIn } = useAuth();
   const dispatch = useDispatch();
 
   let userSchema = yup.object().shape({
@@ -51,11 +51,17 @@ const SignInScreen = () => {
     mutate: loginMutation,
     status,
     error,
-  } = useMutation({
+  } = useMutation<LoginResponse, Error, { email: string; password: string }>({
     mutationFn: (formData: { email: string; password: string }) =>
       logIn(formData.email, formData.password),
-    onSuccess: () => {
-      router.replace("/home");
+    onSuccess: (response) => {
+      if (!response) return;
+
+      if (response.user.onboarding !== "true") {
+        router.replace("/register-process/InformationScreen");
+      } else {
+        router.replace("/home");
+      }
     },
     onError: (error) => {
       setLocalError(error.message);

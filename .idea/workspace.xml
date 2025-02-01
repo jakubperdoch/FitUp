@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: login, register backend &amp; connected to frontend">
-      <change afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: connected login with frontend">
+      <change afterPath="$PROJECT_DIR$/frontend/interfaces/meals.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/interfaces/response.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationScreen.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/context/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/context/AuthContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/utils/apiErrorMessageHandler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/utils/apiFetch.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/utils/apiFetch.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +172,7 @@
       <workItem from="1738249478578" duration="674000" />
       <workItem from="1738251229426" duration="4871000" />
       <workItem from="1738261242507" duration="9230000" />
-      <workItem from="1738343296939" duration="13816000" />
+      <workItem from="1738343296939" duration="21530000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -529,7 +534,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738353968079</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="add: connected login with frontend">
+      <option name="closed" value="true" />
+      <created>1738367480031</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1738367480031</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,7 +566,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: Horror fix. Deleted tailwind safelist and now it works smooth as butter" />
     <MESSAGE value="add: Add ScheduleAccordion &amp; starting structure of Workout details" />
     <MESSAGE value="fix: removed Tamagui" />
     <MESSAGE value="fix: Add maximum date for meal creation" />
@@ -578,6 +590,7 @@
     <MESSAGE value="add: Language screen" />
     <MESSAGE value="merge" />
     <MESSAGE value="add: login, register backend &amp; connected to frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: login, register backend &amp; connected to frontend" />
+    <MESSAGE value="add: connected login with frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: connected login with frontend" />
   </component>
 </project>

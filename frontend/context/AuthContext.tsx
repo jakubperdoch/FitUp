@@ -45,32 +45,21 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (
-    fullName: string,
-    birthDate: string,
+    full_name: string,
     email: string,
     password: string,
-    weight: number,
-    height: number,
-    gender: string,
-    goal: string,
   ) => {
     try {
       const response = await apiFetch("/auth/register", {
         method: "POST",
         body: {
-          full_name: fullName,
-          birth_date: birthDate,
+          full_name,
           email,
           password,
-          weight,
-          height,
-          gender,
-          goal,
         },
       });
 
       if (response?.user) {
-        await logIn(email, password);
         return Promise.resolve(response);
       } else {
         return Promise.reject(response);

@@ -31,8 +31,8 @@ Route::prefix('auth')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+        Route::post('/finish-account', [AuthController::class, 'addAdditionalData'])->name('addAdditionalData');
         Route::get('/userDetails', [UserController::class, 'userDetails'])->name('userDetails');
-        Route::post('/additional-data', [UserController::class, 'addAdditionalData'])->name('addAdditionalData');
     });
 });
 
