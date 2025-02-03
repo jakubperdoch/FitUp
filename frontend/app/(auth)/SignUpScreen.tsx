@@ -13,9 +13,16 @@ import { setPassword, setEmail, setFullName } from "@/store/user";
 import { useDispatch } from "react-redux";
 import { Controller } from "react-hook-form";
 import startCase from "lodash/startCase";
+import { useMutation } from "@tanstack/react-query";
+import { useAuth } from "@/context/AuthContext";
+import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
+import GenericIcon from "@/components/custom/Icon";
 
 const SignUpScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [localError, setLocalError] = useState<string | null>(null);
+
+  const { register, logIn } = useAuth();
   const dispatch = useDispatch();
 
   let userSchema = yup.object().shape({
@@ -51,18 +58,38 @@ const SignUpScreen = () => {
     return startCase(fullName).split(" ");
   }
 
-  const submitHandler = (formData) => {
-    // push formData to the backend
-    // TODO: Implement the backend logic
+  const {
+    mutate: registerMutate,
+    error,
+    status,
+  } = useMutation<
+    RegisterResponse,
+    Error,
+    { name: string; email: string; password: string }
+  >({
+    mutationFn: (formData: { name: string; email: string; password: string }) =>
+      register(formData.name, formData.email, formData.password),
+    onSuccess: (response) => {
+      if (!response) return;
 
+      router.replace("/SignInScreen");
+    },
+    onError: (error) => {
+      setLocalError(error.message);
+    },
+  });
+
+  const submitHandler = (formData: {
+    name: string;
+    email: string;
+    password: string;
+  }) => {
+    registerMutate(formData);
     dispatch(setEmail(watchFields[0]));
-    dispatch(setPassword(watchFields[2]));
 
     validateFullName(watchFields[1])
       ? dispatch(setFullName(watchFields[1]))
       : dispatch(setFullName(splitCamelCaseName(watchFields[1])));
-
-    router.replace("/register-process/InformationScreen");
   };
 
   const handleState = () => setShowPassword((prev) => !prev);
@@ -90,7 +117,7 @@ const SignUpScreen = () => {
           control={control}
         />
 
-        <View className="flex flex-row px-4  w-full justify-center items-center gap-3 mt-5">
+        <View className="flex flex-row px-4  w-full justify-center items-center gap-3 mt-5 mb-3">
           <Controller
             control={control}
             rules={{
@@ -121,6 +148,17 @@ const SignUpScreen = () => {
             By continuing you accept our Privacy Policy and Term of Use
           </Text>
         </View>
+
+        {localError && (
+          <Animated.View
+            entering={ZoomIn}
+            exiting={ZoomOut}
+            className="flex-row items-center gap-2"
+          >
+            <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
+            <Text className="font-poppins text-[#F77F00]">{localError}</Text>
+          </Animated.View>
+        )}
 
         <GradientButtonComponent
           size={"full"}

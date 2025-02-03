@@ -8,6 +8,9 @@ import ProfileDataCards from "@/components/custom/Profile/DataCards";
 import ProfileSections from "@/components/custom/Profile/ProfileSections";
 import { useLayout } from "@/context/LayoutContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAuth } from "@/context/AuthContext";
+import { useMutation } from "@tanstack/react-query";
+import { router } from "expo-router";
 
 const userData: User = {
   userCredentials: {
@@ -81,6 +84,7 @@ const ProfileSectionsData = [
 const ProfileScreen = () => {
   const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(false);
 
+  const { logOut } = useAuth();
   const { setNavbarTitle } = useLayout();
   const dispatch = useDispatch();
 
@@ -90,6 +94,16 @@ const ProfileScreen = () => {
     setIsNotificationsEnabled((prev) => !prev);
     AsyncStorage.setItem("notifications", String(!isNotificationsEnabled));
   };
+
+  const { mutate: logoutMutation } = useMutation({
+    mutationFn: () => logOut(),
+    onSuccess: () => {
+      router.replace("/SignInScreen");
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   useEffect(() => {
     dispatch(setUser(userData));
@@ -113,7 +127,7 @@ const ProfileScreen = () => {
         isNotificationEnabled={isNotificationsEnabled}
       />
 
-      <TouchableOpacity activeOpacity={0.7}>
+      <TouchableOpacity activeOpacity={0.7} onPress={() => logoutMutation()}>
         <Text className="font-poppins text-center text-[#D62828] text-xl mt-8">
           Log Out
         </Text>

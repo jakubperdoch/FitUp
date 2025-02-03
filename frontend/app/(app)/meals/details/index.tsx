@@ -13,13 +13,9 @@ import { useLayout } from "@/context/LayoutContext";
 
 const DetailsScreen = () => {
   const { setShowFooter, setNavbarTitle, setShowBackButton } = useLayout();
-  const params = useLocalSearchParams();
-  const [maximumDate, setMaximumDate] = useState(null);
-  dayjs.extend(localizedFormat);
+  const [mealDetails, setMealDetails] = useState<MealDetails | null>(null);
 
-  useEffect(() => {
-    setMaximumDate(new Date(new Date().setMonth(new Date().getMonth() + 1)));
-  }, []);
+  const params = useLocalSearchParams();
 
   useEffect(() => {
     setShowFooter(false);
@@ -35,10 +31,6 @@ const DetailsScreen = () => {
       };
     }, []),
   );
-
-  // Modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const closeModalHandler = () => setIsModalOpen(false);
 
   const nutritionData = [
     {
@@ -153,7 +145,6 @@ const DetailsScreen = () => {
     value: "breakfast",
   });
 
-  const [date, setDate] = useState(null);
   const partsOfDayData = [
     {
       name: "Breakfast",
@@ -180,11 +171,6 @@ const DetailsScreen = () => {
       value: "lateNightSnack",
     },
   ];
-
-  const theme = {
-    mainColor: "#F77F00",
-    activeTextColor: "#fff",
-  };
 
   return (
     <View>
@@ -279,25 +265,6 @@ const DetailsScreen = () => {
       </View>
 
       <View className="mt-10 mx-6">
-        <Text className="font-semibold font-poppins  text-2xl mb-5">Date</Text>
-
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => setIsModalOpen(true)}
-          className="px-6 gap-4 rounded-xl bg-[#F7F8F8] flex flex-row h-16 items-center justify-start w-full"
-        >
-          <GenericIcon name={"CalendarDays"} color={"#7B6F72"} size={20} />
-          <Text
-            className={`${
-              date ? "opacity-100" : "opacity-40"
-            } font-semibold font-poppins text-lg text-[#7B6F72]`}
-          >
-            {date ? date?.format("LL") : "Date When Eaten"}
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View className="mt-10 mx-6">
         <GradientButtonComponent
           size={"full"}
           title={
@@ -308,24 +275,6 @@ const DetailsScreen = () => {
           handleSubmit={() => console.log("Save")}
         />
       </View>
-
-      <ModalComponent
-        isModalOpen={isModalOpen}
-        closeModalHandler={closeModalHandler}
-      >
-        <DateTimePicker
-          mode="single"
-          date={date}
-          onChange={(params) => setDate(params.date)}
-          headerButtonColor={theme?.mainColor}
-          selectedItemColor={theme?.mainColor}
-          maxDate={maximumDate}
-          selectedTextStyle={{
-            fontWeight: "bold",
-            color: theme?.activeTextColor,
-          }}
-        />
-      </ModalComponent>
     </View>
   );
 };

@@ -15,8 +15,8 @@ const ExplainersLayout = () => {
 
   const onPressHandler = () => {
     if (pageIndex >= 4) {
-      // router.replace("/SignUpScreen");
-      router.replace("/register-process/SuccessScreen");
+      router.replace("/SignUpScreen");
+      // router.replace("/register-process/SuccessScreen");
       // router.push("/register-process/InformationScreen");
 
       return;
