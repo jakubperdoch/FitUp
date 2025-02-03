@@ -1,39 +1,32 @@
-import { ScrollView, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import FoodScrollCardComponent from "./Card";
+import { useEffect } from "react";
 
-type Meal = {
-  id: number;
-  name: string;
-  calories: number;
-};
-
-type ComponentProps = {
-  meals: Meal[];
+interface ComponentProps {
+  meals: MealSearchCard[];
   onClick: (id: number) => void;
-};
+}
 
-const FoodScrollComponent = (props: ComponentProps) => {
+const FoodScrollComponent = ({ meals, onClick }: ComponentProps) => {
   return (
     <View className="h-full flex flex-col gap-5">
       <Text className="ms-7 text-2xl font-semibold font-poppins ">Meals</Text>
-      <ScrollView
+      <FlatList
+        data={meals}
         className="px-7  h-full"
-        contentContainerClassName="pb-[40rem]"
-      >
-        {props.meals.length > 0 ? (
-          props.meals.map((meal) => {
-            return (
-              <FoodScrollCardComponent
-                key={meal.id}
-                meal={meal}
-                onClick={props.onClick}
-              />
-            );
-          })
-        ) : (
-          <Text className="mx-auto text-[#ADA4A5]">Nothing to show</Text>
+        contentContainerClassName="pt-3 pb-[40rem]"
+        renderItem={({ item }) => (
+          <FoodScrollCardComponent
+            key={item.id}
+            meal={item}
+            onClick={onClick}
+          />
         )}
-      </ScrollView>
+        ListEmptyComponent={() => (
+          <Text className="mx-auto text-[#ADA4A5]">No meals found.</Text>
+        )}
+        keyExtractor={(item) => item.id.toString()}
+      />
     </View>
   );
 };

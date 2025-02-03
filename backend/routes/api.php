@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MealController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +35,12 @@ Route::prefix('auth')->group(function () {
         Route::post('/finish-account', [AuthController::class, 'addAdditionalData'])->name('addAdditionalData');
         Route::get('/userDetails', [UserController::class, 'userDetails'])->name('userDetails');
     });
+});
+
+//    meals endpoints
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/add-meal', [MealController::class, 'addMeal'])->name('addMeal');
+    Route::get('/get-meals', [MealController::class, 'getMeals'])->name('getMeals');
+    Route::get('/refresh-token', [MealController::class, 'refreshToken'])->name('refreshToken');
 });
 

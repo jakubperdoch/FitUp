@@ -1,36 +1,49 @@
-import { View, Text, TouchableOpacity } from 'react-native';
-import GenericIcon from '../../Icon';
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import GenericIcon from "../../Icon";
 
-type Meal = {
-	id: number;
-	name: string;
-	calories: number;
-};
+interface ComponentProps {
+  onClick: (id: number) => void;
+  meal: MealSearchCard;
+}
 
-type ComponentProps = {
-	onClick: (id: number) => void;
-	meal: Meal;
-};
+const FoodScrollCardComponent = ({ onClick, meal }: ComponentProps) => {
+  return (
+    <TouchableOpacity
+      onPress={() => onClick(meal.id)}
+      className="shadow-soft-0 mb-6 rounded-3xl bg-white p-5 flex flex-row gap-3 items-center"
+    >
+      {meal.image && (
+        <Image
+          style={{ width: 50, height: 50 }}
+          source={{
+            uri: meal.image,
+          }}
+        />
+      )}
 
-const FoodScrollCardComponent = (props: ComponentProps) => {
-	return (
-		<TouchableOpacity
-			onPress={() => props.onClick(props.meal.id)}
-			className='shadow-sm mb-6 rounded-3xl bg-white p-5 flex flex-row justify-between items-center'>
-			<View className='flex flex-col gap-1'>
-				<Text className='font-poppins text-lg '>{props.meal.name}</Text>
-				<Text className='font-poppins text-[#ADA4A5] font-sm '>
-					{props.meal.calories}kCal
-				</Text>
-			</View>
+      <View className="flex flex-col gap-1">
+        <Text
+          className="font-poppins text-lg truncate max-w-60"
+          numberOfLines={1}
+        >
+          {meal.name.replace(/\s*\(.*?\)\s*/g, "")}
+        </Text>
+        <Text
+          className="font-poppins text-[#ADA4A5] font-sm truncate max-w-60"
+          numberOfLines={1}
+        >
+          {meal?.serving?.description} | {meal?.serving?.calories} kCal
+        </Text>
+      </View>
 
-			<TouchableOpacity
-				onPress={() => props.onClick(props.meal.id)}
-				className='border border-[#ADA4A5] rounded-full p-1'>
-				<GenericIcon name='ChevronRight' color='#ADA4A5' size={22} />
-			</TouchableOpacity>
-		</TouchableOpacity>
-	);
+      <TouchableOpacity
+        onPress={() => onClick(meal.id)}
+        className="border border-[#F77F00] rounded-full p-1 ms-auto"
+      >
+        <GenericIcon name="ChevronRight" color="#F77F00" size={22} />
+      </TouchableOpacity>
+    </TouchableOpacity>
+  );
 };
 
 export default FoodScrollCardComponent;
