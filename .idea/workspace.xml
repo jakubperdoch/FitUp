@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: connected login with frontend">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: meal details connected to the backend">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/search/[name].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/search/[name].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Inputs/ServingInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Inputs/ServingInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/CategoryCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/CategoryCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/CategoryScroll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/CategoryScroll.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +171,7 @@
       <workItem from="1738343296939" duration="30484000" />
       <workItem from="1738519975565" duration="2000" />
       <workItem from="1738560442021" duration="522000" />
-      <workItem from="1738611321083" duration="13885000" />
+      <workItem from="1738611321083" duration="23080000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -546,7 +541,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738367480031</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="add: meal details connected to the backend">
+      <option name="closed" value="true" />
+      <created>1738639363225</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1738639363225</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,7 +573,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: Add ScheduleAccordion &amp; starting structure of Workout details" />
     <MESSAGE value="fix: removed Tamagui" />
     <MESSAGE value="fix: Add maximum date for meal creation" />
     <MESSAGE value="fix: Edit Yup warnings" />
@@ -595,6 +597,7 @@
     <MESSAGE value="merge" />
     <MESSAGE value="add: login, register backend &amp; connected to frontend" />
     <MESSAGE value="add: connected login with frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: connected login with frontend" />
+    <MESSAGE value="add: meal details connected to the backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: meal details connected to the backend" />
   </component>
 </project>

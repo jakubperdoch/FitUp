@@ -14,8 +14,10 @@ const MealsSearchPage = () => {
   const { name } = useLocalSearchParams();
   const { setNavbarTitle } = useLayout();
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const debouncedSearch = useDebounce(searchQuery, 50);
-  const [page, setPage] = useState<number>(0);
+  const [page, setPage] = useState(0);
+  const [meals, setMeals] = useState([]);
+
+  const debouncedSearch = useDebounce(searchQuery, 200);
 
   useEffect(() => {
     const nameString = Array.isArray(name) ? name[0] : name;
@@ -28,11 +30,32 @@ const MealsSearchPage = () => {
     }
   }, [name, setNavbarTitle]);
 
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["meals", page, debouncedSearch],
-    queryFn: () => apiFetch(`/meals?page=${page}&search=${debouncedSearch}`),
+  const { isFetching, data, refetch } = useQuery({
+    queryKey: ["meals", debouncedSearch, page],
+    queryFn: () => apiFetch(`/meals?search=${debouncedSearch}&page=${page}`),
     placeholderData: keepPreviousData,
   });
+
+  useEffect(() => {
+    if (data) {
+      setMeals((prev) => [...prev, ...data?.meals]);
+    }
+  }, [data]);
+
+  const onRefresh = () => {
+    if (isFetching) return;
+    refetch().catch((err) => console.error(err));
+  };
+
+  const loadMore = () => {
+    if (isFetching) return;
+    setPage((prev) => prev + 1);
+  };
+
+  useEffect(() => {
+    setMeals([]);
+    setPage(0);
+  }, [debouncedSearch]);
 
   const categories = [
     {
@@ -95,7 +118,13 @@ const MealsSearchPage = () => {
         onClick={onCategoryClick}
       />
 
-      <FoodScrollComponent meals={data?.meals} onClick={onFoodCardClick} />
+      <FoodScrollComponent
+        loadMore={loadMore}
+        onRefresh={onRefresh}
+        isLoading={isFetching}
+        meals={meals}
+        onClick={onFoodCardClick}
+      />
     </View>
   );
 };

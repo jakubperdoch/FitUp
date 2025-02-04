@@ -72,9 +72,9 @@ class MealController extends Controller
                 'search_expression' => $query['search'],
                 'format' => 'json',
                 'include_food_images' => 'true',
-                'page_number' => $query['page'] ?? 0,
                 'max_results' => 10,
                 'include_food_attributes' => 'true',
+                'page_number' => $query['page'] ?? 0,
             ]);
 
         if ($meals->failed()) {
@@ -118,8 +118,14 @@ class MealController extends Controller
         }
 
 
+        $currentPage = (int)$meals['foods_search']['page_number'];
+        $maxPage = floor((int)$meals['foods_search']['total_results'] / 10);
+        
+
         return response()->json([
             'message' => 'Meals retrieved',
+            'current_page' => $currentPage,
+            'max_page' => $maxPage,
             'meals' => $foods,
         ]);
     }
@@ -176,7 +182,7 @@ class MealController extends Controller
 
         $data = $mealResponse->json()['food'];
 
-        $allergens = collect($data['food_attributes']['allergens']['allergen'])
+        $allergens = collect($data['food_attributes']['allergens']['allergen'] ?? [])
             ->filter(function ($allergen) {
                 return $allergen['value'] !== '0';
             })
