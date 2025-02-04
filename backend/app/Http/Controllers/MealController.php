@@ -148,6 +148,56 @@ class MealController extends Controller
 
     }
 
+    public function getMealDetails($id)
+    {
+        if (!is_numeric($id)) {
+            return response()->json([
+                'message' => 'The Id muste be a number'
+            ], 422);
+        }
+
+        $accessToken = $this->getFatsecretAccessToken();
+
+        $mealResponse = Http::withToken($accessToken)
+            ->get('https://platform.fatsecret.com/rest/server.api', [
+                'method' => 'food.get.v4',
+                'food_id' => $id,
+                'format' => 'json',
+                'include_food_images' => 'true',
+                'include_food_attributes' => 'true'
+            ]);
+
+
+        if ($mealResponse->failed()) {
+            return response()->json([
+                'message' => 'No meal with that id was found'
+            ], 404);
+        }
+
+        $data = $mealResponse->json()['food'];
+
+        $allergens = collect($data['food_attributes']['allergens']['allergen'])
+            ->filter(function ($allergen) {
+                return $allergen['value'] !== '0';
+            })
+            ->values();
+
+        $meal = [
+            'id' => $data['food_id'] ?? null,
+            'name' => $data['food_name'] ?? null,
+            'url' => $data['food_url'] ?? null,
+            'image' => $data['food_images']['food_image'][0]['image_url'] ?? null,
+            'allergens' => $allergens ?? null,
+            'servings' => $data['servings']['serving'] ?? null
+        ];
+
+        return response()->json([
+            'message' => 'Meal retrieved',
+            'meal' => $meal
+        ]);
+
+    }
+
     public function refreshToken()
     {
         Cache::forget('fatsecret_access_token');

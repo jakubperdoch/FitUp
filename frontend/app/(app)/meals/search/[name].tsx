@@ -14,7 +14,7 @@ const MealsSearchPage = () => {
   const { name } = useLocalSearchParams();
   const { setNavbarTitle } = useLayout();
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const debouncedSearch = useDebounce(searchQuery, 300);
+  const debouncedSearch = useDebounce(searchQuery, 50);
   const [page, setPage] = useState<number>(0);
 
   useEffect(() => {
@@ -30,8 +30,7 @@ const MealsSearchPage = () => {
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["meals", page, debouncedSearch],
-    queryFn: () =>
-      apiFetch(`/get-meals?page=${page}&search=${debouncedSearch}`),
+    queryFn: () => apiFetch(`/meals?page=${page}&search=${debouncedSearch}`),
     placeholderData: keepPreviousData,
   });
 
