@@ -17,7 +17,7 @@ const MealsSearchPage = () => {
   const [page, setPage] = useState(0);
   const [meals, setMeals] = useState([]);
 
-  const debouncedSearch = useDebounce(searchQuery, 200);
+  const debouncedSearch = useDebounce(searchQuery, 100);
 
   useEffect(() => {
     const nameString = Array.isArray(name) ? name[0] : name;
@@ -34,6 +34,7 @@ const MealsSearchPage = () => {
     queryKey: ["meals", debouncedSearch, page],
     queryFn: () => apiFetch(`/meals?search=${debouncedSearch}&page=${page}`),
     placeholderData: keepPreviousData,
+    enabled: !!debouncedSearch.trim(),
   });
 
   useEffect(() => {

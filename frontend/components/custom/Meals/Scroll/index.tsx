@@ -45,7 +45,7 @@ const FoodScrollComponent = ({
         ref={flatListRef}
         data={meals}
         className="px-7  h-full"
-        refreshing={isLoading}
+        refreshing={isLoading && meals.length === 0}
         onRefresh={() => onRefresh}
         contentContainerClassName="pt-3 pb-[40rem]"
         renderItem={({ item }) => (
