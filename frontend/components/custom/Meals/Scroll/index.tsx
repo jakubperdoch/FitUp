@@ -62,7 +62,9 @@ const FoodScrollComponent = ({
         }
         onEndReachedThreshold={0.05}
         onEndReached={() => debouncedLoadMore()}
-        ListFooterComponent={() => isLoading && <ActivityIndicator />}
+        ListFooterComponent={() =>
+          isLoading && <ActivityIndicator color={"#F77F00"} />
+        }
         keyExtractor={(item) => item.id.toString()}
       />
     </View>

@@ -1,7 +1,5 @@
 import { useFocusEffect, useLocalSearchParams } from "expo-router";
-import { Text, Image, View, FlatList, TouchableOpacity } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import ServingInputComponent from "@/components/custom/Inputs/ServingInput";
+import { Text, View, TouchableOpacity, Image, ScrollView } from "react-native";
 import { useCallback, useEffect, useState } from "react";
 import GenericIcon from "@/components/custom/Icon";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
@@ -10,10 +8,16 @@ import { useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
 import { openURL } from "expo-linking";
+import MacroScroll from "@/components/custom/Meals/Details/MacroScroll";
+import ServingSection from "@/components/custom/Meals/Details/ServingSection";
+import TimeOfDaySection from "@/components/custom/Meals/Details/TimeOfDaySection";
+import { LinearGradient } from "expo-linear-gradient";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const DetailsScreen = () => {
   const { setShowFooter, setNavbarTitle, setShowBackButton } = useLayout();
 
+  const insets = useSafeAreaInsets();
   const params = useLocalSearchParams();
 
   useEffect(() => {
@@ -31,7 +35,7 @@ const DetailsScreen = () => {
     }, []),
   );
 
-  const { data, error, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["mealDetails", params?.id],
     queryFn: () => apiFetch(`/meals/${params?.id}/details`),
     enabled: !!params?.id,
@@ -170,136 +174,128 @@ const DetailsScreen = () => {
   ];
 
   return (
-    <View>
+    <>
       {isLoading ? (
-        <Spinner className="mx-auto" />
+        <Spinner />
       ) : (
         <>
-          <Text className="font-poppinsBold text-2xl ms-6">
-            {data?.meal.name}
-          </Text>
+          <LinearGradient
+            start={{ x: 1, y: 0 }}
+            end={{ x: 0.1, y: 0.8 }}
+            colors={["#D62828", "#F77F00"]}
+            style={{
+              alignItems: "center",
+              position: "absolute",
+              width: "100%",
+              height: 400,
+              top: -insets.top,
+              paddingTop: insets.top + 50,
+              zIndex: -1,
+            }}
+          >
+            {data?.meal?.image ? (
+              <Image
+                style={{
+                  width: "65%",
+                  height: 210,
+                  borderRadius: 50,
+                }}
+                source={{ uri: data?.meal?.image }}
+              />
+            ) : (
+              <Image
+                source={require("@/assets/images/meals-details--example.png")}
+              />
+            )}
+          </LinearGradient>
 
-          <View className="mt-10">
-            <Text className="font-semibold font-poppins text-2xl mb-5 ms-6">
-              Nutrition
-            </Text>
-
-            <FlatList
-              data={nutritionData}
-              contentContainerClassName="px-6"
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              ItemSeparatorComponent={() => <View className="w-6" />}
-              renderItem={({ item }) => (
-                <LinearGradient
-                  start={{ x: 1, y: 0 }}
-                  end={{ x: 0.1, y: 0.8 }}
-                  colors={["rgba(214, 40, 40, 0.3)", "rgba(247, 127, 0, 0.3)"]}
-                  style={{
-                    height: 50,
-                    borderRadius: 15,
-                    paddingHorizontal: 15,
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <View className="flex flex-row items-center gap-1">
-                    <Image className="h-9 w-9" source={item.icon} />
-                    <Text className="font-poppins">
-                      {item.value}
-                      {item.metric} {item.type}
-                    </Text>
-                  </View>
-                </LinearGradient>
-              )}
-            />
-          </View>
-
-          {data?.meal?.allergens?.length > 0 && (
-            <View className="mt-10 ms-6">
-              <Text className="font-semibold font-poppins text-2xl mb-5">
-                Allergens
+          <ScrollView
+            style={{
+              flex: 1,
+              backgroundColor: "white",
+              borderTopLeftRadius: 50,
+              borderTopRightRadius: 50,
+              paddingVertical: 40,
+              marginTop: 200,
+            }}
+            className="border-r border-l border-t border-[#F77F00] rounded-t-3xl"
+            contentContainerClassName="pb-10"
+            showsVerticalScrollIndicator={false}
+            automaticallyAdjustKeyboardInsets={true}
+          >
+            <View>
+              <Text className="font-poppinsBold text-2xl ms-6">
+                {data?.meal.name}
               </Text>
 
-              <View className="flex flex-wrap flex-row gap-3 w-full">
-                {data?.meal?.allergens.map(
-                  (allergen) =>
-                    allergen.value === "1" && (
-                      <View
-                        key={allergen.id}
-                        className="bg-[#E5E6E6] px-3 py-1 rounded-xl"
-                      >
-                        <Text className="text-lg font-poppins">
-                          {allergen.name}
-                        </Text>
-                      </View>
-                    ),
-                )}
+              <MacroScroll nutritionData={nutritionData} />
+
+              {data?.meal?.allergens?.length > 0 && (
+                <View className="mt-10 ms-6">
+                  <Text className="font-semibold font-poppins text-2xl mb-5">
+                    Allergens
+                  </Text>
+
+                  <View className="flex flex-wrap flex-row gap-3 w-full">
+                    {data?.meal?.allergens.map(
+                      (allergen) =>
+                        allergen.value === "1" && (
+                          <View
+                            key={allergen.id}
+                            className="bg-[#E5E6E6] px-3 py-1 rounded-xl"
+                          >
+                            <Text className="text-lg font-poppins">
+                              {allergen.name}
+                            </Text>
+                          </View>
+                        ),
+                    )}
+                  </View>
+                </View>
+              )}
+
+              <ServingSection
+                data={data}
+                servingAmount={servingAmount}
+                setServingAmount={setServingAmount}
+                selectedServingType={selectedServingType}
+                setSelectedServingType={setSelectedServingType}
+              />
+
+              <TimeOfDaySection
+                selectedTimeOfDay={selectedTimeOfDay}
+                setSelectedTimeOfDay={setSelectedTimeOfDay}
+                partsOfDayData={partsOfDayData}
+              />
+
+              <TouchableOpacity
+                className="mt-10 mb-3 ms-6 flex-row items-center gap-2"
+                activeOpacity={0.7}
+                onPress={() => openURL(data?.meal?.url)}
+              >
+                <GenericIcon name={"Info"} color={"#F77F00"} size={23} />
+
+                <Text className="font-poppins text-[#F77F00]">
+                  Click here for more details
+                </Text>
+              </TouchableOpacity>
+
+              <View className="mt-10 mx-6">
+                <GradientButtonComponent
+                  size={"full"}
+                  title={
+                    params?.isNew === "true"
+                      ? `Add to ${selectedTimeOfDay.name}`
+                      : "Save"
+                  }
+                  handleSubmit={() => console.log("Save")}
+                />
               </View>
             </View>
-          )}
-
-          <View className="mt-10 mx-6 flex flex-row items-center  justify-between">
-            <Text className="font-semibold font-poppins  text-2xl">
-              Serving Size
-            </Text>
-            <ServingInputComponent
-              setSelectedServingType={setSelectedServingType}
-              selectedServingType={selectedServingType}
-              servingAmount={servingAmount}
-              servingTypes={data?.meal?.servings}
-              setServingAmount={setServingAmount}
-            />
-          </View>
-
-          <View className="mt-10 ms-6">
-            <Text className="font-semibold font-poppins  text-2xl mb-5">
-              Eaten During...
-            </Text>
-            <View className="flex flex-wrap flex-row gap-3 w-full">
-              {partsOfDayData.map((time) => (
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  key={time.value}
-                  onPress={() => setSelectedTimeOfDay(time)}
-                  className={`px-3 py-1 rounded-xl ${
-                    selectedTimeOfDay?.value === time.value
-                      ? "bg-[#F77F00]"
-                      : "bg-[#E5E6E6]"
-                  }`}
-                >
-                  <Text className="text-lg font-poppins">{time.name}</Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-
-          <TouchableOpacity
-            className="mt-10 mb-3 ms-6 flex-row items-center gap-2"
-            activeOpacity={0.7}
-            onPress={() => openURL(data?.meal?.url)}
-          >
-            <GenericIcon name={"Info"} color={"#F77F00"} size={23} />
-
-            <Text className="font-poppins text-[#F77F00]">
-              Click here for more details
-            </Text>
-          </TouchableOpacity>
-
-          <View className="mt-10 mx-6">
-            <GradientButtonComponent
-              size={"full"}
-              title={
-                params?.isNew === "true"
-                  ? `Add to ${selectedTimeOfDay.name}`
-                  : "Save"
-              }
-              handleSubmit={() => console.log("Save")}
-            />
-          </View>
+          </ScrollView>
         </>
       )}
-    </View>
+    </>
   );
 };
 

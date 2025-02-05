@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
+
 class MealController extends Controller
 {
 
@@ -120,7 +121,7 @@ class MealController extends Controller
 
         $currentPage = (int)$meals['foods_search']['page_number'];
         $maxPage = floor((int)$meals['foods_search']['total_results'] / 10);
-        
+
 
         return response()->json([
             'message' => 'Meals retrieved',
@@ -187,6 +188,7 @@ class MealController extends Controller
                 return $allergen['value'] !== '0';
             })
             ->values();
+
 
         $meal = [
             'id' => $data['food_id'] ?? null,

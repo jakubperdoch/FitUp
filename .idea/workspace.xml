@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: scroll pagination for meals">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: loading state">
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/MacroScroll.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/ServingSection.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/TimeOfDaySection.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/search/[name].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/search/[name].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/_layout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -170,7 +177,7 @@
       <workItem from="1738343296939" duration="30484000" />
       <workItem from="1738519975565" duration="2000" />
       <workItem from="1738560442021" duration="522000" />
-      <workItem from="1738611321083" duration="23385000" />
+      <workItem from="1738611321083" duration="29653000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />
@@ -556,7 +563,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738704808348</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="fix: loading state">
+      <option name="closed" value="true" />
+      <created>1738705093115</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1738705093115</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -580,7 +595,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: Add maximum date for meal creation" />
     <MESSAGE value="fix: Edit Yup warnings" />
     <MESSAGE value="add: Workout details additional component" />
     <MESSAGE value="add: Add Workout details timer &amp; updated redux, interfacies" />
@@ -605,6 +619,7 @@
     <MESSAGE value="add: connected login with frontend" />
     <MESSAGE value="add: meal details connected to the backend" />
     <MESSAGE value="add: scroll pagination for meals" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: scroll pagination for meals" />
+    <MESSAGE value="fix: loading state" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: loading state" />
   </component>
 </project>
