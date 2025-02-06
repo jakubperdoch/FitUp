@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: adding meals to database">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: updating meals">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/hooks/meals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/meals.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/store/workout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workout.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,15 +172,7 @@
       <workItem from="1738519975565" duration="2000" />
       <workItem from="1738560442021" duration="522000" />
       <workItem from="1738611321083" duration="60400000" />
-      <workItem from="1738871720571" duration="3681000" />
-    </task>
-    <task id="LOCAL-00003" summary="update: Refactor layout context and update components">
-      <option name="closed" value="true" />
-      <created>1735242063143</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1735242063143</updated>
+      <workItem from="1738871720571" duration="5423000" />
     </task>
     <task id="LOCAL-00004" summary="add: support for dynamic navbar color and new workout layout">
       <option name="closed" value="true" />
@@ -566,7 +558,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738871697289</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="add: updating meals">
+      <option name="closed" value="true" />
+      <created>1738879606933</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1738879606933</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +590,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: Add Workout details timer &amp; updated redux, interfacies" />
     <MESSAGE value="add: Workout details additional features (delete,timer)" />
     <MESSAGE value="add: Add search engine &amp; search components for workouts" />
     <MESSAGE value="add: Add exercise selection in SearchPage" />
@@ -615,6 +614,7 @@
     <MESSAGE value="fix: loading state" />
     <MESSAGE value="add: adding meals" />
     <MESSAGE value="fix: adding meals to database" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: adding meals to database" />
+    <MESSAGE value="add: updating meals" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: updating meals" />
   </component>
 </project>

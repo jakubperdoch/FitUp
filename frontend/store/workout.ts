@@ -24,7 +24,7 @@ export const workoutSlice = createSlice({
     },
 
     clearWorkout: (state) => {
-      state.workout = null;
+      state.workout = { timer: 0 };
       state.isTimerActive = false;
     },
 

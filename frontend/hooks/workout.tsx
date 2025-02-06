@@ -239,7 +239,7 @@ const useWorkoutDetails = () => {
   };
 
   const isCurrentWorkoutActive = isTimerActive && workout?.id === data.id;
-  const isOtherWorkoutActive = isTimerActive && workout.id !== data.id;
+  const isOtherWorkoutActive = workout?.id !== data.id && workout?.timer > 0;
 
   const buttonTitleHandler = () => {
     if (isCurrentWorkoutActive) {

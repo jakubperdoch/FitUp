@@ -23,9 +23,10 @@ const TimeButton = (props: ComponentProps) => {
   const { startTimer, stopTimer } = useWorkoutTimer();
 
   const isCurrentWorkoutActive = isTimerActive && workout?.id === props.id;
+  const isAnotherWorkoutActive = workout?.id !== props.id && workout?.timer > 0;
 
   const buttonStateHandler = async () => {
-    if (isTimerActive && workout.id !== props.id) {
+    if (isAnotherWorkoutActive) {
       return;
     }
 

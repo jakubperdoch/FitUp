@@ -139,7 +139,7 @@ const HomeScreen = () => {
 
         <DashboardPanel />
 
-        {workout && isTimerActive && (
+        {workout?.id && (
           <Animated.View className="w-full" entering={ZoomIn}>
             <PulseBorder>
               <ActiveWorkoutCardComponent
