@@ -14,52 +14,6 @@ use Illuminate\Validation\Rule;
 class MealController extends Controller
 {
 
-    //    fat secret api
-    public function addMeal(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'api_id' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
-            'quantity' => ['required', 'integer', 'max:255'],
-            'serving' => ['required', 'integer', 'max:255'],
-            'eaten_at' => ['required', 'string', 'max:255', Rule::in(['breakfast', 'morningSnack', 'lunch', 'afternoonSnack', 'dinner'])],
-            'date' => ['required', 'date'],
-            'calories' => ['required', 'integer'],
-            'protein' => ['required', 'integer'],
-            'carbs' => ['required', 'integer'],
-            'fat' => ['required', 'integer'],
-            'fiber' => ['required', 'integer'],
-            'sugar' => ['required', 'integer'],
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors()
-            ], 400);
-        }
-
-        $user = $request->user();
-
-        $meal = Meal::create([
-            'api_id' => $request->api_id,
-            'user_id' => $user->id,
-            'name' => $request->name,
-            'quantity' => $request->quantity,
-            'serving' => $request->serving,
-            'eaten_at' => $request->eaten_at,
-            'date' => Carbon::parse($request->date)->format('Y-m-d'),
-            'calories' => $request->calories,
-            'protein' => $request->protein,
-            'carbs' => $request->carbs,
-            'fat' => $request->fat,
-            'fiber' => $request->fiber,
-            'sugar' => $request->sugar,
-        ]);
-
-        return response()->json([
-            'meal' => $meal
-        ], 201);
-    }
 
     public function getMeals(Request $request)
     {
@@ -155,20 +109,21 @@ class MealController extends Controller
 
     }
 
-    public function getMealDetails($id)
+    public function getMealDetails($food_id, $id = null)
     {
-        if (!is_numeric($id)) {
+        if (!is_numeric($food_id) || ($id !== null && !is_numeric($id))) {
             return response()->json([
                 'message' => 'The Id muste be a number'
             ], 422);
         }
+
 
         $accessToken = $this->getFatsecretAccessToken();
 
         $mealResponse = Http::withToken($accessToken)
             ->get('https://platform.fatsecret.com/rest/server.api', [
                 'method' => 'food.get.v4',
-                'food_id' => $id,
+                'food_id' => $food_id,
                 'format' => 'json',
                 'include_food_images' => 'true',
                 'include_food_attributes' => 'true'
@@ -183,6 +138,23 @@ class MealController extends Controller
 
         $data = $mealResponse->json()['food'];
 
+        $storedMeal = null;
+
+        if ($id) {
+            $storedMeal = Meal::find($id);
+            if (!$storedMeal) {
+                return response()->json([
+                    'message' => 'No meal with that id was found'
+                ], 404);
+            }
+
+            if ($storedMeal->food_id !== $food_id) {
+                return response()->json([
+                    'message' => 'The meal id does not match the food id'
+                ], 422);
+            }
+        }
+
         $allergens = collect($data['food_attributes']['allergens']['allergen'] ?? [])
             ->filter(function ($allergen) {
                 return $allergen['value'] !== '0';
@@ -191,7 +163,7 @@ class MealController extends Controller
 
 
         $meal = [
-            'id' => $data['food_id'] ?? null,
+            'food_id' => $data['food_id'] ?? null,
             'name' => $data['food_name'] ?? null,
             'url' => $data['food_url'] ?? null,
             'image' => $data['food_images']['food_image'][0]['image_url'] ?? null,
@@ -199,11 +171,130 @@ class MealController extends Controller
             'servings' => $data['servings']['serving'] ?? null
         ];
 
+        if ($storedMeal) {
+            $meal['record_id'] = $storedMeal->id;
+            $meal['selected_serving_quantity'] = $storedMeal->quantity;
+            $meal['selected_serving_id'] = $storedMeal->serving_id;
+            $meal['selected_serving_eaten_at'] = $storedMeal->eaten_at;
+        }
+
         return response()->json([
             'message' => 'Meal retrieved',
-            'meal' => $meal
+            'meal' => $meal,
+        ]);
+    }
+
+    public function addMeal(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'food_id' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'quantity' => ['required', 'integer', 'max:255'],
+            'serving_id' => ['required', 'string', 'max:255'],
+            'eaten_at' => ['required', 'string', 'max:255', Rule::in(['breakfast', 'morningSnack', 'lunch', 'afternoonSnack', 'dinner', 'lateNightSnack'])],
+            'date' => ['required', 'date'],
+            'calories' => ['required', 'numeric'],
+            'protein' => ['required', 'numeric'],
+            'carbs' => ['required', 'numeric'],
+            'fat' => ['required', 'numeric'],
+            'fiber' => ['required', 'numeric'],
+            'sugar' => ['required', 'numeric'],
         ]);
 
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $user = $request->user();
+
+        $meal = Meal::create([
+            'food_id' => $request->food_id,
+            'user_id' => $user->id,
+            'name' => $request->name,
+            'quantity' => $request->quantity,
+            'serving_id' => $request->serving_id,
+            'eaten_at' => $request->eaten_at,
+            'date' => Carbon::parse($request->date)->format('Y-m-d'),
+            'calories' => $request->calories,
+            'protein' => $request->protein,
+            'carbs' => $request->carbs,
+            'fat' => $request->fat,
+            'fiber' => $request->fiber,
+            'sugar' => $request->sugar,
+        ]);
+
+        return response()->json([
+            'message' => 'Meal added',
+            'meal' => $meal
+        ], 201);
+
+    }
+
+    public function updateMeal(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => ['required', 'string', 'max:255'],
+            'quantity' => ['required', 'integer', 'max:255'],
+            'serving_id' => ['required', 'string', 'max:255'],
+            'eaten_at' => ['required', 'string', 'max:255', Rule::in(['breakfast', 'morningSnack', 'lunch', 'afternoonSnack', 'dinner', 'lateNightSnack'])],
+            'calories' => ['required', 'numeric'],
+            'protein' => ['required', 'numeric'],
+            'carbs' => ['required', 'numeric'],
+            'fat' => ['required', 'numeric'],
+            'fiber' => ['required', 'numeric'],
+            'sugar' => ['required', 'numeric'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $meal = Meal::find($request->id);
+
+        if (!$meal) {
+            return response()->json([
+                'message' => 'Meal not found'
+            ], 404);
+        }
+
+        $meal->update([
+            'quantity' => $request->quantity,
+            'serving_id' => $request->serving_id,
+            'eaten_at' => $request->eaten_at,
+            'calories' => $request->calories,
+            'protein' => $request->protein,
+            'carbs' => $request->carbs,
+            'fat' => $request->fat,
+            'fiber' => $request->fiber,
+            'sugar' => $request->sugar,
+        ]);
+
+        return response()->json([
+            'message' => 'Meal updated',
+            'meal' => $meal
+        ]);
+    }
+
+    public function deleteMeal($id)
+    {
+        $meal = Meal::find($id);
+
+        if (!$meal) {
+            return response()->json([
+                'message' => 'Meal not found'
+            ], 404);
+        }
+
+        $meal->delete();
+
+        return response()->json([
+            'message' => 'Meal deleted'
+        ], 200);
     }
 
     public function refreshToken()

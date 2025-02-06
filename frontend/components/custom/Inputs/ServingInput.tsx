@@ -20,22 +20,40 @@ interface ComponentProps {
 const ServingInputComponent = (props: ComponentProps) => {
   const [showActionsheet, setShowActionsheet] = useState(false);
   const handleClose = () => setShowActionsheet(false);
+  const [inputValue, setInputValue] = useState(props.servingAmount.toString());
 
   const modifiedServingUnit = (type: ServingType) =>
     type.serving_description.replace(/\s*\([^)]*\)/g, "");
+
+  const handleBlur = () => {
+    const amount = parseFloat(inputValue);
+    let validatedAmount = amount;
+
+    if (isNaN(amount)) {
+      validatedAmount = 1;
+    }
+
+    if (validatedAmount <= 0) {
+      validatedAmount = 1;
+    } else if (validatedAmount > 255) {
+      validatedAmount = 255;
+    }
+
+    props.setServingAmount(validatedAmount);
+    setInputValue(validatedAmount.toString());
+  };
 
   return (
     <>
       <View className="flex flex-row items-center h-14">
         <TextInput
           autoComplete="off"
+          value={inputValue}
           autoCorrect={false}
           onChangeText={(text) => {
-            const amount = parseFloat(text);
-            if (!isNaN(amount)) {
-              props.setServingAmount(amount);
-            }
+            setInputValue(text);
           }}
+          onBlur={handleBlur}
           inputMode="decimal"
           defaultValue="1"
           keyboardType="decimal-pad"

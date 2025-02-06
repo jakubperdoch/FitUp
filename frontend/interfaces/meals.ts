@@ -1,16 +1,27 @@
 interface MealDetails {
-  food_id: number;
-  api_id: number;
-  name: string;
-  quantity: number;
-  serving: string;
-  eaten_at: string;
-  calories: number;
-  protein: number;
-  carbs: number;
-  sugar: number;
-  fiber: number;
-  fat: number;
+  id?: string | null;
+  food_id?: string;
+  name?: string;
+  quantity?: number;
+  serving_id?: string;
+  eaten_at?: string;
+  date?: string;
+  calories?: number;
+  protein?: number;
+  carbs?: number;
+  sugar?: number;
+  fiber?: number;
+  fat?: number;
+}
+
+interface ServingType {
+  serving_id: string;
+  calories: string;
+  fat: string;
+  protein: string;
+  carbohydrate: string;
+  sugar: string;
+  fiber: string;
 }
 
 interface MealSearchCard {

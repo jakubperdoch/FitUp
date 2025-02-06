@@ -4,6 +4,7 @@ import GenericIcon from "../Icon";
 import { router } from "expo-router";
 
 type Food = {
+  food_id: number;
   id: number;
   image: string;
   foodName: string;
@@ -15,7 +16,7 @@ type ComponentProps = {
   title: string;
   numberOfMeals: number;
   numberOfCals: number;
-
+  deleteMealHandler: (id: number) => void;
   meals: Food[];
 };
 
@@ -24,6 +25,7 @@ const FoodCardComponent = ({
   numberOfMeals,
   numberOfCals,
   meals,
+  deleteMealHandler,
 }: ComponentProps) => {
   return (
     <View className="px-7 mb-8 gap-4">
@@ -34,9 +36,23 @@ const FoodCardComponent = ({
         </Text>
       </View>
 
-      <View className="flex flex-col gap-3">
+      <View className="flex flex-col gap-4">
         {meals.map((meal, id) => (
-          <View key={id} className="flex flex-row w-full gap-4 items-center">
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() =>
+              router.push({
+                pathname: "/meals/details",
+                params: {
+                  id: meal.id,
+                  food_id: meal.food_id,
+                  isNew: String(false),
+                },
+              })
+            }
+            key={id}
+            className="flex flex-row w-full gap-4 items-center"
+          >
             <Image
               className="h-16 w-16 rounded-2xl"
               source={{ uri: meal.image }}
@@ -49,23 +65,18 @@ const FoodCardComponent = ({
               </Text>
             </View>
 
-            <View className="flex flex-row ms-auto items-center gap-5">
+            <View className="flex flex-row ms-auto items-center gap-7">
               <Text className="text-lg font-poppins">{meal.totalCals}</Text>
 
               <TouchableOpacity
                 activeOpacity={0.7}
-                className="border border-[#ADA4A5] rounded-full p-1"
-                onPress={() =>
-                  router.push({
-                    pathname: "/meals/details",
-                    params: { id: meal.id, isNew: String(false) },
-                  })
-                }
+                className="rounded-full p-1"
+                onPress={() => deleteMealHandler(meal.id)}
               >
-                <GenericIcon name={"ChevronRight"} color="#ADA4A5" size={22} />
+                <GenericIcon name={"Trash"} color="#F77F00" size={22} />
               </TouchableOpacity>
             </View>
-          </View>
+          </TouchableOpacity>
         ))}
       </View>
     </View>

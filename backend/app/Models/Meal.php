@@ -11,11 +11,11 @@ class Meal extends Model
 
 
     protected $fillable = [
-        'api_id',
+        'food_id',
         'user_id',
         'name',
         'quantity',
-        'serving',
+        'serving_id',
         'eaten_at',
         'date',
         'calories',

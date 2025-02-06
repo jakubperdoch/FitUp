@@ -39,9 +39,11 @@ Route::prefix('auth')->group(function () {
 
 //    meals endpoints
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/add-meal', [MealController::class, 'addMeal'])->name('addMeal');
+    Route::post('/meals/add', [MealController::class, 'addMeal'])->name('addMeal');
+    Route::put('/meals/{id}/update', [MealController::class, 'updateMeal'])->name('updateMeal');
+    Route::delete('/meals/{id}/delete', [MealController::class, 'deleteMeal'])->name('deleteMeal');
     Route::get('/meals', [MealController::class, 'getMeals'])->name('getMeals');
-    Route::get('/meals/{id}/details', [MealController::class, 'getMealDetails'])->name('getMealDetails');
+    Route::get('/meals/{food_id}/details/{id?}', [MealController::class, 'getMealDetails'])->name('getMealDetails');
     Route::get('/refresh-token', [MealController::class, 'refreshToken'])->name('refreshToken');
 });
 

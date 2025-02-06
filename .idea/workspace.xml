@@ -5,16 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: loading state">
-      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/MacroScroll.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/ServingSection.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/TimeOfDaySection.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/hooks/meals.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/_layout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Models/Meal.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/Meal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/search/[name].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/search/[name].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Inputs/ServingInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Inputs/ServingInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/MacroScroll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/MacroScroll.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/FoodCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/FoodCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/interfaces/meals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/interfaces/meals.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +179,7 @@
       <workItem from="1738343296939" duration="30484000" />
       <workItem from="1738519975565" duration="2000" />
       <workItem from="1738560442021" duration="522000" />
-      <workItem from="1738611321083" duration="29653000" />
+      <workItem from="1738611321083" duration="51510000" />
     </task>
     <task id="LOCAL-00001" summary="add: passing params and modal button">
       <option name="closed" value="true" />

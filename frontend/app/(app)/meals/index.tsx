@@ -5,6 +5,7 @@ import FoodCardComponent from "@/components/custom/Meals/FoodCard";
 import MealDrawerComponent from "@/components/custom/Meals/MealDrawer";
 import { useRouter } from "expo-router";
 import { useLayout } from "@/context/LayoutContext";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const MealsPage = () => {
   const [dates, setDates] = useState([]);
@@ -26,7 +27,8 @@ const MealsPage = () => {
 
       meals: [
         {
-          id: 6,
+          food_id: 6908,
+          id: 1,
           image:
             "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
           foodName: "Burger",
@@ -35,7 +37,8 @@ const MealsPage = () => {
           totalCals: "300kCal",
         },
         {
-          id: 7,
+          food_id: 6908,
+          id: 1,
           image:
             "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
           foodName: "Burger",
@@ -51,7 +54,8 @@ const MealsPage = () => {
 
       meals: [
         {
-          id: 10,
+          food_id: 6908,
+          id: 1,
           image:
             "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
           foodName: "Burger",
@@ -59,7 +63,8 @@ const MealsPage = () => {
           quantity: "200g",
         },
         {
-          id: 11,
+          food_id: 6908,
+          id: 1,
           image:
             "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
           foodName: "Burger",
@@ -104,34 +109,44 @@ const MealsPage = () => {
   ];
 
   const pressHandler = (option) => {
-    router.push(option.route);
+    router.push({
+      pathname: option.route,
+      params: { date: String(selectedDate.toISOString()) },
+    });
+  };
+
+  const deleteMealHandler = (id) => {
+    console.log("Delete meal with id: ", id);
   };
 
   return (
     <ScrollView contentContainerClassName="pb-32" className="!mt-0">
-      <DatePanelComponent
-        dates={dates}
-        selectedDate={selectedDate}
-        index={index}
-        setDates={setDates}
-        setSelectedDate={setSelectedDate}
-        setIndex={setIndex}
-      />
-
-      {ComponentData.map((section, id) => (
-        <FoodCardComponent
-          key={id}
-          title={section.title}
-          numberOfCals={section.numberOfCals}
-          numberOfMeals={section.numberOfMeals}
-          meals={section.meals}
+      <GestureHandlerRootView>
+        <DatePanelComponent
+          dates={dates}
+          selectedDate={selectedDate}
+          index={index}
+          setDates={setDates}
+          setSelectedDate={setSelectedDate}
+          setIndex={setIndex}
         />
-      ))}
 
-      <MealDrawerComponent
-        drawerOptions={mealOptions}
-        pressHandler={pressHandler}
-      />
+        {ComponentData.map((section, id) => (
+          <FoodCardComponent
+            key={id}
+            title={section.title}
+            deleteMealHandler={deleteMealHandler}
+            numberOfCals={section.numberOfCals}
+            numberOfMeals={section.numberOfMeals}
+            meals={section.meals}
+          />
+        ))}
+
+        <MealDrawerComponent
+          drawerOptions={mealOptions}
+          pressHandler={pressHandler}
+        />
+      </GestureHandlerRootView>
     </ScrollView>
   );
 };

@@ -5,7 +5,7 @@ interface ComponentProps {
   nutritionData: {
     icon: any;
     value: number;
-    type: string;
+    suffix: string;
     metric: string;
   }[];
 }
@@ -40,7 +40,7 @@ const MacroScrollComponent = ({ nutritionData }: ComponentProps) => {
               <Image className="h-9 w-9" source={item.icon} />
               <Text className="font-poppins">
                 {item.value}
-                {item.metric} {item.type}
+                {item.metric} {item.suffix}
               </Text>
             </View>
           </LinearGradient>

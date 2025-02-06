@@ -11,7 +11,7 @@ import apiFetch from "@/utils/apiFetch";
 import { useDebounce } from "@uidotdev/usehooks";
 
 const MealsSearchPage = () => {
-  const { name } = useLocalSearchParams();
+  const { name, date } = useLocalSearchParams();
   const { setNavbarTitle } = useLayout();
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [page, setPage] = useState(0);
@@ -89,7 +89,7 @@ const MealsSearchPage = () => {
   const onFoodCardClick = (id: number) => {
     router.push({
       pathname: "/meals/details",
-      params: { id: id, isNew: String(true) },
+      params: { food_id: id, date: date },
     });
   };
 
