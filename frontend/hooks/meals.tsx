@@ -69,6 +69,7 @@ const useMeals = () => {
       ...prev,
       quantity: servingAmount,
       serving_id: selectedServingType?.serving_id,
+      serving_description: selectedServingType?.serving_description,
       calories: nutritionData[0].value,
       fat: nutritionData[1].value,
       protein: nutritionData[2].value,
@@ -84,10 +85,14 @@ const useMeals = () => {
       id: mealData.record_id || null,
       food_id: mealData.food_id,
       name: mealData.name,
+      image: mealData.image,
       quantity: mealData?.selected_serving_quantity || servingAmount,
+      serving_description:
+        mealData?.selected_serving_description ||
+        selectedServingType?.serving_description,
       serving_id:
         mealData.selected_serving_id || selectedServingType?.serving_id,
-      eaten_at: mealData?.selected_serving_eaten_at || selectedTimeOfDay.value,
+      eaten_at: mealData?.selected_eaten_at || selectedTimeOfDay.value,
       date: date,
       calories: nutritionData[0].value,
       protein: nutritionData[2].value,

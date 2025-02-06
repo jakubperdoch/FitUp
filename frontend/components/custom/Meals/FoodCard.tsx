@@ -7,9 +7,10 @@ type Food = {
   food_id: number;
   id: number;
   image: string;
-  foodName: string;
-  totalCals: string;
+  name: string;
+  calories: string;
   quantity: string;
+  serving_description: string;
 };
 
 type ComponentProps = {
@@ -27,10 +28,21 @@ const FoodCardComponent = ({
   meals,
   deleteMealHandler,
 }: ComponentProps) => {
+  const formatWords = (str) => {
+    return str
+      .replace(/([A-Z])/g, " $1")
+      .trim()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize each word
+      .join(" ");
+  };
+
   return (
     <View className="px-7 mb-8 gap-4">
       <View className="flex flex-row items-center justify-between">
-        <Text className="text-2xl font-semibold font-poppins">{title}</Text>
+        <Text className="text-2xl font-semibold font-poppins">
+          {formatWords(title)}
+        </Text>
         <Text className="font-poppins text-[#ADA4A5]">
           {numberOfMeals} meals | {numberOfCals} calories
         </Text>
@@ -46,7 +58,6 @@ const FoodCardComponent = ({
                 params: {
                   id: meal.id,
                   food_id: meal.food_id,
-                  isNew: String(false),
                 },
               })
             }
@@ -59,14 +70,19 @@ const FoodCardComponent = ({
             />
 
             <View className="flex flex-col gap-1">
-              <Text className="font-poppins text-lg ">{meal.foodName}</Text>
+              <Text
+                className="font-poppins text-lg truncate max-w-40"
+                numberOfLines={1}
+              >
+                {meal.name}
+              </Text>
               <Text className="font-poppins text-[#ADA4A5] font-sm ">
-                {meal.quantity}
+                {meal.quantity} x {meal.serving_description}
               </Text>
             </View>
 
             <View className="flex flex-row ms-auto items-center gap-7">
-              <Text className="text-lg font-poppins">{meal.totalCals}</Text>
+              <Text className="text-lg font-poppins">{meal.calories}kCal</Text>
 
               <TouchableOpacity
                 activeOpacity={0.7}

@@ -1,4 +1,4 @@
-import { ScrollView } from "react-native";
+import { ScrollView, Text } from "react-native";
 import { useState, useEffect } from "react";
 import DatePanelComponent from "@/components/custom/DatePanel";
 import FoodCardComponent from "@/components/custom/Meals/FoodCard";
@@ -6,12 +6,16 @@ import MealDrawerComponent from "@/components/custom/Meals/MealDrawer";
 import { useRouter } from "expo-router";
 import { useLayout } from "@/context/LayoutContext";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useMutation } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
+import { Spinner } from "@/components/ui/spinner";
 
 const MealsPage = () => {
   const [dates, setDates] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [index, setIndex] = useState(3);
   const router = useRouter();
+  const [meals, setMeals] = useState({});
 
   const { setNavbarTitle } = useLayout();
 
@@ -19,61 +23,31 @@ const MealsPage = () => {
     setNavbarTitle("Meal Schedule");
   }, []);
 
-  const ComponentData = [
-    {
-      title: "Breakfast",
-      numberOfMeals: 2,
-      numberOfCals: 400,
-
-      meals: [
-        {
-          food_id: 6908,
-          id: 1,
-          image:
-            "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
-          foodName: "Burger",
-          quantity: "200g",
-          detailsRoute: "",
-          totalCals: "300kCal",
+  const {
+    mutate: retrieveMeals,
+    error,
+    isPending,
+  } = useMutation({
+    mutationKey: ["retrieveMeals"],
+    mutationFn: () =>
+      apiFetch("/meals/all", {
+        method: "POST",
+        body: {
+          date: selectedDate.toLocaleDateString(),
         },
-        {
-          food_id: 6908,
-          id: 1,
-          image:
-            "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
-          foodName: "Burger",
-          quantity: "200g",
-          totalCals: "300kCal",
-        },
-      ],
+      }),
+    onSuccess: (data) => {
+      setMeals(data.meals);
     },
-    {
-      title: "Lunch",
-      numberOfMeals: 2,
-      numberOfCals: 400,
+  });
 
-      meals: [
-        {
-          food_id: 6908,
-          id: 1,
-          image:
-            "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
-          foodName: "Burger",
-          totalCals: "300kCal",
-          quantity: "200g",
-        },
-        {
-          food_id: 6908,
-          id: 1,
-          image:
-            "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
-          foodName: "Burger",
-          quantity: "200g",
-          totalCals: "300kCal",
-        },
-      ],
-    },
-  ];
+  useEffect(() => {
+    retrieveMeals();
+  }, [selectedDate]);
+
+  useEffect(() => {
+    console.log(selectedDate.toLocaleDateString());
+  }, [selectedDate]);
 
   const mealOptions = [
     {
@@ -111,7 +85,7 @@ const MealsPage = () => {
   const pressHandler = (option) => {
     router.push({
       pathname: option.route,
-      params: { date: String(selectedDate.toISOString()) },
+      params: { date: String(selectedDate.toLocaleDateString()) },
     });
   };
 
@@ -131,16 +105,30 @@ const MealsPage = () => {
           setIndex={setIndex}
         />
 
-        {ComponentData.map((section, id) => (
-          <FoodCardComponent
-            key={id}
-            title={section.title}
-            deleteMealHandler={deleteMealHandler}
-            numberOfCals={section.numberOfCals}
-            numberOfMeals={section.numberOfMeals}
-            meals={section.meals}
-          />
-        ))}
+        {isPending ? (
+          <Spinner />
+        ) : Object.keys(meals).length === 0 ||
+          Object.values(meals).every(
+            (mealGroup: any[]) => mealGroup?.length === 0,
+          ) ? (
+          <Text className="text-center mt-10 text-[#ADA4A5]">
+            No meals found.
+          </Text>
+        ) : (
+          Object.keys(meals).map((key, id) => (
+            <FoodCardComponent
+              key={id}
+              title={key}
+              deleteMealHandler={deleteMealHandler}
+              numberOfCals={meals[key].reduce(
+                (acc, meal) => acc + meal.calories,
+                0,
+              )}
+              numberOfMeals={meals[key].length}
+              meals={meals[key]}
+            />
+          ))
+        )}
 
         <MealDrawerComponent
           drawerOptions={mealOptions}

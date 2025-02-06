@@ -175,13 +175,44 @@ class MealController extends Controller
             $meal['record_id'] = $storedMeal->id;
             $meal['selected_serving_quantity'] = $storedMeal->quantity;
             $meal['selected_serving_id'] = $storedMeal->serving_id;
-            $meal['selected_serving_eaten_at'] = $storedMeal->eaten_at;
+            $meal['selected_eaten_at'] = $storedMeal->eaten_at;
         }
 
         return response()->json([
             'message' => 'Meal retrieved',
             'meal' => $meal,
         ]);
+    }
+
+    public function retrieveAllMeals(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'date' => ['required', 'date'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $user = $request->user();
+
+        $meals = Meal::where('user_id', $user->id)
+            ->where('date', Carbon::parse($request->date)->format('Y-m-d'))
+            ->get();
+
+        $sortedMeals = collect($meals)
+            ->groupBy('eaten_at')
+            ->sortBy(function ($meals, $key) {
+                return array_search($key, ['breakfast', 'morningSnack', 'lunch', 'afternoonSnack', 'dinner', 'lateNightSnack']);
+            });
+
+        return response()->json([
+            'message' => 'Meals retrieved',
+            'meals' => $sortedMeals
+        ]);
+
     }
 
     public function addMeal(Request $request)
@@ -191,6 +222,8 @@ class MealController extends Controller
             'food_id' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'quantity' => ['required', 'integer', 'max:255'],
+            'image' => ['required', 'string', 'max:255'],
+            'serving_description' => ['required', 'string', 'max:255'],
             'serving_id' => ['required', 'string', 'max:255'],
             'eaten_at' => ['required', 'string', 'max:255', Rule::in(['breakfast', 'morningSnack', 'lunch', 'afternoonSnack', 'dinner', 'lateNightSnack'])],
             'date' => ['required', 'date'],
@@ -215,6 +248,8 @@ class MealController extends Controller
             'user_id' => $user->id,
             'name' => $request->name,
             'quantity' => $request->quantity,
+            'image' => $request->image,
+            'serving_description' => $request->serving_description,
             'serving_id' => $request->serving_id,
             'eaten_at' => $request->eaten_at,
             'date' => Carbon::parse($request->date)->format('Y-m-d'),
@@ -238,6 +273,7 @@ class MealController extends Controller
         $validator = Validator::make($request->all(), [
             'id' => ['required', 'string', 'max:255'],
             'quantity' => ['required', 'integer', 'max:255'],
+            'serving_description' => ['required', 'string', 'max:255'],
             'serving_id' => ['required', 'string', 'max:255'],
             'eaten_at' => ['required', 'string', 'max:255', Rule::in(['breakfast', 'morningSnack', 'lunch', 'afternoonSnack', 'dinner', 'lateNightSnack'])],
             'calories' => ['required', 'numeric'],
@@ -264,6 +300,7 @@ class MealController extends Controller
 
         $meal->update([
             'quantity' => $request->quantity,
+            'serving_description' => $request->serving_description,
             'serving_id' => $request->serving_id,
             'eaten_at' => $request->eaten_at,
             'calories' => $request->calories,

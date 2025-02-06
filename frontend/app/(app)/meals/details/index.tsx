@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import GenericIcon from "@/components/custom/Icon";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { useLayout } from "@/context/LayoutContext";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
 import { openURL } from "expo-linking";
@@ -19,7 +19,7 @@ import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
 const DetailsScreen = () => {
   const { setShowFooter, setNavbarTitle, setShowBackButton } = useLayout();
   const insets = useSafeAreaInsets();
-  const { id, date, food_id } = useLocalSearchParams();
+  const { id, date, food_id, eaten_at } = useLocalSearchParams();
 
   useEffect(() => {
     setShowFooter(false);
@@ -52,8 +52,8 @@ const DetailsScreen = () => {
   } = useMeals();
 
   const { data, isLoading } = useQuery({
-    queryKey: ["mealDetails", food_id],
-    queryFn: () => apiFetch(`/meals/${food_id}/details`),
+    queryKey: ["mealDetails", food_id, id],
+    queryFn: () => apiFetch(`/meals/${food_id}/details${id ? `/${id}` : ""}`),
     enabled: !!food_id,
   });
 
@@ -63,7 +63,7 @@ const DetailsScreen = () => {
     } else if (data?.meal?.servings?.length > 0 && id) {
       setSelectedServingType(
         data?.meal?.servings.find(
-          (serving) => serving.serving_id === meal.serving_id,
+          (serving) => serving.serving_id === data?.meal?.selected_serving_id,
         ),
       );
     }
@@ -71,6 +71,13 @@ const DetailsScreen = () => {
 
   useEffect(() => {
     if (data?.meal) {
+      setSelectedTimeOfDay(
+        partsOfDayData.find(
+          (part) =>
+            part.value === eaten_at ||
+            part.value === data?.meal?.selected_eaten_at,
+        ) || partsOfDayData[0],
+      );
       initMeal(data?.meal, String(date));
     }
   }, [data]);

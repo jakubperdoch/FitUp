@@ -43,6 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/meals/{id}/update', [MealController::class, 'updateMeal'])->name('updateMeal');
     Route::delete('/meals/{id}/delete', [MealController::class, 'deleteMeal'])->name('deleteMeal');
     Route::get('/meals', [MealController::class, 'getMeals'])->name('getMeals');
+    Route::post('/meals/all', [MealController::class, 'retrieveAllMeals'])->name('retrieveAllMeals');
     Route::get('/meals/{food_id}/details/{id?}', [MealController::class, 'getMealDetails'])->name('getMealDetails');
     Route::get('/refresh-token', [MealController::class, 'refreshToken'])->name('refreshToken');
 });

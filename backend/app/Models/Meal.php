@@ -15,6 +15,8 @@ class Meal extends Model
         'user_id',
         'name',
         'quantity',
+        'serving_description',
+        'image',
         'serving_id',
         'eaten_at',
         'date',

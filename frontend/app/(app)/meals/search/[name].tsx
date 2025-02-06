@@ -89,7 +89,7 @@ const MealsSearchPage = () => {
   const onFoodCardClick = (id: number) => {
     router.push({
       pathname: "/meals/details",
-      params: { food_id: id, date: date },
+      params: { food_id: id, date: date, eaten_at: name },
     });
   };
 
