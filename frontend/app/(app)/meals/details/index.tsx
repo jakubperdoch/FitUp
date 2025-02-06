@@ -49,6 +49,8 @@ const DetailsScreen = () => {
     setSelectedTimeOfDay,
     addMeal,
     addMealError,
+    updateMealError,
+    updateMeal,
   } = useMeals();
 
   const { data, isLoading } = useQuery({
@@ -82,10 +84,18 @@ const DetailsScreen = () => {
     }
   }, [data]);
 
+  const confirmHandler = (meal) => {
+    if (id) {
+      updateMeal(meal);
+    } else {
+      addMeal(meal);
+    }
+  };
+
   return (
     <>
       {isLoading ? (
-        <Spinner />
+        <Spinner color={"#F77F00"} />
       ) : (
         <>
           <LinearGradient
@@ -187,7 +197,7 @@ const DetailsScreen = () => {
                 </Text>
               </TouchableOpacity>
 
-              {addMealError && (
+              {(addMealError || updateMealError) && (
                 <Animated.View
                   entering={ZoomIn}
                   exiting={ZoomOut}
@@ -202,6 +212,10 @@ const DetailsScreen = () => {
                     {addMealError instanceof Error
                       ? addMealError.message
                       : String(addMealError)}
+
+                    {updateMealError instanceof Error
+                      ? updateMealError.message
+                      : String(updateMealError)}
                   </Text>
                 </Animated.View>
               )}
@@ -210,7 +224,7 @@ const DetailsScreen = () => {
                 <GradientButtonComponent
                   size={"full"}
                   title={!id ? `Add to ${selectedTimeOfDay.name}` : "Save"}
-                  handleSubmit={() => addMeal(meal)}
+                  handleSubmit={() => confirmHandler(meal)}
                 />
               </View>
             </View>

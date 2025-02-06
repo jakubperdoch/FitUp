@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: adding meals">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: adding meals to database">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Models/Meal.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/Meal.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/search/[name].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/search/[name].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/FoodCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/FoodCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/hooks/meals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/meals.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/interfaces/meals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/interfaces/meals.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,15 +171,8 @@
       <workItem from="1738343296939" duration="30484000" />
       <workItem from="1738519975565" duration="2000" />
       <workItem from="1738560442021" duration="522000" />
-      <workItem from="1738611321083" duration="60340000" />
-    </task>
-    <task id="LOCAL-00002" summary="update: Add new files for future folder structure">
-      <option name="closed" value="true" />
-      <created>1735184582927</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1735184582927</updated>
+      <workItem from="1738611321083" duration="60400000" />
+      <workItem from="1738871720571" duration="3681000" />
     </task>
     <task id="LOCAL-00003" summary="update: Refactor layout context and update components">
       <option name="closed" value="true" />
@@ -574,7 +558,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738815522764</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="fix: adding meals to database">
+      <option name="closed" value="true" />
+      <created>1738871697289</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1738871697289</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +590,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: Workout details additional component" />
     <MESSAGE value="add: Add Workout details timer &amp; updated redux, interfacies" />
     <MESSAGE value="add: Workout details additional features (delete,timer)" />
     <MESSAGE value="add: Add search engine &amp; search components for workouts" />
@@ -623,6 +614,7 @@
     <MESSAGE value="add: scroll pagination for meals" />
     <MESSAGE value="fix: loading state" />
     <MESSAGE value="add: adding meals" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: adding meals" />
+    <MESSAGE value="fix: adding meals to database" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: adding meals to database" />
   </component>
 </project>

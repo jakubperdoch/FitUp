@@ -1,4 +1,4 @@
-import { ScrollView, Text } from "react-native";
+import { Alert, ScrollView, Text } from "react-native";
 import { useState, useEffect } from "react";
 import DatePanelComponent from "@/components/custom/DatePanel";
 import FoodCardComponent from "@/components/custom/Meals/FoodCard";
@@ -41,12 +41,14 @@ const MealsPage = () => {
     },
   });
 
-  useEffect(() => {
-    retrieveMeals();
-  }, [selectedDate]);
+  const { mutate: deleteMeal, error: deleteMealError } = useMutation({
+    mutationKey: ["deleteMeal"],
+    mutationFn: (id: string) =>
+      apiFetch(`/meals/${id}/delete`, { method: "DELETE" }),
+  });
 
   useEffect(() => {
-    console.log(selectedDate.toLocaleDateString());
+    retrieveMeals();
   }, [selectedDate]);
 
   const mealOptions = [
@@ -89,8 +91,22 @@ const MealsPage = () => {
     });
   };
 
-  const deleteMealHandler = (id) => {
-    console.log("Delete meal with id: ", id);
+  const deleteMealHandler = (id: number) => {
+    Alert.alert("Delete Meal", "Are you sure you want to delete this meal?", [
+      {
+        text: "Cancel",
+        onPress: () => {},
+        style: "cancel",
+      },
+      {
+        text: "Delete",
+        onPress: () => {
+          deleteMeal(String(id));
+          retrieveMeals();
+        },
+        style: "destructive",
+      },
+    ]);
   };
 
   return (
@@ -106,7 +122,7 @@ const MealsPage = () => {
         />
 
         {isPending ? (
-          <Spinner />
+          <Spinner color={"#F77F00"} />
         ) : Object.keys(meals).length === 0 ||
           Object.values(meals).every(
             (mealGroup: any[]) => mealGroup?.length === 0,

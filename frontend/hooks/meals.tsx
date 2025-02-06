@@ -82,7 +82,7 @@ const useMeals = () => {
 
   const initMeal = (mealData: any, date: string) => {
     setMeal({
-      id: mealData.record_id || null,
+      id: String(mealData.record_id) || null,
       food_id: mealData.food_id,
       name: mealData.name,
       image: mealData.image,
@@ -119,6 +119,22 @@ const useMeals = () => {
     },
   });
 
+  const { mutate: updateMeal, error: updateMealError } = useMutation<
+    any,
+    Error,
+    Partial<MealDetails>
+  >({
+    mutationKey: ["updateMeal"],
+    mutationFn: (meal) =>
+      apiFetch(`/meals/${meal.id}/update`, {
+        method: "PUT",
+        body: meal,
+      }),
+    onSuccess: () => {
+      router.replace("/meals");
+    },
+  });
+
   return {
     servingAmount,
     setServingAmount,
@@ -133,6 +149,8 @@ const useMeals = () => {
     initMeal,
     addMeal,
     addMealError,
+    updateMeal,
+    updateMealError,
   };
 };
 
