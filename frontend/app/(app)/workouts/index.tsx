@@ -26,7 +26,6 @@ const WorkoutsPage = () => {
       name: "Upperbody Workout",
       day: "Friday",
       timer: null,
-      timeOfWorkout: 32,
       numberOfExercises: 11,
     },
     {
@@ -34,7 +33,6 @@ const WorkoutsPage = () => {
       name: "Fullbody Workout",
       day: "Tuesday",
       timer: null,
-      timeOfWorkout: 32,
       numberOfExercises: 11,
     },
   ]);
@@ -74,7 +72,6 @@ const WorkoutsPage = () => {
                   id={card.id}
                   title={card.name}
                   day={card.day}
-                  timeOfWorkout={card.timeOfWorkout}
                   numberOfExercises={card.numberOfExercises}
                   detailsHandler={() =>
                     router.push({

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\WorkoutPlanController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +39,7 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-//    meals endpoints
+//meals endpoints
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/meals/add', [MealController::class, 'addMeal'])->name('addMeal');
     Route::put('/meals/{id}/update', [MealController::class, 'updateMeal'])->name('updateMeal');
@@ -47,4 +49,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/meals/{food_id}/details/{id?}', [MealController::class, 'getMealDetails'])->name('getMealDetails');
     Route::get('/refresh-token', [MealController::class, 'refreshToken'])->name('refreshToken');
 });
+
+//workout plan endpoints
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/workouts/plans/add', [WorkoutPlanController::class, 'createWorkoutPlan'])->name('createWorkoutPlan');
+    Route::put('/workouts/plans/{id}/update', [WorkoutPlanController::class, 'updateWorkoutPlan'])->name('updateWorkoutPlan');
+    Route::delete('/workouts/plans/{id}/delete', [WorkoutPlanController::class, 'deleteWorkoutPlan'])->name('deleteWorkoutPlan');
+    Route::get('/workouts/plans', [WorkoutPlanController::class, 'getWorkoutPlans'])->name('getWorkoutPlans');
+    Route::get('/workouts/plans/{id}/details', [WorkoutPlanController::class, 'getWorkoutPlan'])->name('getWorkoutPlan');
+});
+
 

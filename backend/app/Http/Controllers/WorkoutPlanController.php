@@ -1,0 +1,196 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\WorkoutPlan\WorkoutPlanExercise;
+use App\Models\WorkoutPlan\WorkoutPlan;
+use App\Models\WorkoutPlan\WorkoutPlanSet;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+class WorkoutPlanController extends Controller
+{
+
+    public function createWorkoutPlan(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'days' => ['required', 'array'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 400);
+        }
+
+        $user = $request->user();
+        $data = $request->all();
+
+
+        $workout = WorkoutPlan::create([
+            'user_id' => $user->id,
+            'name' => $request->name,
+            'days' => $request->days
+        ]);
+
+        if (isset($data['exercises']) && is_array($data['exercises'])) {
+            foreach ($data['exercises'] as $index => $exerciseData) {
+                $this->addExercises($exerciseData, $workout->id, $index, null);
+            }
+        }
+
+        return response()->json([
+            'message' => 'Workout created successfully',
+            'workout' => $workout
+        ], 201);
+
+    }
+
+
+    public function addExercises(array $data, int $workoutId, int $orderIndex, ?int $parentId = null)
+    {
+
+
+        $exercise = WorkoutPlanExercise::create([
+            'workout_plan_id' => $workoutId,
+            'parent_exercise_id' => $parentId,
+            'type' => $data['type'] ?? null,
+            'name' => $data['name'] ?? null,
+            'order_index' => $orderIndex,
+        ]);
+
+        if (isset($data['sets']) && is_array($data['sets'])) {
+            foreach ($data['sets'] as $setIndex => $setData) {
+                WorkoutPlanSet::create([
+                    'workout_plan_exercise_id' => $exercise->id,
+                    'special_type' => $setData['specialType'] ?? null,
+                    'order_index' => $setIndex,
+                ]);
+            }
+        }
+
+        if (isset($data['exercises']) && is_array($data['exercises'])) {
+            foreach ($data['exercises'] as $childIndex => $childExerciseData) {
+                $this->addExercises($childExerciseData, $workoutId, $childIndex, $exercise->id);
+            }
+        }
+
+
+        return $exercise;
+    }
+
+    public function getWorkoutPlan(Request $request, $id)
+    {
+        $workoutPlan = WorkoutPlan::with('exercises.sets', 'exercises.children.sets')->find($id);
+
+
+        if (!$workoutPlan) {
+            return response()->json([
+                'message' => 'Workout Plan not found'
+            ], 404);
+        }
+
+        return response()->json([
+            'workout' => $workoutPlan
+        ]);
+    }
+
+    public function updateWorkoutPlan(Request $request, $id)
+    {
+        $workoutPlan = WorkoutPlan::find($id);
+
+        if (!$workoutPlan) {
+            return response()->json([
+                'message' => 'Workout Plan not found'
+            ], 404);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'days' => ['required', 'array'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 400);
+        }
+
+        $workoutPlan->update([
+            'name' => $request->name,
+            'days' => $request->days
+        ]);
+
+        $workoutPlan->exercises()->delete();
+
+        if (isset($data['exercises']) && is_array($data['exercises'])) {
+            foreach ($data['exercises'] as $index => $exerciseData) {
+                $this->addExercises($exerciseData, $workoutPlan->id, $index, null);
+            }
+        }
+
+        return response()->json([
+            'message' => 'Workout updated successfully',
+            'workout' => $workoutPlan
+        ]);
+    }
+
+    public function deleteWorkoutPlan(Request $request, $id)
+    {
+        $workoutPlan = WorkoutPlan::find($id);
+
+        if (!$workoutPlan) {
+            return response()->json([
+                'message' => 'Workout Plan not found'
+            ], 404);
+        }
+
+        $workoutPlan->delete();
+
+        return response()->json([
+            'message' => 'Workout deleted successfully'
+        ]);
+    }
+
+    public function getWorkoutPlans(Request $request)
+    {
+        $user = $request->user();
+
+        $data = WorkoutPlan::with('exercises.sets', 'exercises.children.sets')
+            ->where('user_id', $user->id)
+            ->get();
+
+        $data->each(function ($workout) {
+            $workout->number_of_exercises = $this->countExercises($workout->exercises);
+        });
+
+        $workoutPlans = collect($data)->map(function ($workout) {
+            return [
+                'id' => $workout->id,
+                'name' => $workout->name,
+                'days' => $workout->days,
+                'number_of_exercises' => $workout->number_of_exercises,
+            ];
+        });
+
+
+        return response()->json([
+            'workouts' => $workoutPlans,
+        ]);
+    }
+
+    private function countExercises($exercises)
+    {
+        $count = 0;
+        foreach ($exercises as $exercise) {
+            $count++;
+
+            if ($exercise->children && $exercise->children->isNotEmpty()) {
+                $count += $this->countExercises($exercise->children);
+            }
+        }
+        return $count;
+    }
+}

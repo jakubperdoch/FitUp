@@ -13,7 +13,7 @@ const WorkoutCreationScreen = () => {
   const params = useLocalSearchParams();
   const [isWorkoutEditable, setIsWorkoutEditable] = useState<boolean>(true);
   const exercises = useSelector(
-    (state: RootState) => state.workout.workout?.exercises || [],
+    (state: RootState) => state.workout.workout?.exercises,
   );
   const workout = useSelector((state: RootState) => state.workout.workout);
 
@@ -32,8 +32,7 @@ const WorkoutCreationScreen = () => {
   useEffect(() => {
     setData({
       id: 1,
-      name: "fullbody workout",
-      timeOfWorkout: 32,
+      name: "",
       days: ["Monday"],
       numberOfExercises: 11,
       exercises: [],

@@ -5,7 +5,6 @@ import { View, Text, TouchableOpacity } from "react-native";
 type ComponentProps = {
   id: number;
   title: string;
-  timeOfWorkout: number;
   numberOfExercises: number;
   detailsHandler: () => void;
   day: string;
@@ -35,7 +34,7 @@ const WorkoutPlanCardComponent = (props: ComponentProps) => {
         <Text className="font-poppins  text-[#7B6F72]">{props.day}</Text>
 
         <Text className="font-poppins  text-[#7B6F72]">
-          {props.numberOfExercises} Exercises | {props.timeOfWorkout}min
+          {props.numberOfExercises} Exercises
         </Text>
 
         <TouchableOpacity

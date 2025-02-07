@@ -7,7 +7,9 @@ export interface WorkoutState {
 }
 
 const initialState: WorkoutState = {
-  workout: {},
+  workout: {
+    exercises: [],
+  },
   isTimerActive: false,
 };
 
@@ -96,17 +98,21 @@ export const workoutSlice = createSlice({
         const superset = state.workout.exercises[
           action.payload.exerciseIndex
         ] as Superset;
+
         const set =
           superset.exercises[action.payload.superSetIndex].sets[
             action.payload.setIndex
           ];
+
         set.reps = action.payload.repsValue ?? set.reps;
         set.weight = action.payload.weightValue ?? set.weight;
       } else {
         const exercise = state.workout.exercises[
           action.payload.exerciseIndex
         ] as Exercise;
+
         const set = exercise.sets[action.payload.setIndex];
+
         set.reps = action.payload.repsValue ?? set.reps;
         set.weight = action.payload.weightValue ?? set.weight;
       }

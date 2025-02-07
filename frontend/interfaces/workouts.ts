@@ -28,7 +28,6 @@ interface ExerciseDetails extends Exercise {
 interface Workout {
   id: number;
   name: string;
-  timeOfWorkout: number;
   day?: string;
   timer?: number | null;
   numberOfExercises: number;

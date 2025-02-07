@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useWorkoutTimer } from "@/hooks/workouts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RootState } from "@/store/store";
 import { Alert } from "react-native";
 import {
@@ -27,7 +27,6 @@ const useWorkoutDetails = () => {
   const [data, setData] = useState<WorkoutDetails>({
     id: 1,
     name: "fullbody workout",
-    timeOfWorkout: 32,
     days: ["Monday"],
     day: "Monday",
     numberOfExercises: 11,
@@ -71,8 +70,6 @@ const useWorkoutDetails = () => {
       },
     ],
   });
-
-  const [newData, setNewData] = useState<Partial<WorkoutDetails>>({});
 
   const changeDateHandler = (newValue: string) => {
     if (data?.days.includes(newValue)) {
@@ -260,7 +257,7 @@ const useWorkoutDetails = () => {
       return;
     }
 
-    if (isTimerActive && workout.id !== data.id) {
+    if (isTimerActive && workout?.id !== data.id) {
       return;
     }
 
@@ -319,7 +316,6 @@ const useWorkoutDetails = () => {
   };
 
   return {
-    newData,
     data,
     setData,
     addSetHandler,

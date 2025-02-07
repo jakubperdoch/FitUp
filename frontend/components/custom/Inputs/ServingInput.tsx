@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import ActionSheetComponent from "../ActionSheet";
-import { SetStateAction, useState, Dispatch } from "react";
+import { SetStateAction, useState, Dispatch, useEffect } from "react";
 
 interface ServingType {
   serving_id: string;
@@ -21,6 +21,10 @@ const ServingInputComponent = (props: ComponentProps) => {
   const [showActionsheet, setShowActionsheet] = useState(false);
   const handleClose = () => setShowActionsheet(false);
   const [inputValue, setInputValue] = useState(props.servingAmount.toString());
+
+  useEffect(() => {
+    setInputValue(props.servingAmount.toString());
+  }, []);
 
   const modifiedServingUnit = (type: ServingType) =>
     type.serving_description.replace(/\s*\([^)]*\)/g, "");

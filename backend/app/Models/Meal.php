@@ -9,6 +9,7 @@ class Meal extends Model
 {
     use HasFactory;
 
+    protected $table = 'meals';
 
     protected $fillable = [
         'food_id',
@@ -28,5 +29,9 @@ class Meal extends Model
         'sugar',
     ];
 
-    protected $table = 'meals';
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

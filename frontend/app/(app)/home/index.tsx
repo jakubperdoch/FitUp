@@ -64,7 +64,6 @@ const HomeScreen = () => {
       name: "Upper body Workout",
       day: "Friday",
       timer: null,
-      timeOfWorkout: 22,
       numberOfExercises: 11,
     },
     {
@@ -72,7 +71,6 @@ const HomeScreen = () => {
       name: "Full body Workout",
       day: "Wednesday",
       timer: null,
-      timeOfWorkout: 12,
       numberOfExercises: 11,
     },
   ]);
@@ -148,7 +146,6 @@ const HomeScreen = () => {
                 name={workout.name}
                 day={workout.day}
                 numberOfExercises={workout.numberOfExercises}
-                timeOfWorkout={workout.timeOfWorkout}
                 finishWorkoutHandler={finishWorkoutHandler}
                 workoutSelectHandler={workoutSelectHandler}
                 detailsHandler={() =>
@@ -227,7 +224,6 @@ const HomeScreen = () => {
                 showTimer={true}
                 name={workout.name}
                 day={workout.day}
-                timeOfWorkout={workout.timeOfWorkout}
                 finishWorkoutHandler={finishWorkoutHandler}
                 workoutSelectHandler={workoutSelectHandler}
                 detailsHandler={() =>

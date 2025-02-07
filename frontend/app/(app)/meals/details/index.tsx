@@ -63,12 +63,15 @@ const DetailsScreen = () => {
     if (data?.meal?.servings?.length > 0 && !id) {
       setSelectedServingType(data?.meal?.servings[0]);
     } else if (data?.meal?.servings?.length > 0 && id) {
+      setServingAmount(data?.meal?.selected_serving_quantity);
       setSelectedServingType(
         data?.meal?.servings.find(
           (serving) => serving.serving_id === data?.meal?.selected_serving_id,
         ),
       );
     }
+
+    console.log(servingAmount);
   }, [isLoading]);
 
   useEffect(() => {

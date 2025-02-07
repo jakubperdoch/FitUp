@@ -53,7 +53,7 @@ const WorkoutSearchPage = () => {
   const params = useLocalSearchParams();
   const dispatch = useDispatch();
   const exercises = useSelector(
-    (state: RootState) => state.workout.workout?.exercises || [],
+    (state: RootState) => state.workout.workout?.exercises,
   );
 
   const debouncedSearch = useCallback(

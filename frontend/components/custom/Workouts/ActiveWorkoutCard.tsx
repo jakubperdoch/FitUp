@@ -5,7 +5,6 @@ type ComponentProps = {
   id: number;
   name: string;
   day: string;
-  timeOfWorkout: number;
   numberOfExercises: number;
   finishWorkoutHandler: (isTimerClear: boolean) => void;
   detailsHandler: (id: number) => void;
@@ -29,7 +28,7 @@ const ActiveWorkoutCardComponent = (props: ComponentProps) => {
           <Text className="font-poppins  text-[#7B6F72]">{props.day}</Text>
 
           <Text className="font-poppins  text-[#7B6F72]">
-            {props.numberOfExercises} Exercises | {props.timeOfWorkout}min
+            {props.numberOfExercises} Exercises
           </Text>
         </View>
 

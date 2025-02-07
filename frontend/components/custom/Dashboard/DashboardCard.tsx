@@ -9,7 +9,6 @@ type ComponentProps = {
     time: string;
   };
   day?: string;
-  timeOfWorkout?: number;
   showTimer?: boolean;
   finishWorkoutHandler?: (isTimerClear: boolean) => void;
   detailsHandler?: (id: number) => void;
