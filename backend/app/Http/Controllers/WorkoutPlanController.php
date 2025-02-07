@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\WorkoutPlan\WorkoutPlanExercise;
 use App\Models\WorkoutPlan\WorkoutPlan;
 use App\Models\WorkoutPlan\WorkoutPlanSet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -157,6 +158,9 @@ class WorkoutPlanController extends Controller
     public function getWorkoutPlans(Request $request)
     {
         $user = $request->user();
+        $query = $request->query();
+
+        $max_results = isset($query['max']) ? (int)$query['max'] : null;
 
         $data = WorkoutPlan::with('exercises.sets', 'exercises.children.sets')
             ->where('user_id', $user->id)
@@ -167,17 +171,45 @@ class WorkoutPlanController extends Controller
         });
 
         $workoutPlans = collect($data)->map(function ($workout) {
+
+            $today = Carbon::now();
+            $closestDay = null;
+            $minDiff = PHP_INT_MAX;
+
+
+            foreach ($workout->days as $dayName) {
+                if ($today->format('l') === $dayName) {
+                    $closestDay = $today;
+                    $minDiff = 0;
+                    break;
+                }
+
+
+                $nextOccurrence = Carbon::parse("next $dayName");
+                $diff = $today->diffInDays($nextOccurrence);
+
+                if ($diff < $minDiff) {
+                    $minDiff = $diff;
+                    $closestDay = $nextOccurrence;
+                }
+            }
+
             return [
                 'id' => $workout->id,
-                'name' => $workout->name,
-                'days' => $workout->days,
-                'number_of_exercises' => $workout->number_of_exercises,
+                'name' => $workout->name ?? null,
+                'day' => $closestDay?->format('l') ?? null,
+                'number_of_exercises' => $workout->number_of_exercises ?? 0,
             ];
-        });
+        })->sortBy('day')
+            ->values();
 
 
+        if ($max_results) {
+            $workoutPlans = $workoutPlans->take($max_results);
+        }
+        
         return response()->json([
-            'workouts' => $workoutPlans,
+            'workouts' => $workoutPlans
         ]);
     }
 

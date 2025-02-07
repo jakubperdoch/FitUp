@@ -30,7 +30,7 @@ interface Workout {
   name: string;
   day?: string;
   timer?: number | null;
-  numberOfExercises: number;
+  number_of_exercises: number;
 }
 
 interface WorkoutDetails extends Workout {

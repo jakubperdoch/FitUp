@@ -8,7 +8,6 @@ type ComponentProps = {
   numberOfExercises: number;
   detailsHandler: () => void;
   day: string;
-  finishWorkoutHandler: (timer: number, id: number) => void;
 };
 
 const WorkoutPlanCardComponent = (props: ComponentProps) => {
@@ -26,8 +25,11 @@ const WorkoutPlanCardComponent = (props: ComponentProps) => {
         padding: 20,
       }}
     >
-      <View className="flex flex-col gap-1">
-        <Text className="text-lg font-poppins font-semibold">
+      <View className="flex flex-col gap-1 w-44">
+        <Text
+          className="text-lg font-poppins font-semibold w-full max-w-44 truncate capitalize"
+          numberOfLines={1}
+        >
           {props.title}
         </Text>
 
