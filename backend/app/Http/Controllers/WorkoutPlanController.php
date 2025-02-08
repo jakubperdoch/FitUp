@@ -117,6 +117,7 @@ class WorkoutPlanController extends Controller
             'id' => $data->id,
             'name' => $data->name ?? null,
             'day' => $closestDay?->format('l'),
+            'days' => $data->days,
             'number_of_exercises' => $data->number_of_exercises ?? 0,
             'exercises' => $data->exercises ?? []
         ];

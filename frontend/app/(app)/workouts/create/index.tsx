@@ -10,6 +10,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
 import GenericIcon from "@/components/custom/Icon";
+import { useQuery } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
 
 const WorkoutCreationScreen = () => {
   const params = useLocalSearchParams();
@@ -29,11 +31,37 @@ const WorkoutCreationScreen = () => {
     changeDateHandler,
     createWorkoutPlanError,
     createWorkoutPlan,
+    updateWorkoutPlanError,
+    updateWorkoutPlan,
     onNameChange,
   } = useWorkoutDetails();
 
+  const {
+    data: workoutPlan,
+    isLoading,
+    isFetching,
+  } = useQuery({
+    queryKey: ["workoutPlan", params.id],
+    queryFn: () =>
+      apiFetch(`/workouts/plans/${params?.id}/details`, {
+        method: "GET",
+      }),
+
+    enabled: !!params.id,
+  });
+
+  useEffect(() => {
+    if (workoutPlan?.workout) {
+      setData(workoutPlan?.workout);
+    }
+  }, [workoutPlan?.workout]);
+
   const handleWorkoutSubmit = () => {
-    createWorkoutPlan(workout);
+    if (params?.id) {
+      updateWorkoutPlan(data);
+    } else {
+      createWorkoutPlan(data);
+    }
   };
 
   return (
@@ -114,7 +142,7 @@ const WorkoutCreationScreen = () => {
           />
         </View>
 
-        {createWorkoutPlanError && (
+        {createWorkoutPlanError && updateWorkoutPlanError && (
           <Animated.View
             entering={ZoomIn}
             exiting={ZoomOut}
@@ -124,6 +152,10 @@ const WorkoutCreationScreen = () => {
             <Text className="font-poppins text-[#F77F00]">
               {createWorkoutPlanError instanceof Error
                 ? createWorkoutPlanError.message
+                : String(createWorkoutPlanError)}
+
+              {updateWorkoutPlanError instanceof Error
+                ? updateWorkoutPlanError.message
                 : String(createWorkoutPlanError)}
             </Text>
           </Animated.View>
@@ -136,7 +168,7 @@ const WorkoutCreationScreen = () => {
             workout?.days?.length === 0
           }
           size={"full"}
-          title={"Create Plan"}
+          title={params?.id ? "Update Workout" : "Create Workout"}
           handleSubmit={() => handleWorkoutSubmit()}
         />
       </View>

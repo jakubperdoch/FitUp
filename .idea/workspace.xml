@@ -7,16 +7,10 @@
     <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: loading workout cards">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/WorkoutPlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/WorkoutPlanController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Models/WorkoutPlan/WorkoutPlanExercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/WorkoutPlan/WorkoutPlanExercise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/create/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ScheduleAccordion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ScheduleAccordion.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/context/WorkoutContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/context/WorkoutContext.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/hooks/workout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/workout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/store/workout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workout.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

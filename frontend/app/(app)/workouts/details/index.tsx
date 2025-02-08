@@ -6,7 +6,7 @@ import GradientButton from "@/components/custom/Button/GradientButton";
 import { WorkoutContext } from "@/context/WorkoutContext";
 import useWorkoutDetails from "@/hooks/workout";
 import Animated, { ZoomIn } from "react-native-reanimated";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
@@ -49,6 +49,10 @@ const WorkoutDetailsScreen = () => {
     }
   }, [workoutPlan?.workout]);
 
+  useEffect(() => {
+    console.log(workoutPlan?.workout);
+  }, [workoutPlan?.workout]);
+
   return (
     <WorkoutContext.Provider
       value={{
@@ -71,7 +75,15 @@ const WorkoutDetailsScreen = () => {
               </Text>
 
               {!isWorkoutEditable && (
-                <TouchableOpacity activeOpacity={0.7}>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() =>
+                    router.push({
+                      pathname: "/workouts/create",
+                      params: { id: data?.id },
+                    })
+                  }
+                >
                   <Text className="font-poppinsSemiBold text-lg text-[#F77F00]">
                     Edit
                   </Text>
@@ -79,7 +91,7 @@ const WorkoutDetailsScreen = () => {
               )}
             </View>
             <Text className="font-poppins text-[#7B6F72]">
-              {data?.exercises.length} Exercises
+              {data?.exercises?.length} Exercises
             </Text>
           </View>
 

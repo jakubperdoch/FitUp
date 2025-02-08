@@ -312,6 +312,19 @@ const useWorkoutDetails = () => {
       },
     });
 
+  const { mutate: updateWorkoutPlan, error: updateWorkoutPlanError } =
+    useMutation<any, Error, Partial<WorkoutDetails>>({
+      mutationKey: ["updateWorkoutPlan"],
+      mutationFn: (workout) =>
+        apiFetch(`/workouts/plans/${workout.id}/update`, {
+          method: "PUT",
+          body: workout,
+        }),
+      onSuccess: () => {
+        router.replace("/workouts");
+      },
+    });
+
   return {
     data,
     setData,
@@ -330,6 +343,8 @@ const useWorkoutDetails = () => {
     isOtherWorkoutActive,
     createWorkoutPlan,
     createWorkoutPlanError,
+    updateWorkoutPlan,
+    updateWorkoutPlanError,
     onNameChange,
   };
 };
