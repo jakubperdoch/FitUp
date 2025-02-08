@@ -23,7 +23,7 @@ const DashboardCardComponent = (props: ComponentProps) => {
     if (currentDate != date) {
       return <Text>{date}</Text>;
     }
-    return <Text>Today</Text>;
+    return <Text className="text-[#7B6F72] font-poppins">Today</Text>;
   };
 
   return (
@@ -42,9 +42,8 @@ const DashboardCardComponent = (props: ComponentProps) => {
           <View className="flex-row gap-2">
             {props.date && (
               <>
-                <Text className="text-[#7B6F72] font-poppins">
-                  {dateHandler(props.date.date)}
-                </Text>
+                {dateHandler(props.date.date)}
+
                 <Text className="text-[#7B6F72] font-poppins">|</Text>
                 <Text className="text-[#7B6F72] font-poppins">
                   {props.date.time}
@@ -52,12 +51,10 @@ const DashboardCardComponent = (props: ComponentProps) => {
               </>
             )}
 
-            {props.day && props.numberOfExercises && (
-              <>
-                <Text className="text-[#7B6F72] font-poppins">
-                  {props?.day} | {props?.numberOfExercises} Exercises
-                </Text>
-              </>
+            {props.day != null && props.numberOfExercises != null && (
+              <Text className="text-[#7B6F72] font-poppins">
+                {props.day} | {props.numberOfExercises} Exercises
+              </Text>
             )}
           </View>
         </View>

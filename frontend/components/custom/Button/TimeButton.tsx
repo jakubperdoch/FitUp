@@ -1,6 +1,6 @@
 // components/TimeButton.jsx
 import { LinearGradient } from "expo-linear-gradient";
-import { TouchableOpacity, View, Text } from "react-native";
+import { TouchableOpacity, View, Text, Alert } from "react-native";
 import GenericIcon from "../Icon";
 import Animated, { ZoomIn } from "react-native-reanimated";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +27,10 @@ const TimeButton = (props: ComponentProps) => {
 
   const buttonStateHandler = async () => {
     if (isAnotherWorkoutActive) {
+      Alert.alert(
+        "Workout Active",
+        "Another workout is already active. Please finish or stop the current workout before starting a new one.",
+      );
       return;
     }
 

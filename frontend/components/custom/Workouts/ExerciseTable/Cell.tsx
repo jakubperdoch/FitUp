@@ -16,7 +16,7 @@ interface ExerciseTableCellProps {
 interface SetType {
   reps: number;
   weight: number;
-  specialType: string;
+  special_type: string;
 }
 
 const ExerciseTableCell = (props: ExerciseTableCellProps) => {
@@ -81,9 +81,9 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
             <Text className="font-poppins text-lg" numberOfLines={1}>
               Set {index + 1}
             </Text>
-            {set.specialType && set.specialType !== "normal" && (
+            {set.special_type && set.special_type !== "normal" && (
               <Text className="font-poppins ms-3 text-lg capitalize  text-black/50">
-                {set.specialType}
+                {set.special_type}
               </Text>
             )}
 

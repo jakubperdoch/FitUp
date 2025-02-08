@@ -1,7 +1,7 @@
 interface ExerciseSet {
   reps?: number;
   weight?: number;
-  specialType?: string;
+  special_type?: string;
 }
 
 interface Superset {

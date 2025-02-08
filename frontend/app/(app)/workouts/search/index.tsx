@@ -11,7 +11,7 @@ import GradientButton from "@/components/custom/Button/GradientButton";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
 import { router, useLocalSearchParams } from "expo-router";
-import { addSuperset, setExercises } from "@/store/workout";
+import { addSuperset, setExercises } from "@/store/workoutPlan";
 
 const exercisesDumbData: Exercise[] = [
   {
@@ -53,7 +53,7 @@ const WorkoutSearchPage = () => {
   const params = useLocalSearchParams();
   const dispatch = useDispatch();
   const exercises = useSelector(
-    (state: RootState) => state.workout.workout?.exercises,
+    (state: RootState) => state.workoutPlan.workout?.exercises,
   );
 
   const debouncedSearch = useCallback(
@@ -132,7 +132,10 @@ const WorkoutSearchPage = () => {
       );
     }
 
-    router.push("/workouts/create");
+    router.push({
+      pathname: "/workouts/create",
+      params: { id: params?.id },
+    });
   };
 
   useEffect(() => {

@@ -4,9 +4,6 @@ import { useEffect, useState } from "react";
 import { RootState } from "@/store/store";
 import { Alert } from "react-native";
 import {
-  clearWorkout,
-  setTimer,
-  setWorkout,
   addSet,
   removeExercise,
   removeSet,
@@ -14,6 +11,15 @@ import {
   updateSet,
   addDays,
   addName,
+  clearWorkoutPlan,
+  setWorkoutPlan,
+} from "@/store/workoutPlan";
+
+import {
+  clearWorkout,
+  setTimer,
+  setWorkout,
+  updateAcviveWorkoutSet,
 } from "@/store/workout";
 
 import { useRouter } from "expo-router";
@@ -24,23 +30,31 @@ const useWorkoutDetails = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { startTimer, stopTimer } = useWorkoutTimer();
+
   const { workout, isTimerActive } = useSelector(
     (state: RootState) => state.workout,
+  );
+
+  const workoutPlan = useSelector(
+    (state: RootState) => state.workoutPlan.workout,
   );
 
   const [data, setData] = useState<WorkoutDetails | null>(null);
 
   useEffect(() => {
-    if (workout) {
+    if (workoutPlan) {
       setData((prevData) => ({
         ...prevData,
-        ...(workout.exercises &&
-          workout.exercises.length > 0 && { exercises: workout.exercises }),
-        ...(workout.days && workout.days.length > 0 && { days: workout.days }),
-        ...(workout.name && { name: workout.name }),
+        ...(workoutPlan.exercises &&
+          workoutPlan.exercises.length > 0 && {
+            exercises: workoutPlan.exercises,
+          }),
+        ...(workoutPlan.days &&
+          workoutPlan.days.length > 0 && { days: workoutPlan.days }),
+        ...(workoutPlan.name && { name: workoutPlan.name }),
       }));
     }
-  }, [workout]);
+  }, [workoutPlan]);
 
   const onNameChange = (name: string) => {
     setData((prevState) => ({
@@ -104,16 +118,32 @@ const useWorkoutDetails = () => {
     exerciseIndex: number,
     setIndex: number,
     superSetIndex: number | null,
-    specialType: string,
+    special_type: string,
   ) => {
     updateSets(exerciseIndex, setIndex, superSetIndex, (sets) => {
-      if (specialType === "normal") {
-        delete sets[setIndex].specialType;
+      if (special_type === "normal") {
+        if (sets[setIndex]) {
+          const { specialType, ...rest } = sets[setIndex];
+          sets[setIndex] = rest;
+        }
       } else {
-        sets[setIndex].specialType = specialType;
+        if (!sets[setIndex]) {
+          sets[setIndex] = {};
+        }
+
+        sets[setIndex] = { ...sets[setIndex], special_type: special_type };
       }
       return sets;
     });
+
+    dispatch(
+      updateSet({
+        exerciseIndex,
+        setIndex,
+        superSetIndex: superSetIndex ?? undefined,
+        special_type,
+      }),
+    );
   };
 
   const deleteSetHandler = (
@@ -211,8 +241,6 @@ const useWorkoutDetails = () => {
         exerciseIndex,
         setIndex,
         superSetIndex: superSetIndex ?? undefined,
-        repsValue,
-        weightValue,
       }),
     );
   };
@@ -308,6 +336,7 @@ const useWorkoutDetails = () => {
           body: workout,
         }),
       onSuccess: () => {
+        dispatch(clearWorkoutPlan());
         router.replace("/workouts");
       },
     });
@@ -321,7 +350,11 @@ const useWorkoutDetails = () => {
           body: workout,
         }),
       onSuccess: () => {
+        dispatch(clearWorkoutPlan());
         router.replace("/workouts");
+      },
+      onError: (error) => {
+        console.error(error);
       },
     });
 

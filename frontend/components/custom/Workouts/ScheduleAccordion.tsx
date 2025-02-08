@@ -32,8 +32,6 @@ const ScheduleAccordionComponent = (props: ComponentProps) => {
   const concatenatedDays = props.days?.join(", ") || "";
   const { isWorkoutEditable } = useContext(WorkoutContext);
 
-  console.log(props.days);
-
   return (
     <Accordion
       size="md"

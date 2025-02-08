@@ -49,10 +49,6 @@ const WorkoutDetailsScreen = () => {
     }
   }, [workoutPlan?.workout]);
 
-  useEffect(() => {
-    console.log(workoutPlan?.workout);
-  }, [workoutPlan?.workout]);
-
   return (
     <WorkoutContext.Provider
       value={{

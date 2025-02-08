@@ -66,7 +66,7 @@ class WorkoutPlanController extends Controller
             foreach ($data['sets'] as $setIndex => $setData) {
                 WorkoutPlanSet::create([
                     'workout_plan_exercise_id' => $exercise->id,
-                    'special_type' => $setData['specialType'] ?? null,
+                    'special_type' => $setData['special_type'] ?? null,
                     'order_index' => $setIndex,
                 ]);
             }
@@ -133,8 +133,8 @@ class WorkoutPlanController extends Controller
         foreach ($exercises as $exercise) {
             $count++;
 
-            if ($exercise->children && $exercise->children->isNotEmpty()) {
-                $count += $this->countExercises($exercise->children);
+            if ($exercise->exercises && $exercise->exercises->isNotEmpty()) {
+                $count += $this->countExercises($exercise->exercises);
             }
         }
         return $count;
@@ -161,6 +161,8 @@ class WorkoutPlanController extends Controller
             ], 400);
         }
 
+        $data = $request->all();
+
         $workoutPlan->update([
             'name' => $request->name,
             'days' => $request->days
@@ -179,6 +181,7 @@ class WorkoutPlanController extends Controller
             'workout' => $workoutPlan
         ]);
     }
+
 
     public function deleteWorkoutPlan(Request $request, $id)
     {
