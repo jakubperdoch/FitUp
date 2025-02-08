@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\WorkoutPlanController;
-
+use App\Http\Controllers\ExerciseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +57,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/workouts/plans/{id}/delete', [WorkoutPlanController::class, 'deleteWorkoutPlan'])->name('deleteWorkoutPlan');
     Route::get('/workouts/plans', [WorkoutPlanController::class, 'getWorkoutPlans'])->name('getWorkoutPlans');
     Route::get('/workouts/plans/{id}/details', [WorkoutPlanController::class, 'getWorkoutPlan'])->name('getWorkoutPlan');
+});
+
+//exercise endpoints
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/muscles', [ExerciseController::class, 'getMuscles'])->name('getMuscles');
+    Route::get('/exercises', [ExerciseController::class, 'getExercises'])->name('getExercises');
+    Route::get('/exercises/{id}/details', [ExerciseController::class, 'getExerciseDetails'])->name('getExerciseDetails');
 });
 
 

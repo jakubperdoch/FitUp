@@ -4,21 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: loading workout in edit">
-      <change afterPath="$PROJECT_DIR$/frontend/store/workoutPlan.ts" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: uploading &amp; editing workouts">
+      <change afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/Models/Exercise/Exercise.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/Models/Exercise/Muscle.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/WorkoutPlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/WorkoutPlanController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/create/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ScheduleAccordion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ScheduleAccordion.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/hooks/workout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/workout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/interfaces/workouts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/interfaces/workouts.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/store/workout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workout.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,14 +176,6 @@
       <workItem from="1738611321083" duration="60400000" />
       <workItem from="1738871720571" duration="13992000" />
       <workItem from="1738899313120" duration="17878000" />
-    </task>
-    <task id="LOCAL-00008" summary="add: meal-related example images and header SVG">
-      <option name="closed" value="true" />
-      <created>1735351382411</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1735351382411</updated>
     </task>
     <task id="LOCAL-00009" summary="add: Add sorting workouts &amp; workout cards">
       <option name="closed" value="true" />
@@ -577,7 +561,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738986106594</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="add: uploading &amp; editing workouts">
+      <option name="closed" value="true" />
+      <created>1738993390829</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1738993390829</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -601,7 +593,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: workout creation process with redux" />
     <MESSAGE value="fix: workoutCreation redux slice" />
     <MESSAGE value="add: disabled inputs when editing workout" />
     <MESSAGE value="add: workout creation redux slice" />
@@ -626,6 +617,7 @@
     <MESSAGE value="add: backend structure for workoutPlans" />
     <MESSAGE value="add: loading workout cards" />
     <MESSAGE value="add: loading workout in edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: loading workout in edit" />
+    <MESSAGE value="add: uploading &amp; editing workouts" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: uploading &amp; editing workouts" />
   </component>
 </project>
