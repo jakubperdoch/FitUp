@@ -204,7 +204,7 @@ const DetailsScreen = () => {
                 <Animated.View
                   entering={ZoomIn}
                   exiting={ZoomOut}
-                  className="flex-row items-center gap-2"
+                  className="flex-col items-center gap-2 justify-center"
                 >
                   <GenericIcon
                     name={"OctagonAlert"}

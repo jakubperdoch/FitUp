@@ -57,6 +57,21 @@ export const workoutSlice = createSlice({
       return initialState;
     },
 
+    addDays: (state, action: PayloadAction<string[]>) => {
+      if (state.workout.days === undefined) {
+        state.workout.days = [];
+      }
+
+      state.workout.days = action.payload;
+    },
+
+    addName: (state, action: PayloadAction<string>) => {
+      if (state.workout.name === undefined) {
+        state.workout.name = "";
+      }
+      state.workout.name = action.payload;
+    },
+
     addSet: (
       state,
       action: PayloadAction<{ exerciseIndex: number; supersetIndex?: number }>,
@@ -156,5 +171,7 @@ export const {
   removeSet,
   updateSet,
   resetExercises,
+  addDays,
+  addName,
 } = workoutSlice.actions;
 export default workoutSlice.reducer;

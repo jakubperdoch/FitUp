@@ -84,18 +84,59 @@ class WorkoutPlanController extends Controller
 
     public function getWorkoutPlan(Request $request, $id)
     {
-        $workoutPlan = WorkoutPlan::with('exercises.sets', 'exercises.children.sets')->find($id);
+        $data = WorkoutPlan::with('exercises.sets', 'exercises.exercises.sets')->find($id);
 
 
-        if (!$workoutPlan) {
+        if (!$data) {
             return response()->json([
                 'message' => 'Workout Plan not found'
             ], 404);
         }
 
+        $data->number_of_exercises = $this->countExercises($data->exercises);
+
+        $today = Carbon::now();
+        $closestDay = null;
+        $minDiff = PHP_INT_MAX;
+
+        foreach ($data->days as $day) {
+            if ($today->format('l') === $day) {
+                $closestDay = $today;
+                $minDiff = 0;
+                break;
+            }
+            $nextOccurrence = Carbon::parse("next $day");
+            $diff = $today->diffInDays($nextOccurrence);
+            if ($diff < $minDiff) {
+                $minDiff = $diff;
+                $closestDay = $nextOccurrence;
+            }
+        }
+
+        $workoutPlan = [
+            'id' => $data->id,
+            'name' => $data->name ?? null,
+            'day' => $closestDay?->format('l'),
+            'number_of_exercises' => $data->number_of_exercises ?? 0,
+            'exercises' => $data->exercises ?? []
+        ];
+
         return response()->json([
             'workout' => $workoutPlan
         ]);
+    }
+
+    private function countExercises($exercises)
+    {
+        $count = 0;
+        foreach ($exercises as $exercise) {
+            $count++;
+
+            if ($exercise->children && $exercise->children->isNotEmpty()) {
+                $count += $this->countExercises($exercise->children);
+            }
+        }
+        return $count;
     }
 
     public function updateWorkoutPlan(Request $request, $id)
@@ -162,7 +203,7 @@ class WorkoutPlanController extends Controller
 
         $max_results = isset($query['max']) ? (int)$query['max'] : null;
 
-        $data = WorkoutPlan::with('exercises.sets', 'exercises.children.sets')
+        $data = WorkoutPlan::with('exercises.sets', 'exercises.exercises.sets')
             ->where('user_id', $user->id)
             ->get();
 
@@ -207,22 +248,9 @@ class WorkoutPlanController extends Controller
         if ($max_results) {
             $workoutPlans = $workoutPlans->take($max_results);
         }
-        
+
         return response()->json([
             'workouts' => $workoutPlans
         ]);
-    }
-
-    private function countExercises($exercises)
-    {
-        $count = 0;
-        foreach ($exercises as $exercise) {
-            $count++;
-
-            if ($exercise->children && $exercise->children->isNotEmpty()) {
-                $count += $this->countExercises($exercise->children);
-            }
-        }
-        return $count;
     }
 }

@@ -8,13 +8,13 @@ import { router, useLocalSearchParams } from "expo-router";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
+import GenericIcon from "@/components/custom/Icon";
 
 const WorkoutCreationScreen = () => {
   const params = useLocalSearchParams();
   const [isWorkoutEditable, setIsWorkoutEditable] = useState<boolean>(true);
-  const exercises = useSelector(
-    (state: RootState) => state.workout.workout?.exercises,
-  );
+
   const workout = useSelector((state: RootState) => state.workout.workout);
 
   const {
@@ -27,24 +27,14 @@ const WorkoutCreationScreen = () => {
     deleteExerciseHandler,
     clearWorkoutHandler,
     changeDateHandler,
+    createWorkoutPlanError,
+    createWorkoutPlan,
+    onNameChange,
   } = useWorkoutDetails();
 
-  useEffect(() => {
-    setData({
-      id: 1,
-      name: "",
-      days: ["Monday"],
-      numberOfExercises: 11,
-      exercises: [],
-    });
-
-    if (exercises && exercises.length > 0) {
-      setData({
-        ...data,
-        exercises: exercises,
-      });
-    }
-  }, []);
+  const handleWorkoutSubmit = () => {
+    createWorkoutPlan(workout);
+  };
 
   return (
     <WorkoutContext.Provider
@@ -55,6 +45,7 @@ const WorkoutCreationScreen = () => {
         deleteExerciseHandler,
         isWorkoutEditable,
         addSetHandler,
+        data: data,
       }}
     >
       <View className="px-8 flex-col gap-7">
@@ -64,6 +55,8 @@ const WorkoutCreationScreen = () => {
               placeholder={"Enter name of workout"}
               className="font-poppinsBold text-2xl"
               placeholderTextColor={"#1D1617"}
+              value={data?.name}
+              onChangeText={(text) => onNameChange(text)}
               autoCapitalize={"words"}
               maxLength={15}
             />
@@ -77,13 +70,14 @@ const WorkoutCreationScreen = () => {
             )}
           </View>
           <Text className="font-poppins text-[#7B6F72]">
-            {data?.exercises.length} Exercises
+            {data?.exercises?.length} Exercises
           </Text>
         </View>
 
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => clearWorkoutHandler()}
+          className="w-40"
         >
           <Text className="font-poppinsSemiBold  text-lg text-[#F77F00]">
             Clear Workout
@@ -120,11 +114,30 @@ const WorkoutCreationScreen = () => {
           />
         </View>
 
+        {createWorkoutPlanError && (
+          <Animated.View
+            entering={ZoomIn}
+            exiting={ZoomOut}
+            className="flex-col items-center gap-2 justify-center"
+          >
+            <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
+            <Text className="font-poppins text-[#F77F00]">
+              {createWorkoutPlanError instanceof Error
+                ? createWorkoutPlanError.message
+                : String(createWorkoutPlanError)}
+            </Text>
+          </Animated.View>
+        )}
+
         <GradientButtonComponent
-          disabled={!workout.exercises || workout.exercises.length === 0}
+          disabled={
+            !workout.exercises ||
+            workout?.exercises?.length === 0 ||
+            workout?.days?.length === 0
+          }
           size={"full"}
           title={"Create Plan"}
-          handleSubmit={() => console.log("submit")}
+          handleSubmit={() => handleWorkoutSubmit()}
         />
       </View>
     </WorkoutContext.Provider>
