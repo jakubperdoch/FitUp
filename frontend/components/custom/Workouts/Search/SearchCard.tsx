@@ -38,7 +38,10 @@ const SearchCardComponent = ({
           </Animated.View>
         )}
 
-        <Text className="text-lg font-poppins capitalize font-semibold">
+        <Text
+          className="text-lg font-poppins font-semibold max-w-64 truncate capitalize"
+          numberOfLines={1}
+        >
           {exercise?.name}
         </Text>
       </View>

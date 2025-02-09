@@ -16,6 +16,7 @@ import { useResponsive } from "react-native-responsive-hook";
 type FooterItem = {
   icon: string;
   route?: string;
+  additionalRoutes?: string[];
 };
 
 const FooterComponent = () => {
@@ -28,7 +29,11 @@ const FooterComponent = () => {
     { icon: "ChartArea", route: "/stats" },
     { icon: "Cookie", route: "/meals" },
     { icon: "House", route: "/home" },
-    { icon: "Dumbbell", route: "/workouts/layout" },
+    {
+      icon: "Dumbbell",
+      route: "/workouts/layout",
+      additionalRoutes: ["/workouts"],
+    },
     { icon: "UserRound", route: "/profile" },
   ];
 
@@ -40,17 +45,24 @@ const FooterComponent = () => {
     });
   };
 
+  const isActiveRoute = (item: FooterItem, currentRoute: string) => {
+    const primaryActive = item.route
+      ? currentRoute.startsWith(item.route)
+      : false;
+    const additionalActive =
+      item?.additionalRoutes &&
+      item?.additionalRoutes?.some((addRoute) =>
+        currentRoute.startsWith(addRoute),
+      );
+    return primaryActive || additionalActive;
+  };
+
   useEffect(() => {
-    const currentRoute = footerItems.find(
-      (footerRoute) => footerRoute.route && route.startsWith(footerRoute.route),
+    const currentItemIndex = footerItems.findIndex((item) =>
+      isActiveRoute(item, route),
     );
-
-    const currentRouteIndex = footerItems.findIndex(
-      (footerRoute) => footerRoute === currentRoute,
-    );
-
-    if (currentRoute && currentRouteIndex) {
-      updateIconPosition(currentRouteIndex);
+    if (currentItemIndex >= 0) {
+      updateIconPosition(currentItemIndex);
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     }
   }, [route]);
@@ -73,23 +85,25 @@ const FooterComponent = () => {
           const animatedStyle = useAnimatedStyle(() => ({
             transform: [{ translateY: translateValues[index].value }],
           }));
+
+          const active = isActiveRoute(item, route);
+
           return (
-            <View
+            <Animated.View
+              style={[animatedStyle, { zIndex: 10 }]}
               ref={(el) => (iconElementRefs.current[index] = el)}
               key={index}
             >
-              <Animated.View style={[animatedStyle, { zIndex: 10 }]}>
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  onPress={() => handlePress(index, item)}
-                >
-                  <GenericIcon
-                    name={item.icon}
-                    color={route.includes(item.route) ? "#F77F00" : "black"}
-                  />
-                </TouchableOpacity>
-              </Animated.View>
-            </View>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => handlePress(index, item)}
+              >
+                <GenericIcon
+                  name={item.icon}
+                  color={active ? "#F77F00" : "black"}
+                />
+              </TouchableOpacity>
+            </Animated.View>
           );
         })}
       </View>

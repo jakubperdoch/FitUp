@@ -7,7 +7,7 @@ import GradientButton from "@/components/custom/Button/GradientButton";
 
 const Data: ExerciseDetails = {
   type: "exercise",
-  exerciseId: "2gPfomN",
+  exercise_id: "2gPfomN",
   name: "3/4 sit-up",
   gifUrl: "2gPfomN.gif",
   targetMuscles: ["abs"],
@@ -23,7 +23,6 @@ const Data: ExerciseDetails = {
   ],
 };
 const InstructionsPage = () => {
-  const { setIsWorkoutImageVisible } = useContext(WorkoutContext);
   const params = useLocalSearchParams();
 
   const [data, setData] = useState<ExerciseDetails | null>(null);
@@ -40,18 +39,6 @@ const InstructionsPage = () => {
       setData(Data);
     }
   }, []);
-
-  useEffect(() => {
-    setIsWorkoutImageVisible(false);
-  }, []);
-
-  useFocusEffect(
-    useCallback(() => {
-      return () => {
-        setIsWorkoutImageVisible(true);
-      };
-    }, []),
-  );
 
   return (
     <View className="px-7 gap-16">

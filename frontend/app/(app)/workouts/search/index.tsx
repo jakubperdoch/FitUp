@@ -31,7 +31,7 @@ const WorkoutSearchPage = () => {
 
   const exerciseSearch = useDebounce(exerciseQuery, 100);
 
-  const { data: fetchedExercises, isFetching } = useQuery<FetchedExercises>({
+  const { data, isFetching } = useQuery<FetchedExercises>({
     queryKey: ["exercises", exerciseSearch, maxResults],
     queryFn: () =>
       apiFetch(`/exercises?search=${exerciseSearch}&max=${maxResults}`),
@@ -74,14 +74,14 @@ const WorkoutSearchPage = () => {
   };
 
   useEffect(() => {
-    if (fetchedExercises) {
-      setExerciseData((prev) => fetchedExercises?.exercises);
+    if (data) {
+      setExerciseData((prev) => data?.exercises);
     }
-  }, [fetchedExercises]);
+  }, [data]);
 
   const loadMore = useCallback(() => {
     if (!isFetching) {
-      if (fetchedExercises?.total_results > maxResults) {
+      if (data?.total_results > maxResults) {
         setMaxResults((prev) => prev + 10);
       }
     }
@@ -89,11 +89,7 @@ const WorkoutSearchPage = () => {
 
   useEffect(() => {
     setMaxResults(10);
-  }, [exerciseSearch]);
-
-  useEffect(() => {
     setExerciseData([]);
-    setMaxResults(0);
   }, [exerciseSearch]);
 
   return (

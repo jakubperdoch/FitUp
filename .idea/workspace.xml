@@ -5,25 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: exercise search &amp; details controllers">
-      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseScroll.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Models/Exercise/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/Exercise/Exercise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Models/Exercise/Muscle.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/Exercise/BodyPart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/search/[name].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/search/[name].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/create/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/details/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/CategoryCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/CategoryCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/CategoryScroll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/CategoryScroll.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/MuscleGroupAccordion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/MuscleGroupAccordion.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/SearchCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/SearchCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/interfaces/workouts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/interfaces/workouts.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
