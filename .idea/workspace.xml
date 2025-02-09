@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: adding exercise from instructions">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: workout plan delete handler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,15 +173,7 @@
       <workItem from="1738871720571" duration="13992000" />
       <workItem from="1738899313120" duration="17878000" />
       <workItem from="1739089686231" duration="23000" />
-      <workItem from="1739089776254" duration="3202000" />
-    </task>
-    <task id="LOCAL-00013" summary="add: Add AlertDialog component and refactor workout logic">
-      <option name="closed" value="true" />
-      <created>1735599672270</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1735599672270</updated>
+      <workItem from="1739089776254" duration="3290000" />
     </task>
     <task id="LOCAL-00014" summary="add: Refactor components and add AlertDialog integration">
       <option name="closed" value="true" />
@@ -567,7 +559,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739136735239</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="add: workout plan delete handler">
+      <option name="closed" value="true" />
+      <created>1739137081777</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1739137081777</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -591,7 +591,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: workout stats &amp; graph" />
     <MESSAGE value="add: starting structure for diet stats" />
     <MESSAGE value="add: MacroStats page and pie graph for better visualization" />
     <MESSAGE value="add: profile &amp; reset password page" />
@@ -616,6 +615,7 @@
     <MESSAGE value="fix: active footer icon &amp; truncate title" />
     <MESSAGE value="add: exercise search &amp; adding them to workoutPlan" />
     <MESSAGE value="fix: adding exercise from instructions" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: adding exercise from instructions" />
+    <MESSAGE value="add: workout plan delete handler" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: workout plan delete handler" />
   </component>
 </project>
