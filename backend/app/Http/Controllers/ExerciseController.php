@@ -41,6 +41,7 @@ class ExerciseController extends Controller
 
             return [
                 'id' => $exercise->id,
+                'type' => 'exercise',
                 'exercise_id' => $exercise->exercise_id,
                 'name' => $exercise->name,
                 'target_muscles' => $target_muscles,
@@ -59,17 +60,40 @@ class ExerciseController extends Controller
 
     public function getExerciseDetails(Request $request)
     {
-        $exercise = Exercise::find($request->id);
+        $data = Exercise::find($request->id);
 
-        if (!$exercise) {
+        if (!$data) {
             return response()->json([
                 'message' => 'Exercise not found',
             ], 404);
         }
 
+        $exerciseArray = $data->toArray();
+
+        $instructions = [];
+        foreach ($exerciseArray as $key => $value) {
+            if (strpos($key, 'instructions_') === 0 && !empty($value)) {
+                $instructions[$key] = $value;
+            }
+        }
+
+        ksort($instructions, SORT_NATURAL);
+        $instructions = array_values($instructions);
+
+        $exercise = [
+            'id' => $data->id,
+            'type' => 'exercise',
+            'exercise_id' => $data->exercise_id,
+            'name' => $data->name,
+            'target_muscles' => $data->target_muscles,
+            'equipments' => $data->equipments,
+            'gif' => $data->gif,
+            'instructions' => $instructions,
+        ];
+
         return response()->json([
             'message' => 'Exercise retrieved',
-            'exercise' => $exercise
+            'exercise' => $exercise,
         ], 200);
     }
 

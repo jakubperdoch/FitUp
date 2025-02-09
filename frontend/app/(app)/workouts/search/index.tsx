@@ -3,14 +3,12 @@ import { Input, InputField, InputSlot } from "@/components/ui/input";
 import GenericIcon from "@/components/custom/Icon";
 import { useCallback, useEffect, useState } from "react";
 import GradientButton from "@/components/custom/Button/GradientButton";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/store/store";
-import { router, useLocalSearchParams } from "expo-router";
-import { addSuperset, setExercises } from "@/store/workoutPlan";
+import { useLocalSearchParams } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { useDebounce } from "@uidotdev/usehooks";
 import ExerciseScroll from "@/components/custom/Workouts/ExerciseScroll";
+import useExercises from "@/hooks/exercises";
 
 interface FetchedExercises {
   exercises: Exercise[];
@@ -19,59 +17,20 @@ interface FetchedExercises {
 
 const WorkoutSearchPage = () => {
   const [exerciseQuery, setExerciseQuery] = useState<string>("");
-  const [selectedExercises, setSelectedExercises] = useState<Exercise[]>([]);
   const [maxResults, setMaxResults] = useState(10);
   const [exerciseData, setExerciseData] = useState([]);
 
   const params = useLocalSearchParams();
-  const dispatch = useDispatch();
-  const exercises = useSelector(
-    (state: RootState) => state.workoutPlan.workout?.exercises,
-  );
-
   const exerciseSearch = useDebounce(exerciseQuery, 100);
+
+  const { handleSubmit, handleExerciseSelection, selectedExercises } =
+    useExercises();
 
   const { data, isFetching } = useQuery<FetchedExercises>({
     queryKey: ["exercises", exerciseSearch, maxResults],
     queryFn: () =>
       apiFetch(`/exercises?search=${exerciseSearch}&max=${maxResults}`),
   });
-
-  const handleExerciseSelection = useCallback((exercise: Exercise) => {
-    setSelectedExercises((prev) => {
-      const exists = prev.find((ex) => ex.exercise_id === exercise.exercise_id);
-      return exists
-        ? prev.filter((ex) => ex.exercise_id !== exercise.exercise_id)
-        : [...prev, exercise];
-    });
-  }, []);
-
-  const handleSubmit = () => {
-    if (params?.type === "exercise") {
-      if (exercises && exercises.length > 0) {
-        const isExercise = (ex: Exercise | Superset): ex is Exercise => {
-          return ex.type === "exercise";
-        };
-        const filteredExercises = exercises.filter(isExercise);
-
-        dispatch(setExercises([...filteredExercises, ...selectedExercises]));
-      } else {
-        dispatch(setExercises(selectedExercises));
-      }
-    } else if (params?.type === "superset") {
-      dispatch(
-        addSuperset({
-          type: "superset",
-          exercises: selectedExercises,
-        }),
-      );
-    }
-
-    router.push({
-      pathname: "/workouts/layout/create",
-      params: { id: params?.id },
-    });
-  };
 
   useEffect(() => {
     if (data) {
@@ -110,15 +69,17 @@ const WorkoutSearchPage = () => {
         />
       </Input>
 
-      <ExerciseScroll
-        exercises={exerciseData}
-        selectedExercises={selectedExercises}
-        handleExerciseSelection={handleExerciseSelection}
-        loadMore={loadMore}
-        isLoading={isFetching}
-      />
+      <View className="h-2/3">
+        <ExerciseScroll
+          exercises={exerciseData}
+          selectedExercises={selectedExercises}
+          handleExerciseSelection={handleExerciseSelection}
+          loadMore={loadMore}
+          isLoading={isFetching}
+        />
+      </View>
 
-      <View className="px-7 w-full">
+      <View className="px-7 w-full mt-4">
         <GradientButton
           disabled={
             params?.type === "superset"
@@ -127,7 +88,7 @@ const WorkoutSearchPage = () => {
           }
           size={"full"}
           title={params?.type === "superset" ? "Add Superset" : "Add Exercise"}
-          handleSubmit={handleSubmit}
+          handleSubmit={() => handleSubmit(params)}
         />
       </View>
     </View>

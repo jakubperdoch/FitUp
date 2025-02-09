@@ -20,6 +20,7 @@ const SearchCardComponent = ({
     selectedExercises.findIndex(
       (ex) => ex.exercise_id === exercise.exercise_id,
     ) + 1;
+
   return (
     <TouchableOpacity
       onPress={() => handleExercisePress(exercise)}
@@ -51,7 +52,7 @@ const SearchCardComponent = ({
         onPress={() =>
           router.push({
             pathname: "/workouts/search/instructions",
-            params: { exerciseId: exercise.exercise_id },
+            params: { id: exercise.id },
           })
         }
       >

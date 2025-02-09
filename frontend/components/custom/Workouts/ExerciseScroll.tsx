@@ -47,8 +47,8 @@ const FoodScrollComponent = ({
       <FlatList
         ref={flatListRef}
         data={exercises}
-        className="px-7  h-full"
-        contentContainerClassName="pt-3 pb-[40rem]"
+        className="px-7"
+        contentContainerClassName="pt-3"
         renderItem={({ item }) => (
           <SearchCard
             key={item.id}

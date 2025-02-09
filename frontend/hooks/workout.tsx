@@ -318,7 +318,7 @@ const useWorkoutDetails = () => {
           style: "destructive",
           onPress: () => {
             dispatch(resetExercises());
-            router.push("/workouts");
+            router.push("/workouts/layout");
           },
         },
       ],
@@ -337,7 +337,7 @@ const useWorkoutDetails = () => {
         }),
       onSuccess: () => {
         dispatch(clearWorkoutPlan());
-        router.replace("/workouts");
+        router.replace("/workouts/layout");
       },
     });
 
@@ -351,7 +351,7 @@ const useWorkoutDetails = () => {
         }),
       onSuccess: () => {
         dispatch(clearWorkoutPlan());
-        router.replace("/workouts");
+        router.replace("/workouts/layout");
       },
       onError: (error) => {
         console.error(error);

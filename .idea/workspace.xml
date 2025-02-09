@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: exercise search &amp; details controllers">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: active footer icon &amp; truncate title">
+      <change afterPath="$PROJECT_DIR$/frontend/hooks/exercises.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/create/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseScroll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseScroll.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/SearchCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/SearchCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/interfaces/workouts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/interfaces/workouts.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,14 +179,6 @@
       <workItem from="1738611321083" duration="60400000" />
       <workItem from="1738871720571" duration="13992000" />
       <workItem from="1738899313120" duration="17878000" />
-    </task>
-    <task id="LOCAL-00010" summary="add: Add workout sorting, new components, and update dependencies">
-      <option name="closed" value="true" />
-      <created>1735595252223</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1735595252223</updated>
     </task>
     <task id="LOCAL-00011" summary="fix: Refactor components to improve UX and remove unused file">
       <option name="closed" value="true" />
@@ -568,7 +564,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739046761615</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="fix: active footer icon &amp; truncate title">
+      <option name="closed" value="true" />
+      <created>1739060120092</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1739060120092</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -592,7 +596,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: disabled inputs when editing workout" />
     <MESSAGE value="add: workout creation redux slice" />
     <MESSAGE value="add: starting to work on charts &amp; stats" />
     <MESSAGE value="add: workout stats &amp; graph" />
@@ -617,6 +620,7 @@
     <MESSAGE value="add: loading workout in edit" />
     <MESSAGE value="add: uploading &amp; editing workouts" />
     <MESSAGE value="add: exercise search &amp; details controllers" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: exercise search &amp; details controllers" />
+    <MESSAGE value="fix: active footer icon &amp; truncate title" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: active footer icon &amp; truncate title" />
   </component>
 </project>

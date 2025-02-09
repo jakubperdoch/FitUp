@@ -10,6 +10,7 @@ interface Superset {
 }
 
 interface Exercise {
+  id?: number;
   type?: "exercise";
   exercise_id: string;
   name: string;

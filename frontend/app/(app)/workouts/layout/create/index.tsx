@@ -175,7 +175,7 @@ const WorkoutCreationScreen = () => {
               workout?.days?.length === 0
             }
             size={"full"}
-            title={params?.id ? "Update Workout" : "Create Workout"}
+            title={workout?.id ? "Update Workout" : "Create Workout"}
             handleSubmit={() => handleWorkoutSubmit()}
           />
         </View>
