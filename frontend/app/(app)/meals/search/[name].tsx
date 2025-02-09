@@ -99,7 +99,7 @@ const MealsSearchPage = () => {
 
   return (
     <View className="flex flex-col gap-7">
-      <Input size="xl" variant="rounded" className="mx-7 ">
+      <Input size="xl" variant="rounded" className="mx-7">
         <InputSlot>
           <GenericIcon name="Search" size={20} color="#7B6F72" />
         </InputSlot>
@@ -109,6 +109,7 @@ const MealsSearchPage = () => {
           onChangeText={setSearchQuery}
           type={"text"}
           placeholder="Search for meals"
+          placeholderTextColor={"#7B6F72"}
           autoCapitalize="words"
           autoCorrect={false}
         />

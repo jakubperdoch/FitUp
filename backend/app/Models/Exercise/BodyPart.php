@@ -4,10 +4,10 @@ namespace App\Models\Exercise;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Muscle extends Model
+class BodyPart extends Model
 {
 
-    protected $table = 'muscles';
+    protected $table = 'body_parts';
 
     protected $fillable = [
         'name',

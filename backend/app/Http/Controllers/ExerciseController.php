@@ -4,28 +4,31 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Exercise\Exercise;
-use App\Models\Exercise\Muscle;
+use App\Models\Exercise\BodyPart;
 use Illuminate\Http\Request;
 
 class ExerciseController extends Controller
 {
 
-    public function getMuscles()
+    public function getBodyParts()
     {
-        $muscles = Muscle::all();
+        $body_parts = BodyPart::all();
 
         return response()->json([
-            'message' => 'Muscles retrieved',
-            'muscles' => $muscles
+            'message' => 'Body Parts retrieved',
+            'body_parts' => $body_parts
         ], 200);
     }
 
     public function getExercises(Request $request)
     {
-        $muscle = $request->query();
+        $query = $request->query();
 
-        $data = Exercise::where('target_muscles', $muscle)
-            ->get();
+        $max_results = isset($query['max']) ? (int)$query['max'] : 10;
+        $search = $query['search'] ?? null;
+
+
+        $data = Exercise::where('name', 'like', '%' . $search . '%')->get();
 
         if ($data->isEmpty()) {
             return response()->json([
@@ -33,20 +36,22 @@ class ExerciseController extends Controller
             ], 404);
         }
 
-        $exercises = collect($data)
-            ->map(function ($exercise) {
-                return [
-                    'id' => $exercise->id,
-                    'exercise_id' => $exercise->exercise_id,
-                    'name' => $exercise->name,
-                    'target_muscles' => $exercise->target_muscles,
-                ];
-            });
+        $exercises = $data->map(function ($exercise) {
+            $target_muscles = [$exercise->target_muscles];
+
+            return [
+                'id' => $exercise->id,
+                'exercise_id' => $exercise->exercise_id,
+                'name' => $exercise->name,
+                'target_muscles' => $target_muscles,
+            ];
+        });
 
 
         return response()->json([
             'message' => 'Exercises retrieved',
-            'exercises' => $exercises
+            'total_results' => $exercises->count(),
+            'exercises' => $exercises->take($max_results)
         ], 200);
 
     }

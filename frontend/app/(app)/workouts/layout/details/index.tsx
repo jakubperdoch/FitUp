@@ -75,7 +75,7 @@ const WorkoutDetailsScreen = () => {
                   activeOpacity={0.7}
                   onPress={() =>
                     router.push({
-                      pathname: "/workouts/create",
+                      pathname: "/workouts/layout/create",
                       params: { id: data?.id },
                     })
                   }

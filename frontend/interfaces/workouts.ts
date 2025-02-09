@@ -10,8 +10,8 @@ interface Superset {
 }
 
 interface Exercise {
-  type: "exercise";
-  exerciseId: string;
+  type?: "exercise";
+  exercise_id: string;
   name: string;
   sets?: Array<ExerciseSet>;
   targetMuscles?: Array<string>;

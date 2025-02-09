@@ -9,13 +9,14 @@ type Category = {
 type ComponentProps = {
   onClick: (name: string) => void;
   categories: Category[];
+  categoryTitle?: string;
 };
 
 const CategoryScrollComponent = (props: ComponentProps) => {
   return (
     <View className="flex flex-col gap-5">
       <Text className="ms-7 text-2xl font-semibold font-poppins ">
-        Category
+        {props.categoryTitle || "Categories"}
       </Text>
 
       <ScrollView
@@ -23,7 +24,7 @@ const CategoryScrollComponent = (props: ComponentProps) => {
         showsHorizontalScrollIndicator={false}
         className="px-7  "
       >
-        {props.categories.map((category) => {
+        {props?.categories?.map((category) => {
           return (
             <CategoryCardComponent
               key={category.id}

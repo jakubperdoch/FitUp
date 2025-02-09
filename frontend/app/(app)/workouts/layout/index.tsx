@@ -46,7 +46,7 @@ const WorkoutsPage = () => {
               <GradientButtonComponent
                 size={"sm"}
                 title="Create new"
-                handleSubmit={() => router.push("/workouts/create")}
+                handleSubmit={() => router.push("/workouts/layout/create")}
               />
             </View>
           </View>
@@ -72,7 +72,7 @@ const WorkoutsPage = () => {
                     numberOfExercises={card.number_of_exercises}
                     detailsHandler={() =>
                       router.push({
-                        pathname: "/workouts/details",
+                        pathname: "/workouts/layout/details",
                         params: { id: card.id },
                       })
                     }

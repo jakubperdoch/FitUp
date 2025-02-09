@@ -28,7 +28,9 @@ const CategoryCardComponent = (props: ComponentProps) => {
           marginEnd: 15,
         }}
       >
-        <Text className="font-poppins text-center">{props.category.name}</Text>
+        <Text className="font-poppins text-center capitalize">
+          {props.category.name}
+        </Text>
       </LinearGradient>
     </TouchableOpacity>
   );

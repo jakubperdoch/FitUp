@@ -62,7 +62,7 @@ Route::middleware('auth:sanctum')->group(function () {
 //exercise endpoints
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/muscles', [ExerciseController::class, 'getMuscles'])->name('getMuscles');
+    Route::get('/exercises/body_parts', [ExerciseController::class, 'getBodyParts'])->name('getBodyParts');
     Route::get('/exercises', [ExerciseController::class, 'getExercises'])->name('getExercises');
     Route::get('/exercises/{id}/details', [ExerciseController::class, 'getExerciseDetails'])->name('getExerciseDetails');
 });

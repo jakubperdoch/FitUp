@@ -32,7 +32,7 @@ class Exercise extends Model
 
     public function muscles()
     {
-        return $this->belongsTo(Muscle::class);
+        return $this->belongsTo(BodyPart::class);
     }
 
 

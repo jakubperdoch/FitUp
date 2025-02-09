@@ -154,7 +154,7 @@ const HomeScreen = () => {
                 workoutSelectHandler={workoutSelectHandler}
                 detailsHandler={() =>
                   router.push({
-                    pathname: "/workouts/details",
+                    pathname: "/workouts/layout/details",
                     params: { id: workout.id },
                   })
                 }
@@ -193,7 +193,7 @@ const HomeScreen = () => {
                 detailsHandler={() =>
                   router.push({
                     pathname: "/meals/details",
-                    params: { id: meal.id, isNew: String(false) },
+                    params: { id: meal.id },
                   })
                 }
               />
@@ -237,7 +237,7 @@ const HomeScreen = () => {
                     workoutSelectHandler={workoutSelectHandler}
                     detailsHandler={() =>
                       router.push({
-                        pathname: "/workouts/details",
+                        pathname: "/workouts/layout/details",
                         params: { id: workout.id },
                       })
                     }
