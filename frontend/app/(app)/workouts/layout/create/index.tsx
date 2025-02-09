@@ -54,14 +54,18 @@ const WorkoutCreationScreen = () => {
   });
 
   useEffect(() => {
-    if (params?.id && !workout?.id) {
+    if (!workout?.id && params?.id) {
       dispatch(setWorkoutPlan(workoutPlan?.workout));
       setData(workoutPlan?.workout);
     }
   }, [workoutPlan?.workout]);
 
+  useEffect(() => {
+    console.log(JSON.stringify(workout, null, 2));
+  }, [workout]);
+
   const handleWorkoutSubmit = () => {
-    if (params?.id) {
+    if (workout?.id) {
       updateWorkoutPlan(workout);
     } else {
       createWorkoutPlan(workout);
@@ -106,7 +110,7 @@ const WorkoutCreationScreen = () => {
               )}
             </View>
             <Text className="font-poppins text-[#7B6F72]">
-              {data?.exercises?.length} Exercises
+              {data?.number_of_exercises} Exercises
             </Text>
           </View>
 

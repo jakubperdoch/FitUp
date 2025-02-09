@@ -12,9 +12,10 @@ import { RootState } from "@/store/store";
 import ActiveWorkoutCardComponent from "@/components/custom/Workouts/ActiveWorkoutCard";
 import PulseBorder from "@/components/custom/PulseBorder";
 import Animated, { ZoomIn } from "react-native-reanimated";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
+import useWorkoutDetails from "@/hooks/workout";
 
 const HomeScreen = () => {
   const [workouts, setWorkouts] = useState([]);
@@ -25,6 +26,7 @@ const HomeScreen = () => {
   );
 
   const dispatch = useDispatch();
+  const { addWorkout } = useWorkoutDetails();
 
   useEffect(() => {
     setNavbarTitle("Fit Up");
@@ -88,6 +90,10 @@ const HomeScreen = () => {
   const finishWorkoutHandler = (isTimerClear: boolean) => {
     if (!workout) {
       return;
+    }
+
+    if (workout.timer > 0) {
+      addWorkout(workout);
     }
 
     const workoutsArr = isTimerClear

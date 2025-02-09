@@ -8,6 +8,7 @@ export interface WorkoutState {
 
 const initialState: WorkoutState = {
   workout: {
+    days: [],
     exercises: [],
   },
   isTimerActive: false,
@@ -38,7 +39,7 @@ export const workoutSlice = createSlice({
       state.isTimerActive = action.payload;
     },
 
-    updateAcviveWorkoutSet: (
+    updateActiveWorkoutSet: (
       state,
       action: PayloadAction<{
         exerciseIndex: number;
@@ -79,6 +80,6 @@ export const {
   clearWorkout,
   updateTimer,
   setTimer,
-  updateAcviveWorkoutSet,
+  updateActiveWorkoutSet,
 } = workoutSlice.actions;
 export default workoutSlice.reducer;

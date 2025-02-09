@@ -4,9 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: workout plan delete handler">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: invalidateQuery meals when deleting">
+      <change afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/WorkoutController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/Models/Workout/Workout.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/Models/Workout/WorkoutExercise.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/Models/Workout/WorkoutSet.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/WorkoutPlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/WorkoutPlanController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/archive/2025_02_06_232258_create_exercises_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/archive/2025_02_06_232625_create_sets_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/create/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/details/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ActiveWorkoutCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ActiveWorkoutCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/hooks/workout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/workout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/store/workout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workout.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,15 +186,7 @@
       <workItem from="1738871720571" duration="13992000" />
       <workItem from="1738899313120" duration="17878000" />
       <workItem from="1739089686231" duration="23000" />
-      <workItem from="1739089776254" duration="3290000" />
-    </task>
-    <task id="LOCAL-00014" summary="add: Refactor components and add AlertDialog integration">
-      <option name="closed" value="true" />
-      <created>1735606149400</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1735606149400</updated>
+      <workItem from="1739089776254" duration="7968000" />
     </task>
     <task id="LOCAL-00015" summary="add: Add RunningWorkout section &amp; Redux workout management">
       <option name="closed" value="true" />
@@ -567,7 +572,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739137081777</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="add: invalidateQuery meals when deleting">
+      <option name="closed" value="true" />
+      <created>1739137150000</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1739137150000</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -591,7 +604,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: starting structure for diet stats" />
     <MESSAGE value="add: MacroStats page and pie graph for better visualization" />
     <MESSAGE value="add: profile &amp; reset password page" />
     <MESSAGE value="fix" />
@@ -616,6 +628,7 @@
     <MESSAGE value="add: exercise search &amp; adding them to workoutPlan" />
     <MESSAGE value="fix: adding exercise from instructions" />
     <MESSAGE value="add: workout plan delete handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: workout plan delete handler" />
+    <MESSAGE value="add: invalidateQuery meals when deleting" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: invalidateQuery meals when deleting" />
   </component>
 </project>

@@ -8,7 +8,7 @@ use App\Http\Controllers\MealController;
 use App\Http\Controllers\WorkoutPlanController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\StatsController;
-
+use App\Http\Controllers\WorkoutController;
 
 Route::get('/test-db', function () {
     try {
@@ -53,8 +53,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/workouts/plans/{id}/details', [WorkoutPlanController::class, 'getWorkoutPlan'])->name('getWorkoutPlan');
 });
 
-//exercise endpoints
+//workout endpoints
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/workouts/add', [WorkoutController::class, 'addWorkout'])->name('createWorkoutPlan');
+    Route::get('/workouts', [WorkoutController::class, 'getWorkouts'])->name('getWorkoutPlans');
+});
 
+
+//exercise endpoints
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/exercises/body_parts', [ExerciseController::class, 'getBodyParts'])->name('getBodyParts');
     Route::get('/exercises', [ExerciseController::class, 'getExercises'])->name('getExercises');

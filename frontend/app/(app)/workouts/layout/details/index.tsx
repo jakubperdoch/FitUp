@@ -87,7 +87,7 @@ const WorkoutDetailsScreen = () => {
               )}
             </View>
             <Text className="font-poppins text-[#7B6F72]">
-              {data?.exercises?.length} Exercises
+              {data?.number_of_exercises} Exercises
             </Text>
           </View>
 
