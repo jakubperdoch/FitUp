@@ -35,15 +35,15 @@ class StatsController extends Controller
         $userPreferences = $user->userPreferences;
 
         $caloriesProgress = $userPreferences->calories > 0
-            ? min($total_calories / $userPreferences->calories, 1)
+            ? 1 - min($total_calories / $userPreferences->calories, 1)
             : 0;
 
         $proteinProgress = $userPreferences->protein > 0
-            ? min($total_protein / $userPreferences->protein, 1)
+            ? 1 - min($total_protein / $userPreferences->protein, 1)
             : 0;
 
         $carbsProgress = $userPreferences->carbs > 0
-            ? min($total_carbs / $userPreferences->carbs, 1)
+            ? 1 - min($total_carbs / $userPreferences->carbs, 1)
             : 0;
 
         $fatProgress = $userPreferences->fat > 0
@@ -51,25 +51,25 @@ class StatsController extends Controller
             : 0;
 
         $fiberProgress = $userPreferences->fiber > 0
-            ? min($total_fiber / $userPreferences->fiber, 1)
+            ? 1 - min($total_fiber / $userPreferences->fiber, 1)
             : 0;
 
         $sugarProgress = $userPreferences->sugar > 0
-            ? min($total_sugar / $userPreferences->sugar, 1)
+            ? 1 - min($total_sugar / $userPreferences->sugar, 1)
             : 0;
 
 
         return response()->json([
             'message' => 'Macro Stats retrieved',
             'macros' => [
-                'calories' => $caloriesProgress,
-                'protein' => $proteinProgress,
-                'carbs' => $carbsProgress,
-                'fat' => $fatProgress,
-                'fiber' => $fiberProgress,
-                'sugar' => $sugarProgress,
+                'total_calories' => $caloriesProgress,
+                'total_protein' => $proteinProgress,
+                'total_carbs' => $carbsProgress,
+                'total_fat' => $fatProgress,
+                'total_fiber' => $fiberProgress,
+                'total_sugar' => $sugarProgress,
             ],
-
+            
         ], 200);
 
     }

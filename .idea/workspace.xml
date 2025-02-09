@@ -7,7 +7,7 @@
     <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: exercise search &amp; adding them to workoutPlan">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/StatsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/StatsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCircle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCircle.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardPanel.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
