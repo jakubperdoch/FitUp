@@ -47,7 +47,7 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function getUserMacroPreferences(Request $request)
+    public function getUserPreferences(Request $request)
     {
         $user = $request->user();
 
@@ -67,7 +67,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'selected_language' => [
                 'required',
-                Rule::in(['en', 'es', 'fr']),
+                Rule::in(['sk', 'en']),
             ],
         ]);
 
@@ -81,7 +81,6 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'User Language Preference updated',
-            'user_preferences' => $userPreferences
         ], 200);
     }
 

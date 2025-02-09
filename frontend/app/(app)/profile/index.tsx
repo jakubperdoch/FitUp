@@ -32,9 +32,9 @@ const ProfileSectionsData = [
     title: "Account",
     links: [
       {
-        title: "Personal Information",
+        title: "Preferences",
         icon: "User",
-        route: "PersonalInformation",
+        route: "profile/PreferencesScreen",
       },
       {
         title: "Change Password",

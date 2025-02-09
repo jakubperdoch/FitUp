@@ -68,8 +68,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 //user endpoints
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user/preferences', [UserController::class, 'getUserPreferences'])->name('getUserMacroPreferences');
     Route::put('/user/macros/update', [UserController::class, 'updateUserMacroPreferences'])->name('updateUserMacroPreferences');
-    Route::get('/user/macros', [UserController::class, 'getUserMacroPreferences'])->name('getUserMacroPreferences');
     Route::put('/user/language/update', [UserController::class, 'updateUserLanguagePreference'])->name('updateUserLanguagePreference');
 });
 
