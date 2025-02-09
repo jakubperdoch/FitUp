@@ -186,6 +186,12 @@ class MealController extends Controller
 
     public function retrieveAllMeals(Request $request)
     {
+
+        $query = $request->query();
+
+        $max_results = isset($query['max']) ? (int)$query['max'] : null;
+
+
         $validator = Validator::make($request->all(), [
             'date' => ['required', 'date'],
         ]);
@@ -208,12 +214,38 @@ class MealController extends Controller
                 return array_search($key, ['breakfast', 'morningSnack', 'lunch', 'afternoonSnack', 'dinner', 'lateNightSnack']);
             });
 
+        $sortedMeals = $max_results ? $sortedMeals->take($max_results) : $sortedMeals;
+
+
         return response()->json([
             'message' => 'Meals retrieved',
             'meals' => $sortedMeals
         ]);
 
     }
+
+    public function getTodayMeals(Request $request)
+    {
+        $query = $request->query();
+        $max_results = isset($query['max']) ? (int)$query['max'] : null;
+
+
+        $user = $request->user();
+        $today = Carbon::now()->format('Y-m-d');
+
+        $meals = Meal::where('user_id', $user->id)
+            ->where('date', '=', $today)
+            ->get();
+
+
+        $sortedMeals = $max_results ? $meals->take($max_results) : $meals;
+
+        return response()->json([
+            'message' => 'Meals retrieved',
+            'meals' => $sortedMeals
+        ], 200);
+    }
+
 
     public function addMeal(Request $request)
     {

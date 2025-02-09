@@ -7,17 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\WorkoutPlanController;
 use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\StatsController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::get('/test-db', function () {
     try {
@@ -47,6 +38,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/meals', [MealController::class, 'getMeals'])->name('getMeals');
     Route::post('/meals/all', [MealController::class, 'retrieveAllMeals'])->name('retrieveAllMeals');
     Route::get('/meals/{food_id}/details/{id?}', [MealController::class, 'getMealDetails'])->name('getMealDetails');
+    Route::get('/meals/today', [MealController::class, 'getTodayMeals'])->name('getTodayMeals');
     Route::get('/refresh-token', [MealController::class, 'refreshToken'])->name('refreshToken');
 });
 
@@ -65,6 +57,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/exercises/body_parts', [ExerciseController::class, 'getBodyParts'])->name('getBodyParts');
     Route::get('/exercises', [ExerciseController::class, 'getExercises'])->name('getExercises');
     Route::get('/exercises/{id}/details', [ExerciseController::class, 'getExerciseDetails'])->name('getExerciseDetails');
+});
+
+// stats endpoints
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/stats/macros', [StatsController::class, 'getMacros'])->name('getMacros');
 });
 
 

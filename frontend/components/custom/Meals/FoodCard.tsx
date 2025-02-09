@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 
 import GenericIcon from "../Icon";
 import { router } from "expo-router";
+import Animated, { ZoomIn } from "react-native-reanimated";
 
 type Food = {
   food_id: number;
@@ -38,7 +39,7 @@ const FoodCardComponent = ({
   };
 
   return (
-    <View className="px-7 mb-8 gap-4">
+    <Animated.View entering={ZoomIn} className="px-7 mb-8 gap-4">
       <View className="flex flex-row items-center justify-between">
         <Text className="text-2xl font-semibold font-poppins">
           {formatWords(title)}
@@ -95,7 +96,7 @@ const FoodCardComponent = ({
           </TouchableOpacity>
         ))}
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

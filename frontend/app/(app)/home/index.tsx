@@ -2,9 +2,7 @@ import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useCallback, useEffect, useState } from "react";
 import DashboardPanel from "@/components/custom/Dashboard/DashboardPanel";
 import GenericIcon from "@/components/custom/Icon";
-import GradientSelectComponent from "@/components/custom/Inputs/GradientSelect";
 import DashboardCard from "@/components/custom/Dashboard/DashboardCard";
-import useCurrentDateHandler from "@/hooks/date";
 import { router } from "expo-router";
 import { useLayout } from "@/context/LayoutContext";
 import { useSortedWorkouts } from "@/hooks/workouts";
@@ -18,12 +16,9 @@ import { useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
 
-// TODO: make global interfaces & types
-
 const HomeScreen = () => {
   const [workouts, setWorkouts] = useState([]);
 
-  const { currentDate } = useCurrentDateHandler();
   const { setNavbarTitle } = useLayout();
   const { workout, isTimerActive } = useSelector(
     (state: RootState) => state.workout,
@@ -35,34 +30,6 @@ const HomeScreen = () => {
     setNavbarTitle("Fit Up");
   }, []);
 
-  //TODO: Move all dumb data like this to json
-  const foodOptions = [
-    {
-      name: "Breakfast",
-      value: "breakfast",
-    },
-    {
-      name: "Morning Snack",
-      value: "morningSnack",
-    },
-    {
-      name: "Lunch",
-      value: "lunch",
-    },
-    {
-      name: "Afternoon Snack",
-      value: "afternoonSnack",
-    },
-    {
-      name: "Dinner",
-      value: "dinner",
-    },
-    {
-      name: "Late Night Snack",
-      value: "lateNightSnack",
-    },
-  ];
-
   const {
     data: workoutsData,
     isLoading: workoutsLoading,
@@ -71,6 +38,30 @@ const HomeScreen = () => {
     queryKey: ["workouts"],
     queryFn: () =>
       apiFetch("/workouts/plans?max=2", {
+        method: "GET",
+      }),
+  });
+
+  const {
+    data: mealsData,
+    isLoading: mealsLoading,
+    isFetching: mealsFetching,
+  } = useQuery({
+    queryKey: ["meals"],
+    queryFn: () =>
+      apiFetch("/meals/today", {
+        method: "GET",
+      }),
+  });
+
+  const {
+    data: macrosData,
+    isLoading: macrosLoading,
+    isFetching: macrosFetching,
+  } = useQuery({
+    queryKey: ["macros"],
+    queryFn: () =>
+      apiFetch("/stats/macros", {
         method: "GET",
       }),
   });
@@ -119,19 +110,6 @@ const HomeScreen = () => {
     }
   }, [workout]);
 
-  const [mealCards, setMealCards] = useState([
-    {
-      id: 10,
-      name: "Salmon Nigiri",
-      date: currentDate,
-    },
-    {
-      id: 11,
-      name: "Lowfat Milk",
-      date: currentDate,
-    },
-  ]);
-
   return (
     <ScrollView>
       <View className="flex flex-col h-full items-center px-7 pt-5 w-full gap-6 mb-20">
@@ -139,7 +117,11 @@ const HomeScreen = () => {
           Overview
         </Text>
 
-        <DashboardPanel />
+        {macrosLoading || macrosFetching ? (
+          <Spinner color={"#F77F00"} />
+        ) : (
+          <DashboardPanel macros={macrosData?.macros} />
+        )}
 
         {workout?.id && (
           <Animated.View className="w-full" entering={ZoomIn}>
@@ -174,36 +156,42 @@ const HomeScreen = () => {
                 <GenericIcon name="Plus" color="#F77F00" size={25} />
               </TouchableOpacity>
             </View>
-
-            <GradientSelectComponent
-              placeholder={"Choose Gender"}
-              controllerName={null}
-              control={null}
-              options={foodOptions}
-            />
           </View>
 
-          <View className="gap-5 mt-6 justify-center flex-col items-center">
-            {mealCards.map((meal) => (
-              <DashboardCard
-                key={meal.id}
-                id={meal.id}
-                name={meal.name}
-                date={meal.date}
-                detailsHandler={() =>
-                  router.push({
-                    pathname: "/meals/details",
-                    params: { id: meal.id },
-                  })
-                }
-              />
-            ))}
-            <TouchableOpacity activeOpacity={0.7}>
-              <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
-                See More
-              </Text>
-            </TouchableOpacity>
-          </View>
+          {mealsLoading || mealsFetching ? (
+            <Spinner className="mt-6" color={"#F77F00"} />
+          ) : (
+            <View className="gap-5 mt-6 justify-center flex-col items-center">
+              {mealsData?.meals?.map((meal) => (
+                <DashboardCard
+                  key={meal.id}
+                  id={meal.id}
+                  name={meal.name}
+                  date={meal.date}
+                  calories={meal.calories}
+                  detailsHandler={() =>
+                    router.push({
+                      pathname: "/meals/details",
+                      params: {
+                        id: meal.id,
+                        food_id: meal.food_id,
+                      },
+                    })
+                  }
+                />
+              ))}
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => {
+                  router.push({ pathname: "/meals" });
+                }}
+              >
+                <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
+                  See More
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
 
         {/*Upcoming Workouts*/}
@@ -222,7 +210,7 @@ const HomeScreen = () => {
 
           <View className="gap-5 mt-6 justify-center flex-col items-center">
             {workoutsLoading || workoutsFetching ? (
-              <Spinner />
+              <Spinner className="mt-6" color={"#F77F00"} />
             ) : (
               <>
                 {workouts.map((workout) => (
@@ -243,7 +231,12 @@ const HomeScreen = () => {
                     }
                   />
                 ))}
-                <TouchableOpacity activeOpacity={0.7}>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() => {
+                    router.push({ pathname: "/workouts/layout" });
+                  }}
+                >
                   <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
                     See More
                   </Text>

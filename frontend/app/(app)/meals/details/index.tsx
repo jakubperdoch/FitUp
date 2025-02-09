@@ -70,8 +70,6 @@ const DetailsScreen = () => {
         ),
       );
     }
-
-    console.log(servingAmount);
   }, [isLoading]);
 
   useEffect(() => {
