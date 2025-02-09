@@ -110,6 +110,14 @@ const HomeScreen = () => {
     }
   }, [workout]);
 
+  const areDataLoading =
+    workoutsLoading ||
+    workoutsFetching ||
+    mealsLoading ||
+    mealsFetching ||
+    macrosLoading ||
+    macrosFetching;
+
   return (
     <ScrollView>
       <View className="flex flex-col h-full items-center px-7 pt-5 w-full gap-6 mb-20">
@@ -117,104 +125,96 @@ const HomeScreen = () => {
           Overview
         </Text>
 
-        {macrosLoading || macrosFetching ? (
+        {areDataLoading ? (
           <Spinner color={"#F77F00"} />
         ) : (
-          <DashboardPanel macros={macrosData?.macros} />
-        )}
+          <>
+            <DashboardPanel macros={macrosData?.macros} />
 
-        {workout?.id && (
-          <Animated.View className="w-full" entering={ZoomIn}>
-            <PulseBorder>
-              <ActiveWorkoutCardComponent
-                key={workout.id}
-                id={workout.id}
-                name={workout.name}
-                day={workout.day}
-                numberOfExercises={workout.number_of_exercises}
-                finishWorkoutHandler={finishWorkoutHandler}
-                workoutSelectHandler={workoutSelectHandler}
-                detailsHandler={() =>
-                  router.push({
-                    pathname: "/workouts/layout/details",
-                    params: { id: workout.id },
-                  })
-                }
-              />
-            </PulseBorder>
-          </Animated.View>
-        )}
+            {workout?.id && (
+              <Animated.View className="w-full" entering={ZoomIn}>
+                <PulseBorder>
+                  <ActiveWorkoutCardComponent
+                    key={workout.id}
+                    id={workout.id}
+                    name={workout.name}
+                    day={workout.day}
+                    numberOfExercises={workout.number_of_exercises}
+                    finishWorkoutHandler={finishWorkoutHandler}
+                    workoutSelectHandler={workoutSelectHandler}
+                    detailsHandler={() =>
+                      router.push({
+                        pathname: "/workouts/layout/details",
+                        params: { id: workout.id },
+                      })
+                    }
+                  />
+                </PulseBorder>
+              </Animated.View>
+            )}
 
-        {/*Today's meals*/}
-        <View className="self-start w-full flex-col mb-4">
-          <View className="flex-row w-full items-center justify-between gap-3 mt-4">
-            <View className="flex-row items-center gap-3">
-              <Text className="font-poppinsSemiBold text-2xl">
-                Today's Meals
-              </Text>
+            {/*Today's meals*/}
+            <View className="self-start w-full flex-col mb-4">
+              <View className="flex-row w-full items-center justify-between gap-3 mt-4">
+                <View className="flex-row items-center gap-3">
+                  <Text className="font-poppinsSemiBold text-2xl">
+                    Today's Meals
+                  </Text>
+                </View>
+              </View>
+
+              <View className="gap-5 mt-6 justify-center flex-col items-center">
+                {mealsData?.meals?.map((meal) => (
+                  <DashboardCard
+                    key={meal.id}
+                    id={meal.id}
+                    name={meal.name}
+                    date={meal.date}
+                    calories={meal.calories}
+                    detailsHandler={() =>
+                      router.push({
+                        pathname: "/meals/details",
+                        params: {
+                          id: meal.id,
+                          food_id: meal.food_id,
+                        },
+                      })
+                    }
+                  />
+                ))}
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() => {
+                    router.push({ pathname: "/meals" });
+                  }}
+                >
+                  <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
+                    See More
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
 
-          {mealsLoading || mealsFetching ? (
-            <Spinner className="mt-6" color={"#F77F00"} />
-          ) : (
-            <View className="gap-5 mt-6 justify-center flex-col items-center">
-              {mealsData?.meals?.map((meal) => (
-                <DashboardCard
-                  key={meal.id}
-                  id={meal.id}
-                  name={meal.name}
-                  date={meal.date}
-                  calories={meal.calories}
-                  detailsHandler={() =>
-                    router.push({
-                      pathname: "/meals/details",
-                      params: {
-                        id: meal.id,
-                        food_id: meal.food_id,
-                      },
-                    })
-                  }
-                />
-              ))}
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() => {
-                  router.push({ pathname: "/meals" });
-                }}
-              >
-                <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
-                  See More
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        </View>
+            {/*Upcoming Workouts*/}
 
-        {/*Upcoming Workouts*/}
+            <View className="self-start w-full flex-col mb-4">
+              <View className="flex-row w-full items-center justify-between gap-3 mt-4">
+                <View className="flex-row items-center gap-3">
+                  <Text className="font-poppinsSemiBold text-2xl">
+                    Upcoming Workouts
+                  </Text>
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => {
+                      router.push({ pathname: "/workouts/layout/create" });
+                    }}
+                  >
+                    <GenericIcon name="Plus" color="#F77F00" size={25} />
+                  </TouchableOpacity>
+                </View>
+              </View>
 
-        <View className="self-start w-full flex-col mb-4">
-          <View className="flex-row w-full items-center justify-between gap-3 mt-4">
-            <View className="flex-row items-center gap-3">
-              <Text className="font-poppinsSemiBold text-2xl">
-                Upcoming Workouts
-              </Text>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() => {
-                  router.push({ pathname: "/workouts/layout/create" });
-                }}
-              >
-                <GenericIcon name="Plus" color="#F77F00" size={25} />
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <View className="gap-5 mt-6 justify-center flex-col items-center">
-            {workoutsLoading || workoutsFetching ? (
-              <Spinner className="mt-6" color={"#F77F00"} />
-            ) : (
-              <>
+              <View className="gap-5 mt-6 justify-center flex-col items-center">
                 {workouts.map((workout) => (
                   <DashboardCard
                     key={workout.id}
@@ -243,10 +243,10 @@ const HomeScreen = () => {
                     See More
                   </Text>
                 </TouchableOpacity>
-              </>
-            )}
-          </View>
-        </View>
+              </View>
+            </View>
+          </>
+        )}
       </View>
     </ScrollView>
   );
