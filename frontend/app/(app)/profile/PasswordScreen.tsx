@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import { Input, InputField, InputSlot } from "@/components/ui/input";
+import { Input, InputField } from "@/components/ui/input";
 import GenericIcon from "@/components/custom/Icon";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -30,12 +30,9 @@ const PasswordScreen = () => {
     control,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm({
     resolver: yupResolver(passwordSchema),
   });
-
-  const watchFields = watch(["oldPassword", "newPassword", "confirmPassword"]);
 
   const { mutate: changePassword, error } = useMutation({
     mutationKey: ["changePassword"],

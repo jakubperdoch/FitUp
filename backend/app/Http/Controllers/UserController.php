@@ -41,16 +41,16 @@ class UserController extends Controller
         $user = $request->user();
 
         $validator = Validator::make($request->all(), [
-            'calories' => 'required|numeric',
-            'protein' => 'required|numeric',
-            'carbs' => 'required|numeric',
-            'fat' => 'required|numeric',
-            'fiber' => 'required|numeric',
-            'sugar' => 'required|numeric',
+            'calories' => ['required', 'numeric', 'min:1'],
+            'protein' => ['required', 'numeric', 'min:1'],
+            'carbs' => ['required', 'numeric', 'min:1'],
+            'fat' => ['required', 'numeric', 'min:1'],
+            'fiber' => ['required', 'numeric'],
+            'sugar' => ['required', 'numeric'],
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+            return response()->json(['errors' => $validator->errors()], 400);
         }
 
         $userPreferences = UserPreferences::where('user_id', $user->id)
