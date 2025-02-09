@@ -50,13 +50,15 @@ const LanguagesScreen = () => {
   useEffect(() => {
     setNavbarTitle("Languages");
     setShowBackButton(true);
+  }, []);
 
+  useEffect(() => {
     if (languagePreferences?.user_preferences?.selected_language) {
       setSelectedLanguage(
         languagePreferences?.user_preferences?.selected_language,
       );
     }
-  }, []);
+  }, [languagePreferences]);
 
   useFocusEffect(
     useCallback(() => {
@@ -65,10 +67,6 @@ const LanguagesScreen = () => {
       };
     }, []),
   );
-
-  useEffect(() => {
-    console.log(selectedLanguage);
-  }, [selectedLanguage]);
 
   return (
     <View className="px-7 gap-7 mt-5 h-full">

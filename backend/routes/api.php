@@ -27,7 +27,6 @@ Route::prefix('auth')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::post('/finish-account', [AuthController::class, 'addAdditionalData'])->name('addAdditionalData');
-        Route::get('/userDetails', [UserController::class, 'userDetails'])->name('userDetails');
     });
 });
 
@@ -71,6 +70,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/preferences', [UserController::class, 'getUserPreferences'])->name('getUserMacroPreferences');
     Route::put('/user/macros/update', [UserController::class, 'updateUserMacroPreferences'])->name('updateUserMacroPreferences');
     Route::put('/user/language/update', [UserController::class, 'updateUserLanguagePreference'])->name('updateUserLanguagePreference');
+    Route::get('/user/details', [UserController::class, 'userDetails'])->name('userDetails');
+
 });
 
 

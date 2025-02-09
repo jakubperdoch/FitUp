@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\UserPreferences;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -14,7 +15,23 @@ class UserController extends Controller
 
     public function userDetails(Request $request)
     {
-        return $request->user();
+
+        $today = Carbon::today()->format('Y-m-d');
+        $userAge = Carbon::parse($request->user()->birth_date)->age;
+
+        return response()->json([
+            'userCredentials' => [
+                'fullName' => $request->user()->full_name,
+                'email' => $request->user()->email,
+            ],
+            'userBiometrics' => [
+                'weight' => $request->user()->weight,
+                'height' => $request->user()->height,
+                'age' => $userAge,
+            ],
+            'gender' => $request->user()->gender,
+            'goal' => $request->user()->goal,
+        ]);
     }
 
 
