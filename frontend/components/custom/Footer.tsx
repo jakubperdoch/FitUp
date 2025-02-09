@@ -28,7 +28,7 @@ const FooterComponent = () => {
     { icon: "ChartArea", route: "/stats" },
     { icon: "Cookie", route: "/meals" },
     { icon: "House", route: "/home" },
-    { icon: "Dumbbell", route: "/workouts" },
+    { icon: "Dumbbell", route: "/workouts/layout" },
     { icon: "UserRound", route: "/profile" },
   ];
 
