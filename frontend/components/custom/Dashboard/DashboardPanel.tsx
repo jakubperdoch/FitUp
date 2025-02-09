@@ -60,8 +60,6 @@ const defaultMacroData = [
 ];
 
 const DashBoardComponent = ({ macros }: ComponentProps) => {
-  const macroData = useMemo(() => {}, [macros]);
-
   const [data, setData] = useState([
     {
       title: "Carbs",

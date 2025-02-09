@@ -46,4 +46,9 @@ class User extends Authenticatable
         return $this->hasMany(WorkoutPlan::class);
     }
 
+    public function userPreferences()
+    {
+        return $this->hasOne(UserPreferences::class);
+    }
+
 }
