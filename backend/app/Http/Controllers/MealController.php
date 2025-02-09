@@ -238,7 +238,21 @@ class MealController extends Controller
             ->get();
 
 
-        $sortedMeals = $max_results ? $meals->take($max_results) : $meals;
+        $order = ['lateNightSnack', 'dinner', 'afternoonSnack', 'lunch', 'morningSnack', 'breakfast'];
+
+        $sortedMeals = collect($meals)
+            ->sortBy(function ($meal) use ($order) {
+                return array_search($meal->eaten_at, $order);
+            });
+
+
+        if ($max_results) {
+            $sortedMeals = $sortedMeals->take($max_results);
+        }
+
+
+        $sortedMeals = $sortedMeals->values();
+
 
         return response()->json([
             'message' => 'Meals retrieved',

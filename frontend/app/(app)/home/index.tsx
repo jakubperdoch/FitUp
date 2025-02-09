@@ -49,7 +49,7 @@ const HomeScreen = () => {
   } = useQuery({
     queryKey: ["meals"],
     queryFn: () =>
-      apiFetch("/meals/today", {
+      apiFetch("/meals/today?max=2", {
         method: "GET",
       }),
   });
