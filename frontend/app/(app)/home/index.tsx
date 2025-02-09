@@ -61,7 +61,7 @@ const HomeScreen = () => {
   } = useQuery({
     queryKey: ["macros"],
     queryFn: () =>
-      apiFetch("/stats/macros", {
+      apiFetch("/stats/macros/today", {
         method: "GET",
       }),
   });
@@ -152,9 +152,6 @@ const HomeScreen = () => {
               <Text className="font-poppinsSemiBold text-2xl">
                 Today's Meals
               </Text>
-              <TouchableOpacity activeOpacity={0.7}>
-                <GenericIcon name="Plus" color="#F77F00" size={25} />
-              </TouchableOpacity>
             </View>
           </View>
 
@@ -202,7 +199,12 @@ const HomeScreen = () => {
               <Text className="font-poppinsSemiBold text-2xl">
                 Upcoming Workouts
               </Text>
-              <TouchableOpacity activeOpacity={0.7}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => {
+                  router.push({ pathname: "/workouts/layout/create" });
+                }}
+              >
                 <GenericIcon name="Plus" color="#F77F00" size={25} />
               </TouchableOpacity>
             </View>

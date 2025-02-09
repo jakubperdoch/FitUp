@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class StatsController extends Controller
 {
 
-    public function getMacros(Request $request)
+    public function getTodaysMacros(Request $request)
     {
 
         $user = $request->user();

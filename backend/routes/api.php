@@ -19,6 +19,7 @@ Route::get('/test-db', function () {
     }
 });
 
+//auth endpoints
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -31,6 +32,7 @@ Route::prefix('auth')->group(function () {
 });
 
 //meals endpoints
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/meals/add', [MealController::class, 'addMeal'])->name('addMeal');
     Route::put('/meals/{id}/update', [MealController::class, 'updateMeal'])->name('updateMeal');
@@ -60,9 +62,16 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 // stats endpoints
-
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/stats/macros', [StatsController::class, 'getMacros'])->name('getMacros');
+    Route::get('/stats/macros/today', [StatsController::class, 'getTodaysMacros'])->name('getTodaysMacros');
 });
+
+//user endpoints
+Route::middleware('auth:sanctum')->group(function () {
+    Route::put('/user/macros/update', [UserController::class, 'updateUserMacroPreferences'])->name('updateUserMacroPreferences');
+    Route::get('/user/macros', [UserController::class, 'getUserMacroPreferences'])->name('getUserMacroPreferences');
+    Route::put('/user/language/update', [UserController::class, 'updateUserLanguagePreference'])->name('updateUserLanguagePreference');
+});
+
 
 

@@ -93,6 +93,7 @@ const WorkoutCreationScreen = () => {
                 value={data?.name}
                 onChangeText={(text) => onNameChange(text)}
                 autoCapitalize={"words"}
+                autoCorrect={false}
                 maxLength={15}
               />
 

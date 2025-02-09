@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserPreferences;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -33,6 +34,17 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'onboarding' => 'false',
+        ]);
+
+        $userPreferences = UserPreferences::create([
+            'user_id' => $user->id,
+            'calories' => 2000,
+            'protein' => 150,
+            'carbs' => 200,
+            'fat' => 50,
+            'fiber' => 30,
+            'sugar' => 30,
+            'selected_language' => 'en',
         ]);
 
         return response()->json([
