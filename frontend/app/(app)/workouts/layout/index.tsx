@@ -6,18 +6,14 @@ import { router } from "expo-router";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SwipeToDelete from "@/components/custom/SwipeToDelete";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
 import Animated, { ZoomIn } from "react-native-reanimated";
 
 const WorkoutsPage = () => {
   const [workoutCards, setWorkoutCards] = useState<Workout[]>([]);
-
-  const deleteWorkoutHandler = (id: number) => {
-    // const updatedArr = workoutCards.filter((card) => card.id !== id);
-    // setWorkoutCards(updatedArr);
-  };
+  const queryClient = useQueryClient();
 
   const { data, isLoading, isFetching } = useQuery({
     queryKey: ["workouts"],
@@ -27,12 +23,25 @@ const WorkoutsPage = () => {
       }),
   });
 
+  const { mutate: deleteWorkout, error: deleteWorkoutError } = useMutation({
+    mutationKey: ["deleteWorkout"],
+    mutationFn: (id: number) =>
+      apiFetch(`/workouts/plans/${id}/delete`, { method: "DELETE" }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["workouts"] });
+    },
+  });
+
   useEffect(() => {
     if (data?.workouts) {
       const workouts = useSortedWorkouts(data?.workouts);
       setWorkoutCards(workouts);
     }
   }, [data]);
+
+  const deleteWorkoutHandler = (id: number) => {
+    deleteWorkout(id);
+  };
 
   return (
     <GestureHandlerRootView>
