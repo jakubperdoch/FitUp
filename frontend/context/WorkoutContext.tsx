@@ -28,6 +28,7 @@ type WorkoutContextType = {
   isWorkoutEditable: boolean;
   isWorkoutImageVisible: boolean;
   setIsWorkoutImageVisible: (value: boolean) => void;
+  data: any;
 };
 
 export const WorkoutContext = createContext<Partial<WorkoutContextType>>(null);

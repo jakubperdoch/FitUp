@@ -1,81 +1,72 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useWorkoutTimer } from "@/hooks/workouts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RootState } from "@/store/store";
 import { Alert } from "react-native";
 import {
-  clearWorkout,
-  setTimer,
-  setWorkout,
   addSet,
   removeExercise,
   removeSet,
   resetExercises,
   updateSet,
+  addDays,
+  addName,
+  clearWorkoutPlan,
+  setWorkoutPlan,
+} from "@/store/workoutPlan";
+
+import {
+  clearWorkout,
+  setTimer,
+  setWorkout,
+  updateAcviveWorkoutSet,
 } from "@/store/workout";
 
 import { useRouter } from "expo-router";
+import { useMutation } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
 
 const useWorkoutDetails = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { startTimer, stopTimer } = useWorkoutTimer();
+
   const { workout, isTimerActive } = useSelector(
     (state: RootState) => state.workout,
   );
 
-  const [data, setData] = useState<WorkoutDetails>({
-    id: 1,
-    name: "fullbody workout",
-    timeOfWorkout: 32,
-    days: ["Monday"],
-    day: "Monday",
-    numberOfExercises: 11,
-    exercises: [
-      {
-        type: "exercise",
-        exerciseId: "guT8YnS",
-        name: "biceps pull-up",
-        sets: [{ weight: 100 }, { reps: 8 }, { reps: 12, weight: 110 }],
-      },
-      {
-        type: "exercise",
-        exerciseId: "NbVPDMW",
-        name: "dumbbell biceps curl",
-        sets: [
-          { reps: 10, weight: 100, specialType: "Warmup" },
-          { reps: 8, weight: 120 },
-          { reps: 12, weight: 110 },
-        ],
-      },
-      {
-        type: "superset",
-        exercises: [
-          {
-            type: "exercise",
-            exerciseId: "NbVPDMW",
-            name: "dumbbell biceps curl",
-            sets: [
-              { reps: 10, weight: 100, specialType: "failure set" },
-              { reps: 8, weight: 120 },
-              { reps: 12, weight: 110, specialType: "Drop set" },
-            ],
-          },
-          {
-            type: "exercise",
-            exerciseId: "guT8YnS",
-            name: "biceps pull-up",
-            sets: [{ weight: 100 }, { reps: 8 }, { reps: 12, weight: 110 }],
-          },
-        ],
-      },
-    ],
-  });
+  const workoutPlan = useSelector(
+    (state: RootState) => state.workoutPlan.workout,
+  );
 
-  const [newData, setNewData] = useState<Partial<WorkoutDetails>>({});
+  const [data, setData] = useState<WorkoutDetails | null>(null);
+
+  useEffect(() => {
+    if (workoutPlan) {
+      setData((prevData) => ({
+        ...prevData,
+        ...(workoutPlan.exercises &&
+          workoutPlan.exercises.length > 0 && {
+            exercises: workoutPlan.exercises,
+          }),
+        ...(workoutPlan.days &&
+          workoutPlan.days.length > 0 && { days: workoutPlan.days }),
+        ...(workoutPlan.name && { name: workoutPlan.name }),
+      }));
+    }
+  }, [workoutPlan]);
+
+  const onNameChange = (name: string) => {
+    setData((prevState) => ({
+      ...prevState,
+      name,
+    }));
+
+    dispatch(addName(name));
+  };
 
   const changeDateHandler = (newValue: string) => {
-    if (data?.days.includes(newValue)) {
+    if (data?.days?.includes(newValue)) {
       const daysArr = data.days.filter((day) => day !== newValue);
 
       setData((prevState) => ({
@@ -83,13 +74,15 @@ const useWorkoutDetails = () => {
         days: daysArr,
       }));
     } else {
-      const daysArr = [...data?.days];
+      const daysArr = [...(data?.days || [])];
       daysArr.push(newValue);
 
       setData((prevState) => ({
         ...prevState,
         days: daysArr,
       }));
+
+      dispatch(addDays(daysArr));
     }
   };
 
@@ -125,16 +118,32 @@ const useWorkoutDetails = () => {
     exerciseIndex: number,
     setIndex: number,
     superSetIndex: number | null,
-    specialType: string,
+    special_type: string,
   ) => {
     updateSets(exerciseIndex, setIndex, superSetIndex, (sets) => {
-      if (specialType === "normal") {
-        delete sets[setIndex].specialType;
+      if (special_type === "normal") {
+        if (sets[setIndex]) {
+          const { specialType, ...rest } = sets[setIndex];
+          sets[setIndex] = rest;
+        }
       } else {
-        sets[setIndex].specialType = specialType;
+        if (!sets[setIndex]) {
+          sets[setIndex] = {};
+        }
+
+        sets[setIndex] = { ...sets[setIndex], special_type: special_type };
       }
       return sets;
     });
+
+    dispatch(
+      updateSet({
+        exerciseIndex,
+        setIndex,
+        superSetIndex: superSetIndex ?? undefined,
+        special_type,
+      }),
+    );
   };
 
   const deleteSetHandler = (
@@ -232,14 +241,12 @@ const useWorkoutDetails = () => {
         exerciseIndex,
         setIndex,
         superSetIndex: superSetIndex ?? undefined,
-        repsValue,
-        weightValue,
       }),
     );
   };
 
-  const isCurrentWorkoutActive = isTimerActive && workout?.id === data.id;
-  const isOtherWorkoutActive = isTimerActive && workout.id !== data.id;
+  const isCurrentWorkoutActive = isTimerActive && workout?.id === data?.id;
+  const isOtherWorkoutActive = workout?.id !== data?.id && workout?.timer > 0;
 
   const buttonTitleHandler = () => {
     if (isCurrentWorkoutActive) {
@@ -260,7 +267,7 @@ const useWorkoutDetails = () => {
       return;
     }
 
-    if (isTimerActive && workout.id !== data.id) {
+    if (isTimerActive && workout?.id !== data.id) {
       return;
     }
 
@@ -268,7 +275,7 @@ const useWorkoutDetails = () => {
       await stopTimer();
       dispatch(setTimer(false));
     } else {
-      if (!workout) {
+      if (!workout?.id) {
         dispatch(setWorkout(data));
       }
       await startTimer();
@@ -283,7 +290,7 @@ const useWorkoutDetails = () => {
   };
 
   const finishWorkoutHandler = async (isTimerClear: boolean) => {
-    if (!workout) {
+    if (!workout?.id) {
       return;
     }
     if (isTimerClear) {
@@ -311,15 +318,47 @@ const useWorkoutDetails = () => {
           style: "destructive",
           onPress: () => {
             dispatch(resetExercises());
-            router.push("/workouts");
+            router.push("/workouts/layout");
           },
         },
       ],
     );
   };
 
+  // api calls
+
+  const { mutate: createWorkoutPlan, error: createWorkoutPlanError } =
+    useMutation<any, Error, Partial<WorkoutDetails>>({
+      mutationKey: ["createWorkoutPlan"],
+      mutationFn: (workout) =>
+        apiFetch("/workouts/plans/add", {
+          method: "POST",
+          body: workout,
+        }),
+      onSuccess: () => {
+        dispatch(clearWorkoutPlan());
+        router.replace("/workouts/layout");
+      },
+    });
+
+  const { mutate: updateWorkoutPlan, error: updateWorkoutPlanError } =
+    useMutation<any, Error, Partial<WorkoutDetails>>({
+      mutationKey: ["updateWorkoutPlan"],
+      mutationFn: (workout) =>
+        apiFetch(`/workouts/plans/${workout.id}/update`, {
+          method: "PUT",
+          body: workout,
+        }),
+      onSuccess: () => {
+        dispatch(clearWorkoutPlan());
+        router.replace("/workouts/layout");
+      },
+      onError: (error) => {
+        console.error(error);
+      },
+    });
+
   return {
-    newData,
     data,
     setData,
     addSetHandler,
@@ -335,6 +374,11 @@ const useWorkoutDetails = () => {
     clearWorkoutHandler,
     isCurrentWorkoutActive,
     isOtherWorkoutActive,
+    createWorkoutPlan,
+    createWorkoutPlanError,
+    updateWorkoutPlan,
+    updateWorkoutPlanError,
+    onNameChange,
   };
 };
 

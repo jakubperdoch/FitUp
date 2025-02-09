@@ -4,6 +4,8 @@ import GenericIcon from "@/components/custom/Icon";
 import SpecialTypeActionSheet from "@/components/custom/Workouts/ExerciseTable/SpecialTypeActionSheet";
 import ExerciseModalComponent from "@/components/custom/Workouts/ExerciseTable/Modal";
 import { WorkoutContext } from "@/context/WorkoutContext";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 interface ExerciseTableCellProps {
   exercise: Exercise;
@@ -14,7 +16,7 @@ interface ExerciseTableCellProps {
 interface SetType {
   reps: number;
   weight: number;
-  specialType: string;
+  special_type: string;
 }
 
 const ExerciseTableCell = (props: ExerciseTableCellProps) => {
@@ -23,13 +25,18 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
   const [showModal, setShowModal] = useState(false);
   const [activeSet, setActiveSet] = useState<Partial<SetType> | null>(null);
 
-  const { deleteExerciseHandler, isWorkoutEditable, addSetHandler } =
+  const workout = useSelector((state: RootState) => state.workout.workout);
+
+  const { deleteExerciseHandler, isWorkoutEditable, addSetHandler, data } =
     useContext(WorkoutContext);
 
   const handleSetPress = (set: Partial<SetType>) => {
     setActiveSet(set);
     setShowModal(true);
   };
+
+  const isCurrentWorkoutActive =
+    workout?.id != null && data?.id != null && workout.id === data.id;
 
   return (
     <>
@@ -62,7 +69,7 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
         props.exercise.sets?.length > 0 &&
         props.exercise.sets.map((set, index) => (
           <TouchableOpacity
-            disabled={isWorkoutEditable}
+            disabled={isWorkoutEditable || !isCurrentWorkoutActive}
             activeOpacity={0.7}
             key={index}
             onPress={() => {
@@ -74,15 +81,15 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
             <Text className="font-poppins text-lg" numberOfLines={1}>
               Set {index + 1}
             </Text>
-            {set.specialType && set.specialType !== "normal" && (
+            {set.special_type && set.special_type !== "normal" && (
               <Text className="font-poppins ms-3 text-lg capitalize  text-black/50">
-                {set.specialType}
+                {set.special_type}
               </Text>
             )}
 
             <View className="flex-row  items-center justify-end gap-5  ms-auto">
               <View
-                className={`bg-[#F7F8F8] w-16 py-1 px-2 items-end rounded-lg ${isWorkoutEditable ? "opacity-60" : ""}`}
+                className={`bg-[#F7F8F8] w-16 py-1 px-2 items-end rounded-lg ${isWorkoutEditable || !isCurrentWorkoutActive ? "opacity-60" : ""}`}
               >
                 <Text
                   className="font-poppins text-[#F77F00] text-lg"
@@ -93,7 +100,7 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
               </View>
 
               <View
-                className={`bg-[#F7F8F8] w-16 py-1 px-2 items-end rounded-lg ${isWorkoutEditable ? "opacity-60" : ""}`}
+                className={`bg-[#F7F8F8] w-16 py-1 px-2 items-end rounded-lg ${isWorkoutEditable || !isCurrentWorkoutActive ? "opacity-60" : ""}`}
               >
                 <Text
                   className="font-poppins text-[#F77F00] text-lg"

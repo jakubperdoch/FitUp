@@ -1,7 +1,7 @@
 interface ExerciseSet {
   reps?: number;
   weight?: number;
-  specialType?: string;
+  special_type?: string;
 }
 
 interface Superset {
@@ -10,8 +10,9 @@ interface Superset {
 }
 
 interface Exercise {
-  type: "exercise";
-  exerciseId: string;
+  id?: number;
+  type?: "exercise";
+  exercise_id: string;
   name: string;
   sets?: Array<ExerciseSet>;
   targetMuscles?: Array<string>;
@@ -28,10 +29,9 @@ interface ExerciseDetails extends Exercise {
 interface Workout {
   id: number;
   name: string;
-  timeOfWorkout: number;
   day?: string;
   timer?: number | null;
-  numberOfExercises: number;
+  number_of_exercises: number;
 }
 
 interface WorkoutDetails extends Workout {

@@ -1,16 +1,16 @@
 import { Text, View } from "react-native";
 import ExerciseTableCell from "@/components/custom/Workouts/ExerciseTable/Cell";
 type ComponentProps = {
-  workout: WorkoutDetails;
+  workout: Partial<WorkoutDetails>;
 };
 
-const ExerciseTableComponent = (props: ComponentProps) => {
+const ExerciseTableComponent = ({ workout }: ComponentProps) => {
   return (
     <View>
       <Text className="font-poppinsSemiBold text-2xl mb-6">Exercises</Text>
 
-      {props.workout.exercises.length > 0 ? (
-        props.workout.exercises.map((exercise, exerciseIndex) =>
+      {workout?.exercises?.length > 0 ? (
+        workout.exercises.map((exercise, exerciseIndex) =>
           exercise?.type === "exercise" ? (
             <View
               className="border-b mb-4 border-black/20 "

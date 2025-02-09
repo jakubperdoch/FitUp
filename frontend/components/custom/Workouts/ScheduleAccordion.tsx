@@ -91,7 +91,7 @@ const ScheduleAccordionComponent = (props: ComponentProps) => {
               key={index}
               onPress={() => props.changeDateHandler(day)}
               className={`px-3 py-1 rounded-xl ${
-                props.days.includes(day) ? "bg-[#F77F00]" : "bg-[#E5E6E6]"
+                props?.days?.includes(day) ? "bg-[#F77F00]" : "bg-[#E5E6E6]"
               }`}
             >
               <Text className="text-lg font-poppins">{day}</Text>

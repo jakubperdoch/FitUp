@@ -40,7 +40,7 @@ const DatePanelComponent = (props: ComponentProps) => {
 
     while (date.getMonth() === month - 1) {
       if (!month) {
-        console.log("problem s mesiacom");
+        console.log("Month is not valid");
       }
       const localDate = new Date(
         date.getFullYear(),

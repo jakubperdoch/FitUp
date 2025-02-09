@@ -20,14 +20,12 @@ export const useSortedWorkouts = (workoutsArr: Array<any>) => {
     return (workoutDayIndex - currentDayIndex + 7) % 7;
   };
 
-  const sortedWorkouts = workoutsArr
+  return workoutsArr
     .map((workout) => ({
       ...workout,
       daysUntil: calculateDaysUntil(todayIndex, daysMap[workout?.day]),
     }))
     .sort((a, b) => a.daysUntil - b.daysUntil);
-
-  return { sortedWorkouts };
 };
 
 const sleep = (time) => new Promise((resolve) => setTimeout(resolve, time));

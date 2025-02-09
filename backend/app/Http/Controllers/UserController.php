@@ -10,6 +10,7 @@ use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
 
+
     public function userDetails(Request $request)
     {
         return $request->user();

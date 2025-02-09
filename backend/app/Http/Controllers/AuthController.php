@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -18,7 +20,7 @@ class AuthController extends Controller
 
         $validator = Validator::make($request->all(), [
             'full_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:accounts'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', Password::min(8)],
         ]);
 
@@ -41,7 +43,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => ['required', 'email', 'exists:accounts,email'],
+            'email' => ['required', 'email', 'exists:users,email'],
             'password' => ['required', 'string'],
         ]);
 
@@ -108,5 +110,6 @@ class AuthController extends Controller
             "message" => "Logged out successfully."
         ]);
     }
+
 
 }

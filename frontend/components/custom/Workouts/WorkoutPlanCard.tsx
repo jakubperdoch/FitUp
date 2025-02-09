@@ -5,11 +5,9 @@ import { View, Text, TouchableOpacity } from "react-native";
 type ComponentProps = {
   id: number;
   title: string;
-  timeOfWorkout: number;
   numberOfExercises: number;
   detailsHandler: () => void;
   day: string;
-  finishWorkoutHandler: (timer: number, id: number) => void;
 };
 
 const WorkoutPlanCardComponent = (props: ComponentProps) => {
@@ -27,15 +25,18 @@ const WorkoutPlanCardComponent = (props: ComponentProps) => {
         padding: 20,
       }}
     >
-      <View className="flex flex-col gap-1">
-        <Text className="text-lg font-poppins font-semibold">
+      <View className="flex flex-col gap-1 w-44">
+        <Text
+          className="text-lg font-poppins font-semibold w-full max-w-44 truncate capitalize"
+          numberOfLines={1}
+        >
           {props.title}
         </Text>
 
         <Text className="font-poppins  text-[#7B6F72]">{props.day}</Text>
 
         <Text className="font-poppins  text-[#7B6F72]">
-          {props.numberOfExercises} Exercises | {props.timeOfWorkout}min
+          {props.numberOfExercises} Exercises
         </Text>
 
         <TouchableOpacity

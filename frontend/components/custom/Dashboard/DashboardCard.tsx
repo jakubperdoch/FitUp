@@ -8,8 +8,8 @@ type ComponentProps = {
     date: string;
     time: string;
   };
+  numberOfExercises?: number;
   day?: string;
-  timeOfWorkout?: number;
   showTimer?: boolean;
   finishWorkoutHandler?: (isTimerClear: boolean) => void;
   detailsHandler?: (id: number) => void;
@@ -23,7 +23,7 @@ const DashboardCardComponent = (props: ComponentProps) => {
     if (currentDate != date) {
       return <Text>{date}</Text>;
     }
-    return <Text>Today</Text>;
+    return <Text className="text-[#7B6F72] font-poppins">Today</Text>;
   };
 
   return (
@@ -32,14 +32,18 @@ const DashboardCardComponent = (props: ComponentProps) => {
         onPress={() => props.detailsHandler(props.id)}
         className="w-full gap-2 bg-white shadow-soft-1 px-4 py-5 rounded-3xl flex-row justify-between"
       >
-        <View className="gap-1">
-          <Text className="font-poppins text-lg">{props.name}</Text>
+        <View className="gap-1 w-44">
+          <Text
+            className="font-poppins text-lg w-44 truncate capitalize"
+            numberOfLines={1}
+          >
+            {props.name}
+          </Text>
           <View className="flex-row gap-2">
             {props.date && (
               <>
-                <Text className="text-[#7B6F72] font-poppins">
-                  {dateHandler(props.date.date)}
-                </Text>
+                {dateHandler(props.date.date)}
+
                 <Text className="text-[#7B6F72] font-poppins">|</Text>
                 <Text className="text-[#7B6F72] font-poppins">
                   {props.date.time}
@@ -47,12 +51,10 @@ const DashboardCardComponent = (props: ComponentProps) => {
               </>
             )}
 
-            {props.day && (
-              <>
-                <Text className="text-[#7B6F72] font-poppins">
-                  {props?.day}
-                </Text>
-              </>
+            {props.day != null && props.numberOfExercises != null && (
+              <Text className="text-[#7B6F72] font-poppins">
+                {props.day} | {props.numberOfExercises} Exercises
+              </Text>
             )}
           </View>
         </View>

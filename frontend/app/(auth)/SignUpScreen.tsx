@@ -32,10 +32,6 @@ const SignUpScreen = () => {
       .string()
       .required("Password is required")
       .min(8, "Password must contain at least 8 characters"),
-    checkBox: yup
-      .boolean()
-      .required()
-      .oneOf([true], "You must accept the terms and conditions"),
   });
 
   const {
@@ -47,7 +43,7 @@ const SignUpScreen = () => {
     resolver: yupResolver(userSchema),
   });
 
-  const watchFields = watch(["email", "name", "password", "checkBox"]);
+  const watchFields = watch(["email", "name", "password"]);
 
   function validateFullName(fullName: string) {
     const fullNamePattern = /^[a-zA-Z]+(\s[a-zA-Z]+)*$/;
@@ -117,38 +113,6 @@ const SignUpScreen = () => {
           control={control}
         />
 
-        <View className="flex flex-row px-4  w-full justify-center items-center gap-3 mt-5 mb-3">
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, value } }) => (
-              <BouncyCheckbox
-                fillColor="#F77F00"
-                size={25}
-                disableText
-                className="max-w-8"
-                iconStyle={{
-                  borderRadius: 5,
-                  borderWidth: 1,
-                  borderColor: "#F77F00",
-                }}
-                innerIconStyle={{
-                  borderWidth: 0,
-                }}
-                onPress={(isChecked: boolean) => {
-                  onChange(isChecked);
-                }}
-              />
-            )}
-            name="checkBox"
-          />
-          <Text className="text-gray-500 text-sm font-poppins">
-            By continuing you accept our Privacy Policy and Term of Use
-          </Text>
-        </View>
-
         {localError && (
           <Animated.View
             entering={ZoomIn}
@@ -160,11 +124,13 @@ const SignUpScreen = () => {
           </Animated.View>
         )}
 
-        <GradientButtonComponent
-          size={"full"}
-          handleSubmit={handleSubmit(submitHandler)}
-          title={"Register"}
-        />
+        <View className="w-full mt-6">
+          <GradientButtonComponent
+            size={"full"}
+            handleSubmit={handleSubmit(submitHandler)}
+            title={"Register"}
+          />
+        </View>
 
         <View className="w-full flex flex-row items-center justify-center gap-2 mt-2">
           <Divider />

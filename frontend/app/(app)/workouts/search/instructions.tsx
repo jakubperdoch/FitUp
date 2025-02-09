@@ -1,13 +1,16 @@
-import { Image, Text, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import { useFocusEffect, useLocalSearchParams } from "expo-router";
-import { useCallback, useContext, useEffect, useState } from "react";
-import { WorkoutContext } from "@/context/WorkoutContext";
+import { useState, useEffect, useCallback } from "react";
 import InstructionsSteps from "@/components/custom/Workouts/Search/InstructionsSteps";
 import GradientButton from "@/components/custom/Button/GradientButton";
+import { useLayout } from "@/context/LayoutContext";
+import { useQuery } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
+import { Spinner } from "@/components/ui/spinner";
 
 const Data: ExerciseDetails = {
   type: "exercise",
-  exerciseId: "2gPfomN",
+  exercise_id: "2gPfomN",
   name: "3/4 sit-up",
   gifUrl: "2gPfomN.gif",
   targetMuscles: ["abs"],
@@ -23,62 +26,64 @@ const Data: ExerciseDetails = {
   ],
 };
 const InstructionsPage = () => {
-  const { setIsWorkoutImageVisible } = useContext(WorkoutContext);
   const params = useLocalSearchParams();
-
-  const [data, setData] = useState<ExerciseDetails | null>(null);
-  const [exerciseId, setExerciseId] = useState<string | null>(null);
+  const { setShowBackButton } = useLayout();
 
   useEffect(() => {
-    if (params.exerciseId) {
-      if (Array.isArray(params.exerciseId)) {
-        setExerciseId(params.exerciseId[0]);
-      } else {
-        setExerciseId(params.exerciseId);
-      }
-
-      setData(Data);
-    }
-  }, []);
-
-  useEffect(() => {
-    setIsWorkoutImageVisible(false);
+    setShowBackButton(true);
   }, []);
 
   useFocusEffect(
     useCallback(() => {
       return () => {
-        setIsWorkoutImageVisible(true);
+        setShowBackButton(false);
       };
     }, []),
   );
 
+  const { data, isFetching } = useQuery({
+    queryKey: ["exerciseDetails", params?.id],
+    queryFn: () => apiFetch(`/exercises/${params?.id}/details`),
+    enabled: !!params?.id,
+  });
+
   return (
-    <View className="px-7 gap-16">
-      <View className="flex-row items-start justify-between">
-        <View className="gap-2">
-          <Text className="capitalize font-poppinsSemiBold text-xl">
-            {data?.name}
-          </Text>
-          <Text className="font-poppins capitalize text-[#7B6F72] text-lg">
-            {data?.targetMuscles} | {data?.equipments}
-          </Text>
-        </View>
+    <ScrollView contentContainerClassName="gap-16 px-7 pb-32">
+      {isFetching ? (
+        <Spinner color={"#F77F00"} />
+      ) : (
+        <>
+          <View className="flex-col gap-7">
+            <View className="gap-1">
+              <Text className="capitalize font-poppinsSemiBold text-xl">
+                {data?.exercise?.name}
+              </Text>
+              <Text className="font-poppins capitalize text-[#7B6F72] text-lg">
+                {data?.exercise?.target_muscles} | {data?.exercise?.equipments}
+              </Text>
+            </View>
 
-        <Image
-          className="h-24 w-40"
-          source={require(`@/assets/animations/gifs/2gPfomN.gif`)}
-        />
-      </View>
-
-      {data?.instructions && <InstructionsSteps steps={data?.instructions} />}
+            {data?.exercise?.gif && (
+              <Image
+                className="h-40 w-40 mx-auto"
+                source={{
+                  uri: `https://fitup.scriptbase.eu/public/gifs/${data?.exercise?.gif}`,
+                }}
+              />
+            )}
+          </View>
+          {data?.exercise?.instructions && (
+            <InstructionsSteps steps={data?.exercise?.instructions} />
+          )}
+        </>
+      )}
 
       <GradientButton
         size={"full"}
         title={"Add Exercise"}
         handleSubmit={() => console.log("add")}
       />
-    </View>
+    </ScrollView>
   );
 };
 

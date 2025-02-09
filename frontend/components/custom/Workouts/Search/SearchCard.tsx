@@ -17,13 +17,15 @@ const SearchCardComponent = ({
   selectedExercises,
 }: ComponentProps) => {
   const exerciseIndex =
-    selectedExercises.findIndex((ex) => ex.exerciseId === exercise.exerciseId) +
-    1;
+    selectedExercises.findIndex(
+      (ex) => ex.exercise_id === exercise.exercise_id,
+    ) + 1;
+
   return (
     <TouchableOpacity
       onPress={() => handleExercisePress(exercise)}
       activeOpacity={0.7}
-      className={`shadow-soft-1 w-full p-6 bg-white rounded-xl flex-row justify-between items-center ${isSelected ? "!bg-[#F77F00]/20" : ""}`}
+      className={`shadow-soft-1 w-full p-6 mb-6 bg-white rounded-xl flex-row justify-between items-center ${isSelected ? "!bg-[#F77F00]/20" : ""}`}
     >
       <View className="gap-3 flex-row items-center">
         {isSelected && (
@@ -37,7 +39,10 @@ const SearchCardComponent = ({
           </Animated.View>
         )}
 
-        <Text className="text-lg font-poppins capitalize font-semibold">
+        <Text
+          className="text-lg font-poppins font-semibold max-w-64 truncate capitalize"
+          numberOfLines={1}
+        >
           {exercise?.name}
         </Text>
       </View>
@@ -47,7 +52,7 @@ const SearchCardComponent = ({
         onPress={() =>
           router.push({
             pathname: "/workouts/search/instructions",
-            params: { exerciseId: exercise.exerciseId },
+            params: { id: exercise.id },
           })
         }
       >

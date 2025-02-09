@@ -14,10 +14,15 @@ import { RootState } from "@/store/store";
 import ActiveWorkoutCardComponent from "@/components/custom/Workouts/ActiveWorkoutCard";
 import PulseBorder from "@/components/custom/PulseBorder";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { useQuery } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
+import { Spinner } from "@/components/ui/spinner";
 
 // TODO: make global interfaces & types
 
 const HomeScreen = () => {
+  const [workouts, setWorkouts] = useState([]);
+
   const { currentDate } = useCurrentDateHandler();
   const { setNavbarTitle } = useLayout();
   const { workout, isTimerActive } = useSelector(
@@ -58,27 +63,24 @@ const HomeScreen = () => {
     },
   ];
 
-  const [workoutCards, setWorkoutCards] = useState<Workout[]>([
-    {
-      id: 1,
-      name: "Upper body Workout",
-      day: "Friday",
-      timer: null,
-      timeOfWorkout: 22,
-      numberOfExercises: 11,
-    },
-    {
-      id: 2,
-      name: "Full body Workout",
-      day: "Wednesday",
-      timer: null,
-      timeOfWorkout: 12,
-      numberOfExercises: 11,
-    },
-  ]);
+  const {
+    data: workoutsData,
+    isLoading: workoutsLoading,
+    isFetching: workoutsFetching,
+  } = useQuery({
+    queryKey: ["workouts"],
+    queryFn: () =>
+      apiFetch("/workouts/plans?max=2", {
+        method: "GET",
+      }),
+  });
 
-  const { sortedWorkouts } = useSortedWorkouts(workoutCards);
-  const [workouts, setWorkouts] = useState(sortedWorkouts);
+  useEffect(() => {
+    if (workoutsData?.workouts) {
+      const sortedWorkouts = useSortedWorkouts(workoutsData?.workouts);
+      setWorkouts(sortedWorkouts);
+    }
+  }, [workoutsData]);
 
   const workoutSelectHandler = useCallback(
     (id: number) => {
@@ -111,7 +113,7 @@ const HomeScreen = () => {
   };
 
   useEffect(() => {
-    if (workout) {
+    if (workout.id) {
       const filteredArr = workouts.filter((item) => item?.id !== workout?.id);
       setWorkouts(filteredArr);
     }
@@ -139,7 +141,7 @@ const HomeScreen = () => {
 
         <DashboardPanel />
 
-        {workout && isTimerActive && (
+        {workout?.id && (
           <Animated.View className="w-full" entering={ZoomIn}>
             <PulseBorder>
               <ActiveWorkoutCardComponent
@@ -147,13 +149,12 @@ const HomeScreen = () => {
                 id={workout.id}
                 name={workout.name}
                 day={workout.day}
-                numberOfExercises={workout.numberOfExercises}
-                timeOfWorkout={workout.timeOfWorkout}
+                numberOfExercises={workout.number_of_exercises}
                 finishWorkoutHandler={finishWorkoutHandler}
                 workoutSelectHandler={workoutSelectHandler}
                 detailsHandler={() =>
                   router.push({
-                    pathname: "/workouts/details",
+                    pathname: "/workouts/layout/details",
                     params: { id: workout.id },
                   })
                 }
@@ -192,7 +193,7 @@ const HomeScreen = () => {
                 detailsHandler={() =>
                   router.push({
                     pathname: "/meals/details",
-                    params: { id: meal.id, isNew: String(false) },
+                    params: { id: meal.id },
                   })
                 }
               />
@@ -220,29 +221,35 @@ const HomeScreen = () => {
           </View>
 
           <View className="gap-5 mt-6 justify-center flex-col items-center">
-            {workouts.map((workout) => (
-              <DashboardCard
-                key={workout.id}
-                id={workout.id}
-                showTimer={true}
-                name={workout.name}
-                day={workout.day}
-                timeOfWorkout={workout.timeOfWorkout}
-                finishWorkoutHandler={finishWorkoutHandler}
-                workoutSelectHandler={workoutSelectHandler}
-                detailsHandler={() =>
-                  router.push({
-                    pathname: "/workouts/details",
-                    params: { id: workout.id },
-                  })
-                }
-              />
-            ))}
-            <TouchableOpacity activeOpacity={0.7}>
-              <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
-                See More
-              </Text>
-            </TouchableOpacity>
+            {workoutsLoading || workoutsFetching ? (
+              <Spinner />
+            ) : (
+              <>
+                {workouts.map((workout) => (
+                  <DashboardCard
+                    key={workout.id}
+                    id={workout.id}
+                    showTimer={true}
+                    name={workout.name}
+                    day={workout.day}
+                    numberOfExercises={workout.number_of_exercises}
+                    finishWorkoutHandler={finishWorkoutHandler}
+                    workoutSelectHandler={workoutSelectHandler}
+                    detailsHandler={() =>
+                      router.push({
+                        pathname: "/workouts/layout/details",
+                        params: { id: workout.id },
+                      })
+                    }
+                  />
+                ))}
+                <TouchableOpacity activeOpacity={0.7}>
+                  <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
+                    See More
+                  </Text>
+                </TouchableOpacity>
+              </>
+            )}
           </View>
         </View>
       </View>
