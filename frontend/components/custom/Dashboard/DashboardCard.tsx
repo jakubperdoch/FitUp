@@ -8,6 +8,7 @@ type ComponentProps = {
     date: string;
     time: string;
   };
+  calories?: number;
   numberOfExercises?: number;
   day?: string;
   showTimer?: boolean;
@@ -29,31 +30,24 @@ const DashboardCardComponent = (props: ComponentProps) => {
   return (
     <Animated.View entering={ZoomIn} className="w-full">
       <TouchableOpacity
-        onPress={() => props.detailsHandler(props.id)}
+        onPress={() => props.detailsHandler(props?.id)}
         className="w-full gap-2 bg-white shadow-soft-1 px-4 py-5 rounded-3xl flex-row justify-between"
       >
         <View className="gap-1 w-44">
           <Text
-            className="font-poppins text-lg w-44 truncate capitalize"
+            className="font-poppins text-lg w-60 truncate capitalize"
             numberOfLines={1}
           >
-            {props.name}
+            {props?.name}
           </Text>
           <View className="flex-row gap-2">
-            {props.date && (
-              <>
-                {dateHandler(props.date.date)}
-
-                <Text className="text-[#7B6F72] font-poppins">|</Text>
-                <Text className="text-[#7B6F72] font-poppins">
-                  {props.date.time}
-                </Text>
-              </>
-            )}
-
-            {props.day != null && props.numberOfExercises != null && (
+            {props.day != null && props.numberOfExercises != null ? (
               <Text className="text-[#7B6F72] font-poppins">
                 {props.day} | {props.numberOfExercises} Exercises
+              </Text>
+            ) : (
+              <Text className="text-[#7B6F72] font-poppins">
+                Today | {props.calories}kCal
               </Text>
             )}
           </View>

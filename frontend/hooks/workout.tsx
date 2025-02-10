@@ -12,14 +12,13 @@ import {
   addDays,
   addName,
   clearWorkoutPlan,
-  setWorkoutPlan,
 } from "@/store/workoutPlan";
 
 import {
   clearWorkout,
   setTimer,
   setWorkout,
-  updateAcviveWorkoutSet,
+  updateActiveWorkoutSet,
 } from "@/store/workout";
 
 import { useRouter } from "expo-router";
@@ -237,10 +236,12 @@ const useWorkoutDetails = () => {
     });
 
     dispatch(
-      updateSet({
+      updateActiveWorkoutSet({
         exerciseIndex,
         setIndex,
         superSetIndex: superSetIndex ?? undefined,
+        repsValue,
+        weightValue,
       }),
     );
   };
@@ -298,6 +299,9 @@ const useWorkoutDetails = () => {
         ...prevState,
         timer: 0,
       }));
+    }
+    if (workout?.timer > 0) {
+      addWorkout(workout);
     }
     await stopTimer();
     dispatch(setTimer(false));
@@ -358,6 +362,22 @@ const useWorkoutDetails = () => {
       },
     });
 
+  const { mutate: addWorkout } = useMutation<
+    any,
+    Error,
+    Partial<WorkoutDetails>
+  >({
+    mutationKey: ["addWorkout"],
+    mutationFn: (workout: WorkoutDetails) =>
+      apiFetch("/workouts/add", {
+        method: "POST",
+        body: workout,
+      }),
+    onSuccess: () => {
+      router.replace("/workouts/layout");
+    },
+  });
+
   return {
     data,
     setData,
@@ -379,6 +399,7 @@ const useWorkoutDetails = () => {
     updateWorkoutPlan,
     updateWorkoutPlanError,
     onNameChange,
+    addWorkout,
   };
 };
 

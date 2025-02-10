@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Workout\Workout;
 use App\Models\WorkoutPlan\WorkoutPlan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -44,6 +45,16 @@ class User extends Authenticatable
     public function workoutPlans()
     {
         return $this->hasMany(WorkoutPlan::class);
+    }
+
+    public function workouts()
+    {
+        return $this->hasMany(Workout::class);
+    }
+
+    public function userPreferences()
+    {
+        return $this->hasOne(UserPreferences::class);
     }
 
 }

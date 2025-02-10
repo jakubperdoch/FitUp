@@ -63,7 +63,7 @@ const WorkoutDetailsScreen = () => {
       {isFetching || isLoading ? (
         <Spinner color={"#F77F00"} />
       ) : (
-        <View className="px-8 flex-col gap-7">
+        <Animated.View entering={ZoomIn} className="px-8 flex-col gap-7">
           <View>
             <View className="mb-1 flex-row items-center justify-between">
               <Text className="capitalize font-poppinsBold text-2xl ">
@@ -87,7 +87,7 @@ const WorkoutDetailsScreen = () => {
               )}
             </View>
             <Text className="font-poppins text-[#7B6F72]">
-              {data?.exercises?.length} Exercises
+              {data?.number_of_exercises} Exercises
             </Text>
           </View>
 
@@ -129,7 +129,7 @@ const WorkoutDetailsScreen = () => {
               />
             </Animated.View>
           )}
-        </View>
+        </Animated.View>
       )}
     </WorkoutContext.Provider>
   );

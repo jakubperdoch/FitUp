@@ -1,33 +1,24 @@
 import { Image, ScrollView, Text, View } from "react-native";
-import { useFocusEffect, useLocalSearchParams } from "expo-router";
-import { useState, useEffect, useCallback } from "react";
+import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
+import { useEffect, useCallback } from "react";
 import InstructionsSteps from "@/components/custom/Workouts/Search/InstructionsSteps";
 import GradientButton from "@/components/custom/Button/GradientButton";
 import { useLayout } from "@/context/LayoutContext";
 import { useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { setExercises } from "@/store/workoutPlan";
+import { RootState } from "@/store/store";
 
-const Data: ExerciseDetails = {
-  type: "exercise",
-  exercise_id: "2gPfomN",
-  name: "3/4 sit-up",
-  gifUrl: "2gPfomN.gif",
-  targetMuscles: ["abs"],
-  bodyParts: ["waist"],
-  equipments: ["body weight"],
-  secondaryMuscles: ["hip flexors", "lower back"],
-  instructions: [
-    "Step:1 Lie flat on your back with your knees bent and feet flat on the ground.",
-    "Step:2 Place your hands behind your head with your elbows pointing outwards.",
-    "Step:3 Engaging your abs, slowly lift your upper body off the ground, curling forward until your torso is at a 45-degree angle.",
-    "Step:4 Pause for a moment at the top, then slowly lower your upper body back down to the starting position.",
-    "Step:5 Repeat for the desired number of repetitions.",
-  ],
-};
 const InstructionsPage = () => {
   const params = useLocalSearchParams();
   const { setShowBackButton } = useLayout();
+  const dispatch = useDispatch();
+
+  const exercises = useSelector(
+    (state: RootState) => state.workoutPlan.workout?.exercises,
+  );
 
   useEffect(() => {
     setShowBackButton(true);
@@ -46,6 +37,23 @@ const InstructionsPage = () => {
     queryFn: () => apiFetch(`/exercises/${params?.id}/details`),
     enabled: !!params?.id,
   });
+
+  const handleAddExercise = (exercise: Exercise) => {
+    if (exercises && exercises.length > 0) {
+      const isExercise = (ex: Exercise | Superset): ex is Exercise => {
+        return ex.type === "exercise";
+      };
+      const filteredExercises = exercises.filter(isExercise);
+
+      dispatch(setExercises([...filteredExercises, exercise]));
+    } else {
+      dispatch(setExercises([exercise]));
+    }
+
+    router.push({
+      pathname: "/workouts/layout/create",
+    });
+  };
 
   return (
     <ScrollView contentContainerClassName="gap-16 px-7 pb-32">
@@ -81,7 +89,7 @@ const InstructionsPage = () => {
       <GradientButton
         size={"full"}
         title={"Add Exercise"}
-        handleSubmit={() => console.log("add")}
+        handleSubmit={() => handleAddExercise(data?.exercise)}
       />
     </ScrollView>
   );

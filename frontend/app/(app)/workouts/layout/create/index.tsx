@@ -54,14 +54,18 @@ const WorkoutCreationScreen = () => {
   });
 
   useEffect(() => {
-    if (params?.id && !workout?.id) {
+    if (!workout?.id && params?.id) {
       dispatch(setWorkoutPlan(workoutPlan?.workout));
       setData(workoutPlan?.workout);
     }
   }, [workoutPlan?.workout]);
 
+  useEffect(() => {
+    console.log(JSON.stringify(workout, null, 2));
+  }, [workout]);
+
   const handleWorkoutSubmit = () => {
-    if (params?.id) {
+    if (workout?.id) {
       updateWorkoutPlan(workout);
     } else {
       createWorkoutPlan(workout);
@@ -83,7 +87,7 @@ const WorkoutCreationScreen = () => {
       {isFetching || isLoading ? (
         <Spinner color={"#F77F00"} />
       ) : (
-        <View className="px-8 flex-col gap-7">
+        <Animated.View entering={ZoomIn} className="px-8 flex-col gap-7">
           <View>
             <View className="mb-1 flex-row items-center justify-between">
               <TextInput
@@ -93,6 +97,7 @@ const WorkoutCreationScreen = () => {
                 value={data?.name}
                 onChangeText={(text) => onNameChange(text)}
                 autoCapitalize={"words"}
+                autoCorrect={false}
                 maxLength={15}
               />
 
@@ -105,7 +110,7 @@ const WorkoutCreationScreen = () => {
               )}
             </View>
             <Text className="font-poppins text-[#7B6F72]">
-              {data?.exercises?.length} Exercises
+              {data?.number_of_exercises} Exercises
             </Text>
           </View>
 
@@ -178,7 +183,7 @@ const WorkoutCreationScreen = () => {
             title={workout?.id ? "Update Workout" : "Create Workout"}
             handleSubmit={() => handleWorkoutSubmit()}
           />
-        </View>
+        </Animated.View>
       )}
     </WorkoutContext.Provider>
   );

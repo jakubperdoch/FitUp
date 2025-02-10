@@ -244,6 +244,7 @@ class WorkoutPlanController extends Controller
                 'name' => $workout->name ?? null,
                 'day' => $closestDay?->format('l') ?? null,
                 'number_of_exercises' => $workout->number_of_exercises ?? 0,
+                'exercises' => $workout->exercises ?? []
             ];
         })->sortBy('day')
             ->values();

@@ -6,7 +6,7 @@ import MealDrawerComponent from "@/components/custom/Meals/MealDrawer";
 import { useRouter } from "expo-router";
 import { useLayout } from "@/context/LayoutContext";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -18,6 +18,7 @@ const MealsPage = () => {
   const [meals, setMeals] = useState({});
 
   const { setNavbarTitle } = useLayout();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     setNavbarTitle("Meal Schedule");
@@ -45,6 +46,9 @@ const MealsPage = () => {
     mutationKey: ["deleteMeal"],
     mutationFn: (id: string) =>
       apiFetch(`/meals/${id}/delete`, { method: "DELETE" }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["retrieveMeals"] });
+    },
   });
 
   useEffect(() => {

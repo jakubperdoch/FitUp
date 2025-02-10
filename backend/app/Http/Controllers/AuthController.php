@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserPreferences;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -33,6 +34,17 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'onboarding' => 'false',
+        ]);
+
+        $userPreferences = UserPreferences::create([
+            'user_id' => $user->id,
+            'calories' => 2000,
+            'protein' => 150,
+            'carbs' => 200,
+            'fat' => 50,
+            'fiber' => 30,
+            'sugar' => 30,
+            'selected_language' => 'en',
         ]);
 
         return response()->json([
@@ -109,6 +121,35 @@ class AuthController extends Controller
         return response()->json([
             "message" => "Logged out successfully."
         ]);
+    }
+
+    public function changePassword(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'current_password' => ['required', 'string'],
+            'new_password' => ['required', 'string', Password::min(8)],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        $user = $request->user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return response()->json([
+                'message' => 'Invalid current password!'
+            ], 422);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return response()->json([
+            'message' => 'Password updated successfully',
+        ], 200);
     }
 
 

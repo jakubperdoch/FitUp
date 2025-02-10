@@ -89,7 +89,7 @@ const ServingInputComponent = (props: ComponentProps) => {
         closeHandler={handleClose}
       >
         <View className="flex flex-col items-center justify-center w-full gap-7 my-5">
-          {props.servingTypes.map((type) => (
+          {props?.servingTypes?.map((type) => (
             <TouchableOpacity
               key={type.serving_id}
               onPress={() => {

@@ -7,17 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\WorkoutPlanController;
 use App\Http\Controllers\ExerciseController;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+use App\Http\Controllers\StatsController;
+use App\Http\Controllers\WorkoutController;
 
 Route::get('/test-db', function () {
     try {
@@ -28,18 +19,20 @@ Route::get('/test-db', function () {
     }
 });
 
+//auth endpoints
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+        Route::put('/change-password', [AuthController::class, 'changePassword'])->name('changePassword');
         Route::post('/finish-account', [AuthController::class, 'addAdditionalData'])->name('addAdditionalData');
-        Route::get('/userDetails', [UserController::class, 'userDetails'])->name('userDetails');
     });
 });
 
 //meals endpoints
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/meals/add', [MealController::class, 'addMeal'])->name('addMeal');
     Route::put('/meals/{id}/update', [MealController::class, 'updateMeal'])->name('updateMeal');
@@ -47,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/meals', [MealController::class, 'getMeals'])->name('getMeals');
     Route::post('/meals/all', [MealController::class, 'retrieveAllMeals'])->name('retrieveAllMeals');
     Route::get('/meals/{food_id}/details/{id?}', [MealController::class, 'getMealDetails'])->name('getMealDetails');
+    Route::get('/meals/today', [MealController::class, 'getTodayMeals'])->name('getTodayMeals');
     Route::get('/refresh-token', [MealController::class, 'refreshToken'])->name('refreshToken');
 });
 
@@ -59,12 +53,36 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/workouts/plans/{id}/details', [WorkoutPlanController::class, 'getWorkoutPlan'])->name('getWorkoutPlan');
 });
 
-//exercise endpoints
+//workout endpoints
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/workouts/add', [WorkoutController::class, 'addWorkout'])->name('createWorkoutPlan');
+    Route::get('/workouts', [WorkoutController::class, 'getWorkouts'])->name('getWorkoutPlans');
+});
 
+
+//exercise endpoints
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/exercises/body_parts', [ExerciseController::class, 'getBodyParts'])->name('getBodyParts');
     Route::get('/exercises', [ExerciseController::class, 'getExercises'])->name('getExercises');
     Route::get('/exercises/{id}/details', [ExerciseController::class, 'getExerciseDetails'])->name('getExerciseDetails');
 });
+
+// stats endpoints
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/stats/macros/today', [StatsController::class, 'getTodaysMacros'])->name('getTodaysMacros');
+    Route::get('/stats/macros/monthly', [StatsController::class, 'getMonthlyMacroStats'])->name('getMonthlyMacroStats');
+    Route::get('/stats/workout/monthly', [StatsController::class, 'getMonthlyWorkoutStats'])->name('getMonthlyWorkoutStats');
+
+});
+
+//user endpoints
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user/preferences', [UserController::class, 'getUserPreferences'])->name('getUserMacroPreferences');
+    Route::put('/user/macros/update', [UserController::class, 'updateUserMacroPreferences'])->name('updateUserMacroPreferences');
+    Route::put('/user/language/update', [UserController::class, 'updateUserLanguagePreference'])->name('updateUserLanguagePreference');
+    Route::get('/user/details', [UserController::class, 'userDetails'])->name('userDetails');
+
+});
+
 
 

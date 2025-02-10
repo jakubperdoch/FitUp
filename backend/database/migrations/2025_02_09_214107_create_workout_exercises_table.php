@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('exercises', function (Blueprint $table) {
+        Schema::create('workout_exercises', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('workout_id');
             $table->unsignedBigInteger('parent_exercise_id')->nullable();
@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->timestamps();
 
             $table->foreign('workout_id')->references('id')->on('workouts')->onDelete('cascade');
-            $table->foreign('parent_exercise_id')->references('id')->on('exercises')->onDelete('cascade');
+            $table->foreign('parent_exercise_id')->references('id')->on('workout_exercises')->onDelete('cascade');
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('exercises');
+        Schema::dropIfExists('workout_exercises');
     }
 };

@@ -1,14 +1,16 @@
 import { Text, View } from "react-native";
-import { Input, InputField, InputSlot } from "@/components/ui/input";
+import { Input, InputField } from "@/components/ui/input";
 import GenericIcon from "@/components/custom/Icon";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { router, useFocusEffect } from "expo-router";
 import GradientButton from "@/components/custom/Button/GradientButton";
-import Animated, { ZoomIn } from "react-native-reanimated";
+import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
 import { useLayout } from "@/context/LayoutContext";
 import { useCallback, useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
 
 const PasswordScreen = () => {
   const { setNavbarTitle, setShowBackButton } = useLayout();
@@ -28,16 +30,30 @@ const PasswordScreen = () => {
     control,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm({
     resolver: yupResolver(passwordSchema),
   });
 
-  const watchFields = watch(["oldPassword", "newPassword", "confirmPassword"]);
+  const { mutate: changePassword, error } = useMutation({
+    mutationKey: ["changePassword"],
+    mutationFn: (data: { oldPassword: string; newPassword: string }) =>
+      apiFetch("/auth/change-password", {
+        method: "PUT",
+        body: {
+          current_password: data.oldPassword,
+          new_password: data.newPassword,
+        },
+      }),
+    onSuccess: () => {
+      router.replace("/profile");
+    },
+  });
 
   const submitHandler = (formData) => {
-    // push formData to the backend
-    router.replace("/profile");
+    changePassword({
+      oldPassword: formData.oldPassword,
+      newPassword: formData.newPassword,
+    });
   };
 
   useEffect(() => {
@@ -60,9 +76,6 @@ const PasswordScreen = () => {
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <Input size="xl" variant="rounded">
-            <InputSlot>
-              <GenericIcon name={"Lock"} />
-            </InputSlot>
             <InputField
               className="text-lg"
               type={"text"}
@@ -70,6 +83,7 @@ const PasswordScreen = () => {
               onChangeText={onChange}
               placeholder="Old Password"
               autoCorrect={false}
+              autoCapitalize={"none"}
             />
           </Input>
         )}
@@ -93,9 +107,6 @@ const PasswordScreen = () => {
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <Input size="xl" variant="rounded">
-            <InputSlot>
-              <GenericIcon name={"Lock"} />
-            </InputSlot>
             <InputField
               className="text-lg"
               type={"text"}
@@ -103,6 +114,7 @@ const PasswordScreen = () => {
               onChangeText={onChange}
               placeholder="New Password"
               autoCorrect={false}
+              autoCapitalize={"none"}
             />
           </Input>
         )}
@@ -126,9 +138,6 @@ const PasswordScreen = () => {
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <Input size="xl" variant="rounded">
-            <InputSlot>
-              <GenericIcon name={"Lock"} />
-            </InputSlot>
             <InputField
               className="text-lg"
               type={"text"}
@@ -136,6 +145,7 @@ const PasswordScreen = () => {
               onChangeText={onChange}
               placeholder="Confirm Password"
               autoCorrect={false}
+              autoCapitalize={"none"}
             />
           </Input>
         )}
@@ -150,6 +160,19 @@ const PasswordScreen = () => {
           <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
           <Text className="font-poppins text-[#F77F00]">
             {errors?.confirmPassword?.message}
+          </Text>
+        </Animated.View>
+      )}
+
+      {error && (
+        <Animated.View
+          entering={ZoomIn}
+          exiting={ZoomOut}
+          className="flex-col items-center gap-2 justify-center"
+        >
+          <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
+          <Text className="font-poppins text-[#F77F00]">
+            {error instanceof Error ? error.message : String(error)}
           </Text>
         </Animated.View>
       )}

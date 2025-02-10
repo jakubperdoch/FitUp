@@ -14,14 +14,14 @@ return new class extends Migration {
     {
         Schema::create('workout_sets', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('exercise_id');
-            $table->integer('reps')->nullable();
-            $table->integer('weight')->nullable();
+            $table->unsignedBigInteger('workout_exercise_id');
             $table->string('special_type')->nullable();
             $table->integer('order_index')->default(0);
+            $table->integer('reps')->nullable();
+            $table->integer('weight')->nullable();
             $table->timestamps();
 
-            $table->foreign('exercise_id')->references('id')->on('exercises')->onDelete('cascade');
+            $table->foreign('workout_exercise_id')->references('id')->on('workout_exercises')->onDelete('cascade');
         });
     }
 

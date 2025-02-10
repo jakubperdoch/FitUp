@@ -9,32 +9,19 @@ import ProfileSections from "@/components/custom/Profile/ProfileSections";
 import { useLayout } from "@/context/LayoutContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuth } from "@/context/AuthContext";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { router } from "expo-router";
-
-const userData: User = {
-  userCredentials: {
-    fullName: "John Doe",
-    email: "perdochjakub@gmail.com",
-    password: "password",
-  },
-  userBiometrics: {
-    birthDate: "1970-01-01T00:00:00.000Z",
-    weight: 70,
-    height: 180,
-  },
-  gender: "male",
-  goal: "lose weight",
-};
+import apiFetch from "@/utils/apiFetch";
+import { Spinner } from "@/components/ui/spinner";
 
 const ProfileSectionsData = [
   {
     title: "Account",
     links: [
       {
-        title: "Personal Information",
+        title: "Preferences",
         icon: "User",
-        route: "PersonalInformation",
+        route: "profile/PreferencesScreen",
       },
       {
         title: "Change Password",
@@ -86,27 +73,29 @@ const ProfileScreen = () => {
 
   const { logOut } = useAuth();
   const { setNavbarTitle } = useLayout();
-  const dispatch = useDispatch();
-
-  const user = useSelector((state: RootState) => state.user);
 
   const notificationSwitchHandler = () => {
     setIsNotificationsEnabled((prev) => !prev);
     AsyncStorage.setItem("notifications", String(!isNotificationsEnabled));
   };
 
+  const {
+    data: user,
+    isPending,
+    isFetching,
+  } = useQuery({
+    queryKey: ["user"],
+    queryFn: () => apiFetch("/user/details"),
+  });
+
   const { mutate: logoutMutation } = useMutation({
     mutationFn: () => logOut(),
     onSuccess: () => {
       router.replace("/SignInScreen");
     },
-    onError: (error) => {
-      console.log(error);
-    },
   });
 
   useEffect(() => {
-    dispatch(setUser(userData));
     setNavbarTitle("Profile");
 
     const getNotifications = async () => {
@@ -119,19 +108,28 @@ const ProfileScreen = () => {
 
   return (
     <ScrollView contentContainerClassName="px-7 pb-32">
-      <ProfileHeaderComponent user={user} />
-      <ProfileDataCards user={user.userBiometrics} />
-      <ProfileSections
-        cards={ProfileSectionsData}
-        notificationSwitchHandler={notificationSwitchHandler}
-        isNotificationEnabled={isNotificationsEnabled}
-      />
+      {isPending || isFetching ? (
+        <Spinner color={"#F77F00"} />
+      ) : (
+        <>
+          <ProfileHeaderComponent user={user} />
+          <ProfileDataCards user={user.userBiometrics} />
+          <ProfileSections
+            cards={ProfileSectionsData}
+            notificationSwitchHandler={notificationSwitchHandler}
+            isNotificationEnabled={isNotificationsEnabled}
+          />
 
-      <TouchableOpacity activeOpacity={0.7} onPress={() => logoutMutation()}>
-        <Text className="font-poppins text-center text-[#D62828] text-xl mt-8">
-          Log Out
-        </Text>
-      </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => logoutMutation()}
+          >
+            <Text className="font-poppins text-center text-[#D62828] text-xl mt-8">
+              Log Out
+            </Text>
+          </TouchableOpacity>
+        </>
+      )}
     </ScrollView>
   );
 };
