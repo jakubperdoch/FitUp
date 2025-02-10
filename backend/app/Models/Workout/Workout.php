@@ -2,6 +2,7 @@
 
 namespace App\Models\Workout;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Workout extends Model
@@ -25,7 +26,7 @@ class Workout extends Model
 
     public function exercises()
     {
-        return $this->hasMany(WorkoutPlanExercise::class)->whereNull('parent_exercise_id')->orderBy('order_index');
+        return $this->hasMany(WorkoutExercise::class)->whereNull('parent_exercise_id')->orderBy('order_index');
     }
 
     public function user()

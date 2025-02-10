@@ -70,6 +70,9 @@ Route::middleware('auth:sanctum')->group(function () {
 // stats endpoints
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/stats/macros/today', [StatsController::class, 'getTodaysMacros'])->name('getTodaysMacros');
+    Route::get('/stats/macros/monthly', [StatsController::class, 'getMonthlyMacroStats'])->name('getMonthlyMacroStats');
+    Route::get('/stats/workout/monthly', [StatsController::class, 'getMonthlyWorkoutStats'])->name('getMonthlyWorkoutStats');
+
 });
 
 //user endpoints
