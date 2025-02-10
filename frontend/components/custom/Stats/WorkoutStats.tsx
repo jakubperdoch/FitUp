@@ -23,6 +23,33 @@ const Tooltip = ({
   return <Circle r={5} cx={x} cy={y} color={"red"} opacity={0.5} />;
 };
 
+const totalWeightLifted = [
+  {
+    label: 9,
+    value: 0,
+  },
+  {
+    label: 10,
+    value: 0,
+  },
+  {
+    label: 11,
+    value: 904,
+  },
+  {
+    label: 12,
+    value: 0,
+  },
+  {
+    label: 13,
+    value: 0,
+  },
+  {
+    label: 14,
+    value: 603,
+  },
+];
+
 const WorkoutStatsComponent = () => {
   const { state, isActive } = useChartPressState({ x: 0, y: { value: 0 } });
   const [workoutData, setWorkoutData] = useState([]);
@@ -34,7 +61,7 @@ const WorkoutStatsComponent = () => {
     return state.y.value.value.value.toFixed(2) + " kg";
   }, [state]);
 
-  const { data, isFetching, isLoading, refetch } = useQuery({
+  const { data, isFetching, isPending, isLoading, refetch } = useQuery({
     queryKey: ["workoutStats"],
     queryFn: () => apiFetch("/stats/workout/monthly", { method: "GET" }),
   });
@@ -42,6 +69,8 @@ const WorkoutStatsComponent = () => {
   useEffect(() => {
     if (data) {
       setWorkoutData(data?.workout_stats?.totalWeightLifted);
+    } else {
+      setWorkoutData(totalWeightLifted);
     }
   }, [data]);
 
@@ -64,7 +93,7 @@ const WorkoutStatsComponent = () => {
           <RefreshControl refreshing={isFetching} onRefresh={refetch} />
         }
       >
-        {isFetching || isLoading ? (
+        {isFetching || isLoading || isPending ? (
           <Spinner color={"#F77F00"} />
         ) : (
           <>

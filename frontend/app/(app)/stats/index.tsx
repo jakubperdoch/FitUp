@@ -9,18 +9,6 @@ import WorkoutStatsComponent from "@/components/custom/Stats/WorkoutStats";
 import { setMacroStats, setWorkoutStats } from "@/store/stats";
 import MacroStatsComponent from "@/components/custom/Stats/MacroStats";
 
-const macroData: Partial<MacroStats> = {
-  totalCalories: 1000,
-  mostFrequentMeal: "Chicken",
-  macros: {
-    protein: 90,
-    carbs: 120,
-    fat: 30,
-    sugar: 10,
-    fiber: 90,
-  },
-};
-
 const PAGE_WIDTH = Dimensions.get("window").width;
 const itemSize = 300;
 const itemHeight = 550;
