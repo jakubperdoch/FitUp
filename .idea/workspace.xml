@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: workout stats">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: macro stats">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/stats/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/stats/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Stats/MacroStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Stats/MacroStats.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/StatsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/StatsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,15 +175,8 @@
       <workItem from="1738871720571" duration="13992000" />
       <workItem from="1738899313120" duration="17878000" />
       <workItem from="1739089686231" duration="23000" />
-      <workItem from="1739089776254" duration="13868000" />
-    </task>
-    <task id="LOCAL-00018" summary="add: new footer style">
-      <option name="closed" value="true" />
-      <created>1735860888900</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1735860888900</updated>
+      <workItem from="1739089776254" duration="14041000" />
+      <workItem from="1739171822127" duration="563000" />
     </task>
     <task id="LOCAL-00019" summary="fix: Horror fix. Deleted tailwind safelist and now it works smooth as butter">
       <option name="closed" value="true" />
@@ -569,7 +562,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739147525195</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="add: macro stats">
+      <option name="closed" value="true" />
+      <created>1739149270305</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1739149270305</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +594,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: Contact Us page with form &amp; updated styling of profile pages" />
     <MESSAGE value="add: Language screen" />
     <MESSAGE value="merge" />
     <MESSAGE value="add: login, register backend &amp; connected to frontend" />
@@ -618,6 +618,7 @@
     <MESSAGE value="add: finish workout handling" />
     <MESSAGE value="fix" />
     <MESSAGE value="add: workout stats" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: workout stats" />
+    <MESSAGE value="add: macro stats" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: macro stats" />
   </component>
 </project>

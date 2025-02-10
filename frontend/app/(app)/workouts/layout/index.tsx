@@ -66,30 +66,36 @@ const WorkoutsPage = () => {
               <Spinner color={"#F77F00"} />
             ) : (
               <Animated.View entering={ZoomIn} className="gap-7">
-                {workoutCards.map((card, index) => (
-                  <SwipeToDelete
-                    key={card.id}
-                    id={card.id}
-                    onDeleteHandler={deleteWorkoutHandler}
-                    alert={{
-                      title: "Workout Deletion",
-                      desc: "Are you sure you want to delete this workout ?",
-                    }}
-                  >
-                    <WorkoutPlanCardComponent
+                {workoutCards?.length > 0 ? (
+                  workoutCards.map((card, index) => (
+                    <SwipeToDelete
+                      key={card.id}
                       id={card.id}
-                      title={card.name}
-                      day={card.day}
-                      numberOfExercises={card.number_of_exercises}
-                      detailsHandler={() =>
-                        router.push({
-                          pathname: "/workouts/layout/details",
-                          params: { id: card.id },
-                        })
-                      }
-                    />
-                  </SwipeToDelete>
-                ))}
+                      onDeleteHandler={deleteWorkoutHandler}
+                      alert={{
+                        title: "Workout Deletion",
+                        desc: "Are you sure you want to delete this workout ?",
+                      }}
+                    >
+                      <WorkoutPlanCardComponent
+                        id={card.id}
+                        title={card.name}
+                        day={card.day}
+                        numberOfExercises={card.number_of_exercises}
+                        detailsHandler={() =>
+                          router.push({
+                            pathname: "/workouts/layout/details",
+                            params: { id: card.id },
+                          })
+                        }
+                      />
+                    </SwipeToDelete>
+                  ))
+                ) : (
+                  <Text className="text-center text-lg font-poppinsSemiBold">
+                    No workouts found
+                  </Text>
+                )}
               </Animated.View>
             )}
           </View>

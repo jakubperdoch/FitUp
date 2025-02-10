@@ -47,7 +47,7 @@ class StatsController extends Controller
             : 0;
 
         $fatProgress = $userPreferences->fat > 0
-            ? min($total_fat / $userPreferences->fat, 1)
+            ? 1 - min($total_fat / $userPreferences->fat, 1)
             : 0;
 
         $fiberProgress = $userPreferences->fiber > 0

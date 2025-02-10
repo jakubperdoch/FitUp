@@ -170,24 +170,30 @@ const HomeScreen = () => {
               </View>
 
               <View className="gap-5 mt-6 justify-center flex-col items-center">
-                {mealsData?.meals?.map((meal) => (
-                  <DashboardCard
-                    key={meal.id}
-                    id={meal.id}
-                    name={meal.name}
-                    date={meal.date}
-                    calories={meal.calories}
-                    detailsHandler={() =>
-                      router.push({
-                        pathname: "/meals/details",
-                        params: {
-                          id: meal.id,
-                          food_id: meal.food_id,
-                        },
-                      })
-                    }
-                  />
-                ))}
+                {mealsData?.meals.length > 0 ? (
+                  mealsData?.meals?.map((meal) => (
+                    <DashboardCard
+                      key={meal.id}
+                      id={meal.id}
+                      name={meal.name}
+                      date={meal.date}
+                      calories={meal.calories}
+                      detailsHandler={() =>
+                        router.push({
+                          pathname: "/meals/details",
+                          params: {
+                            id: meal.id,
+                            food_id: meal.food_id,
+                          },
+                        })
+                      }
+                    />
+                  ))
+                ) : (
+                  <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
+                    No meals for today
+                  </Text>
+                )}
                 <TouchableOpacity
                   activeOpacity={0.7}
                   onPress={() => {
@@ -221,24 +227,30 @@ const HomeScreen = () => {
               </View>
 
               <View className="gap-5 mt-6 justify-center flex-col items-center">
-                {workouts.map((workout) => (
-                  <DashboardCard
-                    key={workout.id}
-                    id={workout.id}
-                    showTimer={true}
-                    name={workout.name}
-                    day={workout.day}
-                    numberOfExercises={workout.number_of_exercises}
-                    finishWorkoutHandler={finishWorkoutHandler}
-                    workoutSelectHandler={workoutSelectHandler}
-                    detailsHandler={() =>
-                      router.push({
-                        pathname: "/workouts/layout/details",
-                        params: { id: workout.id },
-                      })
-                    }
-                  />
-                ))}
+                {workouts?.length > 0 ? (
+                  workouts.map((workout) => (
+                    <DashboardCard
+                      key={workout.id}
+                      id={workout.id}
+                      showTimer={true}
+                      name={workout.name}
+                      day={workout.day}
+                      numberOfExercises={workout.number_of_exercises}
+                      finishWorkoutHandler={finishWorkoutHandler}
+                      workoutSelectHandler={workoutSelectHandler}
+                      detailsHandler={() =>
+                        router.push({
+                          pathname: "/workouts/layout/details",
+                          params: { id: workout.id },
+                        })
+                      }
+                    />
+                  ))
+                ) : (
+                  <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
+                    No workouts for today
+                  </Text>
+                )}
                 <TouchableOpacity
                   activeOpacity={0.7}
                   onPress={() => {
