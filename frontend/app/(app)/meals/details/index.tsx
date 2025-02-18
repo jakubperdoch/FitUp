@@ -137,7 +137,7 @@ const DetailsScreen = () => {
               },
             ]}
             className="border-r border-l border-t border-[#F77F00] rounded-t-3xl"
-            contentContainerClassName="pb-10"
+            contentContainerClassName="pb-32"
             showsVerticalScrollIndicator={false}
             automaticallyAdjustKeyboardInsets={true}
           >

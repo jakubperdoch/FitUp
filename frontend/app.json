@@ -38,7 +38,7 @@
       }
     },
     "android": {
-      "package": "com.jakubperdoch.FitUp"
+      "package": "com.jakubperdoch.FitUp",
     }
   }
 }

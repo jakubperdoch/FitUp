@@ -86,7 +86,7 @@ const DashBoardComponent = ({ macros }: ComponentProps) => {
   return (
     <Animated.View
       entering={ZoomIn}
-      className="bg-white shadow-soft-3 rounded-3xl flex flex-row items-center justify-center flex-wrap gap-4 p-4"
+      className="bg-white shadow-soft-3   rounded-3xl flex flex-row items-center justify-center flex-wrap gap-4 p-4"
     >
       {macrosData.map((dataCircle, index) => {
         return (

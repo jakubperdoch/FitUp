@@ -4,11 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: macro stats">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: empty states">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/StatsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/StatsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/WorkoutPlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/WorkoutPlanController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer1Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer1Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer2Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer2Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer3Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer3Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer4Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer4Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/eas.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/eas.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/hooks/workouts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/workouts.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +90,7 @@
     &quot;git-widget-placeholder&quot;: &quot;backend&quot;,
     &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
     &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/utils&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/android/app/src/main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -99,14 +111,15 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/android/app/src/main" />
       <recent name="$PROJECT_DIR$/frontend/utils" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/android/app/src/main/res/mipmap-mdpi" />
+      <recent name="$PROJECT_DIR$/frontend/android/app/src/main/res/mipmap-hdpi" />
+      <recent name="$PROJECT_DIR$/frontend/android/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/frontend/app/(app)/workouts/layout" />
       <recent name="$PROJECT_DIR$/frontend/assets/icons" />
-      <recent name="$PROJECT_DIR$/frontend/assets/animations/gifs" />
-      <recent name="$PROJECT_DIR$/frontend/hooks" />
-      <recent name="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -176,15 +189,19 @@
       <workItem from="1738899313120" duration="17878000" />
       <workItem from="1739089686231" duration="23000" />
       <workItem from="1739089776254" duration="14041000" />
-      <workItem from="1739171822127" duration="563000" />
-    </task>
-    <task id="LOCAL-00019" summary="fix: Horror fix. Deleted tailwind safelist and now it works smooth as butter">
-      <option name="closed" value="true" />
-      <created>1735875228851</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1735875228851</updated>
+      <workItem from="1739171822127" duration="1561000" />
+      <workItem from="1739175346845" duration="3000" />
+      <workItem from="1739184204685" duration="246000" />
+      <workItem from="1739286681983" duration="218000" />
+      <workItem from="1739286936941" duration="2022000" />
+      <workItem from="1739376685872" duration="8255000" />
+      <workItem from="1739392339681" duration="3096000" />
+      <workItem from="1739395569931" duration="5368000" />
+      <workItem from="1739424226602" duration="3551000" />
+      <workItem from="1739430961781" duration="409000" />
+      <workItem from="1739433347598" duration="923000" />
+      <workItem from="1739508161952" duration="2000" />
+      <workItem from="1739523845249" duration="922000" />
     </task>
     <task id="LOCAL-00020" summary="add: Add ScheduleAccordion &amp; starting structure of Workout details">
       <option name="closed" value="true" />
@@ -570,7 +587,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739149270305</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="fix: empty states">
+      <option name="closed" value="true" />
+      <created>1739172507438</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1739172507438</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -594,7 +619,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: Language screen" />
     <MESSAGE value="merge" />
     <MESSAGE value="add: login, register backend &amp; connected to frontend" />
     <MESSAGE value="add: connected login with frontend" />
@@ -619,6 +643,7 @@
     <MESSAGE value="fix" />
     <MESSAGE value="add: workout stats" />
     <MESSAGE value="add: macro stats" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: macro stats" />
+    <MESSAGE value="fix: empty states" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: empty states" />
   </component>
 </project>

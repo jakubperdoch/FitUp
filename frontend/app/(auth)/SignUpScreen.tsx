@@ -137,9 +137,6 @@ const SignUpScreen = () => {
           <Text className="text-lg font-poppins">Or</Text>
           <Divider />
         </View>
-        <TouchableOpacity activeOpacity={0.7}>
-          <AppleLoginIcon width={50} height={50} />
-        </TouchableOpacity>
 
         <View className="flex flex-col gap-2  items-center justify-center">
           <Text className="text-lg font-poppins">Already have an account?</Text>
