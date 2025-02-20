@@ -1,6 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient";
 import RandomImageComponent from "@/components/custom/RandomImage";
 import { View, Text, TouchableOpacity } from "react-native";
+import { useTranslation } from "react-i18next";
 
 type ComponentProps = {
   id: number;
@@ -11,6 +12,7 @@ type ComponentProps = {
 };
 
 const WorkoutPlanCardComponent = (props: ComponentProps) => {
+  const { t } = useTranslation("workouts");
   return (
     <LinearGradient
       start={{ x: 1, y: 0 }}
@@ -21,7 +23,8 @@ const WorkoutPlanCardComponent = (props: ComponentProps) => {
         display: "flex",
         alignItems: "center",
         flexDirection: "row",
-        justifyContent: "space-between",
+        gap: 20,
+        justifyContent: "space-around",
         padding: 20,
       }}
     >
@@ -36,7 +39,8 @@ const WorkoutPlanCardComponent = (props: ComponentProps) => {
         <Text className="font-poppins  text-[#7B6F72]">{props.day}</Text>
 
         <Text className="font-poppins  text-[#7B6F72]">
-          {props.numberOfExercises} Exercises
+          {props.numberOfExercises}{" "}
+          {t("workoutCard.exercise", { context: "workouts" })}
         </Text>
 
         <TouchableOpacity
@@ -44,12 +48,14 @@ const WorkoutPlanCardComponent = (props: ComponentProps) => {
           activeOpacity={0.7}
           className="bg-white/80 p-4 mt-2 flex items-center justify-center  rounded-full"
         >
-          <Text className="text-[#D62828] font-poppins">View more</Text>
+          <Text className="text-[#D62828] font-poppins">
+            {t("workoutCard.viewMore", { context: "workouts" })}
+          </Text>
         </TouchableOpacity>
       </View>
 
       <View className="bg-white/30 h-28 w-28 flex items-center justify-center  rounded-full">
-        <RandomImageComponent width={110} height={110} />
+        <RandomImageComponent width={130} height={130} />
       </View>
     </LinearGradient>
   );

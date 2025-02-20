@@ -1,0 +1,79 @@
+{
+  "dashboard": {
+    "title": "Tréningy",
+    "createButton": "Vytvoriť nový",
+    "empty": "Nenašli sa žiadne tréningy"
+  },
+
+  "workoutCard": {
+    "exercise": "Cvičenia",
+    "viewMore": "Zobraziť viac"
+  },
+
+  "workoutDetails": {
+    "exercise": "Cvičenie",
+    "set": "Séria",
+    "superset": "Superset",
+    "editButton": "Upraviť",
+    "clearButton": "Vymazať tréning",
+    "scheduleTitle": "Naplánovať tréning",
+    "exercises": "Cvičenia",
+    "reps": "Opakovania",
+    "weight": "Váha",
+    "startWorkoutButton": "Začať tréning",
+    "finishWorkoutButton": "Dokončiť tréning",
+    "pauseWorkoutButton": "Pozastaviť tréning",
+    "stopWorkoutButton": "Ukončiť tréning",
+    "resumeWorkoutButton": "Pokračovať v tréningu",
+    "updateWorkoutButton": "Aktualizovať tréning",
+    "createWorkoutButton": "Vytvoriť tréning",
+    "addSetButton": "Pridať sériu",
+    "addExerciseButton": "Pridať cvičenie",
+    "addSupersetButton": "Pridať superset",
+
+    "activeWorkoutModal": {
+      "title": "Aktívny tréning",
+      "description": "Iný tréning je už aktívny. Prosím, dokončite alebo zastavte aktuálny tréning pred začatím nového."
+    },
+
+    "deleteExerciseModal": {
+      "title": "Odstrániť cvičenie",
+      "description": "Ste si istí, že chcete odstrániť toto cvičenie?",
+      "cancelButton": "Zrušiť",
+      "deleteButton": "Odstrániť"
+    },
+
+    "deleteSetModal": {
+      "title": "Odstrániť sériu",
+      "description": "Ste si istí, že chcete odstrániť túto sériu?",
+      "cancelButton": "Zrušiť",
+      "deleteButton": "Odstrániť"
+    },
+
+    "deleteWorkoutModal": {
+      "title": "Odstrániť tréning",
+      "description": "Ste si istí, že chcete odstrániť tento tréning?",
+      "cancelButton": "Zrušiť",
+      "deleteButton": "Odstrániť"
+    },
+
+    "specialTypes": {
+      "superset": "Označiť ako superset",
+      "dropset": "Označiť ako dropset",
+      "warmup": "Označiť ako rozcvičaciu sériu",
+      "normal": "Označiť ako normálnu sériu",
+      "failure": "Označiť ako sériu do zlyhania",
+      "delete": "Odstrániť sériu"
+    },
+
+    "days": {
+      "monday": "Pondelok",
+      "tuesday": "Utorok",
+      "wednesday": "Streda",
+      "thursday": "Štvrtok",
+      "friday": "Piatok",
+      "saturday": "Sobota",
+      "sunday": "Nedeľa"
+    }
+  }
+}

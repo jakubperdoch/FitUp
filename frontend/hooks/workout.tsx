@@ -3,6 +3,11 @@ import { useWorkoutTimer } from "@/hooks/workouts";
 import { useEffect, useState } from "react";
 import { RootState } from "@/store/store";
 import { Alert } from "react-native";
+import { useRouter } from "expo-router";
+import { useMutation } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
+import { useTranslation } from "react-i18next";
+
 import {
   addSet,
   removeExercise,
@@ -21,11 +26,8 @@ import {
   updateActiveWorkoutSet,
 } from "@/store/workout";
 
-import { useRouter } from "expo-router";
-import { useMutation } from "@tanstack/react-query";
-import apiFetch from "@/utils/apiFetch";
-
 const useWorkoutDetails = () => {
+  const { t } = useTranslation("workouts");
   const dispatch = useDispatch();
   const router = useRouter();
   const { startTimer, stopTimer } = useWorkoutTimer();
@@ -51,6 +53,9 @@ const useWorkoutDetails = () => {
         ...(workoutPlan.days &&
           workoutPlan.days.length > 0 && { days: workoutPlan.days }),
         ...(workoutPlan.name && { name: workoutPlan.name }),
+        ...(workoutPlan?.number_of_exercises && {
+          number_of_exercises: workoutPlan.number_of_exercises,
+        }),
       }));
     }
   }, [workoutPlan]);
@@ -65,6 +70,7 @@ const useWorkoutDetails = () => {
   };
 
   const changeDateHandler = (newValue: string) => {
+    console.log(data?.days);
     if (data?.days?.includes(newValue)) {
       const daysArr = data.days.filter((day) => day !== newValue);
 
@@ -72,6 +78,8 @@ const useWorkoutDetails = () => {
         ...prevState,
         days: daysArr,
       }));
+
+      dispatch(addDays(daysArr));
     } else {
       const daysArr = [...(data?.days || [])];
       daysArr.push(newValue);
@@ -150,30 +158,38 @@ const useWorkoutDetails = () => {
     setIndex: number,
     superSetIndex: number | null,
   ) => {
-    Alert.alert("Delete Set", "Are you sure you want to delete this set?", [
-      {
-        text: "Cancel",
-        style: "cancel",
-      },
-      {
-        text: "Delete",
-        style: "destructive",
-        onPress: () => {
-          updateSets(exerciseIndex, setIndex, superSetIndex, (sets) => {
-            sets.splice(setIndex, 1);
-            return sets;
-          });
-
-          dispatch(
-            removeSet({
-              exerciseIndex,
-              setIndex,
-              supersetIndex: superSetIndex ?? undefined,
-            }),
-          );
+    Alert.alert(
+      t("workoutDetails.deleteSetModal.title", { context: "workouts" }),
+      t("workoutDetails.deleteSetModal.description", { context: "workouts" }),
+      [
+        {
+          text: t("workoutDetails.deleteSetModal.cancelButton", {
+            context: "workouts",
+          }),
+          style: "cancel",
         },
-      },
-    ]);
+        {
+          text: t("workoutDetails.deleteSetModal.deleteButton", {
+            context: "workouts",
+          }),
+          style: "destructive",
+          onPress: () => {
+            updateSets(exerciseIndex, setIndex, superSetIndex, (sets) => {
+              sets.splice(setIndex, 1);
+              return sets;
+            });
+
+            dispatch(
+              removeSet({
+                exerciseIndex,
+                setIndex,
+                supersetIndex: superSetIndex ?? undefined,
+              }),
+            );
+          },
+        },
+      ],
+    );
   };
 
   const addSetHandler = (
@@ -195,15 +211,21 @@ const useWorkoutDetails = () => {
 
   const deleteExerciseHandler = (exerciseIndex: number) => {
     Alert.alert(
-      "Delete Exercise",
-      "Are you sure you want to delete this exercise?",
+      t("workoutDetails.deleteExerciseModal.title", { context: "workouts" }),
+      t("workoutDetails.deleteExerciseModal.description", {
+        context: "workouts",
+      }),
       [
         {
-          text: "Cancel",
+          text: t("workoutDetails.deleteExerciseModal.cancelButton", {
+            context: "workouts",
+          }),
           style: "cancel",
         },
         {
-          text: "Delete",
+          text: t("workoutDetails.deleteExerciseModal.deleteButton", {
+            context: "workouts",
+          }),
           style: "destructive",
           onPress: () => {
             setData((prevState) => {
@@ -251,19 +273,29 @@ const useWorkoutDetails = () => {
 
   const buttonTitleHandler = () => {
     if (isCurrentWorkoutActive) {
-      return "Pause Workout";
+      return t("workoutDetails.pauseWorkoutButton", {
+        context: "workouts",
+      });
     } else if (!isCurrentWorkoutActive && workout?.timer > 0) {
-      return "Resume Workout";
+      return t("workoutDetails.resumeWorkoutButton", {
+        context: "workouts",
+      });
     } else {
-      return "Start Workout";
+      return t("workoutDetails.startWorkoutButton", {
+        context: "workouts",
+      });
     }
   };
 
   const buttonStateHandler = async () => {
     if (isOtherWorkoutActive) {
       Alert.alert(
-        "Workout Active",
-        "Another workout is already active. Please finish or stop the current workout before starting a new one.",
+        t("workoutDetails.activeWorkoutModal.title", {
+          context: "workouts",
+        }),
+        t("workoutDetails.activeWorkoutModal.description", {
+          context: "workouts",
+        }),
       );
       return;
     }
@@ -308,21 +340,33 @@ const useWorkoutDetails = () => {
     dispatch(clearWorkout());
   };
 
-  const clearWorkoutHandler = () => {
+  const clearWorkoutHandler = (workout: any) => {
     Alert.alert(
-      "Delete Workout",
-      "Are you sure you want to delete this workout?",
+      t("workoutDetails.deleteWorkoutModal.title", {
+        context: "workouts",
+      }),
+      t("workoutDetails.deleteWorkoutModal.description", {
+        context: "workouts",
+      }),
       [
         {
-          text: "Cancel",
+          text: t("workoutDetails.deleteWorkoutModal.cancelButton", {
+            context: "workouts",
+          }),
           style: "cancel",
         },
         {
-          text: "Clear",
+          text: t("workoutDetails.deleteWorkoutModal.deleteButton", {
+            context: "workouts",
+          }),
           style: "destructive",
           onPress: () => {
-            dispatch(resetExercises());
-            router.push("/workouts/layout");
+            if (workout?.id) {
+              deletePlanWorkout({ id: workout?.id });
+            } else {
+              dispatch(resetExercises());
+              router.push("/workouts/layout");
+            }
           },
         },
       ],
@@ -338,6 +382,19 @@ const useWorkoutDetails = () => {
         apiFetch("/workouts/plans/add", {
           method: "POST",
           body: workout,
+        }),
+      onSuccess: () => {
+        dispatch(clearWorkoutPlan());
+        router.replace("/workouts/layout");
+      },
+    });
+
+  const { mutate: deletePlanWorkout, error: deleteWorkoutPlanError } =
+    useMutation<any, Error, Partial<WorkoutDetails>>({
+      mutationKey: ["deleteWorkoutPlan"],
+      mutationFn: (workout) =>
+        apiFetch(`/workouts/plans/${workout.id}/delete`, {
+          method: "DELETE",
         }),
       onSuccess: () => {
         dispatch(clearWorkoutPlan());

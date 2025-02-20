@@ -15,7 +15,7 @@ const DashBoardCircle = ({
   icon,
   type,
 }) => {
-  const strokeWidth = size / 35;
+  const strokeWidth = size / 40;
   const circleLength = size;
   const radius = circleLength / (2 * Math.PI);
   const [progress, setProgress] = useState(value);

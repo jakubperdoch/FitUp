@@ -10,7 +10,7 @@ import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
+import "@/lang/i18n";
 const queryClient = new QueryClient();
 
 const RootLayout = () => {

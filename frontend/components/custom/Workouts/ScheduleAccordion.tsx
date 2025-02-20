@@ -13,6 +13,7 @@ import GenericIcon from "@/components/custom/Icon";
 import { Text, TouchableOpacity, View } from "react-native";
 import { useContext } from "react";
 import { WorkoutContext } from "@/context/WorkoutContext";
+import { useTranslation } from "react-i18next";
 type ComponentProps = {
   days?: Array<string>;
   changeDateHandler: (day: string) => void;
@@ -29,8 +30,14 @@ const days = [
 ];
 
 const ScheduleAccordionComponent = (props: ComponentProps) => {
-  const concatenatedDays = props.days?.join(", ") || "";
   const { isWorkoutEditable } = useContext(WorkoutContext);
+  const { t } = useTranslation("workouts");
+
+  const concatenatedDays = props.days
+    ? props.days
+        .map((day) => t(`workoutDetails.days.${day.toLowerCase()}`))
+        .join(", ")
+    : "";
 
   return (
     <Accordion
@@ -55,7 +62,9 @@ const ScheduleAccordionComponent = (props: ComponentProps) => {
                     <View className="flex-row items-center w-fit gap-3">
                       <GenericIcon name="CalendarDays" color="#7B6F72" />
                       <AccordionTitleText className="font-poppins  font-normal text-[#7B6F72]">
-                        Schedule Workout
+                        {t("workoutDetails.scheduleTitle", {
+                          context: "workouts",
+                        })}
                       </AccordionTitleText>
 
                       <Text
@@ -84,19 +93,23 @@ const ScheduleAccordionComponent = (props: ComponentProps) => {
           </AccordionHeader>
         </LinearGradient>
         <AccordionContent className="flex flex-wrap flex-row gap-3 mt-4">
-          {days.map((day, index) => (
-            <TouchableOpacity
-              disabled={!isWorkoutEditable}
-              activeOpacity={0.7}
-              key={index}
-              onPress={() => props.changeDateHandler(day)}
-              className={`px-3 py-1 rounded-xl ${
-                props?.days?.includes(day) ? "bg-[#F77F00]" : "bg-[#E5E6E6]"
-              }`}
-            >
-              <Text className="text-lg font-poppins">{day}</Text>
-            </TouchableOpacity>
-          ))}
+          {days.map((day, index) => {
+            const translatedDay = t(`workoutDetails.days.${day.toLowerCase()}`);
+
+            return (
+              <TouchableOpacity
+                disabled={!isWorkoutEditable}
+                activeOpacity={0.7}
+                key={index}
+                onPress={() => props.changeDateHandler(day)}
+                className={`px-3 py-1 rounded-xl ${
+                  props?.days?.includes(day) ? "bg-[#F77F00]" : "bg-[#E5E6E6]"
+                }`}
+              >
+                <Text className="text-lg font-poppins">{translatedDay}</Text>
+              </TouchableOpacity>
+            );
+          })}
         </AccordionContent>
       </AccordionItem>
     </Accordion>

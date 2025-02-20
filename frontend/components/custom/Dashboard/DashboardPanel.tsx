@@ -1,6 +1,7 @@
 import DashBoardCircle from "./DashboardCircle";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 
 interface ComponentProps {
   macros: {
@@ -26,60 +27,86 @@ const defaultMacroData = [
   {
     icon: icons.fire,
     title: "Calories",
-    size: 280,
+    size: 290,
     colors: ["#FF4747", "#FFBBBB", "#FFDEDE"],
     type: "calories",
   },
   {
     icon: icons.transFats,
     title: "Fats",
-    size: 230,
+    size: 260,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "fats",
   },
   {
     icon: icons.protein,
     title: "Protein",
-    size: 230,
+    size: 260,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "protein",
   },
   {
     icon: icons.carbohydrates,
     title: "Carbs",
-    size: 230,
+    size: 260,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "carbs",
   },
   {
     icon: icons.sugarCube,
     title: "Sugar",
-    size: 230,
+    size: 260,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "sugar",
   },
   {
     icon: icons.grain,
     title: "Fiber",
-    size: 230,
+    size: 260,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "fiber",
   },
 ];
 
 const DashBoardComponent = ({ macros }: ComponentProps) => {
+  const { t } = useTranslation();
+
   const macrosData = useMemo(() => {
     if (!macros) {
       return defaultMacroData.map((item) => ({ ...item, value: 0 }));
     }
 
     return [
-      { ...defaultMacroData[1], value: macros.total_fat },
-      { ...defaultMacroData[0], value: macros.total_calories },
-      { ...defaultMacroData[2], value: macros.total_protein },
-      { ...defaultMacroData[3], value: macros.total_carbs },
-      { ...defaultMacroData[4], value: macros.total_sugar },
-      { ...defaultMacroData[5], value: macros.total_fiber },
+      {
+        ...defaultMacroData[1],
+        title: t("dashboard.macros.fat", { ns: "home" }),
+        value: macros.total_fat,
+      },
+      {
+        ...defaultMacroData[0],
+        title: t("dashboard.macros.calories", { ns: "home" }),
+        value: macros.total_calories,
+      },
+      {
+        ...defaultMacroData[2],
+        title: t("dashboard.macros.protein", { ns: "home" }),
+        value: macros.total_protein,
+      },
+      {
+        ...defaultMacroData[3],
+        title: t("dashboard.macros.carbs", { ns: "home" }),
+        value: macros.total_carbs,
+      },
+      {
+        ...defaultMacroData[4],
+        title: t("dashboard.macros.sugar", { ns: "home" }),
+        value: macros.total_sugar,
+      },
+      {
+        ...defaultMacroData[5],
+        title: t("dashboard.macros.fiber", { ns: "home" }),
+        value: macros.total_fiber,
+      },
     ];
   }, [macros]);
 

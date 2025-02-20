@@ -15,10 +15,13 @@ import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
 import GradientButton from "@/components/custom/Button/GradientButton";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LanguagesScreen = () => {
   const { setNavbarTitle, setShowBackButton } = useLayout();
   const [selectedLanguage, setSelectedLanguage] = useState("en");
+  const { t, i18n } = useTranslation();
 
   const {
     data: languagePreferences,
@@ -39,7 +42,9 @@ const LanguagesScreen = () => {
         },
       }),
 
-    onSuccess: () => {
+    onSuccess: async () => {
+      await i18n.changeLanguage(selectedLanguage);
+      await AsyncStorage.setItem("selectedLanguage", selectedLanguage);
       router.replace("/profile");
     },
     onError: (error) => {
@@ -91,7 +96,7 @@ const LanguagesScreen = () => {
             <Radio value="en" size={"lg"}>
               <Image
                 source={require("@/assets/icons/england-flag--icon.png")}
-                className="h-8 w-8"
+                className="h-8 w-8 me-2"
               />
               <RadioIndicator>
                 <RadioIcon as={CircleIcon} color={"#F77F00"} fill={"#F77F00"} />
@@ -101,7 +106,7 @@ const LanguagesScreen = () => {
             <Radio value="sk" size={"lg"}>
               <Image
                 source={require("@/assets/icons/slovak-flag--icon.png")}
-                className="h-8 w-8"
+                className="h-8 w-8 me-2"
               />
               <RadioIndicator>
                 <RadioIcon as={CircleIcon} color={"#F77F00"} fill={"#F77F00"} />

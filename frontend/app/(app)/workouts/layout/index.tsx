@@ -10,10 +10,12 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 
 const WorkoutsPage = () => {
   const [workoutCards, setWorkoutCards] = useState<Workout[]>([]);
   const queryClient = useQueryClient();
+  const { t } = useTranslation("workouts");
 
   const { data, isLoading, isFetching } = useQuery({
     queryKey: ["workouts"],
@@ -47,15 +49,15 @@ const WorkoutsPage = () => {
     <GestureHandlerRootView>
       <View className="px-8">
         <View>
-          <View className="flex-row w-full items-center justify-between mb-6">
+          <View className="flex-row w-full flex-wrap gap-2 gap-y-5 items-center justify-between mb-6">
             <Text className="font-poppinsSemiBold text-2xl">
-              Upcoming Workout
+              {t("dashboard.title", { context: "workouts" })}
             </Text>
 
             <View className="flex items-center justify-center">
               <GradientButtonComponent
                 size={"sm"}
-                title="Create new"
+                title={t("dashboard.createButton", { context: "workouts" })}
                 handleSubmit={() => router.push("/workouts/layout/create")}
               />
             </View>
@@ -73,8 +75,13 @@ const WorkoutsPage = () => {
                       id={card.id}
                       onDeleteHandler={deleteWorkoutHandler}
                       alert={{
-                        title: "Workout Deletion",
-                        desc: "Are you sure you want to delete this workout ?",
+                        title: t("workoutDetails.deleteWorkoutModal.title", {
+                          context: "workouts",
+                        }),
+                        desc: t(
+                          "workoutDetails.deleteWorkoutModal.description",
+                          { context: "workouts" },
+                        ),
                       }}
                     >
                       <WorkoutPlanCardComponent

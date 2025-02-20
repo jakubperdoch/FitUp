@@ -4,23 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: empty states">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix">
+      <change afterPath="$PROJECT_DIR$/frontend/lang/en/workout.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/sk/home.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/sk/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/sk/workout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/WorkoutPlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/WorkoutPlanController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer1Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer1Screen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer2Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer2Screen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer3Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer3Screen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer4Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer4Screen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/LanguagesScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/LanguagesScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/create/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/details/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/GradientButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/GradientButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCircle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCircle.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/eas.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/eas.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/hooks/workouts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/workouts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/SwipeToDelete.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/SwipeToDelete.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Cell.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/DigitInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/DigitInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/SpecialTypeActionSheet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/SpecialTypeActionSheet.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ScheduleAccordion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ScheduleAccordion.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/WorkoutPlanCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/WorkoutPlanCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/hooks/workout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/workout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/home.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/i18n.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/i18n.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/sk.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +102,7 @@
     &quot;git-widget-placeholder&quot;: &quot;backend&quot;,
     &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
     &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/android/app/src/main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/lang/en&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -99,7 +111,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -111,6 +123,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/lang/en" />
       <recent name="$PROJECT_DIR$/frontend/android/app/src/main" />
       <recent name="$PROJECT_DIR$/frontend/utils" />
     </key>
@@ -202,22 +215,10 @@
       <workItem from="1739433347598" duration="923000" />
       <workItem from="1739508161952" duration="2000" />
       <workItem from="1739523845249" duration="922000" />
-    </task>
-    <task id="LOCAL-00020" summary="add: Add ScheduleAccordion &amp; starting structure of Workout details">
-      <option name="closed" value="true" />
-      <created>1736016108185</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1736016108185</updated>
-    </task>
-    <task id="LOCAL-00021" summary="fix">
-      <option name="closed" value="true" />
-      <created>1736117661990</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1736117661990</updated>
+      <workItem from="1739913322102" duration="3131000" />
+      <workItem from="1739916531534" duration="3490000" />
+      <workItem from="1739950943128" duration="3000" />
+      <workItem from="1739958436292" duration="14331000" />
     </task>
     <task id="LOCAL-00022" summary="fix: removed Tamagui">
       <option name="closed" value="true" />
@@ -595,7 +596,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739172507438</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="fix: android version permissions">
+      <option name="closed" value="true" />
+      <created>1739913343891</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1739913343892</updated>
+    </task>
+    <task id="LOCAL-00070" summary="fix">
+      <option name="closed" value="true" />
+      <created>1739913351081</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1739913351081</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,7 +636,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="merge" />
     <MESSAGE value="add: login, register backend &amp; connected to frontend" />
     <MESSAGE value="add: connected login with frontend" />
     <MESSAGE value="add: meal details connected to the backend" />
@@ -640,10 +656,11 @@
     <MESSAGE value="add: workout plan delete handler" />
     <MESSAGE value="add: invalidateQuery meals when deleting" />
     <MESSAGE value="add: finish workout handling" />
-    <MESSAGE value="fix" />
     <MESSAGE value="add: workout stats" />
     <MESSAGE value="add: macro stats" />
     <MESSAGE value="fix: empty states" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: empty states" />
+    <MESSAGE value="fix: android version permissions" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
 </project>

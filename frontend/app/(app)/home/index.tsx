@@ -12,13 +12,15 @@ import { RootState } from "@/store/store";
 import ActiveWorkoutCardComponent from "@/components/custom/Workouts/ActiveWorkoutCard";
 import PulseBorder from "@/components/custom/PulseBorder";
 import Animated, { ZoomIn } from "react-native-reanimated";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
 import useWorkoutDetails from "@/hooks/workout";
+import { useTranslation } from "react-i18next";
 
 const HomeScreen = () => {
   const [workouts, setWorkouts] = useState([]);
+  const { t } = useTranslation("home");
 
   const { setNavbarTitle } = useLayout();
   const { workout, isTimerActive } = useSelector(
@@ -128,7 +130,7 @@ const HomeScreen = () => {
     <ScrollView>
       <View className="flex flex-col h-full items-center px-7 pt-5 w-full gap-6 mb-20">
         <Text className="self-start font-poppinsSemiBold text-2xl">
-          Overview
+          {t("dashboard.title", { ns: "home" })}
         </Text>
 
         {areDataLoading ? (
@@ -164,7 +166,7 @@ const HomeScreen = () => {
               <View className="flex-row w-full items-center justify-between gap-3 mt-4">
                 <View className="flex-row items-center gap-3">
                   <Text className="font-poppinsSemiBold text-2xl">
-                    Today's Meals
+                    {t("meals.title", { ns: "home" })}
                   </Text>
                 </View>
               </View>
@@ -191,7 +193,7 @@ const HomeScreen = () => {
                   ))
                 ) : (
                   <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
-                    No meals for today
+                    {t("meals.empty", { ns: "home" })}
                   </Text>
                 )}
                 <TouchableOpacity
@@ -201,7 +203,7 @@ const HomeScreen = () => {
                   }}
                 >
                   <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
-                    See More
+                    {t("more", { ns: "home" })}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -213,7 +215,7 @@ const HomeScreen = () => {
               <View className="flex-row w-full items-center justify-between gap-3 mt-4">
                 <View className="flex-row items-center gap-3">
                   <Text className="font-poppinsSemiBold text-2xl">
-                    Upcoming Workouts
+                    {t("workouts.title", { ns: "home" })}
                   </Text>
                   <TouchableOpacity
                     activeOpacity={0.7}
@@ -248,7 +250,7 @@ const HomeScreen = () => {
                   ))
                 ) : (
                   <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
-                    No workouts for today
+                    {t("workouts.empty", { ns: "home" })}
                   </Text>
                 )}
                 <TouchableOpacity
@@ -258,7 +260,7 @@ const HomeScreen = () => {
                   }}
                 >
                   <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
-                    See More
+                    {t("more", { ns: "home" })}
                   </Text>
                 </TouchableOpacity>
               </View>
