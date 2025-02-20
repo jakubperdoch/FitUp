@@ -66,6 +66,10 @@
       "delete": "Odstrániť sériu"
     },
 
+    "empty": {
+      "workoutPlan": "Plán tréningu je prázdny"
+    },
+
     "days": {
       "monday": "Pondelok",
       "tuesday": "Utorok",
@@ -75,5 +79,15 @@
       "saturday": "Sobota",
       "sunday": "Nedeľa"
     }
+  },
+
+  "search": {
+    "title": "Cvičenia",
+    "searchPlaceholder": "Hľadať cvičenia",
+    "empty": "Nenašli sa žiadne cvičenia",
+    "addSupersetButton": "Pridať superset",
+    "addExerciseButton": "Pridať cvičenie",
+    "steps": "Kroky",
+    "howTo": "Ako na to"
   }
 }

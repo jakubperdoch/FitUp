@@ -9,6 +9,7 @@ import apiFetch from "@/utils/apiFetch";
 import { useDebounce } from "@uidotdev/usehooks";
 import ExerciseScroll from "@/components/custom/Workouts/ExerciseScroll";
 import useExercises from "@/hooks/exercises";
+import { useTranslation } from "react-i18next";
 
 interface FetchedExercises {
   exercises: Exercise[];
@@ -19,7 +20,7 @@ const WorkoutSearchPage = () => {
   const [exerciseQuery, setExerciseQuery] = useState<string>("");
   const [maxResults, setMaxResults] = useState(10);
   const [exerciseData, setExerciseData] = useState([]);
-
+  const { t } = useTranslation("workouts");
   const params = useLocalSearchParams();
   const exerciseSearch = useDebounce(exerciseQuery, 100);
 
@@ -62,7 +63,9 @@ const WorkoutSearchPage = () => {
           value={exerciseQuery}
           onChangeText={setExerciseQuery}
           type={"text"}
-          placeholder="Search for exercises"
+          placeholder={t("search.searchPlaceholder", {
+            context: "workouts",
+          })}
           placeholderTextColor={"#7B6F72"}
           autoCapitalize="words"
           autoCorrect={false}
@@ -87,7 +90,15 @@ const WorkoutSearchPage = () => {
               : selectedExercises.length < 1
           }
           size={"full"}
-          title={params?.type === "superset" ? "Add Superset" : "Add Exercise"}
+          title={
+            params?.type === "superset"
+              ? t("search.addSupersetButton", {
+                  context: "workouts",
+                })
+              : t("search.addExerciseButton", {
+                  context: "workouts",
+                })
+          }
           handleSubmit={() => handleSubmit(params)}
         />
       </View>

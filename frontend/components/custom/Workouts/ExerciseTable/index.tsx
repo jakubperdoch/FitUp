@@ -49,7 +49,7 @@ const ExerciseTableComponent = ({ workout }: ComponentProps) => {
         )
       ) : (
         <Text className="font-poppins text-[#7B6F72] text-center text-lg">
-          {t("workoutDetails.empty", { context: "workouts" })}
+          {t("workoutDetails.empty.workoutPlan", { context: "workouts" })}
         </Text>
       )}
     </View>

@@ -69,8 +69,7 @@
     },
 
     "empty": {
-      "workoutPlan": "Workout plan is empty",
-      "exercises": ""
+      "workoutPlan": "Workout plan is empty"
     },
 
     "days": {
@@ -82,5 +81,15 @@
       "saturday": "Saturday",
       "sunday": "Sunday"
     }
+  },
+
+  "search": {
+    "title": "Exercises",
+    "searchPlaceholder": "Search for exercises",
+    "addSupersetButton": "Add Superset",
+    "addExerciseButton": "Add Exercise",
+    "steps": "Steps",
+    "howTo": "How to do it",
+    "empty": "No exercises found"
   }
 }
