@@ -1,0 +1,21 @@
+{
+  "title": "Your workout progress",
+  "mostFrequent": "most frequent exercise",
+  "total": "Total workouts",
+  "totalTime": "Total time",
+  "workouts": "total workouts",
+  "reps": "average reps",
+  "weight": "average weight",
+  "time": "total workout time",
+
+  "title2": "Your diet progress",
+  "mostFrequent2": "was your most frequent meal",
+  "totalCalories": "of total calories",
+
+  "calories": "of total calories",
+  "fiber": "of total fiber",
+  "protein": "of total protein",
+  "carbs": "of total carbs",
+  "fat": "of total fat",
+  "sugar": "of total sugar"
+}

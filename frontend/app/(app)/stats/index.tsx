@@ -8,6 +8,7 @@ import { RootState } from "@/store/store";
 import WorkoutStatsComponent from "@/components/custom/Stats/WorkoutStats";
 import { setMacroStats, setWorkoutStats } from "@/store/stats";
 import MacroStatsComponent from "@/components/custom/Stats/MacroStats";
+import { useTranslation } from "react-i18next";
 
 const PAGE_WIDTH = Dimensions.get("window").width;
 const itemSize = 300;
@@ -18,9 +19,10 @@ type TAnimationStyle = (value: number) => AnimatedStyle<ViewStyle>;
 
 const StatsScreen = () => {
   const { setNavbarTitle } = useLayout();
+  const { t } = useTranslation("headers");
 
   useEffect(() => {
-    setNavbarTitle("Statistics");
+    setNavbarTitle(t("statistics", { context: "headers" }));
   }, []);
 
   const animationStyle: TAnimationStyle = useCallback(

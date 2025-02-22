@@ -1,7 +1,4 @@
-import { setUser } from "@/store/user";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { RootState } from "@/store/store";
 import { ScrollView, Text, TouchableOpacity } from "react-native";
 import ProfileHeaderComponent from "@/components/custom/Profile/Header";
 import ProfileDataCards from "@/components/custom/Profile/DataCards";
@@ -13,63 +10,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { router } from "expo-router";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
-
-const ProfileSectionsData = [
-  {
-    title: "Account",
-    links: [
-      {
-        title: "Preferences",
-        icon: "User",
-        route: "profile/PreferencesScreen",
-      },
-      {
-        title: "Change Password",
-        icon: "Lock",
-        route: "profile/PasswordScreen",
-      },
-    ],
-  },
-  {
-    title: "Notifications",
-    links: [
-      {
-        title: "Pop-up Notifications",
-        icon: "BellRing",
-        isSwitch: true,
-      },
-    ],
-  },
-  {
-    title: "Other",
-    links: [
-      {
-        title: "Contact Us",
-        icon: "Mail",
-        route: "profile/ContactUsScreen",
-      },
-      {
-        title: "Privacy Policy",
-        icon: "ShieldCheck",
-        route: "PrivacyPolicy",
-      },
-      {
-        title: "Language",
-        icon: "Languages",
-        route: "profile/LanguagesScreen",
-      },
-
-      {
-        title: "Attributions",
-        icon: "Heart",
-        route: "Attributions",
-      },
-    ],
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const ProfileScreen = () => {
   const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(false);
+  const { t } = useTranslation(["profile", "headers"]);
 
   const { logOut } = useAuth();
   const { setNavbarTitle } = useLayout();
@@ -96,7 +41,7 @@ const ProfileScreen = () => {
   });
 
   useEffect(() => {
-    setNavbarTitle("Profile");
+    setNavbarTitle(t("profile", { ns: "headers" }));
 
     const getNotifications = async () => {
       const notifications = await AsyncStorage.getItem("notifications");
@@ -105,6 +50,56 @@ const ProfileScreen = () => {
 
     getNotifications().catch((err) => console.error(err));
   }, []);
+
+  const ProfileSectionsData = [
+    {
+      title: t("profileCards.account.title", { context: "profile" }),
+      links: [
+        {
+          title: t("profileCards.account.preferences", {
+            context: "profile",
+          }),
+          icon: "User",
+          route: "profile/PreferencesScreen",
+        },
+        {
+          title: t("profileCards.account.changePassword", {
+            context: "profile",
+          }),
+          icon: "Lock",
+          route: "profile/PasswordScreen",
+        },
+      ],
+    },
+    {
+      title: t("profileCards.notifications.title", {
+        context: "profile",
+      }),
+      links: [
+        {
+          title: t("profileCards.notifications.description", {
+            context: "profile",
+          }),
+          icon: "BellRing",
+          isSwitch: true,
+        },
+      ],
+    },
+    {
+      title: t("profileCards.other.title", {
+        context: "profile",
+      }),
+      links: [
+        {
+          title: t("profileCards.other.language", {
+            context: "profile",
+          }),
+          icon: "Languages",
+          route: "profile/LanguagesScreen",
+        },
+      ],
+    },
+  ];
 
   return (
     <ScrollView contentContainerClassName="px-7 pb-32">
@@ -125,7 +120,7 @@ const ProfileScreen = () => {
             onPress={() => logoutMutation()}
           >
             <Text className="font-poppins text-center text-[#D62828] text-xl mt-8">
-              Log Out
+              {t("profileCards.other.logout", { context: "profile" })}
             </Text>
           </TouchableOpacity>
         </>

@@ -1,4 +1,5 @@
 import { Text, TouchableOpacity, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 interface ComponentProps {
   selectedTimeOfDay: any;
@@ -11,10 +12,12 @@ const TimeOfDaySectionComponent = ({
   selectedTimeOfDay,
   partsOfDayData,
 }: ComponentProps) => {
+  const { t } = useTranslation("meals");
+
   return (
     <View className="mt-10 ms-6">
       <Text className="font-semibold font-poppins  text-2xl mb-5">
-        Eaten During...
+        {t("eatenDuring", { context: "meals" })}
       </Text>
       <View className="flex flex-wrap flex-row gap-3 w-full">
         {partsOfDayData.map((time) => (
@@ -28,7 +31,9 @@ const TimeOfDaySectionComponent = ({
                 : "bg-[#E5E6E6]"
             }`}
           >
-            <Text className="text-lg font-poppins">{time.name}</Text>
+            <Text className="text-lg font-poppins">
+              {t(time.value, { context: "meals" })}
+            </Text>
           </TouchableOpacity>
         ))}
       </View>

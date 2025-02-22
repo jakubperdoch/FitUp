@@ -1,5 +1,6 @@
 import { FlatList, Image, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
 
 interface ComponentProps {
   nutritionData: {
@@ -11,10 +12,12 @@ interface ComponentProps {
 }
 
 const MacroScrollComponent = ({ nutritionData }: ComponentProps) => {
+  const { t } = useTranslation("meals");
+
   return (
     <View className="mt-10">
       <Text className="font-semibold font-poppins text-2xl mb-5 ms-6">
-        Nutrition
+        {t("nutrition", { context: "meals" })}
       </Text>
 
       <FlatList

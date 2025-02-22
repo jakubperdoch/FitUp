@@ -4,16 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: i18n translations structure">
-      <change afterPath="$PROJECT_DIR$/frontend/lang/en/profile.json" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: translations for workout instruction pages">
+      <change afterPath="$PROJECT_DIR$/frontend/lang/en/headers.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/en/meals.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/en/stats.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/sk/headers.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/sk/meals.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/sk/profile.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/sk/stats.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseScroll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseScroll.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/InstructionsSteps.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/InstructionsSteps.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/en/workout.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/workout.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/sk/workout.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/sk/workout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/search/[name].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/search/[name].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/LanguagesScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/LanguagesScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/PasswordScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/PasswordScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/PreferencesScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/PreferencesScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/stats/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/stats/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/MacroScroll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/MacroScroll.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/ServingSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/ServingSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/TimeOfDaySection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/TimeOfDaySection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/CategoryScroll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/CategoryScroll.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Profile/DataCards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Profile/DataCards.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Profile/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Profile/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Stats/MacroStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Stats/MacroStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/en/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/en/profile.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/profile.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/sk/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/sk/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,15 +219,8 @@
       <workItem from="1739913322102" duration="3131000" />
       <workItem from="1739916531534" duration="3490000" />
       <workItem from="1739950943128" duration="3000" />
-      <workItem from="1739958436292" duration="15511000" />
-    </task>
-    <task id="LOCAL-00023" summary="fix: Add maximum date for meal creation">
-      <option name="closed" value="true" />
-      <created>1736118569839</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1736118569839</updated>
+      <workItem from="1739958436292" duration="20138000" />
+      <workItem from="1740241618802" duration="4728000" />
     </task>
     <task id="LOCAL-00024" summary="fix: Edit Yup warnings">
       <option name="closed" value="true" />
@@ -593,7 +606,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740010399343</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="add: translations for workout instruction pages">
+      <option name="closed" value="true" />
+      <created>1740011603632</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1740011603632</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,7 +638,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: connected login with frontend" />
     <MESSAGE value="add: meal details connected to the backend" />
     <MESSAGE value="add: scroll pagination for meals" />
     <MESSAGE value="fix: loading state" />
@@ -642,6 +662,7 @@
     <MESSAGE value="fix: android version permissions" />
     <MESSAGE value="fix" />
     <MESSAGE value="add: i18n translations structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: i18n translations structure" />
+    <MESSAGE value="add: translations for workout instruction pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: translations for workout instruction pages" />
   </component>
 </project>

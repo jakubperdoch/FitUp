@@ -1,5 +1,6 @@
 import { ScrollView, Text, View } from "react-native";
 import CategoryCardComponent from "./CategoryCard";
+import { useTranslation } from "react-i18next";
 
 type Category = {
   id: number;
@@ -13,10 +14,12 @@ type ComponentProps = {
 };
 
 const CategoryScrollComponent = (props: ComponentProps) => {
+  const { t } = useTranslation("meals");
+
   return (
     <View className="flex flex-col gap-5">
       <Text className="ms-7 text-2xl font-semibold font-poppins ">
-        {props.categoryTitle || "Categories"}
+        {props.categoryTitle || t("categories", { context: "meals" })}
       </Text>
 
       <ScrollView

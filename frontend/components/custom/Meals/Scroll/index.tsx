@@ -2,6 +2,7 @@ import { ActivityIndicator, FlatList, Text, View } from "react-native";
 import FoodScrollCardComponent from "./Card";
 import { useCallback, useRef } from "react";
 import debounce from "lodash/debounce";
+import { useTranslation } from "react-i18next";
 
 interface ComponentProps {
   meals: MealSearchCard[];
@@ -19,6 +20,7 @@ const FoodScrollComponent = ({
   loadMore,
 }: ComponentProps) => {
   const flatListRef = useRef<FlatList>(null);
+  const { t } = useTranslation("meals");
 
   const debouncedLoadMore = useCallback(
     debounce(() => {
@@ -39,7 +41,9 @@ const FoodScrollComponent = ({
 
   return (
     <View className="h-full flex flex-col gap-5">
-      <Text className="ms-7 text-2xl font-semibold font-poppins ">Meals</Text>
+      <Text className="ms-7 text-2xl font-semibold font-poppins ">
+        {t("meals", { context: "meals" })}
+      </Text>
 
       <FlatList
         ref={flatListRef}
@@ -57,7 +61,9 @@ const FoodScrollComponent = ({
         )}
         ListEmptyComponent={() =>
           !isLoading && (
-            <Text className="mx-auto text-[#ADA4A5]">No meals found.</Text>
+            <Text className="mx-auto text-[#ADA4A5]">
+              {t("empty", { context: "meals" })}
+            </Text>
           )
         }
         onEndReachedThreshold={0.05}
