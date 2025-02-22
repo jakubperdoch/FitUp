@@ -1,0 +1,30 @@
+{
+  "meals": "Meals",
+  "categories": "Categories",
+  "nutrition": "Nutrition",
+  "allergens": "Allergens",
+  "servinSize": "Serving Size",
+  "eatenDuring": "Eaten During",
+  "addTo": "Add to",
+
+  "breakfast": "Breakfast",
+  "lunch": "Lunch",
+  "afternoonSnack": "Afternoon Snack",
+  "dinner": "Dinner",
+  "morningSnack": "Morning Snack",
+  "lateNightSnack": "Late Night Snack",
+
+  "clickHere": "Click here for more details",
+  "empty": "No meals found",
+  "search": "Search for meals",
+  "save": "Save",
+
+  "categoriesList": {
+    "salads": "Salads",
+    "soups": "Soups",
+    "mainCourses": "Main Courses",
+    "desserts": "Desserts",
+    "drinks": "Drinks",
+    "appetizers": "Appetizers"
+  }
+}

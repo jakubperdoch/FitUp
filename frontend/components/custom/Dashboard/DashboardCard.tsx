@@ -18,15 +18,6 @@ type ComponentProps = {
 };
 
 const DashboardCardComponent = (props: ComponentProps) => {
-  const dateHandler = (date: string) => {
-    const currentDate = new Date().toLocaleDateString();
-
-    if (currentDate != date) {
-      return <Text>{date}</Text>;
-    }
-    return <Text className="text-[#7B6F72] font-poppins">Today</Text>;
-  };
-
   return (
     <Animated.View entering={ZoomIn} className="w-full">
       <TouchableOpacity

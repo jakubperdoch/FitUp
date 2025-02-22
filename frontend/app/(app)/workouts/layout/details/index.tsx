@@ -10,10 +10,12 @@ import { router, useLocalSearchParams } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
+import { useTranslation } from "react-i18next";
 
 const WorkoutDetailsScreen = () => {
   const params = useLocalSearchParams();
   const [isWorkoutEditable, setIsWorkoutEditable] = useState<boolean>(false);
+  const { t } = useTranslation("workouts");
 
   const {
     data,
@@ -81,13 +83,14 @@ const WorkoutDetailsScreen = () => {
                   }
                 >
                   <Text className="font-poppinsSemiBold text-lg text-[#F77F00]">
-                    Edit
+                    {t("workoutDetails.editButton", { context: "workouts" })}
                   </Text>
                 </TouchableOpacity>
               )}
             </View>
             <Text className="font-poppins text-[#7B6F72]">
-              {data?.number_of_exercises} Exercises
+              {data?.number_of_exercises}{" "}
+              {t("workoutDetails.exercises", { context: "workouts" })}
             </Text>
           </View>
 
@@ -110,25 +113,29 @@ const WorkoutDetailsScreen = () => {
               title={buttonTitleHandler()}
               disabled={isOtherWorkoutActive}
             />
+
+            {isCurrentWorkoutActive && (
+              <Animated.View entering={ZoomIn} className="flex-col gap-5">
+                <GradientButton
+                  size="full"
+                  colors={["#F2EA00", "#FF6F00"]}
+                  handleSubmit={finishWorkoutHandler}
+                  title={t("workoutDetails.finishWorkoutButton", {
+                    context: "workouts",
+                  })}
+                />
+
+                <GradientButton
+                  size="full"
+                  colors={["#D62828", "#D62828"]}
+                  handleSubmit={stopWorkoutHandler}
+                  title={t("workoutDetails.stopWorkoutButton", {
+                    context: "workouts",
+                  })}
+                />
+              </Animated.View>
+            )}
           </Animated.View>
-
-          {isCurrentWorkoutActive && (
-            <Animated.View entering={ZoomIn} className="flex-col gap-5">
-              <GradientButton
-                size="full"
-                colors={["#F2EA00", "#FF6F00"]}
-                handleSubmit={finishWorkoutHandler}
-                title="Finish Workout"
-              />
-
-              <GradientButton
-                size="full"
-                colors={["#D62828", "#D62828"]}
-                handleSubmit={stopWorkoutHandler}
-                title="Stop Workout"
-              />
-            </Animated.View>
-          )}
         </Animated.View>
       )}
     </WorkoutContext.Provider>

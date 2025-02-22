@@ -6,6 +6,7 @@ import ExerciseModalComponent from "@/components/custom/Workouts/ExerciseTable/M
 import { WorkoutContext } from "@/context/WorkoutContext";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { useTranslation } from "react-i18next";
 
 interface ExerciseTableCellProps {
   exercise: Exercise;
@@ -24,6 +25,7 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [activeSet, setActiveSet] = useState<Partial<SetType> | null>(null);
+  const { t } = useTranslation("workouts");
 
   const workout = useSelector((state: RootState) => state.workout.workout);
 
@@ -56,12 +58,19 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
       </View>
 
       <View className="flex-row mb-6">
-        <Text className="font-poppins text-sm text-black/50">Set</Text>
+        <Text className="font-poppins text-sm text-black/50">
+          {t("workoutDetails.set", { context: "workouts" })}
+        </Text>
         <View
           className={`flex-row ms-auto gap-10 ${isWorkoutEditable ? "w-2/4" : ""}`}
         >
-          <Text className="font-poppins text-sm text-black/50">Reps</Text>
-          <Text className="font-poppins text-sm text-black/50">Weight</Text>
+          <Text className="font-poppins text-sm text-black/50">
+            {" "}
+            {t("workoutDetails.reps", { context: "workouts" })}
+          </Text>
+          <Text className="font-poppins text-sm text-black/50">
+            {t("workoutDetails.weight", { context: "workouts" })}
+          </Text>
         </View>
       </View>
 
@@ -79,7 +88,7 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
             className="flex-row items-center mb-4"
           >
             <Text className="font-poppins text-lg" numberOfLines={1}>
-              Set {index + 1}
+              {t("workoutDetails.set", { context: "workouts" })} {index + 1}
             </Text>
             {set.special_type && set.special_type !== "normal" && (
               <Text className="font-poppins ms-3 text-lg capitalize  text-black/50">
@@ -133,7 +142,7 @@ const ExerciseTableCell = (props: ExerciseTableCellProps) => {
           activeOpacity={0.7}
         >
           <Text className="font-poppins text-[#F77F00] text-lg my-3 text-center">
-            Add Set
+            {t("workoutDetails.addSetButton", { context: "workouts" })}
           </Text>
         </TouchableOpacity>
       )}

@@ -1,6 +1,7 @@
 import { Text, View } from "react-native";
 import StepIcon from "@/assets/icons/step.svg";
 import LineIcon from "@/assets/images/line.svg";
+import { useTranslation } from "react-i18next";
 
 interface ComponentProps {
   steps: string[];
@@ -20,14 +21,21 @@ const parseStep = (step: string) => {
 };
 
 const InstructionsStepsComponent = ({ steps }: ComponentProps) => {
+  const { t } = useTranslation("workouts");
+
   return (
     <View>
       <View className="flex-row items-center justify-between mb-5">
         <Text className="capitalize font-poppinsSemiBold text-xl">
-          How to do it
+          {t("search.howTo", {
+            context: "workouts",
+          })}
         </Text>
         <Text className="font-poppins capitalize text-[#ADA4A5] text-base">
-          {steps.length} steps
+          {steps.length}{" "}
+          {t("search.steps", {
+            context: "workouts",
+          })}
         </Text>
       </View>
 

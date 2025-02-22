@@ -9,6 +9,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
+import { useTranslation } from "react-i18next";
 
 const MealsPage = () => {
   const [dates, setDates] = useState([]);
@@ -16,12 +17,12 @@ const MealsPage = () => {
   const [index, setIndex] = useState(3);
   const router = useRouter();
   const [meals, setMeals] = useState({});
-
+  const { t } = useTranslation(["headers", "meals"]);
   const { setNavbarTitle } = useLayout();
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    setNavbarTitle("Meal Schedule");
+    setNavbarTitle(t("mealsSchedule", { context: "headers" }));
   }, []);
 
   const {
@@ -57,32 +58,32 @@ const MealsPage = () => {
 
   const mealOptions = [
     {
-      title: "Breakfast",
+      title: t("breakfast", { context: "meals" }),
       value: "breakfast",
       route: "/meals/search/breakfast",
     },
     {
-      title: "Morning Snack",
+      title: t("morningSnack", { context: "meals" }),
       value: "morningSnack",
       route: "/meals/search/morningSnack",
     },
     {
-      title: "Lunch",
+      title: t("lunch", { context: "meals" }),
       value: "lunch",
       route: "/meals/search/lunch",
     },
     {
-      title: "Afternoon Snack",
+      title: t("afternoonSnack", { context: "meals" }),
       value: "afternoonSnack",
       route: "/meals/search/afternoonSnack",
     },
     {
-      title: "Dinner",
+      title: t("dinner", { context: "meals" }),
       value: "dinner",
       route: "/meals/search/dinner",
     },
     {
-      title: "Late Night Snack",
+      title: t("lateNightSnack", { context: "meals" }),
       value: "lateNightSnack",
       route: "/meals/search/lateNightSnack",
     },
@@ -132,7 +133,7 @@ const MealsPage = () => {
             (mealGroup: any[]) => mealGroup?.length === 0,
           ) ? (
           <Text className="text-center mt-10 text-[#ADA4A5]">
-            No meals found.
+            {t("empty", { ns: "meals" })}
           </Text>
         ) : (
           Object.keys(meals).map((key, id) => (

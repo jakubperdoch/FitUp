@@ -15,10 +15,13 @@ import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
 import GradientButton from "@/components/custom/Button/GradientButton";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LanguagesScreen = () => {
   const { setNavbarTitle, setShowBackButton } = useLayout();
   const [selectedLanguage, setSelectedLanguage] = useState("en");
+  const { t, i18n } = useTranslation(["profile", "headers"]);
 
   const {
     data: languagePreferences,
@@ -39,7 +42,9 @@ const LanguagesScreen = () => {
         },
       }),
 
-    onSuccess: () => {
+    onSuccess: async () => {
+      await i18n.changeLanguage(selectedLanguage);
+      await AsyncStorage.setItem("selectedLanguage", selectedLanguage);
       router.replace("/profile");
     },
     onError: (error) => {
@@ -48,7 +53,7 @@ const LanguagesScreen = () => {
   });
 
   useEffect(() => {
-    setNavbarTitle("Languages");
+    setNavbarTitle(t("language", { ns: "headers" }));
     setShowBackButton(true);
   }, []);
 
@@ -72,10 +77,10 @@ const LanguagesScreen = () => {
     <View className="px-7 gap-7 mt-5 h-full">
       <View className="gap-1">
         <Text className="font-poppinsSemiBold text-xl">
-          Select your preferred language
+          {t("languages.title", { context: "profile" })}
         </Text>
         <Text className="text-[#6B7280] font-poppins text-sm">
-          This will change the language of the app
+          {t("languages.description", { context: "profile" })}
         </Text>
       </View>
 
@@ -91,22 +96,26 @@ const LanguagesScreen = () => {
             <Radio value="en" size={"lg"}>
               <Image
                 source={require("@/assets/icons/england-flag--icon.png")}
-                className="h-8 w-8"
+                className="h-8 w-8 me-2"
               />
               <RadioIndicator>
                 <RadioIcon as={CircleIcon} color={"#F77F00"} fill={"#F77F00"} />
               </RadioIndicator>
-              <RadioLabel>English</RadioLabel>
+              <RadioLabel>
+                {t("languages.english", { context: "profile" })}
+              </RadioLabel>
             </Radio>
             <Radio value="sk" size={"lg"}>
               <Image
                 source={require("@/assets/icons/slovak-flag--icon.png")}
-                className="h-8 w-8"
+                className="h-8 w-8 me-2"
               />
               <RadioIndicator>
                 <RadioIcon as={CircleIcon} color={"#F77F00"} fill={"#F77F00"} />
               </RadioIndicator>
-              <RadioLabel>Slovak</RadioLabel>
+              <RadioLabel>
+                {t("languages.slovak", { context: "profile" })}
+              </RadioLabel>
             </Radio>
           </RadioGroup>
         </Animated.View>
@@ -115,7 +124,7 @@ const LanguagesScreen = () => {
       <View className="mt-7">
         <GradientButton
           disabled={isPending}
-          title={"Save"}
+          title={t("languages.save", { context: "profile" })}
           size={"full"}
           handleSubmit={() => updateLanguage(selectedLanguage)}
         />

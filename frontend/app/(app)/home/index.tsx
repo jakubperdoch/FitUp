@@ -12,13 +12,15 @@ import { RootState } from "@/store/store";
 import ActiveWorkoutCardComponent from "@/components/custom/Workouts/ActiveWorkoutCard";
 import PulseBorder from "@/components/custom/PulseBorder";
 import Animated, { ZoomIn } from "react-native-reanimated";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
 import useWorkoutDetails from "@/hooks/workout";
+import { useTranslation } from "react-i18next";
 
 const HomeScreen = () => {
   const [workouts, setWorkouts] = useState([]);
+  const { t } = useTranslation("home");
 
   const { setNavbarTitle } = useLayout();
   const { workout, isTimerActive } = useSelector(
@@ -128,7 +130,7 @@ const HomeScreen = () => {
     <ScrollView>
       <View className="flex flex-col h-full items-center px-7 pt-5 w-full gap-6 mb-20">
         <Text className="self-start font-poppinsSemiBold text-2xl">
-          Overview
+          {t("dashboard.title", { ns: "home" })}
         </Text>
 
         {areDataLoading ? (
@@ -164,30 +166,36 @@ const HomeScreen = () => {
               <View className="flex-row w-full items-center justify-between gap-3 mt-4">
                 <View className="flex-row items-center gap-3">
                   <Text className="font-poppinsSemiBold text-2xl">
-                    Today's Meals
+                    {t("meals.title", { ns: "home" })}
                   </Text>
                 </View>
               </View>
 
               <View className="gap-5 mt-6 justify-center flex-col items-center">
-                {mealsData?.meals?.map((meal) => (
-                  <DashboardCard
-                    key={meal.id}
-                    id={meal.id}
-                    name={meal.name}
-                    date={meal.date}
-                    calories={meal.calories}
-                    detailsHandler={() =>
-                      router.push({
-                        pathname: "/meals/details",
-                        params: {
-                          id: meal.id,
-                          food_id: meal.food_id,
-                        },
-                      })
-                    }
-                  />
-                ))}
+                {mealsData?.meals.length > 0 ? (
+                  mealsData?.meals?.map((meal) => (
+                    <DashboardCard
+                      key={meal.id}
+                      id={meal.id}
+                      name={meal.name}
+                      date={meal.date}
+                      calories={meal.calories}
+                      detailsHandler={() =>
+                        router.push({
+                          pathname: "/meals/details",
+                          params: {
+                            id: meal.id,
+                            food_id: meal.food_id,
+                          },
+                        })
+                      }
+                    />
+                  ))
+                ) : (
+                  <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
+                    {t("meals.empty", { ns: "home" })}
+                  </Text>
+                )}
                 <TouchableOpacity
                   activeOpacity={0.7}
                   onPress={() => {
@@ -195,7 +203,7 @@ const HomeScreen = () => {
                   }}
                 >
                   <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
-                    See More
+                    {t("more", { ns: "home" })}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -207,7 +215,7 @@ const HomeScreen = () => {
               <View className="flex-row w-full items-center justify-between gap-3 mt-4">
                 <View className="flex-row items-center gap-3">
                   <Text className="font-poppinsSemiBold text-2xl">
-                    Upcoming Workouts
+                    {t("workouts.title", { ns: "home" })}
                   </Text>
                   <TouchableOpacity
                     activeOpacity={0.7}
@@ -221,24 +229,30 @@ const HomeScreen = () => {
               </View>
 
               <View className="gap-5 mt-6 justify-center flex-col items-center">
-                {workouts.map((workout) => (
-                  <DashboardCard
-                    key={workout.id}
-                    id={workout.id}
-                    showTimer={true}
-                    name={workout.name}
-                    day={workout.day}
-                    numberOfExercises={workout.number_of_exercises}
-                    finishWorkoutHandler={finishWorkoutHandler}
-                    workoutSelectHandler={workoutSelectHandler}
-                    detailsHandler={() =>
-                      router.push({
-                        pathname: "/workouts/layout/details",
-                        params: { id: workout.id },
-                      })
-                    }
-                  />
-                ))}
+                {workouts?.length > 0 ? (
+                  workouts.map((workout) => (
+                    <DashboardCard
+                      key={workout.id}
+                      id={workout.id}
+                      showTimer={true}
+                      name={workout.name}
+                      day={workout.day}
+                      numberOfExercises={workout.number_of_exercises}
+                      finishWorkoutHandler={finishWorkoutHandler}
+                      workoutSelectHandler={workoutSelectHandler}
+                      detailsHandler={() =>
+                        router.push({
+                          pathname: "/workouts/layout/details",
+                          params: { id: workout.id },
+                        })
+                      }
+                    />
+                  ))
+                ) : (
+                  <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
+                    {t("workouts.empty", { ns: "home" })}
+                  </Text>
+                )}
                 <TouchableOpacity
                   activeOpacity={0.7}
                   onPress={() => {
@@ -246,7 +260,7 @@ const HomeScreen = () => {
                   }}
                 >
                   <Text className="text-[#ADA4A5] font-poppins text-lg mt-2">
-                    See More
+                    {t("more", { ns: "home" })}
                   </Text>
                 </TouchableOpacity>
               </View>

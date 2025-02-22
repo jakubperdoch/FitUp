@@ -9,6 +9,7 @@ import Animated, {
 import { Dimensions, Alert } from "react-native";
 import GenericIcon from "@/components/custom/Icon";
 import * as Haptics from "expo-haptics";
+import { useTranslation } from "react-i18next";
 
 const WIDTH_SCREEN = Dimensions.get("window").width;
 const ITEM_HEIGHT = 120;
@@ -24,6 +25,7 @@ type ComponentProps = {
 };
 
 const SwipeToDeleteComponent = (props: ComponentProps) => {
+  const { t } = useTranslation("workouts");
   const swipeTranslateX = useSharedValue(0);
   const pressed = useSharedValue(false);
   const marginVertical = useSharedValue(20);
@@ -33,14 +35,18 @@ const SwipeToDeleteComponent = (props: ComponentProps) => {
   const showDeleteConfirmation = (id: number) => {
     Alert.alert(props.alert?.title, props.alert?.desc, [
       {
-        text: "Cancel",
+        text: t("workoutDetails.deleteExerciseModal.cancelButton", {
+          context: "workouts",
+        }),
         style: "cancel",
         onPress: () => {
           swipeTranslateX.value = withSpring(0);
         },
       },
       {
-        text: "Yes",
+        text: t("workoutDetails.deleteExerciseModal.deleteButton", {
+          context: "workouts",
+        }),
         style: "destructive",
         onPress: () => {
           marginVertical.value = withTiming(0, { duration: 200 });

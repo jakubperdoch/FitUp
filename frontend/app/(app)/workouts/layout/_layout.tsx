@@ -6,15 +6,17 @@ import { useLayout } from "@/context/LayoutContext";
 import { useCallback, useEffect, useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { WorkoutContext } from "@/context/WorkoutContext";
+import { useTranslation } from "react-i18next";
 
 const WorkoutLayout = () => {
   const insets = useSafeAreaInsets();
   const { setNavbarColor, setNavbarTitle, setShowBackButton } = useLayout();
   const [isWorkoutImageVisible, setIsWorkoutImageVisible] = useState(true);
+  const { t } = useTranslation("headers");
 
   useEffect(() => {
     setNavbarColor("text-white");
-    setNavbarTitle("Workout Tracker");
+    setNavbarTitle(t("workoutTracker", { context: "meals" }));
     setShowBackButton(true);
   }, []);
 
@@ -60,7 +62,7 @@ const WorkoutLayout = () => {
               paddingVertical: 40,
             },
           ]}
-          contentContainerStyle={{ paddingBottom: 80 }}
+          contentContainerStyle={{ paddingBottom: 140 }}
           showsVerticalScrollIndicator={false}
           automaticallyAdjustKeyboardInsets={true}
         >

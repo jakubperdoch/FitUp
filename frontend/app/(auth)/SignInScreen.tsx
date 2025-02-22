@@ -84,7 +84,7 @@ const SignInScreen = () => {
   }, [localError]);
 
   return (
-    <View className="flex flex-col gap-5 justify-center items-center px-5 h-full">
+    <View className="flex flex-col gap-5 justify-center items-center px-5 h-full pb-3">
       <View className="d-flex items-center mb-6 mt-4">
         <Text className="text-2xl text-primary-500 font-poppins">
           Hey there,
@@ -124,9 +124,6 @@ const SignInScreen = () => {
         <Text className="text-lg">Or</Text>
         <Divider />
       </View>
-      <TouchableOpacity activeOpacity={0.7}>
-        <AppleLoginIcon width={60} height={60} />
-      </TouchableOpacity>
 
       <View className="flex flex-col gap-2 mt-5  items-center justify-center">
         <Text className="text-lg font-poppins">Don't have an account?</Text>

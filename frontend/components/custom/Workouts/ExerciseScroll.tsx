@@ -3,6 +3,7 @@ import { useCallback, useRef } from "react";
 import debounce from "lodash/debounce";
 import SearchCard from "@/components/custom/Workouts/Search/SearchCard";
 import Animated from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 
 interface ComponentProps {
   exercises: Exercise[];
@@ -20,6 +21,7 @@ const FoodScrollComponent = ({
   isLoading,
 }: ComponentProps) => {
   const flatListRef = useRef<FlatList>(null);
+  const { t } = useTranslation("workouts");
 
   const debouncedLoadMore = useCallback(
     debounce(() => {
@@ -41,7 +43,7 @@ const FoodScrollComponent = ({
   return (
     <Animated.View className="h-full flex flex-col gap-5">
       <Text className="ms-7 text-2xl font-semibold font-poppins ">
-        Exercises
+        {t("search.title", { context: "workouts" })}
       </Text>
 
       <FlatList

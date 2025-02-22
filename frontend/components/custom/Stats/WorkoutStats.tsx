@@ -12,6 +12,7 @@ import GenericIcon from "@/components/custom/Icon";
 import { useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
+import { useTranslation } from "react-i18next";
 
 const Tooltip = ({
   x,
@@ -54,6 +55,7 @@ const WorkoutStatsComponent = () => {
   const { state, isActive } = useChartPressState({ x: 0, y: { value: 0 } });
   const [workoutData, setWorkoutData] = useState([]);
 
+  const { t } = useTranslation("stats");
   const font = useFont(Poppins, 15);
   const titleFont = useFont(PoppinsSemiBold, 15);
 
@@ -98,7 +100,7 @@ const WorkoutStatsComponent = () => {
         ) : (
           <>
             <Text className="font-poppinsSemiBold text-xl">
-              Your workout progress
+              {t("title", { context: "meals" })}
             </Text>
 
             <View className="h-60">
@@ -157,7 +159,7 @@ const WorkoutStatsComponent = () => {
                   <Text className="text-[#D62828]">
                     {data?.workout_stats?.mostFrequentExercise}
                   </Text>{" "}
-                  most frequent exercise
+                  {t("mostFrequent", { context: "meals" })}
                 </Text>
               </View>
 
@@ -166,9 +168,9 @@ const WorkoutStatsComponent = () => {
 
                 <Text className="font-poppins text-lg text-[#7B6F72]">
                   <Text className="text-[#D62828]">
-                    {data?.workout_stats?.totalWorkouts}
+                    {Number(data?.workout_stats?.totalWorkouts).toFixed(2)}
                   </Text>{" "}
-                  total workouts
+                  {t("workouts", { context: "meals" })}
                 </Text>
               </View>
 
@@ -177,9 +179,9 @@ const WorkoutStatsComponent = () => {
 
                 <Text className="font-poppins text-lg text-[#7B6F72]">
                   <Text className="text-[#D62828]">
-                    {data?.workout_stats?.avgReps}
+                    {Number(data?.workout_stats?.avgReps).toFixed(2)}
                   </Text>{" "}
-                  average reps
+                  {t("reps", { context: "meals" })}
                 </Text>
               </View>
 
@@ -188,9 +190,9 @@ const WorkoutStatsComponent = () => {
 
                 <Text className="font-poppins text-lg text-[#7B6F72]">
                   <Text className="text-[#D62828]">
-                    {data?.workout_stats?.avgWeight}
+                    {Number(data?.workout_stats?.avgWeight).toFixed(2)}
                   </Text>{" "}
-                  average weight
+                  {t("weight", { context: "meals" })}
                 </Text>
               </View>
 
@@ -201,7 +203,7 @@ const WorkoutStatsComponent = () => {
                   <Text className="text-[#D62828]">
                     {data?.workout_stats?.totalWorkoutTime}
                   </Text>{" "}
-                  total workout time
+                  {t("time", { context: "meals" })}
                 </Text>
               </View>
             </View>

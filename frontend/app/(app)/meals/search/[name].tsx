@@ -9,6 +9,7 @@ import GenericIcon from "@/components/custom/Icon";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { useDebounce } from "@uidotdev/usehooks";
+import { useTranslation } from "react-i18next";
 
 const MealsSearchPage = () => {
   const { name, date } = useLocalSearchParams();
@@ -16,7 +17,7 @@ const MealsSearchPage = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [page, setPage] = useState(0);
   const [meals, setMeals] = useState([]);
-
+  const { t } = useTranslation("meals");
   const debouncedSearch = useDebounce(searchQuery, 100);
 
   useEffect(() => {
@@ -61,28 +62,28 @@ const MealsSearchPage = () => {
   const categories = [
     {
       id: 1,
-      name: "Salads",
+      name: t("categoriesList.salads", { context: "meals" }),
     },
     {
       id: 2,
-      name: "Soups",
+      name: t("categoriesList.soups", { context: "meals" }),
     },
     {
       id: 3,
-      name: "Main Courses",
+      name: t("categoriesList.mainCourses", { context: "meals" }),
     },
     {
       id: 4,
-      name: "Desserts",
+      name: t("categoriesList.desserts", { context: "meals" }),
     },
     {
       id: 5,
-      name: "Drinks",
+      name: t("categoriesList.drinks", { context: "meals" }),
     },
 
     {
       id: 6,
-      name: "Appetizers",
+      name: t("categoriesList.appetizers", { context: "meals" }),
     },
   ];
 
@@ -108,7 +109,7 @@ const MealsSearchPage = () => {
           value={searchQuery}
           onChangeText={setSearchQuery}
           type={"text"}
-          placeholder="Search for meals"
+          placeholder={t("search", { context: "meals" })}
           placeholderTextColor={"#7B6F72"}
           autoCapitalize="words"
           autoCorrect={false}

@@ -14,11 +14,12 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { setWorkoutPlan } from "@/store/workoutPlan";
 import { Spinner } from "@/components/ui/spinner";
+import { useTranslation } from "react-i18next";
 
 const WorkoutCreationScreen = () => {
   const params = useLocalSearchParams();
   const [isWorkoutEditable, setIsWorkoutEditable] = useState<boolean>(true);
-
+  const { t } = useTranslation("workouts");
   const workout = useSelector((state: RootState) => state.workoutPlan.workout);
   const dispatch = useDispatch();
 
@@ -44,7 +45,7 @@ const WorkoutCreationScreen = () => {
     isLoading,
     isFetching,
   } = useQuery({
-    queryKey: ["workoutPlan", params.id],
+    queryKey: ["workoutPlanCreate", params.id],
     queryFn: () =>
       apiFetch(`/workouts/plans/${params?.id}/details`, {
         method: "GET",
@@ -54,15 +55,10 @@ const WorkoutCreationScreen = () => {
   });
 
   useEffect(() => {
-    if (!workout?.id && params?.id) {
+    if (workoutPlan?.workout) {
       dispatch(setWorkoutPlan(workoutPlan?.workout));
-      setData(workoutPlan?.workout);
     }
   }, [workoutPlan?.workout]);
-
-  useEffect(() => {
-    console.log(JSON.stringify(workout, null, 2));
-  }, [workout]);
 
   const handleWorkoutSubmit = () => {
     if (workout?.id) {
@@ -104,7 +100,7 @@ const WorkoutCreationScreen = () => {
               {!isWorkoutEditable && (
                 <TouchableOpacity activeOpacity={0.7}>
                   <Text className="font-poppinsSemiBold text-lg text-[#F77F00]">
-                    Edit
+                    {t("workoutDetails.editButton", { context: "workouts" })}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -116,11 +112,11 @@ const WorkoutCreationScreen = () => {
 
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => clearWorkoutHandler()}
+            onPress={() => clearWorkoutHandler(workout)}
             className="w-40"
           >
             <Text className="font-poppinsSemiBold  text-lg text-[#F77F00]">
-              Clear Workout
+              {t("workoutDetails.clearButton", { context: "workouts" })}
             </Text>
           </TouchableOpacity>
 
@@ -134,7 +130,9 @@ const WorkoutCreationScreen = () => {
           <View className="flex-row justify-center gap-8 w-full mt-5 mb-4">
             <GradientButtonComponent
               size={"md"}
-              title="Add Exercise"
+              title={t("workoutDetails.addExerciseButton", {
+                context: "workouts",
+              })}
               handleSubmit={() =>
                 router.push({
                   pathname: "/workouts/search",
@@ -144,7 +142,9 @@ const WorkoutCreationScreen = () => {
             />
             <GradientButtonComponent
               size={"md"}
-              title="Add Superset"
+              title={t("workoutDetails.addSupersetButton", {
+                context: "workouts",
+              })}
               handleSubmit={() =>
                 router.push({
                   pathname: "/workouts/search",
@@ -154,7 +154,23 @@ const WorkoutCreationScreen = () => {
             />
           </View>
 
-          {(createWorkoutPlanError || updateWorkoutPlanError) && (
+          {updateWorkoutPlanError && (
+            <Animated.View
+              entering={ZoomIn}
+              exiting={ZoomOut}
+              className="flex-col items-center gap-2 justify-center"
+            >
+              <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
+              <Text className="font-poppins text-[#F77F00]">
+                {updateWorkoutPlanError &&
+                updateWorkoutPlanError instanceof Error
+                  ? updateWorkoutPlanError.message
+                  : String(updateWorkoutPlanError)}
+              </Text>
+            </Animated.View>
+          )}
+
+          {createWorkoutPlanError && (
             <Animated.View
               entering={ZoomIn}
               exiting={ZoomOut}
@@ -164,10 +180,6 @@ const WorkoutCreationScreen = () => {
               <Text className="font-poppins text-[#F77F00]">
                 {createWorkoutPlanError instanceof Error
                   ? createWorkoutPlanError.message
-                  : String(createWorkoutPlanError)}
-
-                {updateWorkoutPlanError instanceof Error
-                  ? updateWorkoutPlanError.message
                   : String(createWorkoutPlanError)}
               </Text>
             </Animated.View>
@@ -180,7 +192,15 @@ const WorkoutCreationScreen = () => {
               workout?.days?.length === 0
             }
             size={"full"}
-            title={workout?.id ? "Update Workout" : "Create Workout"}
+            title={
+              workout?.id
+                ? t("workoutDetails.updateWorkoutButton", {
+                    context: "workouts",
+                  })
+                : t("workoutDetails.createWorkoutButton", {
+                    context: "workouts",
+                  })
+            }
             handleSubmit={() => handleWorkoutSubmit()}
           />
         </Animated.View>

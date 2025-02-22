@@ -2,6 +2,7 @@ import ActionSheetComponent from "@/components/custom/ActionSheet";
 import { Text, TouchableOpacity } from "react-native";
 import { useContext } from "react";
 import { WorkoutContext } from "@/context/WorkoutContext";
+import { useTranslation } from "react-i18next";
 
 interface ComponentProps {
   exerciseIndex: number;
@@ -13,22 +14,23 @@ interface ComponentProps {
 
 const SpecialTypeActionSheetComponent = (props: ComponentProps) => {
   const { specialTypeHandler, deleteSetHandler } = useContext(WorkoutContext);
+  const { t } = useTranslation("workouts");
 
   const specialTypeActions = [
     {
-      name: "Mark as normal",
+      name: t("workoutDetails.specialTypes.normal", { context: "workouts" }),
       action: "normal",
     },
     {
-      name: "Mark as warmup",
+      name: t("workoutDetails.specialTypes.warmup", { context: "workouts" }),
       action: "warmup",
     },
     {
-      name: "Mark as failure set",
+      name: t("workoutDetails.specialTypes.failure", { context: "workouts" }),
       action: "failureSet",
     },
     {
-      name: "Mark as drop set",
+      name: t("workoutDetails.specialTypes.dropset", { context: "workouts" }),
       action: "dropSet",
     },
   ];
@@ -69,7 +71,9 @@ const SpecialTypeActionSheetComponent = (props: ComponentProps) => {
           )
         }
       >
-        <Text className="font-poppins text-red-700">Delete Set</Text>
+        <Text className="font-poppins text-red-700">
+          {t("workoutDetails.specialTypes.delete", { context: "workouts" })}
+        </Text>
       </TouchableOpacity>
     </ActionSheetComponent>
   );

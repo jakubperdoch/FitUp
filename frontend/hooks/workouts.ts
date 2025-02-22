@@ -5,13 +5,13 @@ import { store } from "@/store/store";
 // TODO: Place this file into hooks folder
 export const useSortedWorkouts = (workoutsArr: Array<any>) => {
   const daysMap = {
-    Sunday: 0,
-    Monday: 1,
-    Tuesday: 2,
-    Wednesday: 3,
-    Thursday: 4,
-    Friday: 5,
-    Saturday: 6,
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4,
+    Saturday: 5,
+    Sunday: 6,
   };
 
   const todayIndex = new Date().getDay();
@@ -37,12 +37,15 @@ export const useWorkoutTimer = () => {
     taskDesc: "Your workout timer is active.",
     taskIcon: {
       name: "ic_launcher",
-      type: "drawable",
+      type: "mipmap",
     },
     color: "#ff0000",
     parameters: {
       delay: 1000,
     },
+    channelId: "workout-timer-channel",
+    channelName: "Workout Timer Channel",
+    foregroundServiceType: "dataSync",
   };
 
   const timerTask = async (taskData) => {
@@ -61,11 +64,13 @@ export const useWorkoutTimer = () => {
   };
 
   const startTimer = async () => {
-    await BackgroundService.start(timerTask, options);
+    await BackgroundService.start(timerTask, options).catch((err) =>
+      console.log(err),
+    );
   };
 
   const stopTimer = async () => {
-    await BackgroundService.stop();
+    await BackgroundService.stop().catch((err) => console.log(err));
   };
 
   return { startTimer, stopTimer };

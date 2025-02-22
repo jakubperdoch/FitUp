@@ -10,10 +10,12 @@ import { Spinner } from "@/components/ui/spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { setExercises } from "@/store/workoutPlan";
 import { RootState } from "@/store/store";
+import { useTranslation } from "react-i18next";
 
 const InstructionsPage = () => {
   const params = useLocalSearchParams();
   const { setShowBackButton } = useLayout();
+  const { t } = useTranslation("workouts");
   const dispatch = useDispatch();
 
   const exercises = useSelector(
@@ -88,7 +90,9 @@ const InstructionsPage = () => {
 
       <GradientButton
         size={"full"}
-        title={"Add Exercise"}
+        title={t("search.addExerciseButton", {
+          context: "workouts",
+        })}
         handleSubmit={() => handleAddExercise(data?.exercise)}
       />
     </ScrollView>

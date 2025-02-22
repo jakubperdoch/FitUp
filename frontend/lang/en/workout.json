@@ -1,0 +1,95 @@
+{
+  "dashboard": {
+    "title": "Upcoming Workouts",
+    "createButton": "Create new",
+    "empty": "No workouts found"
+  },
+
+  "workoutCard": {
+    "exercise": "Exercises",
+    "viewMore": "View more"
+  },
+
+  "workoutDetails": {
+    "exercise": "Exercise",
+    "set": "Set",
+    "superset": "Superset",
+    "editButton": "Edit",
+    "clearButton": "Clear Workout",
+    "scheduleTitle": "Schedule Workout",
+    "exercises": "Exercises",
+    "reps": "Reps",
+    "weight": "Weight",
+
+    "startWorkoutButton": "Start Workout",
+    "finishWorkoutButton": "Finish Workout",
+    "pauseWorkoutButton": "Pause Workout",
+    "stopWorkoutButton": "Stop Workout",
+    "resumeWorkoutButton": "Resume Workout",
+    "updateWorkoutButton": "Update Workout",
+    "createWorkoutButton": "Create Workout",
+
+    "addSetButton": "Add Set",
+    "addExerciseButton": "Add Exercise",
+    "addSupersetButton": "Add Superset",
+
+    "activeWorkoutModal": {
+      "title": "Active Workout",
+      "description": "Another workout is already active. Please finish or stop the current workout before starting a new one."
+    },
+
+    "deleteExerciseModal": {
+      "title": "Delete Exercise",
+      "description": "Are you sure you want to delete this exercise?",
+      "cancelButton": "Cancel",
+      "deleteButton": "Delete"
+    },
+
+    "deleteSetModal": {
+      "title": "Delete Set",
+      "description": "Are you sure you want to delete this set?",
+      "cancelButton": "Cancel",
+      "deleteButton": "Delete"
+    },
+
+    "deleteWorkoutModal": {
+      "title": "Delete Workout",
+      "description": "Are you sure you want to delete this workout?",
+      "cancelButton": "Cancel",
+      "deleteButton": "Delete"
+    },
+
+    "specialTypes": {
+      "superset": "Mark as superset",
+      "dropset": "Mark as dropset",
+      "warmup": "Mark as warmup set",
+      "normal": "Mark as normal set",
+      "failure": "Mark as failure set",
+      "delete": "Delete Set"
+    },
+
+    "empty": {
+      "workoutPlan": "Workout plan is empty"
+    },
+
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    }
+  },
+
+  "search": {
+    "title": "Exercises",
+    "searchPlaceholder": "Search for exercises",
+    "addSupersetButton": "Add Superset",
+    "addExerciseButton": "Add Exercise",
+    "steps": "Steps",
+    "howTo": "How to do it",
+    "empty": "No exercises found"
+  }
+}

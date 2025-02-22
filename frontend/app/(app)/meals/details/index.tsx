@@ -15,11 +15,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useMeals from "@/hooks/meals";
 import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 
 const DetailsScreen = () => {
   const { setShowFooter, setNavbarTitle, setShowBackButton } = useLayout();
   const insets = useSafeAreaInsets();
   const { id, date, food_id, eaten_at } = useLocalSearchParams();
+  const { t } = useTranslation("meals");
 
   useEffect(() => {
     setShowFooter(false);
@@ -93,6 +95,8 @@ const DetailsScreen = () => {
     }
   };
 
+  console.log("selectedTimeOfDay.name", selectedTimeOfDay?.name);
+
   return (
     <>
       {isLoading ? (
@@ -137,7 +141,7 @@ const DetailsScreen = () => {
               },
             ]}
             className="border-r border-l border-t border-[#F77F00] rounded-t-3xl"
-            contentContainerClassName="pb-10"
+            contentContainerClassName="pb-32"
             showsVerticalScrollIndicator={false}
             automaticallyAdjustKeyboardInsets={true}
           >
@@ -151,7 +155,7 @@ const DetailsScreen = () => {
               {data?.meal?.allergens?.length > 0 && (
                 <View className="mt-10 ms-6">
                   <Text className="font-semibold font-poppins text-2xl mb-5">
-                    Allergens
+                    {t("allergens", { context: "meals" })}
                   </Text>
 
                   <View className="flex flex-wrap flex-row gap-3 w-full">
@@ -194,7 +198,7 @@ const DetailsScreen = () => {
                 <GenericIcon name={"Info"} color={"#F77F00"} size={23} />
 
                 <Text className="font-poppins text-[#F77F00]">
-                  Click here for more details
+                  {t("clickHere", { context: "meals" })}
                 </Text>
               </TouchableOpacity>
 
@@ -224,7 +228,11 @@ const DetailsScreen = () => {
               <View className="mt-10 mx-6">
                 <GradientButtonComponent
                   size={"full"}
-                  title={!id ? `Add to ${selectedTimeOfDay.name}` : "Save"}
+                  title={
+                    !id
+                      ? `${t("addTo", { context: "meals" })} ${t(selectedTimeOfDay.value, { context: "meals" })}`
+                      : t("save", { context: "meals" })
+                  }
                   handleSubmit={() => confirmHandler(meal)}
                 />
               </View>

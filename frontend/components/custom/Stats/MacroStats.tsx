@@ -8,10 +8,12 @@ import ButtonGroup from "@/components/custom/Button/ButtonGroup";
 import { useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
+import { useTranslation } from "react-i18next";
 
 const MacroStatsComponent = () => {
   const [data, setData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const { t } = useTranslation("stats");
 
   const {
     data: stats,
@@ -85,7 +87,7 @@ const MacroStatsComponent = () => {
         ) : (
           <>
             <Text className="font-poppinsSemiBold text-xl">
-              Your diet progress
+              {t("title2", { context: "meals" })}
             </Text>
 
             {data.length > 0 && (
@@ -144,7 +146,7 @@ const MacroStatsComponent = () => {
                 <Text className="text-[#D62828]">
                   {stats?.macro_stats?.mostFrequentMeal}{" "}
                 </Text>
-                was your most frequent meal
+                {t("mostFrequent2", { context: "meals" })}
               </Text>
             </View>
 
@@ -153,9 +155,9 @@ const MacroStatsComponent = () => {
 
               <Text className="font-poppins text-lg text-[#7B6F72]">
                 <Text className="text-[#D62828]">
-                  {stats?.macro_stats?.totalCalories}g
+                  {stats?.macro_stats?.totalCalories}kCal
                 </Text>{" "}
-                of total calories
+                {t("calories", { context: "meals" })}
               </Text>
             </View>
 
@@ -166,7 +168,7 @@ const MacroStatsComponent = () => {
                 <Text className="text-[#D62828]">
                   {stats?.macro_stats?.macros.fiber}g
                 </Text>{" "}
-                of total fiber
+                {t("fiber", { context: "meals" })}
               </Text>
             </View>
 
@@ -177,7 +179,7 @@ const MacroStatsComponent = () => {
                 <Text className="text-[#D62828]">
                   {stats?.macro_stats?.macros.sugar}g
                 </Text>{" "}
-                of total sugar
+                {t("sugar", { context: "meals" })}
               </Text>
             </View>
 
@@ -188,7 +190,7 @@ const MacroStatsComponent = () => {
                 <Text className="text-[#D62828]">
                   {stats?.macro_stats?.macros.fat}g
                 </Text>{" "}
-                of total fat
+                {t("fat", { context: "meals" })}
               </Text>
             </View>
 
@@ -199,7 +201,7 @@ const MacroStatsComponent = () => {
                 <Text className="text-[#D62828]">
                   {stats?.macro_stats?.macros.carbs}g
                 </Text>{" "}
-                of total carbs
+                {t("carbs", { context: "meals" })}
               </Text>
             </View>
 
@@ -208,9 +210,9 @@ const MacroStatsComponent = () => {
 
               <Text className="font-poppins text-lg text-[#7B6F72]">
                 <Text className="text-[#D62828]">
-                  {stats?.macro_stats?.macros.protein}
+                  {stats?.macro_stats?.macros.protein}g
                 </Text>{" "}
-                of total protein
+                {t("protein", { context: "meals" })}
               </Text>
             </View>
           </>

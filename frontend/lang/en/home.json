@@ -1,0 +1,26 @@
+{
+  "dashboard": {
+    "title": "Overview",
+
+    "macros": {
+      "fat": "Fat",
+      "carbs": "Carbs",
+      "protein": "Protein",
+      "calories": "Calories",
+      "fiber": "Fiber",
+      "sugar": "Sugar"
+    }
+  },
+
+  "meals": {
+    "title": "Today's Meals",
+    "empty": "No meals for today"
+  },
+
+  "workouts": {
+    "title": "Upcoming Workouts",
+    "empty": "No workouts for today"
+  },
+
+  "more": "See more"
+}

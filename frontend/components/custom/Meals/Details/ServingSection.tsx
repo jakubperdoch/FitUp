@@ -1,5 +1,6 @@
 import { Text, View } from "react-native";
 import ServingInputComponent from "@/components/custom/Inputs/ServingInput";
+import { useTranslation } from "react-i18next";
 
 interface ComponentProps {
   data: any;
@@ -16,9 +17,13 @@ const ServingSectionComponent = ({
   setSelectedServingType,
   selectedServingType,
 }: ComponentProps) => {
+  const { t } = useTranslation("meals");
+
   return (
     <View className="mt-10 mx-6 flex flex-row items-center  justify-between">
-      <Text className="font-semibold font-poppins  text-2xl">Serving Size</Text>
+      <Text className="font-semibold font-poppins  text-2xl">
+        {t("servinSize", { context: "meals" })}
+      </Text>
       <ServingInputComponent
         setSelectedServingType={setSelectedServingType}
         selectedServingType={selectedServingType}

@@ -1,0 +1,54 @@
+{
+  "profileCards": {
+    "profileDetails": {
+      "weight": "Váha",
+      "height": "Výška",
+      "age": "Vek",
+      "goal": {
+        "lose": "Schudnúť",
+        "lean": "Štíhle svaly",
+        "gain": "Budovať svaly"
+      }
+    },
+    "account": {
+      "title": "Účet",
+      "preferences": "Preferencie",
+      "changePassword": "Zmeniť heslo"
+    },
+    "notifications": {
+      "title": "Oznámenia",
+      "description": "Vyskakovacie oznámenia"
+    },
+    "other": {
+      "title": "Ostatné",
+      "language": "Jazyk",
+      "logout": "Odhlásiť sa"
+    }
+  },
+  "languages": {
+    "title": "Vyberte si preferovaný jazyk",
+    "description": "Vyberte si jazyk, ktorý chcete používať v aplikácii",
+    "english": "Angličtina",
+    "slovak": "Slovenčina",
+    "save": "Uložiť"
+  },
+  "preferences": {
+    "title": "Preferencie",
+    "description": "Nastavte si svoje preferencie",
+    "calories": "Kalórie",
+    "protein": "Bielkoviny",
+    "carbs": "Sacharidy",
+    "fat": "Tuky",
+    "sugar": "Cukor",
+    "fiber": "Vláknina",
+    "save": "Uložiť"
+  },
+  "password": {
+    "title": "Zmeniť heslo",
+    "description": "Zmeňte svoje heslo",
+    "current": "Súčasné heslo",
+    "new": "Nové heslo",
+    "confirm": "Potvrďte nové heslo",
+    "save": "Zmeniť heslo"
+  }
+}

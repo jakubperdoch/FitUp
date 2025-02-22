@@ -1,6 +1,7 @@
 import { Text, View } from "react-native";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
 
 interface ComponentProps {
   user: UserBiometrics;
@@ -8,6 +9,7 @@ interface ComponentProps {
 
 const ProfileDataCards = ({ user }: ComponentProps) => {
   const [userBiometrics, setUserBiometrics] = useState([]);
+  const { t } = useTranslation("profile");
 
   useEffect(() => {
     setUserBiometrics(
@@ -46,7 +48,13 @@ const ProfileDataCards = ({ user }: ComponentProps) => {
               : biometric.value + suffixHandler(biometric.key)}
           </Text>
           <Text className="font-poppinsMedium text-[#7B6F72] capitalize">
-            {biometric.key === "birthDate" ? "age" : biometric.key}
+            {biometric.key === "birthDate"
+              ? t(`profileCards.profileDetails.age`, {
+                  context: "profile",
+                })
+              : t(`profileCards.profileDetails.${biometric.key}`, {
+                  context: "profile",
+                })}
           </Text>
         </View>
       ))}
