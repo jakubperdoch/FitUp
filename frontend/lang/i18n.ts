@@ -15,6 +15,17 @@ export const chosenLanguage = async () => {
   }
 };
 
+export const getCurrentLanguage = async () => {
+  try {
+    const value = await AsyncStorage.getItem("selectedLanguage");
+    if (value !== null) {
+      return value;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const resources = {
   en,
   sk,
