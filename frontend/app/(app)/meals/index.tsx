@@ -22,7 +22,7 @@ const MealsPage = () => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    setNavbarTitle(t("mealsSchedule", { context: "headers" }));
+    setNavbarTitle(t("mealsSchedule", { ns: "headers" }));
   }, []);
 
   const {
@@ -58,32 +58,32 @@ const MealsPage = () => {
 
   const mealOptions = [
     {
-      title: t("breakfast", { context: "meals" }),
+      title: t("breakfast", { ns: "meals" }),
       value: "breakfast",
       route: "/meals/search/breakfast",
     },
     {
-      title: t("morningSnack", { context: "meals" }),
+      title: t("morningSnack", { ns: "meals" }),
       value: "morningSnack",
       route: "/meals/search/morningSnack",
     },
     {
-      title: t("lunch", { context: "meals" }),
+      title: t("lunch", { ns: "meals" }),
       value: "lunch",
       route: "/meals/search/lunch",
     },
     {
-      title: t("afternoonSnack", { context: "meals" }),
+      title: t("afternoonSnack", { ns: "meals" }),
       value: "afternoonSnack",
       route: "/meals/search/afternoonSnack",
     },
     {
-      title: t("dinner", { context: "meals" }),
+      title: t("dinner", { ns: "meals" }),
       value: "dinner",
       route: "/meals/search/dinner",
     },
     {
-      title: t("lateNightSnack", { context: "meals" }),
+      title: t("lateNightSnack", { ns: "meals" }),
       value: "lateNightSnack",
       route: "/meals/search/lateNightSnack",
     },

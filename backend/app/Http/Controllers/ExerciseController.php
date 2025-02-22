@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Exercise\Exercise;
 use App\Models\Exercise\BodyPart;
+use App\Models\UserPreferences;
 use Illuminate\Http\Request;
 
 class ExerciseController extends Controller
@@ -23,10 +24,14 @@ class ExerciseController extends Controller
     public function getExercises(Request $request)
     {
         $query = $request->query();
+        $lang = UserPreferences::where('user_id', $request->user()->id)->first()->selected_language;
 
         $max_results = isset($query['max']) ? (int)$query['max'] : 10;
-        $search = $query['search'] ?? null;
+        $search = $query['search'];
 
+        if ($lang == 'sk') {
+            $search = $this->translateToEn($query['search']);
+        }
 
         $data = Exercise::where('name', 'like', '%' . $search . '%')->get();
 
@@ -36,14 +41,14 @@ class ExerciseController extends Controller
             ], 404);
         }
 
-        $exercises = $data->map(function ($exercise) {
+        $exercises = $data->map(function ($exercise) use ($lang) {
             $target_muscles = [$exercise->target_muscles];
 
             return [
                 'id' => $exercise->id,
                 'type' => 'exercise',
                 'exercise_id' => $exercise->exercise_id,
-                'name' => $exercise->name,
+                'name' => $this->translate($exercise->name, $lang),
                 'target_muscles' => $target_muscles,
             ];
         });
@@ -57,10 +62,36 @@ class ExerciseController extends Controller
 
     }
 
+    public function translateToEn($text)
+    {
+        $authKey = '8605c424-1199-4c66-be40-0949548513b1:fx';
+
+        $deeplClient = new \DeepL\DeepLClient($authKey);
+
+        $response = $deeplClient->translateText($text, 'SK', 'En-US');
+
+        return $response->text;
+    }
+
+    public function translate($text, $lang = 'sk')
+    {
+        if ($lang == 'sk') {
+            $authKey = '8605c424-1199-4c66-be40-0949548513b1:fx';
+
+            $deeplClient = new \DeepL\DeepLClient($authKey);
+
+            $response = $deeplClient->translateText($text, 'EN', 'SK');
+
+            return $response->text;
+        } else {
+            return $text;
+        }
+    }
 
     public function getExerciseDetails(Request $request)
     {
         $data = Exercise::find($request->id);
+        $lang = UserPreferences::where('user_id', $request->user()->id)->first()->selected_language;
 
         if (!$data) {
             return response()->json([
@@ -73,7 +104,7 @@ class ExerciseController extends Controller
         $instructions = [];
         foreach ($exerciseArray as $key => $value) {
             if (strpos($key, 'instructions_') === 0 && !empty($value)) {
-                $instructions[$key] = $value;
+                $instructions[$key] = $this->translate($value, $lang);
             }
         }
 
@@ -84,8 +115,8 @@ class ExerciseController extends Controller
             'id' => $data->id,
             'type' => 'exercise',
             'exercise_id' => $data->exercise_id,
-            'name' => $data->name,
-            'target_muscles' => $data->target_muscles,
+            'name' => $this->translate($data->name, $lang),
+            'target_muscles' => $this->translate($data->target_muscles, $lang),
             'equipments' => $data->equipments,
             'gif' => $data->gif,
             'instructions' => $instructions,

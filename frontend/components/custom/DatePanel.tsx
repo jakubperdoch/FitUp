@@ -105,16 +105,19 @@ const DatePanelComponent = (props: ComponentProps) => {
   };
 
   useEffect(() => {
+    const loadLanguage = async () => {
+      const language = await getCurrentLanguage();
+      if (language) {
+        setCurrentLanguage(language);
+      }
+    };
+    loadLanguage();
+  }, []);
+
+  useEffect(() => {
     getDatesInMonth(date.getFullYear(), date.getMonth() + 1);
     getMonths();
-
-    const getLanguage = async () => {
-      const language = await getCurrentLanguage();
-      setCurrentLanguage(language);
-    };
-
-    getLanguage();
-  }, []);
+  }, [currentLanguage]);
 
   useEffect(() => {
     if (months.length > 0) {

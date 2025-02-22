@@ -159,19 +159,14 @@ const DetailsScreen = () => {
                   </Text>
 
                   <View className="flex flex-wrap flex-row gap-3 w-full">
-                    {data?.meal?.allergens.map(
-                      (allergen) =>
-                        allergen.value === "1" && (
-                          <View
-                            key={allergen.id}
-                            className="bg-[#E5E6E6] px-3 py-1 rounded-xl"
-                          >
-                            <Text className="text-lg font-poppins">
-                              {allergen.name}
-                            </Text>
-                          </View>
-                        ),
-                    )}
+                    {data?.meal?.allergens.map((allergen, id) => (
+                      <View
+                        key={id}
+                        className="bg-[#E5E6E6] px-3 py-1 rounded-xl"
+                      >
+                        <Text className="text-lg font-poppins">{allergen}</Text>
+                      </View>
+                    ))}
                   </View>
                 </View>
               )}
