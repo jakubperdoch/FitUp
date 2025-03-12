@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Meal;
+use App\Models\UserPreferences;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -20,6 +21,12 @@ class MealController extends Controller
 
         $accessToken = $this->getFatsecretAccessToken();
         $query = $request->query();
+        $lang = UserPreferences::where('user_id', $request->user()->id)->first()->selected_language;
+
+        if ($lang == 'sk') {
+            $query['search'] = $this->translateToEn($query['search']);
+        }
+
 
         $meals = Http::withToken($accessToken)
             ->get('https://platform.fatsecret.com/rest/server.api', [
@@ -39,7 +46,7 @@ class MealController extends Controller
         };
 
         $foods = collect($meals['foods_search']['results']['food'])
-            ->map(function ($food) {
+            ->map(function ($food) use ($lang) {
 
                 $selectedServing = collect($food['servings']['serving'])
                     ->first(function ($serving) {
@@ -56,7 +63,7 @@ class MealController extends Controller
 
                 return [
                     'id' => $food['food_id'] ?? null,
-                    'name' => $food['food_name'] ?? null,
+                    'name' => $this->translate($food['food_name'], $lang) ?? null,
                     'image' => $food['food_images']['food_image'][1]['image_url'] ?? null,
                     'serving' => [
                         'description' => $selectedServing['serving_description'] ?? null,
@@ -109,7 +116,33 @@ class MealController extends Controller
 
     }
 
-    public function getMealDetails($food_id, $id = null)
+    public function translateToEn($text)
+    {
+        $authKey = '8605c424-1199-4c66-be40-0949548513b1:fx';
+
+        $deeplClient = new \DeepL\DeepLClient($authKey);
+
+        $response = $deeplClient->translateText($text, 'SK', 'En-US');
+
+        return $response->text;
+    }
+
+    public function translate($text, $lang = 'sk')
+    {
+        if ($lang == 'sk') {
+            $authKey = '8605c424-1199-4c66-be40-0949548513b1:fx';
+
+            $deeplClient = new \DeepL\DeepLClient($authKey);
+
+            $response = $deeplClient->translateText($text, 'EN', 'SK');
+
+            return $response->text;
+        } else {
+            return $text;
+        }
+    }
+
+    public function getMealDetails(Request $request, $food_id, $id = null)
     {
         if (!is_numeric($food_id) || ($id !== null && !is_numeric($id))) {
             return response()->json([
@@ -119,6 +152,8 @@ class MealController extends Controller
 
 
         $accessToken = $this->getFatsecretAccessToken();
+        $lang = UserPreferences::where('user_id', $request->user()->id)->first()->selected_language;
+
 
         $mealResponse = Http::withToken($accessToken)
             ->get('https://platform.fatsecret.com/rest/server.api', [
@@ -159,16 +194,33 @@ class MealController extends Controller
             ->filter(function ($allergen) {
                 return $allergen['value'] !== '0';
             })
+            ->map(function ($allergen) {
+                return $allergen['name'];
+            })
             ->values();
+
+        $servings = collect($data['servings']['serving'] ?? []);
+
+
+        if ($lang == 'sk') {
+            $allergens = $allergens->map(function ($allergen) {
+                return $this->translate($allergen['name']);
+            });
+
+            $servings = $servings->map(function ($serving) {
+                $serving['serving_description'] = $this->translate($serving['serving_description']);
+                return $serving;
+            });
+        }
 
 
         $meal = [
             'food_id' => $data['food_id'] ?? null,
-            'name' => $data['food_name'] ?? null,
+            'name' => $this->translate($data['food_name'], $lang) ?? null,
             'url' => $data['food_url'] ?? null,
             'image' => $data['food_images']['food_image'][0]['image_url'] ?? null,
             'allergens' => $allergens ?? null,
-            'servings' => $data['servings']['serving'] ?? null
+            'servings' => $servings ?? null
         ];
 
         if ($storedMeal) {
