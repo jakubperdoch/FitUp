@@ -5,16 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="update: major update">
-      <change afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/ExploreScreen.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/ProfileDetailsScreen.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Button/LanguageButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/en/auth.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/en/onboarding.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/sk/auth.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/lang/sk/onboarding.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutStats.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/en/profile.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/profile.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/en/workout.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/workout.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/sk/profile.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/sk/profile.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/sk/workout.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/sk/workout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer1Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer1Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer2Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer2Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer3Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer3Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer4Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer4Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SelectingGoalsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SelectingGoalsScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Inputs/DatePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Inputs/DatePicker.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Inputs/ValidationForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Inputs/ValidationForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/en/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/sk/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/sk/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,33 +100,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
-    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/lang/en&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "frontend",
+    "ignore_missing_gitignore": "true",
+    "js.linters.configure.manually.selectedeslint": "true",
+    "last_opened_file_path": "/Users/jakubperdoch/Developer/FitUp/frontend/lang/en",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/jakubperdoch/Developer/FitUp/frontend/node_modules/prettier",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "ts.external.directory.path": "/Users/jakubperdoch/Developer/FitUp/frontend/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/lang/en" />

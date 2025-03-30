@@ -16,11 +16,9 @@ const ExplainersLayout = () => {
   const onPressHandler = () => {
     if (pageIndex >= 4) {
       router.replace("/SignUpScreen");
-      // router.replace("/register-process/SuccessScreen");
-      // router.push("/register-process/InformationScreen");
-
       return;
     }
+
     setProgress((prevProgress) => prevProgress + 0.25);
     setIndex((prevIndex) => prevIndex + 1);
     router.replace(`/explainers/Explainer${pageIndex + 1}Screen`);
@@ -66,6 +64,7 @@ const useStyles = () => {
       marginTop: 20,
       paddingBottom: 10,
       flex: 1,
+      width: "80%",
     },
     explainersImage: {
       width: "100%",

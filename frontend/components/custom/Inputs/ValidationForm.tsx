@@ -5,6 +5,7 @@ import Feather from "@expo/vector-icons/Feather";
 import { Controller } from "react-hook-form";
 import GenericIcon from "@/components/custom/Icon";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 
 type SignUpFormProps = {
   passwordVisibility: boolean;
@@ -21,6 +22,8 @@ const SignUpForm = ({
   errors,
   control,
 }: SignUpFormProps) => {
+  const { t } = useTranslation("auth");
+
   return (
     <View className="w-full gap-5 flex ">
       {formType === "signup" ? (
@@ -39,7 +42,7 @@ const SignUpForm = ({
                 type={"text"}
                 value={value}
                 onChangeText={onChange}
-                placeholder="Full Name"
+                placeholder={t("fullNamePlaceholder")}
                 autoCapitalize="words"
                 autoCorrect={false}
               />
@@ -77,7 +80,7 @@ const SignUpForm = ({
               onChangeText={onChange}
               type={"text"}
               inputMode="email"
-              placeholder="Email"
+              placeholder={t("emailPlaceholder")}
               autoCapitalize="none"
               autoCorrect={false}
             />
@@ -112,7 +115,7 @@ const SignUpForm = ({
               className="text-lg"
               value={value}
               onChangeText={onChange}
-              placeholder="Password"
+              placeholder={t("passwordPlaceholder")}
               type={passwordVisibility ? "text" : "password"}
               autoCorrect={false}
             />

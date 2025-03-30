@@ -6,9 +6,11 @@ import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { router } from "expo-router";
 import { useMutation } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
+import { useTranslation } from "react-i18next";
 
 const SuccessScreen = () => {
   const user = useSelector((state: RootState) => state.user);
+  const { t } = useTranslation("onboarding");
 
   const { mutate: finishAccount } = useMutation<string, Error, Partial<User>>({
     mutationFn: (data: Partial<User>) =>
@@ -40,10 +42,10 @@ const SuccessScreen = () => {
       <View className="justify-start items-center  w-full">
         <SuccessImage height={"60%"} width={350} />
         <Text className="text-3xl mt-12 font-bold font-poppins">
-          Welcome, {user.userCredentials.fullName || "Friend"}
+          {t("success.title")}
         </Text>
         <Text className="font-poppins text-[#7B6F72] mt-2 w-2/3 text-center">
-          You are all set now, let’s reach your goals together with us
+          {t("success.text")}
         </Text>
       </View>
 
@@ -51,7 +53,7 @@ const SuccessScreen = () => {
         <GradientButtonComponent
           size={"full"}
           handleSubmit={submitHandler}
-          title={"Welcome"}
+          title={t("welcome")}
         />
       </View>
     </View>

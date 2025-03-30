@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import ActionSheetComponent from "../ActionSheet";
 import { CalendarDays } from "lucide-react-native";
 import { Controller } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 const DatePickerComponent = ({ control }) => {
   const [date, setDate] = useState(new Date());
@@ -11,6 +12,7 @@ const DatePickerComponent = ({ control }) => {
   const [minumumDate, setMinimumDate] = useState(null);
   const [showActionsheet, setshowActionsheet] = useState(false);
   const handleClose = () => setshowActionsheet(false);
+  const { t } = useTranslation("onboarding");
 
   useEffect(() => {
     setMinimumDate(
@@ -36,7 +38,7 @@ const DatePickerComponent = ({ control }) => {
             stringDate ? "opacity-100" : "opacity-40"
           } font-semibold font-poppins text-lg text-[#7B6F72]`}
         >
-          {stringDate ? stringDate : "Date of Birth"}
+          {stringDate ? stringDate : t("dateOfBirthPlaceholder")}
         </Text>
       </TouchableOpacity>
 

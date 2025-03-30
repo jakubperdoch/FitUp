@@ -1,17 +1,16 @@
 import { useEffect } from "react";
 import { useExplainer } from "@/context/ExplainerContext";
 import { Image, StyleSheet } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 const ExplainerPageThree = () => {
   const { setExplainerTitle, setExplainerDescription, setExplainerImage } =
     useExplainer();
-  const insets = useSafeAreaInsets();
+  const { t } = useTranslation("onboarding");
+
   useEffect(() => {
-    setExplainerTitle("Get Burn");
-    setExplainerDescription(
-      "Let’s keep burning, to achive yours goals, it hurts only temporarily, if you give up now you will be in pain forever",
-    );
+    setExplainerTitle(t("explainers2.title"));
+    setExplainerDescription(t("explainers2.text"));
   }, [setExplainerTitle, setExplainerDescription, setExplainerImage]);
 
   return (

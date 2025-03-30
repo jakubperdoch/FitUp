@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CarouselCardComponent from "@/components/custom/Dashboard/CarouselCard";
 import { useAuth } from "@/context/AuthContext";
 import { RootState } from "@/store/store";
+import { useTranslation } from "react-i18next";
 
 const PAGE_WIDTH = Dimensions.get("window").width;
 type TAnimationStyle = (value: number) => AnimatedStyle<ViewStyle>;
@@ -22,6 +23,7 @@ const SelectingGoalsScreen = () => {
   const dispatch = useDispatch();
   const { addToken } = useAuth();
   const user = useSelector((state: RootState) => state.user);
+  const { t } = useTranslation("onboarding");
 
   const itemSize = 300;
   const centerOffset = PAGE_WIDTH / 2 - itemSize / 2;
@@ -61,18 +63,18 @@ const SelectingGoalsScreen = () => {
 
   const SwiperContent = [
     {
-      title: "Improve Shape",
-      text: "I have a low amount of body fat and want to build more muscle",
+      title: t("muscleGain.title"),
+      text: t("muscleGain.description"),
       image: <InformationCardFirst />,
     },
     {
-      title: "Lean & Tone",
-      text: "I’m “skinny fat”. Look thin but have no shape. I want to add learn muscle in the right way",
+      title: t("maintenance.title"),
+      text: t("maintenance.description"),
       image: <InformationCardSecond />,
     },
     {
-      title: "Lose a Fat",
-      text: "I have over 20 lbs to lose. I want to drop all this fat and gain muscle mass",
+      title: t("fatLoss.title"),
+      text: t("fatLoss.description"),
       image: <InformationCardThird />,
     },
   ];
@@ -104,10 +106,10 @@ const SelectingGoalsScreen = () => {
   return (
     <View className="w-full h-full flex items-center pt-4 px-7">
       <Text className="text-2xl font-bold font-poppins">
-        What is your goal ?
+        {t("selectingGoals.title")}
       </Text>
       <Text className="font-poppins text-[#7B6F72] w-2/3 text-center">
-        It will help us to choose a best program for you
+        {t("selectingGoals.description")}
       </Text>
       <Carousel
         width={itemSize}
@@ -138,7 +140,7 @@ const SelectingGoalsScreen = () => {
       />
       <GradientButtonComponent
         handleSubmit={() => submitHandler(goalIndex)}
-        title={"Confirm"}
+        title={t("confirm")}
         size={"full"}
       />
     </View>

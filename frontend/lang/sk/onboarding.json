@@ -1,0 +1,66 @@
+{
+  "explainers1": {
+    "title": "Stanov si ciele \na dosiahni ich",
+    "text": "Nevieš si jasne určiť ciele? FitUp ti pomôže stanoviť si ich a jednoducho sledovať svoj pokrok."
+  },
+
+  "explainers2": {
+    "title": "Jednoduché sledovanie stravy",
+    "text": "S FitUp si môžeš ľahko zapisovať, čo každý deň ješ. Sledovanie jedál je jednoduché a zábavné!"
+  },
+
+  "explainers3": {
+    "title": "Spáľ kalórie a dosiahni výsledky",
+    "text": "FitUp ťa motivuje – každé spálenie kalórií ťa posunie bližšie k cieľu. Malá bolesť prinesie veľké výsledky."
+  },
+
+  "explainers4": {
+    "title": "Sleduj svoj pokrok",
+    "text": "S FitUp vidíš, aký robíš pokrok, čo ťa motivuje pokračovať ďalej."
+  },
+
+  "information": {
+    "title": "Sleduj svoj cieľ",
+    "description": "Dokonči svoj profil",
+    "text": "Pomôže nám to lepšie ťa spoznať!"
+  },
+
+  "genders": {
+    "placeholder": "Vyberte si pohlavie",
+    "male": "Muž",
+    "female": "Žena",
+    "other": "Iné"
+  },
+
+  "dateOfBirthPlaceholder": "Dátum narodenia",
+  "weightPlaceholder": "Tvoja váha",
+  "heightPlaceholder": "Tvoja výška",
+
+  "next": "Ďalej",
+  "confirm": "Potvrdiť",
+
+  "fatLoss": {
+    "title": "Chudnutie tuku",
+    "description": "Chcem zhodiť tuk a zvýrazniť svaly"
+  },
+  "maintenance": {
+    "title": "Udržiavanie",
+    "description": "Chcem si udržať svoju aktuálnu postavu a celkové zdravie"
+  },
+  "muscleGain": {
+    "title": "Naberanie svalov",
+    "description": "Chcem nabrať svalovú hmotu a zvýšiť celkovú silu"
+  },
+
+  "selectingGoals": {
+    "title": "Vyber si svoje ciele",
+    "text": "Vyber si hlavný cieľ, aby sme ti mohli prispôsobiť zážitok."
+  },
+
+  "success": {
+    "title": "Vitaj vo FitUp rodine!",
+    "text": "Tvoj profil je kompletný. Teraz môžeš začať sledovať svoj pokrok a dosahovať svoje ciele."
+  },
+
+  "welcome": "Vitaj"
+}

@@ -20,10 +20,12 @@ import {
 import { useResponsive } from "react-native-responsive-hook";
 import Animated, { ZoomIn } from "react-native-reanimated";
 import GenericIcon from "@/components/custom/Icon";
+import { useTranslation } from "react-i18next";
 
 const InformationScreen = () => {
   const dispatch = useDispatch();
   const { vh } = useResponsive();
+  const { t } = useTranslation("onboarding");
 
   const [currentWeightIndex, setCurrentWeightIndex] = useState(0);
   const [currentHeightIndex, setCurrentHeightIndex] = useState(0);
@@ -37,15 +39,15 @@ const InformationScreen = () => {
 
   const genderOptions = [
     {
-      label: "Male",
+      label: t("genders.male"),
       value: "male",
     },
     {
-      label: "Female",
+      label: t("genders.female"),
       value: "female",
     },
     {
-      label: "Other",
+      label: t("genders.other"),
       value: "other",
     },
   ];
@@ -95,18 +97,20 @@ const InformationScreen = () => {
       automaticallyAdjustKeyboardInsets={true}
       showsVerticalScrollIndicator={false}
     >
-      <Text className="self-start text-4xl font-bold">Track Your Goal</Text>
+      <Text className="self-start text-4xl font-bold">
+        {t("information.title")}
+      </Text>
       <InformationSVG height={vh(30)} width={"100%"} />
       <Text className="text-2xl font-bold mt-2 font-poppins">
-        Let’s complete your profile
+        {t("information.description")}
       </Text>
       <Text className="font-poppins text-center text-[#7B6F72]">
-        It will help us to know more about you!
+        {t("information.text")}
       </Text>
 
       <View className="flex flex-col w-full  gap-5 mt-3 mb-2">
         <SelectComponent
-          placeholder={"Choose Gender"}
+          placeholder={t("genders.placeholder")}
           controllerName={"gender"}
           control={control}
           options={genderOptions}
@@ -139,7 +143,7 @@ const InformationScreen = () => {
         )}
 
         <ConversionInputComponent
-          placeholder={"Your Weight"}
+          placeholder={t("weightPlaceholder")}
           metric={weightMetric}
           inputValue={weight}
           control={control}
@@ -172,7 +176,7 @@ const InformationScreen = () => {
         <ConversionInputComponent
           control={control}
           controlName={"height"}
-          placeholder={"Your Height"}
+          placeholder={t("heightPlaceholder")}
           metric={heightMetric}
           inputValue={height}
           inputChangeHandler={setHeight}
@@ -203,7 +207,7 @@ const InformationScreen = () => {
 
       <GradientButtonComponent
         handleSubmit={handleSubmit(submitHandler)}
-        title={"Next"}
+        title={t("next")}
         size={"full"}
       />
     </ScrollView>

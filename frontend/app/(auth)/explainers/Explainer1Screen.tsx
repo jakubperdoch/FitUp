@@ -1,16 +1,15 @@
 import { useEffect } from "react";
 import { useExplainer } from "@/context/ExplainerContext";
 import { Image, StyleSheet } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 const ExplainerPageOne = () => {
   const { setExplainerTitle, setExplainerDescription } = useExplainer();
-  const insets = useSafeAreaInsets();
+  const { t } = useTranslation("onboarding");
+
   useEffect(() => {
-    setExplainerTitle("Track Your Goal");
-    setExplainerDescription(
-      "Don't worry if you have trouble determining your goals, We can help you determine your goals and track your goals",
-    );
+    setExplainerTitle(t("explainers1.title"));
+    setExplainerDescription(t("explainers1.text"));
   }, [setExplainerTitle, setExplainerDescription]);
 
   return (

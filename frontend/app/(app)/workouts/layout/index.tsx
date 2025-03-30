@@ -101,7 +101,7 @@ const WorkoutsPage = () => {
                     </SwipeToDelete>
                   ))
                 ) : (
-                  <Text className="text-center text-lg font-poppinsSemiBold">
+                  <Text className="text-center  text-[#ADA4A5] font-poppinsSemiBold">
                     No workouts found
                   </Text>
                 )}
