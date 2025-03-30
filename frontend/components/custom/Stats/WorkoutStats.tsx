@@ -90,7 +90,7 @@ const WorkoutStatsComponent = () => {
     >
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerClassName="gap-7"
+        contentContainerClassName="gap-7 "
         refreshControl={
           <RefreshControl refreshing={isFetching} onRefresh={refetch} />
         }
@@ -152,56 +152,61 @@ const WorkoutStatsComponent = () => {
               </CartesianChart>
             </View>
             <View className="gap-4">
-              <View className="gap-3 border-b pb-3 border-black/30">
-                <GenericIcon name="Repeat" size={17} />
+              {data?.workout_stats?.mostFrequentExercise ? (
+                <View className="gap-3 border-b pb-3 flex-row items-center border-black/30">
+                  <GenericIcon name="Repeat" size={17} />
 
-                <Text className="font-poppins text-lg text-[#7B6F72]">
-                  <Text className="text-[#D62828]">
-                    {data?.workout_stats?.mostFrequentExercise}
-                  </Text>{" "}
-                  {t("mostFrequent", { context: "meals" })}
-                </Text>
-              </View>
+                  <Text className="font-poppins text-lg text-[#7B6F72]">
+                    <Text className="text-[#D62828] capitalize">
+                      {data?.workout_stats?.mostFrequentExercise}
+                    </Text>{" "}
+                    {t("mostFrequent", { context: "meals" })}
+                  </Text>
+                </View>
+              ) : null}
 
-              <View className="gap-3 border-b pb-3 border-black/30">
+              <View className="gap-3 border-b pb-3 flex-row items-center border-black/30">
                 <GenericIcon name="Dumbbell" size={17} />
 
                 <Text className="font-poppins text-lg text-[#7B6F72]">
                   <Text className="text-[#D62828]">
-                    {Number(data?.workout_stats?.totalWorkouts).toFixed(2)}
+                    {Number(data?.workout_stats?.totalWorkouts).toFixed(0)}
                   </Text>{" "}
                   {t("workouts", { context: "meals" })}
                 </Text>
               </View>
 
-              <View className="gap-3 border-b pb-3 border-black/30">
+              <View className="gap-3 border-b pb-3 flex-row items-center border-black/30">
                 <GenericIcon name="Repeat" size={17} />
 
                 <Text className="font-poppins text-lg text-[#7B6F72]">
                   <Text className="text-[#D62828]">
-                    {Number(data?.workout_stats?.avgReps).toFixed(2)}
+                    {Number(data?.workout_stats?.avgReps).toFixed(0)}
                   </Text>{" "}
                   {t("reps", { context: "meals" })}
                 </Text>
               </View>
 
-              <View className="gap-3 border-b pb-3 border-black/30">
+              <View className="gap-3 border-b pb-3 flex-row items-center border-black/30">
                 <GenericIcon name="Weight" size={17} />
 
                 <Text className="font-poppins text-lg text-[#7B6F72]">
                   <Text className="text-[#D62828]">
-                    {Number(data?.workout_stats?.avgWeight).toFixed(2)}
+                    {Number(data?.workout_stats?.avgWeight).toFixed(1)}
                   </Text>{" "}
                   {t("weight", { context: "meals" })}
                 </Text>
               </View>
 
-              <View className="gap-3 border-b pb-3 border-black/30">
+              <View className="gap-3 border-b pb-3 flex-row items-center border-black/30">
                 <GenericIcon name="Clock" size={17} />
 
-                <Text className="font-poppins text-lg text-[#7B6F72]">
+                <Text className="font-poppins text-lg  text-[#7B6F72]">
                   <Text className="text-[#D62828]">
-                    {data?.workout_stats?.totalWorkoutTime}
+                    {Number(
+                      data?.workout_stats?.totalWorkoutTime / 360,
+                    ).toFixed(1)}{" "}
+                    {t("hours", { context: "meals" })}
                   </Text>{" "}
                   {t("time", { context: "meals" })}
                 </Text>

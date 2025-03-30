@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import { useSortedWorkouts } from "@/hooks/workouts";
 import WorkoutPlanCardComponent from "@/components/custom/Workouts/WorkoutPlanCard";
@@ -11,6 +11,7 @@ import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
 import Animated, { ZoomIn } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
+import GenericIcon from "@/components/custom/Icon";
 
 const WorkoutsPage = () => {
   const [workoutCards, setWorkoutCards] = useState<Workout[]>([]);
@@ -55,11 +56,12 @@ const WorkoutsPage = () => {
             </Text>
 
             <View className="flex items-center justify-center">
-              <GradientButtonComponent
-                size={"sm"}
-                title={t("dashboard.createButton", { context: "workouts" })}
-                handleSubmit={() => router.push("/workouts/layout/create")}
-              />
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => router.push("/workouts/create")}
+              >
+                <GenericIcon name="Plus" size={25} color="#F77F00" />
+              </TouchableOpacity>
             </View>
           </View>
 
@@ -67,7 +69,7 @@ const WorkoutsPage = () => {
             {isLoading || isFetching ? (
               <Spinner color={"#F77F00"} />
             ) : (
-              <Animated.View entering={ZoomIn} className="gap-7">
+              <Animated.View entering={ZoomIn} className="gap-9">
                 {workoutCards?.length > 0 ? (
                   workoutCards.map((card, index) => (
                     <SwipeToDelete
@@ -91,7 +93,7 @@ const WorkoutsPage = () => {
                         numberOfExercises={card.number_of_exercises}
                         detailsHandler={() =>
                           router.push({
-                            pathname: "/workouts/layout/details",
+                            pathname: "/workouts/details",
                             params: { id: card.id },
                           })
                         }

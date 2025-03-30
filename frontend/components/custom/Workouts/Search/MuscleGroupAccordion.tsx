@@ -11,6 +11,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useMemo } from "react";
 import SearchCard from "@/components/custom/Workouts/Search/SearchCard";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { shadows } from "@/styles/shadows";
 
 interface ComponentProps {
   muscleGroups: { id: number; name: string }[];
@@ -34,7 +35,8 @@ const MuscleGroupAccordionComponent = ({
     <Accordion
       size="md"
       type="single"
-      className="bg-transparent shadow-soft-1"
+      style={shadows.soft1}
+      className="bg-transparent"
       isCollapsible={true}
       onValueChange={(query) => accordionSearch(query[0])}
     >

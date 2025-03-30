@@ -1,6 +1,8 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import TimeButton from "../Button/TimeButton";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { shadows } from "@/styles/shadows";
+
 type ComponentProps = {
   id: number;
   name: string;
@@ -21,8 +23,9 @@ const DashboardCardComponent = (props: ComponentProps) => {
   return (
     <Animated.View entering={ZoomIn} className="w-full">
       <TouchableOpacity
+        style={shadows.soft1}
         onPress={() => props.detailsHandler(props?.id)}
-        className="w-full gap-2 bg-white shadow-soft-1 px-4 py-5 rounded-3xl flex-row justify-between"
+        className="w-full gap-2 bg-white px-4 py-5 rounded-3xl flex-row justify-between"
       >
         <View className="gap-1 w-44">
           <Text

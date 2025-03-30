@@ -5,14 +5,76 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: translated dates">
+      <change afterPath="$PROJECT_DIR$/frontend/hooks/useSettings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/styles/shadows.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/StatsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/StatsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/PreferencesScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/PreferencesScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/stats/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/stats/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/create/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/create/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/details/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer1Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer1Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer2Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer2Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer3Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer3Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer4Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer4Screen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SelectingGoalsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SelectingGoalsScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/explainers-first.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/explainers-first.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/explainers-fourth.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/images/explainers-fourth.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/explainers-fourth.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/explainers-second.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/images/explainers-second.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/explainers-second.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/explainers-third.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/images/explainers-third.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/assets/images/explainers-third.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCircle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCircle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardPanel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/DatePanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/DatePanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Inputs/DatePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Inputs/DatePicker.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/MacroScroll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Details/MacroScroll.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/FoodCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/FoodCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/Card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/Card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Meals/Scroll/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Profile/DataCards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Profile/DataCards.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Profile/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Profile/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Profile/ProfileSections.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Profile/ProfileSections.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Stats/MacroStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Stats/MacroStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutStats.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/ExerciseTable/Modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/MuscleGroupAccordion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/MuscleGroupAccordion.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/SearchCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/SearchCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/context/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/context/AuthContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/hooks/exercises.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/exercises.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/hooks/meals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/meals.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/hooks/workout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/workout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/interfaces/response.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/interfaces/response.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/interfaces/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/interfaces/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/en/meals.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/meals.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/en/stats.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/stats.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/sk/meals.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/sk/meals.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/sk/stats.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/sk/stats.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/store/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,9 +85,22 @@
     <option name="BRANCH" value="origin/master" />
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="frontend" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -79,7 +154,7 @@
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;backend&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
     &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/lang/en&quot;,
@@ -108,17 +183,17 @@
       <recent name="$PROJECT_DIR$/frontend/utils" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/app/(app)/workouts" />
       <recent name="$PROJECT_DIR$/frontend/android/app/src/main/res/mipmap-mdpi" />
       <recent name="$PROJECT_DIR$/frontend/android/app/src/main/res/mipmap-hdpi" />
       <recent name="$PROJECT_DIR$/frontend/android/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/frontend/app/(app)/workouts/layout" />
-      <recent name="$PROJECT_DIR$/frontend/assets/icons" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.222" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
       </set>
     </attachedChunks>
   </component>
@@ -201,6 +276,16 @@
       <workItem from="1739958436292" duration="20138000" />
       <workItem from="1740241618802" duration="6791000" />
       <workItem from="1740252353172" duration="4022000" />
+      <workItem from="1742141583152" duration="41000" />
+      <workItem from="1742248089005" duration="5441000" />
+      <workItem from="1742399090105" duration="5239000" />
+      <workItem from="1742468011808" duration="588000" />
+      <workItem from="1742844531420" duration="171000" />
+      <workItem from="1743074297546" duration="1066000" />
+      <workItem from="1743144435777" duration="597000" />
+      <workItem from="1743174745289" duration="26199000" />
+      <workItem from="1743291700442" duration="627000" />
+      <workItem from="1743293949420" duration="7490000" />
     </task>
     <task id="LOCAL-00026" summary="add: Add Workout details timer &amp; updated redux, interfacies">
       <option name="closed" value="true" />

@@ -203,9 +203,11 @@ class MealController extends Controller
 
 
         if ($lang == 'sk') {
+
             $allergens = $allergens->map(function ($allergen) {
-                return $this->translate($allergen['name']);
+                return $this->translate($allergen);
             });
+
 
             $servings = $servings->map(function ($serving) {
                 $serving['serving_description'] = $this->translate($serving['serving_description']);

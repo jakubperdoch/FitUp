@@ -61,6 +61,15 @@ class StatsController extends Controller
 
         return response()->json([
             'message' => 'Macro Stats retrieved',
+            "date" => $today,
+            "values" => [
+                'calories' => $total_calories,
+                'protein' => $total_protein,
+                'carbs' => $total_carbs,
+                'fat' => $total_fat,
+                'fiber' => $total_fiber,
+                'sugar' => $total_sugar,
+            ],
             'macros' => [
                 'total_calories' => $caloriesProgress,
                 'total_protein' => $proteinProgress,
@@ -162,8 +171,9 @@ class StatsController extends Controller
     public function getMonthlyMacroStats(Request $request)
     {
         $user = $request->user();
-        $startDate = Carbon::now()->subMonths(6)->startOfMonth();
+        $startDate = Carbon::now()->startOfMonth();
 
+// TODO: Implement getMonthlyMacroStats
         $meals = $user->meals()
             ->where('date', '>=', $startDate)
             ->get();
@@ -190,6 +200,7 @@ class StatsController extends Controller
 
         return response()->json([
             'message' => 'Macro Stats retrieved',
+            'date' => $startDate,
             'macro_stats' => [
                 'totalCalories' => $total_calories,
                 'mostFrequentMeal' => $most_freq_meal,

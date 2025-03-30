@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import GenericIcon from "../Icon";
 import { router } from "expo-router";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
 
 type Food = {
   food_id: number;
@@ -29,8 +30,11 @@ const FoodCardComponent = ({
   meals,
   deleteMealHandler,
 }: ComponentProps) => {
+  const { t } = useTranslation("meals");
+
   const formatWords = (str) => {
-    return str
+    const translation = t(str);
+    return translation
       .replace(/([A-Z])/g, " $1")
       .trim()
       .split(" ")
@@ -41,11 +45,17 @@ const FoodCardComponent = ({
   return (
     <Animated.View entering={ZoomIn} className="px-7 mb-8 gap-4">
       <View className="flex flex-row items-center justify-between">
-        <Text className="text-2xl font-semibold font-poppins">
+        <Text className="text-xl font-semibold font-poppins">
           {formatWords(title)}
         </Text>
         <Text className="font-poppins text-[#ADA4A5]">
-          {numberOfMeals} meals | {numberOfCals} calories
+          {numberOfMeals}{" "}
+          {numberOfMeals > 1 ? (
+            <Text className="font-poppins">{t("meals")}</Text>
+          ) : (
+            <Text className="font-poppins">{t("meal")}</Text>
+          )}{" "}
+          | {numberOfCals} <Text className="font-poppins">{t("calories")}</Text>
         </Text>
       </View>
 

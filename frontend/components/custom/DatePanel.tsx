@@ -137,7 +137,7 @@ const DatePanelComponent = (props: ComponentProps) => {
             <TouchableOpacity onPress={() => dateChangeHandler(-1)}>
               <GenericIcon name={"ChevronLeft"} color="#ADA4A5" />
             </TouchableOpacity>
-            <Text className="text-center capitalize w-44 text-[#ADA4A5] text-2xl">
+            <Text className="text-center font-poppins capitalize w-44 text-[#ADA4A5] text-xl">
               {currentDate || ""}
             </Text>
             <TouchableOpacity onPress={() => dateChangeHandler(+1)}>

@@ -97,21 +97,25 @@ const MealsPage = () => {
   };
 
   const deleteMealHandler = (id: number) => {
-    Alert.alert("Delete Meal", "Are you sure you want to delete this meal?", [
-      {
-        text: "Cancel",
-        onPress: () => {},
-        style: "cancel",
-      },
-      {
-        text: "Delete",
-        onPress: () => {
-          deleteMeal(String(id));
-          retrieveMeals();
+    Alert.alert(
+      t("deleteModal.title", { ns: "meals" }),
+      t("deleteModal.message", { ns: "meals" }),
+      [
+        {
+          text: t("deleteModal.cancel", { ns: "meals" }),
+          onPress: () => {},
+          style: "cancel",
         },
-        style: "destructive",
-      },
-    ]);
+        {
+          text: t("deleteModal.delete", { ns: "meals" }),
+          onPress: () => {
+            deleteMeal(String(id));
+            retrieveMeals();
+          },
+          style: "destructive",
+        },
+      ],
+    );
   };
 
   return (
@@ -132,7 +136,7 @@ const MealsPage = () => {
           Object.values(meals).every(
             (mealGroup: any[]) => mealGroup?.length === 0,
           ) ? (
-          <Text className="text-center mt-10 text-[#ADA4A5]">
+          <Text className="text-center font-poppins mt-10 text-[#ADA4A5]">
             {t("empty", { ns: "meals" })}
           </Text>
         ) : (

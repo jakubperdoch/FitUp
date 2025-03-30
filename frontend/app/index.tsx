@@ -9,7 +9,7 @@ import { chosenLanguage } from "@/lang/i18n";
 
 const RootPage = () => {
   const logoAnimation = useRef(null);
-  const { userToken } = useAuth();
+  const { userToken, logOut } = useAuth();
 
   useEffect(() => {
     const isDataLoading = async () => {

@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
-
+import { shadows } from "@/styles/shadows";
 interface ComponentProps {
   user: UserBiometrics;
 }
@@ -39,8 +39,9 @@ const ProfileDataCards = ({ user }: ComponentProps) => {
     <View className="flex-row flex-wrap gap-8 gap-y-5 mt-5">
       {userBiometrics.map((biometric) => (
         <View
+          style={shadows.soft1}
           key={biometric.key}
-          className="bg-white shadow-soft-1 p-3 w-1/4 h-fit rounded-2xl gap-1 items-center"
+          className="bg-white p-3 w-1/4 h-fit rounded-2xl gap-1 items-center"
         >
           <Text className="text-[#F77F00] font-poppinsSemiBold text-lg capitalize">
             {biometric.key === "birthDate"

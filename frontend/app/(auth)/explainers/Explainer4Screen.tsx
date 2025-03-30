@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useExplainer } from "@/context/ExplainerContext";
-import ExplainerImage from "@/assets/images/explainers-fourth.svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Image } from "react-native";
 

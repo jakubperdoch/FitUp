@@ -97,6 +97,12 @@ const ProfileScreen = () => {
           icon: "Languages",
           route: "profile/LanguagesScreen",
         },
+
+        {
+          title: "Explore",
+          icon: "GraduationCap",
+          route: "profile/ExploreScreen",
+        },
       ],
     },
   ];

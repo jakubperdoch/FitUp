@@ -1,17 +1,14 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useState } from "react";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Divider } from "@/components/ui/divider";
-import AppleLoginIcon from "@/assets/icons/apple-login--icon.svg";
 import ValidationForm from "@/components/custom/Inputs/ValidationForm";
 import { router } from "expo-router";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
-import { setPassword, setEmail, setFullName } from "@/store/user";
+import { setEmail, setFullName } from "@/store/user";
 import { useDispatch } from "react-redux";
-import { Controller } from "react-hook-form";
 import startCase from "lodash/startCase";
 import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "@/context/AuthContext";
@@ -22,7 +19,7 @@ const SignUpScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
 
-  const { register, logIn } = useAuth();
+  const { register } = useAuth();
   const dispatch = useDispatch();
 
   let userSchema = yup.object().shape({

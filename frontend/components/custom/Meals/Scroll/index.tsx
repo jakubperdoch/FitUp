@@ -61,7 +61,7 @@ const FoodScrollComponent = ({
         )}
         ListEmptyComponent={() =>
           !isLoading && (
-            <Text className="mx-auto text-[#ADA4A5]">
+            <Text className="mx-auto font-poppins text-[#ADA4A5]">
               {t("empty", { context: "meals" })}
             </Text>
           )

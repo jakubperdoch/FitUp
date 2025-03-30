@@ -60,15 +60,15 @@ const TimeButton = (props: ComponentProps) => {
     if (timeValue <= 0) {
       return;
     } else if (timeValue < 60) {
-      return <Text>{timeValue}s</Text>;
+      return <Text className="font-poppins">{timeValue}s</Text>;
     } else if (timeValue < 3600) {
       const minutes = Math.floor(timeValue / 60);
-      return <Text>{minutes} min</Text>;
+      return <Text className="font-poppins">{minutes} min</Text>;
     } else {
       const hours = Math.floor(timeValue / 3600);
       const minutes = Math.floor((timeValue % 3600) / 60);
       return (
-        <Text className="h-min">
+        <Text className="h-min font-poppins">
           {hours} hour{hours > 1 ? "s" : ""}{" "}
           {minutes > 0 ? `${minutes} min` : ""}
         </Text>

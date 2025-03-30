@@ -2,6 +2,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import GenericIcon from "@/components/custom/Icon";
 import Animated, { ZoomIn } from "react-native-reanimated";
 import { router } from "expo-router";
+import { shadows } from "@/styles/shadows";
 
 interface ComponentProps {
   exercise: Exercise;
@@ -25,7 +26,8 @@ const SearchCardComponent = ({
     <TouchableOpacity
       onPress={() => handleExercisePress(exercise)}
       activeOpacity={0.7}
-      className={`shadow-soft-1 w-full p-6 mb-6 bg-white rounded-xl flex-row justify-between items-center ${isSelected ? "!bg-[#F77F00]/20" : ""}`}
+      style={shadows.soft1}
+      className={`w-full p-6 mb-6 bg-white rounded-xl flex-row justify-between items-center ${isSelected ? "!bg-[#F77F00]/20" : ""}`}
     >
       <View className="gap-3 flex-row items-center">
         {isSelected && (

@@ -22,6 +22,7 @@ const DetailsScreen = () => {
   const insets = useSafeAreaInsets();
   const { id, date, food_id, eaten_at } = useLocalSearchParams();
   const { t } = useTranslation("meals");
+  const [macros, setMacros] = useState({});
 
   useEffect(() => {
     setShowFooter(false);
@@ -55,11 +56,32 @@ const DetailsScreen = () => {
     updateMeal,
   } = useMeals();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["mealDetails", food_id, id],
     queryFn: () => apiFetch(`/meals/${food_id}/details${id ? `/${id}` : ""}`),
     enabled: !!food_id,
   });
+
+  const {
+    data: macrosData,
+    isLoading: macrosLoading,
+    isFetching: macrosFetching,
+  } = useQuery({
+    queryKey: ["macros"],
+    queryFn: () =>
+      apiFetch("/stats/macros/today", {
+        method: "GET",
+      }),
+  });
+
+  const macrosLimitCheck = (meal) => {
+    if (macros) {
+      Object.keys(macros).forEach((key) => {
+        console.log(meal[key] <= macros[key]);
+        return meal[key] <= macros[key];
+      });
+    }
+  };
 
   useEffect(() => {
     if (data?.meal?.servings?.length > 0 && !id) {
@@ -87,15 +109,21 @@ const DetailsScreen = () => {
     }
   }, [data]);
 
-  const confirmHandler = (meal) => {
-    if (id) {
-      updateMeal(meal);
-    } else {
-      addMeal(meal);
+  useEffect(() => {
+    if (macrosData?.values) {
+      setMacros(macrosData.values);
     }
-  };
+  }, [macrosData]);
 
-  console.log("selectedTimeOfDay.name", selectedTimeOfDay?.name);
+  const confirmHandler = (meal) => {
+    // if (id) {
+    //   updateMeal(meal);
+    // } else {
+    //   addMeal(meal);
+    // }
+
+    macrosLimitCheck(meal);
+  };
 
   return (
     <>

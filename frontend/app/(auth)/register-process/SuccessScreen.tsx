@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import SuccessImage from "@/assets/images/success-image.svg";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { router } from "expo-router";
-import { useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 
@@ -35,10 +34,6 @@ const SuccessScreen = () => {
   const submitHandler = () => {
     finishAccount(user);
   };
-
-  useEffect(() => {
-    console.log(user);
-  }, []);
 
   return (
     <View className=" flex flex-col items-center px-7 h-full pt-5">

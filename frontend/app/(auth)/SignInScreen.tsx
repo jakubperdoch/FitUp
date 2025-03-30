@@ -1,14 +1,13 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import { Divider } from "@/components/ui/divider";
-import AppleLoginIcon from "@/assets/icons/apple-login--icon.svg";
 import ValidationForm from "@/components/custom/Inputs/ValidationForm";
 import { router } from "expo-router";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
-import { setPassword, setEmail } from "@/store/user";
+import { setPassword, setEmail, setToken } from "@/store/user";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "@/context/AuthContext";
@@ -58,12 +57,14 @@ const SignInScreen = () => {
       if (!response) return;
 
       if (response.user.onboarding !== "true") {
+        dispatch(setToken(response.access_token));
         router.replace("/register-process/InformationScreen");
       } else {
         router.replace("/home");
       }
     },
     onError: (error) => {
+      console.log(error);
       setLocalError(error.message);
     },
   });
@@ -121,7 +122,7 @@ const SignInScreen = () => {
 
       <View className="w-full flex flex-row items-center justify-center gap-2 mt-2">
         <Divider />
-        <Text className="text-lg">Or</Text>
+        <Text className="text-lg font-poppins">Or</Text>
         <Divider />
       </View>
 

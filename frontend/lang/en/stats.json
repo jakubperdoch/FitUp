@@ -1,15 +1,17 @@
 {
   "title": "Your workout progress",
-  "mostFrequent": "most frequent exercise",
+  "mostFrequent": "most \nfrequent exercise",
   "total": "Total workouts",
   "totalTime": "Total time",
   "workouts": "total workouts",
   "reps": "average reps",
   "weight": "average weight",
-  "time": "total workout time",
+  "time": "total \nworkout time",
+  "hours": "hours",
+  "noData": "No data available",
 
   "title2": "Your diet progress",
-  "mostFrequent2": "was your most frequent meal",
+  "mostFrequent2": "was your \nmost frequent meal",
   "totalCalories": "of total calories",
 
   "calories": "of total calories",

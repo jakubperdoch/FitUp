@@ -1,11 +1,13 @@
 {
-  "meals": "Meals",
+  "meals": "meals",
+  "meal": "meal",
   "categories": "Categories",
   "nutrition": "Nutrition",
   "allergens": "Allergens",
   "servinSize": "Serving Size",
   "eatenDuring": "Eaten During",
   "addTo": "Add to",
+  "calories": "kCal",
 
   "breakfast": "Breakfast",
   "lunch": "Lunch",
@@ -26,5 +28,21 @@
     "desserts": "Desserts",
     "drinks": "Drinks",
     "appetizers": "Appetizers"
+  },
+
+  "nutritions": {
+    "calories": "",
+    "carbs": "carbs",
+    "fat": "fat",
+    "protein": "protein",
+    "sugar": "sugar",
+    "fiber": "fiber"
+  },
+
+  "deleteModal": {
+    "title": "Delete meal",
+    "message": "Do you really want to delete this meal?",
+    "cancel": "Cancel",
+    "delete": "Delete"
   }
 }

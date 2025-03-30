@@ -1,4 +1,5 @@
 interface ResponseUser {
+  access_token?: string;
   full_name: string;
   birth_date: string;
   weight: number;

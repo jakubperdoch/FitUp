@@ -70,7 +70,6 @@ const useWorkoutDetails = () => {
   };
 
   const changeDateHandler = (newValue: string) => {
-    console.log(data?.days);
     if (data?.days?.includes(newValue)) {
       const daysArr = data.days.filter((day) => day !== newValue);
 
@@ -365,7 +364,6 @@ const useWorkoutDetails = () => {
               deletePlanWorkout({ id: workout?.id });
             } else {
               dispatch(resetExercises());
-              router.push("/workouts/layout");
             }
           },
         },
@@ -430,9 +428,6 @@ const useWorkoutDetails = () => {
         method: "POST",
         body: workout,
       }),
-    onSuccess: () => {
-      router.replace("/workouts/layout");
-    },
   });
 
   return {

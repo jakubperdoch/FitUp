@@ -38,6 +38,7 @@ const HomeScreen = () => {
     data: workoutsData,
     isLoading: workoutsLoading,
     isFetching: workoutsFetching,
+    error: workoutsError,
   } = useQuery({
     queryKey: ["workouts"],
     queryFn: () =>
@@ -76,6 +77,10 @@ const HomeScreen = () => {
       setWorkouts(sortedWorkouts);
     }
   }, [workoutsData]);
+
+  useEffect(() => {
+    console.log(workoutsError);
+  }, [workoutsError]);
 
   const workoutSelectHandler = useCallback(
     (id: number) => {
@@ -152,7 +157,7 @@ const HomeScreen = () => {
                     workoutSelectHandler={workoutSelectHandler}
                     detailsHandler={() =>
                       router.push({
-                        pathname: "/workouts/layout/details",
+                        pathname: "/workouts/details",
                         params: { id: workout.id },
                       })
                     }
@@ -220,7 +225,7 @@ const HomeScreen = () => {
                   <TouchableOpacity
                     activeOpacity={0.7}
                     onPress={() => {
-                      router.push({ pathname: "/workouts/layout/create" });
+                      router.push({ pathname: "/workouts/create" });
                     }}
                   >
                     <GenericIcon name="Plus" color="#F77F00" size={25} />
@@ -242,7 +247,7 @@ const HomeScreen = () => {
                       workoutSelectHandler={workoutSelectHandler}
                       detailsHandler={() =>
                         router.push({
-                          pathname: "/workouts/layout/details",
+                          pathname: "/workouts/details",
                           params: { id: workout.id },
                         })
                       }

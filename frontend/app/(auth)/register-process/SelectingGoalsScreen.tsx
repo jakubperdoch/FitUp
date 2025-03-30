@@ -10,14 +10,19 @@ import InformationCardThird from "@/assets/images/information-card--third.svg";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { router } from "expo-router";
 import { setGoal } from "@/store/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CarouselCardComponent from "@/components/custom/Dashboard/CarouselCard";
+import { useAuth } from "@/context/AuthContext";
+import { RootState } from "@/store/store";
 
 const PAGE_WIDTH = Dimensions.get("window").width;
 type TAnimationStyle = (value: number) => AnimatedStyle<ViewStyle>;
 
 const SelectingGoalsScreen = () => {
   const dispatch = useDispatch();
+  const { addToken } = useAuth();
+  const user = useSelector((state: RootState) => state.user);
+
   const itemSize = 300;
   const centerOffset = PAGE_WIDTH / 2 - itemSize / 2;
   const [goalIndex, setGoalIndex] = useState(0);
@@ -90,6 +95,8 @@ const SelectingGoalsScreen = () => {
       default:
         break;
     }
+
+    addToken(user.token);
     dispatch(setGoal(formData));
     router.replace("/register-process/SuccessScreen");
   };

@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import GenericIcon from "../../Icon";
+import { shadows } from "@/styles/shadows";
 
 interface ComponentProps {
   onClick: (id: number) => void;
@@ -10,7 +11,8 @@ const FoodScrollCardComponent = ({ onClick, meal }: ComponentProps) => {
   return (
     <TouchableOpacity
       onPress={() => onClick(meal.id)}
-      className="shadow-soft-0 mb-6 rounded-3xl bg-white p-5 flex flex-row gap-3 items-center"
+      style={shadows.soft1}
+      className="mb-6 rounded-3xl bg-white p-5 flex flex-row gap-3 items-center"
     >
       {meal.image && (
         <Image

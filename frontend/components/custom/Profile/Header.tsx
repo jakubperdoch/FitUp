@@ -23,6 +23,7 @@ const ProfileHeaderComponent = ({ user }: ComponentProps) => {
           width: 90,
           height: 90,
           alignItems: "center",
+          overflow: "hidden",
         }}
       >
         {user.gender === "male" ? (

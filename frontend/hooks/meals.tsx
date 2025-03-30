@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { router } from "expo-router";
+import { useTranslation } from "react-i18next";
 
 const icons = {
   fire: require("@/assets/icons/fire.png"),
@@ -13,7 +14,7 @@ const icons = {
 };
 
 const defaultNutritionData = [
-  { icon: icons.fire, suffix: null, metric: "kCal", type: "calories" },
+  { icon: icons.fire, suffix: "calories", metric: "kCal", type: "calories" },
   { icon: icons.transFats, suffix: "fat", metric: "g", type: "fats" },
   { icon: icons.protein, suffix: "protein", metric: "g", type: "protein" },
   { icon: icons.carbohydrates, suffix: "carbs", metric: "g", type: "carbs" },

@@ -43,7 +43,8 @@ const MacroScrollComponent = ({ nutritionData }: ComponentProps) => {
               <Image className="h-9 w-9" source={item.icon} />
               <Text className="font-poppins">
                 {item.value}
-                {item.metric} {item.suffix}
+                {item.metric}{" "}
+                {t(`nutritions.${item.suffix}`, { context: "meals" })}
               </Text>
             </View>
           </LinearGradient>

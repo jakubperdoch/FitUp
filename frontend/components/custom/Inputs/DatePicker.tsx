@@ -20,7 +20,7 @@ const DatePickerComponent = ({ control }) => {
 
   useEffect(() => {
     if (date && showActionsheet) {
-      setStringDate(date.toLocaleDateString("en-US"));
+      setStringDate(date ? date.toLocaleDateString("en-US") : "");
     }
   }, [date]);
 
@@ -52,8 +52,9 @@ const DatePickerComponent = ({ control }) => {
               date={date}
               mode="date"
               onDateChange={(value) => {
-                onChange(value);
-                setDate(value);
+                const selectedDate = new Date(value);
+                setDate(selectedDate);
+                onChange(selectedDate);
               }}
               maximumDate={minumumDate}
             />

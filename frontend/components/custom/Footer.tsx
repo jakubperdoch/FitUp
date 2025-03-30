@@ -12,6 +12,7 @@ import { useEffect, useRef } from "react";
 import { router } from "expo-router";
 import { usePathname } from "expo-router";
 import { useResponsive } from "react-native-responsive-hook";
+import { shadows } from "@/styles/shadows";
 
 type FooterItem = {
   icon: string;
@@ -78,8 +79,11 @@ const FooterComponent = () => {
   return (
     <View className="absolute bottom-0 w-full">
       <View
-        className="pt-6 mt-0 rounded-3xl relative flex-row w-full justify-between px-8 bg-white shadow-soft-1"
-        style={{ bottom: -insets.bottom, paddingBottom: vh(4) }}
+        className="pt-6 mt-0 rounded-3xl relative flex-row w-full justify-between px-8 bg-white"
+        style={[
+          { bottom: -insets.bottom, paddingBottom: vh(4) },
+          shadows.soft1,
+        ]}
       >
         {footerItems.map((item, index) => {
           const animatedStyle = useAnimatedStyle(() => ({

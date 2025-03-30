@@ -13,6 +13,7 @@ import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
 import GradientButton from "@/components/custom/Button/GradientButton";
 import GenericIcon from "@/components/custom/Icon";
 import { useTranslation } from "react-i18next";
+import { shadows } from "@/styles/shadows";
 
 const PreferencesScreen = () => {
   const { setNavbarTitle, setShowBackButton } = useLayout();
@@ -105,7 +106,7 @@ const PreferencesScreen = () => {
   };
 
   useEffect(() => {
-    setNavbarTitle("Preferences");
+    setNavbarTitle(t("profileCards.account.preferences"));
     setShowBackButton(true);
   }, []);
 
@@ -136,7 +137,8 @@ const PreferencesScreen = () => {
 
           <Animated.View
             entering={ZoomIn}
-            className="gap-7 mt-5 mx-7 p-6 px-7 bg-white shadow-soft-1 rounded-2xl"
+            style={shadows.soft1}
+            className="gap-7 mt-5 mx-7 p-6 px-7 bg-white rounded-2xl"
           >
             <View className="flex-row items-center flex-wrap justify-between gap-6 border-b border-[#E5E6E6] pb-7 ">
               <Text className="font-poppins text-lg">

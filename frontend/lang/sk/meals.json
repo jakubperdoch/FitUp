@@ -1,5 +1,7 @@
 {
-  "meals": "Jedlá",
+  "meals": "jedlá",
+  "meal": "jedlo",
+
   "categories": "Kategórie",
   "nutrition": "Výživa",
   "allergens": "Alergény",
@@ -12,6 +14,8 @@
   "dinner": "Večera",
   "morningSnack": "Dopoludňajšia desiata",
   "lateNightSnack": "Nočná desiata",
+  "calories": "kCal",
+
   "clickHere": "Kliknite sem pre viac informácií",
   "empty": "Nenašli sa žiadne jedlá",
   "search": "Hľadať jedlá",
@@ -24,5 +28,21 @@
     "desserts": "Dezerty",
     "drinks": "Nápoje",
     "appetizers": "Predjedlá"
+  },
+
+  "nutritions": {
+    "calories": "",
+    "carbs": "sacharid",
+    "fat": "tuk",
+    "protein": "proteín",
+    "sugar": "cukor",
+    "fiber": "vláknina"
+  },
+
+  "deleteModal": {
+    "title": "Vymazať jedlo",
+    "message": "Naozaj chcete vymazať toto jedlo?",
+    "cancel": "Zrušiť",
+    "delete": "Vymazať"
   }
 }

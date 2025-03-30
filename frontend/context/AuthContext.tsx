@@ -1,6 +1,7 @@
 import * as SecureStore from "expo-secure-store";
 import { createContext, useContext, useEffect, useState } from "react";
 import apiFetch from "@/utils/apiFetch";
+import { router } from "expo-router";
 
 const AuthContext = createContext(null);
 
@@ -33,8 +34,10 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.access_token) {
-        setUserToken(response.access_token);
-        await SecureStore.setItemAsync("userToken", response.access_token);
+        if (response.user.onboarding == "true") {
+          setUserToken(response.access_token);
+          await SecureStore.setItemAsync("userToken", response.access_token);
+        }
         return Promise.resolve(response);
       } else {
         return Promise.reject(response);
@@ -83,9 +86,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const addToken = async (token) => {
+    setUserToken(token);
+    await SecureStore.setItemAsync("userToken", token);
+  };
+
   return (
     <AuthContext.Provider
-      value={{ logIn, logOut, register, userToken, isLoading }}
+      value={{ logIn, logOut, register, userToken, isLoading, addToken }}
     >
       {children}
     </AuthContext.Provider>

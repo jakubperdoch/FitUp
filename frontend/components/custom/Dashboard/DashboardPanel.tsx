@@ -2,6 +2,7 @@ import DashBoardCircle from "./DashboardCircle";
 import { useMemo } from "react";
 import Animated, { ZoomIn } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
+import { shadows } from "@/styles/shadows";
 
 interface ComponentProps {
   macros: {
@@ -27,42 +28,42 @@ const defaultMacroData = [
   {
     icon: icons.fire,
     title: "Calories",
-    size: 290,
+    size: 270,
     colors: ["#FF4747", "#FFBBBB", "#FFDEDE"],
     type: "calories",
   },
   {
     icon: icons.transFats,
     title: "Fats",
-    size: 260,
+    size: 250,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "fats",
   },
   {
     icon: icons.protein,
     title: "Protein",
-    size: 260,
+    size: 250,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "protein",
   },
   {
     icon: icons.carbohydrates,
     title: "Carbs",
-    size: 260,
+    size: 250,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "carbs",
   },
   {
     icon: icons.sugarCube,
     title: "Sugar",
-    size: 260,
+    size: 250,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "sugar",
   },
   {
     icon: icons.grain,
     title: "Fiber",
-    size: 260,
+    size: 250,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "fiber",
   },
@@ -113,7 +114,8 @@ const DashBoardComponent = ({ macros }: ComponentProps) => {
   return (
     <Animated.View
       entering={ZoomIn}
-      className="bg-white shadow-soft-3   rounded-3xl flex flex-row items-center justify-center flex-wrap gap-4 p-4"
+      style={shadows.soft4}
+      className="bg-white rounded-3xl flex flex-row items-center justify-center flex-wrap gap-4 p-4 px-2"
     >
       {macrosData.map((dataCircle, index) => {
         return (

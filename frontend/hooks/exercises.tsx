@@ -43,7 +43,7 @@ const useExercises = () => {
     }
 
     router.push({
-      pathname: "/workouts/layout/create",
+      pathname: "/workouts/create",
     });
   };
 

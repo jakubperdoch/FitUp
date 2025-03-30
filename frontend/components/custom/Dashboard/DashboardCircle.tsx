@@ -42,7 +42,7 @@ const DashBoardCircle = ({
       return (
         <View className="absolute items-center gap-1">
           <Image source={icon} className="h-8 w-8" />
-          <Text className="font-poppinsLight text-sm">{title}</Text>
+          <Text className="font-poppinsLight text-xs">{title}</Text>
         </View>
       );
     }
