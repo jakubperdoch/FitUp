@@ -1,6 +1,6 @@
 # FitUp: Your Ultimate Fitness Companion
 
-FitUp is a fitness app built with **React Native (Expo)** and **Laravel** to help you effortlessly track your food intake, sleep patterns, and daily activities. It also lets you create personalized workout routines based on your specific fitness goals. Thanks to external API integrations for food and workout data, FitUp provides monthly stats so you can monitor your progress over time.
+FitUp is a fitness app built with **React Native (Expo)** and **Laravel** to help you effortlessly track your food intake and daily activities. It also lets you create personalized workout routines based on your specific fitness goals. Thanks to external API integrations for food and workout data, FitUp provides monthly stats so you can monitor your progress over time.
 
 ---
 
