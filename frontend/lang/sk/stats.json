@@ -1,0 +1,21 @@
+{
+  "title": "Tvoj pokrok v tréningu",
+  "mostFrequent": "najčastejšie cvičenie",
+  "total": "Celkový počet tréningov",
+  "totalTime": "Celkový čas",
+  "workouts": "celkový počet tréningov",
+  "reps": "priemerné opakovania",
+  "hours": "hodín",
+  "weight": "priemerná váha",
+  "time": "celkový odtrénovaný čas",
+  "noData": "Žiadne dostupné údaje",
+  "title2": "Tvoj pokrok v diéte",
+  "mostFrequent2": "bolo tvoje najčastejšie jedlo",
+  "totalCalories": "z celkového počtu kalórií",
+  "calories": "z celkového počtu kalórií",
+  "fiber": "z celkového množstva vlákniny",
+  "protein": "z celkového množstva bielkovín",
+  "carbs": "z celkového množstva sacharidov",
+  "fat": "z celkového množstva tukov",
+  "sugar": "z celkového množstva cukru"
+}

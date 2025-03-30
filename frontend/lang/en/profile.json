@@ -1,0 +1,65 @@
+{
+  "profileCards": {
+    "profileDetails": {
+      "weight": "Weight",
+      "height": "Height",
+      "age": "Age",
+
+      "goal": {
+        "lose": "Lose weight",
+        "lean": "Lean muscle",
+        "gain": "Gain muscle"
+      }
+    },
+
+    "account": {
+      "title": "Account",
+      "profileDetails": "Profile details",
+      "preferences": "Preferences",
+      "changePassword": "Change password"
+    },
+
+    "notifications": {
+      "title": "Notifications",
+      "description": "Pop-up notifications"
+    },
+
+    "other": {
+      "title": "Other",
+      "language": "Language",
+      "logout": "Logout",
+      "explore": "Explore"
+    }
+  },
+
+  "languages": {
+    "title": "Select your preferred language",
+    "description": "Choose the language you want to use in the application",
+    "english": "English",
+    "slovak": "Slovak",
+    "save": "Save"
+  },
+
+  "preferences": {
+    "title": "Preferences",
+    "description": "Set your preferences",
+
+    "calories": "Calories",
+    "protein": "Protein",
+    "carbs": "Carbohydrates",
+    "fat": "Fat",
+    "sugar": "Sugar",
+    "fiber": "Fiber",
+    "save": "Save"
+  },
+
+  "password": {
+    "title": "Change password",
+    "description": "Change your password",
+
+    "current": "Current password",
+    "new": "New password",
+    "confirm": "Confirm new password",
+    "save": "Change password"
+  }
+}

@@ -1,82 +1,137 @@
-import { View, Text } from 'react-native';
-import DashBoardCircle from './DashboardCircle';
-import { useState } from 'react';
+import DashBoardCircle from "./DashboardCircle";
+import { useMemo } from "react";
+import Animated, { ZoomIn } from "react-native-reanimated";
+import { useTranslation } from "react-i18next";
+import { shadows } from "@/styles/shadows";
 
-const DashBoardComponent = () => {
-	const [data, setData] = useState([
-		{
-			title: 'Carbs',
-			value: 0.3,
-			size: 230,
-			colors: ['#FE9A05', '#F9CD8C', '#FFE4BC'],
-		},
-		{
-			value: 0.3,
-			size: 180,
-			icon: 'shoe-prints',
-			colors: ['#2CBF29', '#6FEE6D', '#BDFFBC'],
-		},
-		{
-			title: 'Fat',
-			value: 0.3,
-			size: 230,
-			colors: ['#FE9A05', '#F9CD8C', '#FFE4BC'],
-		},
-		{
-			value: 0.3,
-			size: 180,
-			icon: 'bed',
-			colors: ['#569AFF', '#91BDFF', '#BCD7FF'],
-		},
-		{
-			title: 'Calories',
-			icon: 'fire-flame-curved',
-			value: 0.1,
-			size: 280,
-			colors: ['#FE9A05', '#F9CD8C', '#FFE4BC'],
-		},
-		{
-			value: 0.1,
-			size: 180,
-			icon: 'droplet',
-			colors: ['#569AFF', '#91BDFF', '#BCD7FF'],
-		},
-		{
-			title: 'Protein',
-			value: 0.3,
-			size: 230,
-			colors: ['#FE9A05', '#F9CD8C', '#FFE4BC'],
-		},
-		{
-			value: 0.3,
-			size: 180,
-			icon: 'dumbbell',
-			colors: ['#569AFF', '#85B6FF', '#BCD7FF'],
-		},
-		{
-			title: 'Fiber',
-			value: 0.3,
-			size: 230,
-			colors: ['#FE9A05', '#F9CD8C', '#FFE4BC'],
-		},
-	]);
+interface ComponentProps {
+  macros: {
+    total_calories: number;
+    total_carbs: number;
+    total_fat: number;
+    total_fiber: number;
+    total_protein: number;
+    total_sugar: number;
+  };
+}
 
-	return (
-		<View className='bg-white shadow-soft-4 rounded-3xl flex flex-row items-center justify-center flex-wrap gap-4 p-4'>
-			{data.map((dataCircle, index) => {
-				return (
-					<DashBoardCircle
-						key={index}
-						colorVariation={dataCircle.colors}
-						title={dataCircle.title}
-						value={dataCircle.value}
-						size={dataCircle.size}
-						icon={dataCircle.icon}
-					/>
-				);
-			})}
-		</View>
-	);
+const icons = {
+  fire: require("@/assets/icons/fire.png"),
+  transFats: require("@/assets/icons/trans-fats.png"),
+  protein: require("@/assets/icons/protein.png"),
+  carbohydrates: require("@/assets/icons/carbohydrates.png"),
+  sugarCube: require("@/assets/icons/sugar-cube.png"),
+  grain: require("@/assets/icons/grain.png"),
+};
+
+const defaultMacroData = [
+  {
+    icon: icons.fire,
+    title: "Calories",
+    size: 270,
+    colors: ["#FF4747", "#FFBBBB", "#FFDEDE"],
+    type: "calories",
+  },
+  {
+    icon: icons.transFats,
+    title: "Fats",
+    size: 250,
+    colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
+    type: "fats",
+  },
+  {
+    icon: icons.protein,
+    title: "Protein",
+    size: 250,
+    colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
+    type: "protein",
+  },
+  {
+    icon: icons.carbohydrates,
+    title: "Carbs",
+    size: 250,
+    colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
+    type: "carbs",
+  },
+  {
+    icon: icons.sugarCube,
+    title: "Sugar",
+    size: 250,
+    colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
+    type: "sugar",
+  },
+  {
+    icon: icons.grain,
+    title: "Fiber",
+    size: 250,
+    colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
+    type: "fiber",
+  },
+];
+
+const DashBoardComponent = ({ macros }: ComponentProps) => {
+  const { t } = useTranslation();
+
+  const macrosData = useMemo(() => {
+    if (!macros) {
+      return defaultMacroData.map((item) => ({ ...item, value: 0 }));
+    }
+
+    return [
+      {
+        ...defaultMacroData[1],
+        title: t("dashboard.macros.fat", { ns: "home" }),
+        value: macros.total_fat,
+      },
+      {
+        ...defaultMacroData[0],
+        title: t("dashboard.macros.calories", { ns: "home" }),
+        value: macros.total_calories,
+      },
+      {
+        ...defaultMacroData[2],
+        title: t("dashboard.macros.protein", { ns: "home" }),
+        value: macros.total_protein,
+      },
+      {
+        ...defaultMacroData[3],
+        title: t("dashboard.macros.carbs", { ns: "home" }),
+        value: macros.total_carbs,
+      },
+      {
+        ...defaultMacroData[4],
+        title: t("dashboard.macros.sugar", { ns: "home" }),
+        value: macros.total_sugar,
+      },
+      {
+        ...defaultMacroData[5],
+        title: t("dashboard.macros.fiber", { ns: "home" }),
+        value: macros.total_fiber,
+      },
+    ];
+  }, [macros]);
+
+  return (
+    <Animated.View
+      entering={ZoomIn}
+      style={shadows.soft4}
+      className="bg-white rounded-3xl flex flex-row items-center justify-center flex-wrap gap-4 p-4 px-2"
+    >
+      {macrosData.map((dataCircle, index) => {
+        return (
+          <DashBoardCircle
+            key={index}
+            colorVariation={dataCircle.colors}
+            type={dataCircle.type}
+            title={dataCircle.title}
+            value={dataCircle.value}
+            size={dataCircle.size}
+            icon={dataCircle.icon}
+          />
+        );
+      })}
+    </Animated.View>
+  );
 };
 
 export default DashBoardComponent;

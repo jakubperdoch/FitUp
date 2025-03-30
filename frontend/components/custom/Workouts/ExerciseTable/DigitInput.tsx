@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { useEffect, useState } from "react";
 import GenericIcon from "@/components/custom/Icon";
+import { useTranslation } from "react-i18next";
 
 type ComponentProps = {
   numberValue: number;
@@ -33,6 +34,7 @@ const DigitInputComponent = ({
 }: ComponentProps) => {
   const [number, setNumber] = useState<number>(numberValue ?? 0);
   const [isEditing, setIsEditing] = useState(false);
+  const { t } = useTranslation("workouts");
 
   useEffect(() => {
     setNumber(numberValue ?? 0);
@@ -105,7 +107,11 @@ const DigitInputComponent = ({
 
   return (
     <View className="items-center gap-2">
-      <Text className="font-poppins">{type}</Text>
+      <Text className="font-poppins">
+        {type == "Reps"
+          ? t("workoutDetails.reps", { context: "workouts" })
+          : t("workoutDetails.weight", { context: "workouts" })}
+      </Text>
 
       <View className="flex-row items-center justify-between w-3/4">
         <TouchableOpacity

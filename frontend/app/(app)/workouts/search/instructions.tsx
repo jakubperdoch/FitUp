@@ -1,84 +1,101 @@
-import { Image, Text, View } from "react-native";
-import { useFocusEffect, useLocalSearchParams } from "expo-router";
-import { useCallback, useContext, useEffect, useState } from "react";
-import { WorkoutContext } from "@/context/WorkoutContext";
+import { Image, ScrollView, Text, View } from "react-native";
+import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
+import { useEffect, useCallback } from "react";
 import InstructionsSteps from "@/components/custom/Workouts/Search/InstructionsSteps";
 import GradientButton from "@/components/custom/Button/GradientButton";
+import { useLayout } from "@/context/LayoutContext";
+import { useQuery } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
+import { Spinner } from "@/components/ui/spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { setExercises } from "@/store/workoutPlan";
+import { RootState } from "@/store/store";
+import { useTranslation } from "react-i18next";
 
-const Data: ExerciseDetails = {
-  type: "exercise",
-  exerciseId: "2gPfomN",
-  name: "3/4 sit-up",
-  gifUrl: "2gPfomN.gif",
-  targetMuscles: ["abs"],
-  bodyParts: ["waist"],
-  equipments: ["body weight"],
-  secondaryMuscles: ["hip flexors", "lower back"],
-  instructions: [
-    "Step:1 Lie flat on your back with your knees bent and feet flat on the ground.",
-    "Step:2 Place your hands behind your head with your elbows pointing outwards.",
-    "Step:3 Engaging your abs, slowly lift your upper body off the ground, curling forward until your torso is at a 45-degree angle.",
-    "Step:4 Pause for a moment at the top, then slowly lower your upper body back down to the starting position.",
-    "Step:5 Repeat for the desired number of repetitions.",
-  ],
-};
 const InstructionsPage = () => {
-  const { setIsWorkoutImageVisible } = useContext(WorkoutContext);
   const params = useLocalSearchParams();
+  const { setShowBackButton } = useLayout();
+  const { t } = useTranslation("workouts");
+  const dispatch = useDispatch();
 
-  const [data, setData] = useState<ExerciseDetails | null>(null);
-  const [exerciseId, setExerciseId] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (params.exerciseId) {
-      if (Array.isArray(params.exerciseId)) {
-        setExerciseId(params.exerciseId[0]);
-      } else {
-        setExerciseId(params.exerciseId);
-      }
-
-      setData(Data);
-    }
-  }, []);
+  const exercises = useSelector(
+    (state: RootState) => state.workoutPlan.workout?.exercises,
+  );
 
   useEffect(() => {
-    setIsWorkoutImageVisible(false);
+    setShowBackButton(true);
   }, []);
 
   useFocusEffect(
     useCallback(() => {
       return () => {
-        setIsWorkoutImageVisible(true);
+        setShowBackButton(false);
       };
     }, []),
   );
 
+  const { data, isFetching } = useQuery({
+    queryKey: ["exerciseDetails", params?.id],
+    queryFn: () => apiFetch(`/exercises/${params?.id}/details`),
+    enabled: !!params?.id,
+  });
+
+  const handleAddExercise = (exercise: Exercise) => {
+    if (exercises && exercises.length > 0) {
+      const isExercise = (ex: Exercise | Superset): ex is Exercise => {
+        return ex.type === "exercise";
+      };
+      const filteredExercises = exercises.filter(isExercise);
+
+      dispatch(setExercises([...filteredExercises, exercise]));
+    } else {
+      dispatch(setExercises([exercise]));
+    }
+
+    router.push({
+      pathname: "/workouts/create",
+    });
+  };
+
   return (
-    <View className="px-7 gap-16">
-      <View className="flex-row items-start justify-between">
-        <View className="gap-2">
-          <Text className="capitalize font-poppinsSemiBold text-xl">
-            {data?.name}
-          </Text>
-          <Text className="font-poppins capitalize text-[#7B6F72] text-lg">
-            {data?.targetMuscles} | {data?.equipments}
-          </Text>
-        </View>
+    <ScrollView contentContainerClassName="gap-16 px-7 pb-32">
+      {isFetching ? (
+        <Spinner color={"#F77F00"} />
+      ) : (
+        <>
+          <View className="flex-col gap-7">
+            <View className="gap-1">
+              <Text className="capitalize font-poppinsSemiBold text-xl">
+                {data?.exercise?.name}
+              </Text>
+              <Text className="font-poppins capitalize text-[#7B6F72] text-lg">
+                {data?.exercise?.target_muscles} | {data?.exercise?.equipments}
+              </Text>
+            </View>
 
-        <Image
-          className="h-24 w-40"
-          source={require(`@/assets/animations/gifs/2gPfomN.gif`)}
-        />
-      </View>
-
-      {data?.instructions && <InstructionsSteps steps={data?.instructions} />}
+            {data?.exercise?.gif && (
+              <Image
+                className="h-40 w-40 mx-auto"
+                source={{
+                  uri: `https://fitup.scriptbase.eu/public/gifs/${data?.exercise?.gif}`,
+                }}
+              />
+            )}
+          </View>
+          {data?.exercise?.instructions && (
+            <InstructionsSteps steps={data?.exercise?.instructions} />
+          )}
+        </>
+      )}
 
       <GradientButton
         size={"full"}
-        title={"Add Exercise"}
-        handleSubmit={() => console.log("add")}
+        title={t("search.addExerciseButton", {
+          context: "workouts",
+        })}
+        handleSubmit={() => handleAddExercise(data?.exercise)}
       />
-    </View>
+    </ScrollView>
   );
 };
 

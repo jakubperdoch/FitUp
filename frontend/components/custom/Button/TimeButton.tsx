@@ -1,12 +1,13 @@
 // components/TimeButton.jsx
 import { LinearGradient } from "expo-linear-gradient";
-import { TouchableOpacity, View, Text } from "react-native";
+import { TouchableOpacity, View, Text, Alert } from "react-native";
 import GenericIcon from "../Icon";
 import Animated, { ZoomIn } from "react-native-reanimated";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { setTimer } from "@/store/workout";
 import { useWorkoutTimer } from "@/hooks/workouts";
+import { useTranslation } from "react-i18next";
 
 type ComponentProps = {
   id: number;
@@ -21,11 +22,14 @@ const TimeButton = (props: ComponentProps) => {
     (state: RootState) => state.workout,
   );
   const { startTimer, stopTimer } = useWorkoutTimer();
+  const { t } = useTranslation("workouts");
 
   const isCurrentWorkoutActive = isTimerActive && workout?.id === props.id;
+  const isAnotherWorkoutActive = workout?.id !== props.id && workout?.timer > 0;
 
   const buttonStateHandler = async () => {
-    if (isTimerActive && workout.id !== props.id) {
+    if (isAnotherWorkoutActive) {
+      Alert.alert(t("activeAlert.title"), t("activeAlert.description"));
       return;
     }
 
@@ -55,15 +59,15 @@ const TimeButton = (props: ComponentProps) => {
     if (timeValue <= 0) {
       return;
     } else if (timeValue < 60) {
-      return <Text>{timeValue}s</Text>;
+      return <Text className="font-poppins">{timeValue}s</Text>;
     } else if (timeValue < 3600) {
       const minutes = Math.floor(timeValue / 60);
-      return <Text>{minutes} min</Text>;
+      return <Text className="font-poppins">{minutes} min</Text>;
     } else {
       const hours = Math.floor(timeValue / 3600);
       const minutes = Math.floor((timeValue % 3600) / 60);
       return (
-        <Text className="h-min">
+        <Text className="h-min font-poppins">
           {hours} hour{hours > 1 ? "s" : ""}{" "}
           {minutes > 0 ? `${minutes} min` : ""}
         </Text>

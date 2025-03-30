@@ -1,19 +1,24 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Divider } from "@/components/ui/divider";
-import AppleLoginIcon from "@/assets/icons/apple-login--icon.svg";
 import ValidationForm from "@/components/custom/Inputs/ValidationForm";
 import { router } from "expo-router";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
-import { setPassword, setEmail } from "@/store/user";
+import { setPassword, setEmail, setToken } from "@/store/user";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
+import { useMutation } from "@tanstack/react-query";
+import { useAuth } from "@/context/AuthContext";
+import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
+import GenericIcon from "@/components/custom/Icon";
 
 const SignInScreen = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [localError, setLocalError] = useState<string | null>(null);
 
+  const { logIn } = useAuth();
   const dispatch = useDispatch();
 
   let userSchema = yup.object().shape({
@@ -41,17 +46,46 @@ const SignInScreen = () => {
     });
   };
 
-  const submitHandler = (formData) => {
-    // push formData to the backend
-    // TODO: Implement the backend logic
+  const {
+    mutate: loginMutation,
+    status,
+    error,
+  } = useMutation<LoginResponse, Error, { email: string; password: string }>({
+    mutationFn: (formData: { email: string; password: string }) =>
+      logIn(formData.email, formData.password),
+    onSuccess: (response) => {
+      if (!response) return;
 
+      if (response.user.onboarding !== "true") {
+        dispatch(setToken(response.access_token));
+        router.replace("/register-process/InformationScreen");
+      } else {
+        router.replace("/home");
+      }
+    },
+    onError: (error) => {
+      console.log(error);
+      setLocalError(error.message);
+    },
+  });
+
+  const submitHandler = (formData: { email: string; password: string }) => {
+    loginMutation(formData);
     dispatch(setEmail(watchFields[0]));
     dispatch(setPassword(watchFields[1]));
-    router.replace("/register-process/InformationScreen");
   };
 
+  useEffect(() => {
+    if (localError) {
+      const timer = setTimeout(() => {
+        setLocalError(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [localError]);
+
   return (
-    <View className="flex flex-col gap-5 justify-center items-center px-5 h-full">
+    <View className="flex flex-col gap-5 justify-center items-center px-5 h-full pb-3">
       <View className="d-flex items-center mb-6 mt-4">
         <Text className="text-2xl text-primary-500 font-poppins">
           Hey there,
@@ -69,6 +103,17 @@ const SignInScreen = () => {
         formType={"signin"}
       />
 
+      {localError && (
+        <Animated.View
+          entering={ZoomIn}
+          exiting={ZoomOut}
+          className="flex-row items-center gap-2"
+        >
+          <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
+          <Text className="font-poppins text-[#F77F00]">{localError}</Text>
+        </Animated.View>
+      )}
+
       <GradientButtonComponent
         size={"full"}
         handleSubmit={handleSubmit(submitHandler)}
@@ -77,12 +122,9 @@ const SignInScreen = () => {
 
       <View className="w-full flex flex-row items-center justify-center gap-2 mt-2">
         <Divider />
-        <Text className="text-lg">Or</Text>
+        <Text className="text-lg font-poppins">Or</Text>
         <Divider />
       </View>
-      <TouchableOpacity activeOpacity={0.7}>
-        <AppleLoginIcon width={60} height={60} />
-      </TouchableOpacity>
 
       <View className="flex flex-col gap-2 mt-5  items-center justify-center">
         <Text className="text-lg font-poppins">Don't have an account?</Text>

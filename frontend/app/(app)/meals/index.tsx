@@ -1,137 +1,165 @@
-import { ScrollView } from "react-native";
+import { Alert, ScrollView, Text } from "react-native";
 import { useState, useEffect } from "react";
 import DatePanelComponent from "@/components/custom/DatePanel";
 import FoodCardComponent from "@/components/custom/Meals/FoodCard";
 import MealDrawerComponent from "@/components/custom/Meals/MealDrawer";
 import { useRouter } from "expo-router";
 import { useLayout } from "@/context/LayoutContext";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
+import { Spinner } from "@/components/ui/spinner";
+import { useTranslation } from "react-i18next";
 
 const MealsPage = () => {
   const [dates, setDates] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [index, setIndex] = useState(3);
   const router = useRouter();
-
+  const [meals, setMeals] = useState({});
+  const { t } = useTranslation(["headers", "meals"]);
   const { setNavbarTitle } = useLayout();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
-    setNavbarTitle("Meal Schedule");
+    setNavbarTitle(t("mealsSchedule", { ns: "headers" }));
   }, []);
 
-  const ComponentData = [
-    {
-      title: "Breakfast",
-      numberOfMeals: 2,
-      numberOfCals: 400,
-
-      meals: [
-        {
-          id: 6,
-          image:
-            "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
-          foodName: "Burger",
-          quantity: "200g",
-          detailsRoute: "",
-          totalCals: "300kCal",
+  const {
+    mutate: retrieveMeals,
+    error,
+    isPending,
+  } = useMutation({
+    mutationKey: ["retrieveMeals"],
+    mutationFn: () =>
+      apiFetch("/meals/all", {
+        method: "POST",
+        body: {
+          date: selectedDate.toLocaleDateString(),
         },
-        {
-          id: 7,
-          image:
-            "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
-          foodName: "Burger",
-          quantity: "200g",
-          totalCals: "300kCal",
-        },
-      ],
+      }),
+    onSuccess: (data) => {
+      setMeals(data.meals);
     },
-    {
-      title: "Lunch",
-      numberOfMeals: 2,
-      numberOfCals: 400,
+  });
 
-      meals: [
-        {
-          id: 10,
-          image:
-            "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
-          foodName: "Burger",
-          totalCals: "300kCal",
-          quantity: "200g",
-        },
-        {
-          id: 11,
-          image:
-            "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
-          foodName: "Burger",
-          quantity: "200g",
-          totalCals: "300kCal",
-        },
-      ],
+  const { mutate: deleteMeal, error: deleteMealError } = useMutation({
+    mutationKey: ["deleteMeal"],
+    mutationFn: (id: string) =>
+      apiFetch(`/meals/${id}/delete`, { method: "DELETE" }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["retrieveMeals"] });
     },
-  ];
+  });
+
+  useEffect(() => {
+    retrieveMeals();
+  }, [selectedDate]);
 
   const mealOptions = [
     {
-      title: "Breakfast",
+      title: t("breakfast", { ns: "meals" }),
       value: "breakfast",
       route: "/meals/search/breakfast",
     },
     {
-      title: "Morning Snack",
+      title: t("morningSnack", { ns: "meals" }),
       value: "morningSnack",
       route: "/meals/search/morningSnack",
     },
     {
-      title: "Lunch",
+      title: t("lunch", { ns: "meals" }),
       value: "lunch",
       route: "/meals/search/lunch",
     },
     {
-      title: "Afternoon Snack",
+      title: t("afternoonSnack", { ns: "meals" }),
       value: "afternoonSnack",
       route: "/meals/search/afternoonSnack",
     },
     {
-      title: "Dinner",
+      title: t("dinner", { ns: "meals" }),
       value: "dinner",
       route: "/meals/search/dinner",
     },
     {
-      title: "Late Night Snack",
+      title: t("lateNightSnack", { ns: "meals" }),
       value: "lateNightSnack",
       route: "/meals/search/lateNightSnack",
     },
   ];
 
   const pressHandler = (option) => {
-    router.push(option.route);
+    router.push({
+      pathname: option.route,
+      params: { date: String(selectedDate.toLocaleDateString()) },
+    });
+  };
+
+  const deleteMealHandler = (id: number) => {
+    Alert.alert(
+      t("deleteModal.title", { ns: "meals" }),
+      t("deleteModal.message", { ns: "meals" }),
+      [
+        {
+          text: t("deleteModal.cancel", { ns: "meals" }),
+          onPress: () => {},
+          style: "cancel",
+        },
+        {
+          text: t("deleteModal.delete", { ns: "meals" }),
+          onPress: () => {
+            deleteMeal(String(id));
+            retrieveMeals();
+          },
+          style: "destructive",
+        },
+      ],
+    );
   };
 
   return (
     <ScrollView contentContainerClassName="pb-32" className="!mt-0">
-      <DatePanelComponent
-        dates={dates}
-        selectedDate={selectedDate}
-        index={index}
-        setDates={setDates}
-        setSelectedDate={setSelectedDate}
-        setIndex={setIndex}
-      />
-
-      {ComponentData.map((section, id) => (
-        <FoodCardComponent
-          key={id}
-          title={section.title}
-          numberOfCals={section.numberOfCals}
-          numberOfMeals={section.numberOfMeals}
-          meals={section.meals}
+      <GestureHandlerRootView>
+        <DatePanelComponent
+          dates={dates}
+          selectedDate={selectedDate}
+          index={index}
+          setDates={setDates}
+          setSelectedDate={setSelectedDate}
+          setIndex={setIndex}
         />
-      ))}
 
-      <MealDrawerComponent
-        drawerOptions={mealOptions}
-        pressHandler={pressHandler}
-      />
+        {isPending ? (
+          <Spinner color={"#F77F00"} />
+        ) : Object.keys(meals).length === 0 ||
+          Object.values(meals).every(
+            (mealGroup: any[]) => mealGroup?.length === 0,
+          ) ? (
+          <Text className="text-center font-poppins mt-10 text-[#ADA4A5]">
+            {t("empty", { ns: "meals" })}
+          </Text>
+        ) : (
+          Object.keys(meals).map((key, id) => (
+            <FoodCardComponent
+              key={id}
+              title={key}
+              deleteMealHandler={deleteMealHandler}
+              numberOfCals={meals[key].reduce(
+                (acc, meal) => acc + meal.calories,
+                0,
+              )}
+              numberOfMeals={meals[key].length}
+              meals={meals[key]}
+            />
+          ))
+        )}
+
+        <MealDrawerComponent
+          drawerOptions={mealOptions}
+          pressHandler={pressHandler}
+        />
+      </GestureHandlerRootView>
     </ScrollView>
   );
 };

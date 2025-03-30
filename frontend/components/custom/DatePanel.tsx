@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, FlatList } from "react-native";
 import GenericIcon from "@/components/custom/Icon";
 import DateCardComponent from "@/components/custom/Meals/DateCard";
 import { Spinner } from "../ui/spinner";
+import { getCurrentLanguage } from "@/lang/i18n";
 
 type DateType = {
   day: string;
@@ -29,6 +30,7 @@ const DatePanelComponent = (props: ComponentProps) => {
   const [months, setMonths] = useState<MonthType[]>([]);
   const [currentDate, setCurrentDate] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(true);
+  const [currentLanguage, setCurrentLanguage] = useState<string | null>(null);
 
   const ITEM_WIDTH = 89.5;
   const date = new Date();
@@ -40,7 +42,7 @@ const DatePanelComponent = (props: ComponentProps) => {
 
     while (date.getMonth() === month - 1) {
       if (!month) {
-        console.log("problem s mesiacom");
+        console.log("Month is not valid");
       }
       const localDate = new Date(
         date.getFullYear(),
@@ -52,7 +54,10 @@ const DatePanelComponent = (props: ComponentProps) => {
       );
 
       datesArray.push({
-        day: localDate.toLocaleString("default", { weekday: "short" }),
+        day: localDate.toLocaleString(
+          currentLanguage === "sk" ? "Sk-sk" : "default",
+          { weekday: "short" },
+        ),
         date: localDate,
       });
 
@@ -72,7 +77,10 @@ const DatePanelComponent = (props: ComponentProps) => {
       monthDate.setMonth(baseMonth + i);
 
       monthsArray.push({
-        month: monthDate.toLocaleString("default", { month: "long" }),
+        month: monthDate.toLocaleString(
+          currentLanguage === "sk" ? "Sk-sk" : "default",
+          { month: "long" },
+        ),
         year: monthDate.getFullYear(),
         digitalMonth: monthDate.getMonth() + 1,
       });
@@ -97,9 +105,19 @@ const DatePanelComponent = (props: ComponentProps) => {
   };
 
   useEffect(() => {
+    const loadLanguage = async () => {
+      const language = await getCurrentLanguage();
+      if (language) {
+        setCurrentLanguage(language);
+      }
+    };
+    loadLanguage();
+  }, []);
+
+  useEffect(() => {
     getDatesInMonth(date.getFullYear(), date.getMonth() + 1);
     getMonths();
-  }, []);
+  }, [currentLanguage]);
 
   useEffect(() => {
     if (months.length > 0) {
@@ -119,7 +137,7 @@ const DatePanelComponent = (props: ComponentProps) => {
             <TouchableOpacity onPress={() => dateChangeHandler(-1)}>
               <GenericIcon name={"ChevronLeft"} color="#ADA4A5" />
             </TouchableOpacity>
-            <Text className="text-center text-[#ADA4A5] text-2xl">
+            <Text className="text-center font-poppins capitalize w-44 text-[#ADA4A5] text-xl">
               {currentDate || ""}
             </Text>
             <TouchableOpacity onPress={() => dateChangeHandler(+1)}>

@@ -1,6 +1,7 @@
 import { Switch, Text, TouchableOpacity, View } from "react-native";
 import GenericIcon from "@/components/custom/Icon";
 import { router } from "expo-router";
+import { shadows } from "@/styles/shadows";
 
 interface Link {
   title: string;
@@ -36,7 +37,8 @@ const ProfileSectionsComponent = ({
       {cards.map((section) => (
         <View
           key={section.title}
-          className="bg-white shadow-soft-1 rounded-2xl p-6"
+          style={shadows.soft1}
+          className="bg-white  rounded-2xl p-6"
         >
           <Text className="font-poppinsSemiBold text-2xl mb-5">
             {section.title}
@@ -60,6 +62,7 @@ const ProfileSectionsComponent = ({
                     value={isNotificationEnabled}
                     ios_backgroundColor={"#3e3e3e"}
                     trackColor={{ false: "#3e3e3e", true: "#F77F00" }}
+                    thumbColor={"#fff"}
                   />
                 ) : (
                   <GenericIcon

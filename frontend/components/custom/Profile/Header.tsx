@@ -2,12 +2,15 @@ import { Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import ProfilePictureMan from "@/assets/icons/profile--man.svg";
 import ProfilePictureWoman from "@/assets/icons/profile--woman.svg";
+import { useTranslation } from "react-i18next";
 
 interface ComponentProps {
   user: Partial<User>;
 }
 
 const ProfileHeaderComponent = ({ user }: ComponentProps) => {
+  const { t } = useTranslation("profile");
+
   return (
     <View className="flex-row items-center gap-7">
       <LinearGradient
@@ -20,6 +23,7 @@ const ProfileHeaderComponent = ({ user }: ComponentProps) => {
           width: 90,
           height: 90,
           alignItems: "center",
+          overflow: "hidden",
         }}
       >
         {user.gender === "male" ? (
@@ -40,7 +44,9 @@ const ProfileHeaderComponent = ({ user }: ComponentProps) => {
           {user.userCredentials.email}
         </Text>
         <Text className="font-poppins text-[#7B6F72] capitalize">
-          {user.goal}
+          {t(`profileCards.profileDetails.goal.${user.goal.toLowerCase()}`, {
+            context: "profile",
+          })}
         </Text>
       </View>
     </View>

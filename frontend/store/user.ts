@@ -14,6 +14,7 @@ const initialState: Partial<User> = {
   },
   gender: "",
   goal: "",
+  token: "",
 };
 
 export const userSlice = createSlice({
@@ -47,6 +48,9 @@ export const userSlice = createSlice({
     setUser: (state, action: PayloadAction<User>) => {
       return { ...state, ...action.payload };
     },
+    setToken: (state, action: PayloadAction<string>) => {
+      state.token = action.payload;
+    },
   },
 });
 
@@ -60,6 +64,7 @@ export const {
   setHeight,
   setGoal,
   setUser,
+  setToken,
 } = userSlice.actions;
 
 export default userSlice.reducer;

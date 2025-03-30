@@ -2,17 +2,23 @@ import { Input, InputField, InputSlot } from "@/components/ui/input";
 import { View } from "react-native";
 import { useLocalSearchParams, router } from "expo-router";
 import { useLayout } from "@/context/LayoutContext";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import FoodScrollComponent from "@/components/custom/Meals/Scroll";
 import CategoryScrollComponent from "@/components/custom/Meals/Scroll/CategoryScroll";
 import GenericIcon from "@/components/custom/Icon";
-import debounce from "lodash/debounce";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
+import { useDebounce } from "@uidotdev/usehooks";
+import { useTranslation } from "react-i18next";
 
 const MealsSearchPage = () => {
-  const { name } = useLocalSearchParams();
+  const { name, date } = useLocalSearchParams();
   const { setNavbarTitle } = useLayout();
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [page, setPage] = useState(0);
   const [meals, setMeals] = useState([]);
+  const { t } = useTranslation("meals");
+  const debouncedSearch = useDebounce(searchQuery, 100);
 
   useEffect(() => {
     const nameString = Array.isArray(name) ? name[0] : name;
@@ -25,82 +31,76 @@ const MealsSearchPage = () => {
     }
   }, [name, setNavbarTitle]);
 
-  const debouncedSearch = useCallback(
-    debounce(async (query: string) => {
-      if (query.trim() === "") {
-        setMeals([]);
-        return;
-      }
-
-      try {
-        setMeals(mealsData);
-      } catch (err) {
-      } finally {
-      }
-    }, 1000),
-    [],
-  );
+  const { isFetching, data, refetch } = useQuery({
+    queryKey: ["meals", debouncedSearch, page],
+    queryFn: () => apiFetch(`/meals?search=${debouncedSearch}&page=${page}`),
+    placeholderData: keepPreviousData,
+    enabled: !!debouncedSearch.trim(),
+  });
 
   useEffect(() => {
-    debouncedSearch(searchQuery);
+    if (data) {
+      setMeals((prev) => [...prev, ...data?.meals]);
+    }
+  }, [data]);
 
-    return debouncedSearch.cancel;
-  }, [searchQuery, debouncedSearch]);
+  const onRefresh = () => {
+    if (isFetching) return;
+    refetch().catch((err) => console.error(err));
+  };
 
-  const mealsData = [
-    { id: 1, name: "Chicken", calories: 200 },
-    { id: 2, name: "Beef", calories: 300 },
-    { id: 3, name: "Fish", calories: 150 },
-    { id: 4, name: "Pork", calories: 250 },
-    { id: 5, name: "Lamb", calories: 400 },
-    { id: 6, name: "Burger", calories: 500 },
-    { id: 7, name: "Pizza", calories: 600 },
-    { id: 8, name: "Pasta", calories: 700 },
-    { id: 9, name: "Rice", calories: 800 },
-  ];
+  const loadMore = () => {
+    if (isFetching) return;
+    setPage((prev) => prev + 1);
+  };
+
+  useEffect(() => {
+    setMeals([]);
+    setPage(0);
+  }, [debouncedSearch]);
 
   const categories = [
     {
       id: 1,
-      name: "Salads",
+      name: t("categoriesList.salads", { context: "meals" }),
     },
     {
       id: 2,
-      name: "Soups",
+      name: t("categoriesList.soups", { context: "meals" }),
     },
     {
       id: 3,
-      name: "Main Courses",
+      name: t("categoriesList.mainCourses", { context: "meals" }),
     },
     {
       id: 4,
-      name: "Desserts",
+      name: t("categoriesList.desserts", { context: "meals" }),
     },
     {
       id: 5,
-      name: "Drinks",
+      name: t("categoriesList.drinks", { context: "meals" }),
     },
 
     {
       id: 6,
-      name: "Appetizers",
+      name: t("categoriesList.appetizers", { context: "meals" }),
     },
   ];
 
   const onFoodCardClick = (id: number) => {
     router.push({
       pathname: "/meals/details",
-      params: { id: id, isNew: String(true) },
+      params: { food_id: id, date: date, eaten_at: name },
     });
   };
 
-  const onCategoryClick = (id: number) => {
-    console.log(`Clicked on category with id: ${id}`);
+  const onCategoryClick = (name: string) => {
+    setSearchQuery(name);
   };
 
   return (
     <View className="flex flex-col gap-7">
-      <Input size="xl" variant="rounded" className="mx-7 ">
+      <Input size="xl" variant="rounded" className="mx-7">
         <InputSlot>
           <GenericIcon name="Search" size={20} color="#7B6F72" />
         </InputSlot>
@@ -109,7 +109,8 @@ const MealsSearchPage = () => {
           value={searchQuery}
           onChangeText={setSearchQuery}
           type={"text"}
-          placeholder="Search for meals"
+          placeholder={t("search", { context: "meals" })}
+          placeholderTextColor={"#7B6F72"}
           autoCapitalize="words"
           autoCorrect={false}
         />
@@ -120,7 +121,13 @@ const MealsSearchPage = () => {
         onClick={onCategoryClick}
       />
 
-      <FoodScrollComponent meals={meals} onClick={onFoodCardClick} />
+      <FoodScrollComponent
+        loadMore={loadMore}
+        onRefresh={onRefresh}
+        isLoading={isFetching}
+        meals={meals}
+        onClick={onFoodCardClick}
+      />
     </View>
   );
 };

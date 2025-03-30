@@ -1,16 +1,21 @@
 import { Text, View } from "react-native";
 import ExerciseTableCell from "@/components/custom/Workouts/ExerciseTable/Cell";
+import { useTranslation } from "react-i18next";
 type ComponentProps = {
-  workout: WorkoutDetails;
+  workout: Partial<WorkoutDetails>;
 };
 
-const ExerciseTableComponent = (props: ComponentProps) => {
+const ExerciseTableComponent = ({ workout }: ComponentProps) => {
+  const { t } = useTranslation("workouts");
+
   return (
     <View>
-      <Text className="font-poppinsSemiBold text-2xl mb-6">Exercises</Text>
+      <Text className="font-poppinsSemiBold text-2xl mb-6">
+        {t("workoutDetails.exercises", { context: "workouts" })}
+      </Text>
 
-      {props.workout.exercises.length > 0 ? (
-        props.workout.exercises.map((exercise, exerciseIndex) =>
+      {workout?.exercises?.length > 0 ? (
+        workout.exercises.map((exercise, exerciseIndex) =>
           exercise?.type === "exercise" ? (
             <View
               className="border-b mb-4 border-black/20 "
@@ -27,7 +32,8 @@ const ExerciseTableComponent = (props: ComponentProps) => {
           ) : (
             <View className="border-b mb-4 border-black/20" key={exerciseIndex}>
               <Text className="font-poppins text-[#F77F00] text-lg">
-                {exerciseIndex + 1} Superset
+                {exerciseIndex + 1}{" "}
+                {t("workoutDetails.superset", { context: "workouts" })}
               </Text>
               {exercise.exercises.map((exercise, superSetIndex) => (
                 <View className="mb-4" key={superSetIndex}>
@@ -43,7 +49,7 @@ const ExerciseTableComponent = (props: ComponentProps) => {
         )
       ) : (
         <Text className="font-poppins text-[#7B6F72] text-center text-lg">
-          Workout Plan is empty
+          {t("workoutDetails.empty.workoutPlan", { context: "workouts" })}
         </Text>
       )}
     </View>

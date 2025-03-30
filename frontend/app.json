@@ -3,7 +3,7 @@
     "name": "FitUp",
     "slug": "FitUp",
     "scheme": "fitup",
-    "version": "1.0.0",
+    "version": "1.0.+",
     "orientation": "portrait",
     "icon": "./assets/icons/icon.png",
     "splash": {
@@ -13,9 +13,7 @@
     },
     "newArchEnabled": true,
     "userInterfaceStyle": "light",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
       "requireFullScreen": true,
@@ -24,11 +22,7 @@
       },
       "bundleIdentifier": "com.jakubperdoch.FitUp"
     },
-    "plugins": [
-      "expo-router",
-      "expo-font",
-      "expo-secure-store"
-    ],
+    "plugins": ["expo-router", "expo-font", "expo-secure-store"],
     "extra": {
       "router": {
         "origin": false
@@ -38,7 +32,8 @@
       }
     },
     "android": {
-      "package": "com.jakubperdoch.FitUp"
+      "package": "com.jakubperdoch.FitUp",
+      "versionCode": 2
     }
   }
 }

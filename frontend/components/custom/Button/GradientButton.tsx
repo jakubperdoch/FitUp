@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   sm: {
     height: 40,
     paddingHorizontal: 15,
-    width: 110,
+    width: 120,
     fontSize: 13,
     fontWeight: "600",
   },
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     paddingHorizontal: 15,
     fontWeight: "600",
-    width: 130,
+    width: 140,
   },
   full: {
     width: "100%",

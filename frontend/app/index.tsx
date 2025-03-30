@@ -5,15 +5,17 @@ import { StyleSheet } from "react-native";
 import isFontLoading from "@/constants/fonts";
 import { router } from "expo-router";
 import { useAuth } from "@/context/AuthContext";
+import { chosenLanguage } from "@/lang/i18n";
 
 const RootPage = () => {
   const logoAnimation = useRef(null);
-  const { userToken } = useAuth();
+  const { userToken, logOut } = useAuth();
 
   useEffect(() => {
     const isDataLoading = async () => {
       try {
         await userToken;
+        await chosenLanguage();
         await isFontLoading();
       } catch (e) {
         console.log(e);

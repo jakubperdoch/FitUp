@@ -15,4 +15,5 @@ interface User {
   userBiometrics: UserBiometrics;
   goal: string;
   gender: string;
+  token?: string;
 }

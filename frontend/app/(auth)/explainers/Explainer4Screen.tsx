@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useExplainer } from "@/context/ExplainerContext";
-import ExplainerImage from "@/assets/images/explainers-fourth.svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Image } from "react-native";
 
 const ExplainerPageFour = () => {
   const { setExplainerTitle, setExplainerDescription, setExplainerImage } =
@@ -16,10 +16,9 @@ const ExplainerPageFour = () => {
 
   return (
     <>
-      <ExplainerImage
-        width="100%"
-        height="100%"
-        style={{ top: -insets.top - 10 }}
+      <Image
+        className="h-full w-full"
+        source={require("@/assets/images/explainers-fourth.png")}
       />
     </>
   );

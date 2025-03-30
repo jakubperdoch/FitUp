@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useExplainer } from "@/context/ExplainerContext";
-import ExplainerImage from "@/assets/images/explainers-first.svg";
-import { StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ExplainerPageOne = () => {
@@ -15,11 +14,9 @@ const ExplainerPageOne = () => {
   }, [setExplainerTitle, setExplainerDescription]);
 
   return (
-    <ExplainerImage
-      width="100%"
-      height="100%"
-      className="flex-1"
-      style={{ top: -insets.top }}
+    <Image
+      className="h-full w-full"
+      source={require("@/assets/images/explainers-first.png")}
     />
   );
 };

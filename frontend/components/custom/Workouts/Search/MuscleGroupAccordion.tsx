@@ -11,14 +11,15 @@ import { Spinner } from "@/components/ui/spinner";
 import { useMemo } from "react";
 import SearchCard from "@/components/custom/Workouts/Search/SearchCard";
 import Animated, { ZoomIn } from "react-native-reanimated";
+import { shadows } from "@/styles/shadows";
 
 interface ComponentProps {
-  muscleGroups: string[];
+  muscleGroups: { id: number; name: string }[];
   exercises: Exercise[];
   handleExercisePress: (exercise: Exercise) => void;
   selectedExercises: Exercise[];
-  accordionSearch: (query: string) => void;
-  isLoaded: boolean;
+  accordionSearch: (name: string) => void;
+  isLoading: boolean;
   error?: string;
 }
 
@@ -28,54 +29,43 @@ const MuscleGroupAccordionComponent = ({
   handleExercisePress,
   selectedExercises,
   accordionSearch,
-  isLoaded,
+  isLoading,
 }: ComponentProps) => {
-  const groupedExercises = useMemo(() => {
-    const groups: { [key: string]: Exercise[] } = {};
-
-    muscleGroups.forEach((group) => {
-      groups[group] = exercises.filter((exercise) =>
-        exercise.targetMuscles.includes(group),
-      );
-    });
-
-    return groups;
-  }, [muscleGroups, exercises]);
-
   return (
     <Accordion
       size="md"
       type="single"
-      className="bg-transparent shadow-soft-1"
+      style={shadows.soft1}
+      className="bg-transparent"
       isCollapsible={true}
       onValueChange={(query) => accordionSearch(query[0])}
     >
-      {muscleGroups.map((muscleGroup, index) => (
+      {muscleGroups?.map((muscleGroup, index) => (
         <AccordionItem
           key={index}
-          value={muscleGroup}
+          value={muscleGroup.name}
           className="mb-5 rounded-lg"
         >
           <AccordionHeader>
             <AccordionTrigger>
               <AccordionTitleText className="text-lg font-poppins capitalize font-semibold">
-                {muscleGroup}
+                {muscleGroup?.name}
               </AccordionTitleText>
             </AccordionTrigger>
           </AccordionHeader>
           <AccordionContent className="gap-5 pt-4">
-            {!isLoaded ? (
+            {isLoading ? (
               <Spinner className="mx-auto  mb-3" size="small" color="#F77F00" />
             ) : (
-              groupedExercises[muscleGroup].map((exercise) => (
-                <Animated.View key={exercise.exerciseId} entering={ZoomIn}>
+              exercises?.map((exercise) => (
+                <Animated.View key={exercise.exercise_id} entering={ZoomIn}>
                   <SearchCard
                     selectedExercises={selectedExercises}
                     isSelected={selectedExercises.some(
-                      (ex) => ex.exerciseId === exercise.exerciseId,
+                      (ex) => ex.exercise_id === exercise.exercise_id,
                     )}
                     handleExercisePress={handleExercisePress}
-                    key={exercise.exerciseId}
+                    key={exercise.exercise_id}
                     exercise={exercise}
                   />
                 </Animated.View>

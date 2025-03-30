@@ -82,10 +82,9 @@ const InformationScreen = () => {
 
   const submitHandler = () => {
     dispatch(setGender(watchedFields[0]));
-    dispatch(setBirthDate(new Date(watchedFields[1]).toISOString()));
-    dispatch(setReduxHeight(watchedFields[2]));
-    dispatch(setReduxWeight(watchedFields[3]));
-    console.log("Correct");
+    dispatch(setBirthDate(new Date(watchedFields[1]).toLocaleDateString()));
+    dispatch(setReduxHeight(watchedFields[3]));
+    dispatch(setReduxWeight(watchedFields[2]));
     router.push("/register-process/SelectingGoalsScreen");
   };
 

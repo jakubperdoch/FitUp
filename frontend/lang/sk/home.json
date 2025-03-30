@@ -1,0 +1,26 @@
+{
+  "dashboard": {
+    "title": "Prehľad",
+
+    "macros": {
+      "fat": "Tuky",
+      "carbs": "Sacharidy",
+      "protein": "Bielkoviny",
+      "calories": "Kalórie",
+      "fiber": "Vláknina",
+      "sugar": "Cukor"
+    }
+  },
+
+  "meals": {
+    "title": "Dnešné jedlá",
+    "empty": "Žiadne jedlá na dnes"
+  },
+
+  "workouts": {
+    "title": "Nadchádzajúce tréningy",
+    "empty": "Žiadne tréningy na dnes"
+  },
+
+  "more": "Zobraziť viac"
+}

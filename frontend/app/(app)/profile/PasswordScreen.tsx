@@ -1,17 +1,21 @@
 import { Text, View } from "react-native";
-import { Input, InputField, InputSlot } from "@/components/ui/input";
+import { Input, InputField } from "@/components/ui/input";
 import GenericIcon from "@/components/custom/Icon";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { router, useFocusEffect } from "expo-router";
 import GradientButton from "@/components/custom/Button/GradientButton";
-import Animated, { ZoomIn } from "react-native-reanimated";
+import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
 import { useLayout } from "@/context/LayoutContext";
 import { useCallback, useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
+import { useTranslation } from "react-i18next";
 
 const PasswordScreen = () => {
   const { setNavbarTitle, setShowBackButton } = useLayout();
+  const { t } = useTranslation(["profile", "headers"]);
 
   const passwordSchema = yup.object().shape({
     oldPassword: yup.string().required("Old Password is required"),
@@ -28,20 +32,34 @@ const PasswordScreen = () => {
     control,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm({
     resolver: yupResolver(passwordSchema),
   });
 
-  const watchFields = watch(["oldPassword", "newPassword", "confirmPassword"]);
+  const { mutate: changePassword, error } = useMutation({
+    mutationKey: ["changePassword"],
+    mutationFn: (data: { oldPassword: string; newPassword: string }) =>
+      apiFetch("/auth/change-password", {
+        method: "PUT",
+        body: {
+          current_password: data.oldPassword,
+          new_password: data.newPassword,
+        },
+      }),
+    onSuccess: () => {
+      router.replace("/profile");
+    },
+  });
 
   const submitHandler = (formData) => {
-    // push formData to the backend
-    router.replace("/profile");
+    changePassword({
+      oldPassword: formData.oldPassword,
+      newPassword: formData.newPassword,
+    });
   };
 
   useEffect(() => {
-    setNavbarTitle("Change Password");
+    setNavbarTitle(t("changePassword", { ns: "headers" }));
     setShowBackButton(true);
   }, []);
 
@@ -55,21 +73,28 @@ const PasswordScreen = () => {
 
   return (
     <View className="gap-7 mt-5 px-7">
+      <View className="gap-1">
+        <Text className="font-poppinsSemiBold text-xl">
+          {t("password.title", { context: "profile" })}
+        </Text>
+        <Text className="text-[#6B7280] font-poppins text-sm">
+          {t("password.description", { context: "profile" })}
+        </Text>
+      </View>
+
       <Controller
         control={control}
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <Input size="xl" variant="rounded">
-            <InputSlot>
-              <GenericIcon name={"Lock"} />
-            </InputSlot>
             <InputField
               className="text-lg"
               type={"text"}
               value={value}
               onChangeText={onChange}
-              placeholder="Old Password"
+              placeholder={t("password.current", { context: "profile" })}
               autoCorrect={false}
+              autoCapitalize={"none"}
             />
           </Input>
         )}
@@ -93,16 +118,14 @@ const PasswordScreen = () => {
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <Input size="xl" variant="rounded">
-            <InputSlot>
-              <GenericIcon name={"Lock"} />
-            </InputSlot>
             <InputField
               className="text-lg"
               type={"text"}
               value={value}
               onChangeText={onChange}
-              placeholder="New Password"
+              placeholder={t("password.new", { context: "profile" })}
               autoCorrect={false}
+              autoCapitalize={"none"}
             />
           </Input>
         )}
@@ -126,16 +149,14 @@ const PasswordScreen = () => {
         rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
           <Input size="xl" variant="rounded">
-            <InputSlot>
-              <GenericIcon name={"Lock"} />
-            </InputSlot>
             <InputField
               className="text-lg"
               type={"text"}
               value={value}
               onChangeText={onChange}
-              placeholder="Confirm Password"
+              placeholder={t("password.confirm", { context: "profile" })}
               autoCorrect={false}
+              autoCapitalize={"none"}
             />
           </Input>
         )}
@@ -154,10 +175,23 @@ const PasswordScreen = () => {
         </Animated.View>
       )}
 
+      {error && (
+        <Animated.View
+          entering={ZoomIn}
+          exiting={ZoomOut}
+          className="flex-col items-center gap-2 justify-center"
+        >
+          <GenericIcon name={"OctagonAlert"} color="#F77F00" size={20} />
+          <Text className="font-poppins text-[#F77F00]">
+            {error instanceof Error ? error.message : String(error)}
+          </Text>
+        </Animated.View>
+      )}
+
       <View className="mt-8">
         <GradientButton
           size={"full"}
-          title={"Change Password"}
+          title={t("password.save", { context: "profile" })}
           handleSubmit={handleSubmit(submitHandler)}
         />
       </View>

@@ -10,6 +10,7 @@ import {
 import DigitInput from "@/components/custom/Workouts/ExerciseTable/DigitInput";
 import { useContext } from "react";
 import { WorkoutContext } from "@/context/WorkoutContext";
+import { shadows } from "@/styles/shadows";
 
 type ComponentProps = {
   showModal: boolean;
@@ -34,7 +35,7 @@ const ExerciseModalComponent = ({
   return (
     <Modal isOpen={showModal} onClose={() => setShowModal()}>
       <ModalBackdrop />
-      <ModalContent className="rounded-xl shadow-soft-2">
+      <ModalContent style={shadows.soft2} className="rounded-xl">
         <ModalHeader>
           <ModalCloseButton></ModalCloseButton>
         </ModalHeader>
