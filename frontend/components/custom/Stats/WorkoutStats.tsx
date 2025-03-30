@@ -205,7 +205,7 @@ const WorkoutStatsComponent = () => {
                   <Text className="text-[#D62828]">
                     {Number(
                       data?.workout_stats?.totalWorkoutTime / 360,
-                    ).toFixed(1)}{" "}
+                    ).toFixed(2)}{" "}
                     {t("hours", { context: "meals" })}
                   </Text>{" "}
                   {t("time", { context: "meals" })}

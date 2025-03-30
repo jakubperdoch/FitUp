@@ -81,6 +81,11 @@
     }
   },
 
+  "activeAlert": {
+    "title": "Aktívny tréning",
+    "description": "Iný tréning je už aktívny. Prosím, dokončite alebo zastavte aktuálny tréning pred začatím nového."
+  },
+
   "search": {
     "title": "Cvičenia",
     "searchPlaceholder": "Hľadať cvičenia",

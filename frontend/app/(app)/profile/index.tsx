@@ -56,10 +56,17 @@ const ProfileScreen = () => {
       title: t("profileCards.account.title", { context: "profile" }),
       links: [
         {
-          title: t("profileCards.account.preferences", {
+          title: t("profileCards.account.profileDetails", {
             context: "profile",
           }),
           icon: "User",
+          route: "profile/ProfileDetailsScreen",
+        },
+        {
+          title: t("profileCards.account.preferences", {
+            context: "profile",
+          }),
+          icon: "Settings2",
           route: "profile/PreferencesScreen",
         },
         {
@@ -99,7 +106,9 @@ const ProfileScreen = () => {
         },
 
         {
-          title: "Explore",
+          title: t("profileCards.other.explore", {
+            context: "profile",
+          }),
           icon: "GraduationCap",
           route: "profile/ExploreScreen",
         },

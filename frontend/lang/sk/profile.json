@@ -12,6 +12,7 @@
     },
     "account": {
       "title": "Účet",
+      "profileDetails": "Údaje o profile",
       "preferences": "Preferencie",
       "changePassword": "Zmeniť heslo"
     },
@@ -22,7 +23,8 @@
     "other": {
       "title": "Ostatné",
       "language": "Jazyk",
-      "logout": "Odhlásiť sa"
+      "logout": "Odhlásiť sa",
+      "explore": "Preskúmať"
     }
   },
   "languages": {

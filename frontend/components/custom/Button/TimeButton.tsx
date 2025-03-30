@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { setTimer } from "@/store/workout";
 import { useWorkoutTimer } from "@/hooks/workouts";
+import { useTranslation } from "react-i18next";
 
 type ComponentProps = {
   id: number;
@@ -21,16 +22,14 @@ const TimeButton = (props: ComponentProps) => {
     (state: RootState) => state.workout,
   );
   const { startTimer, stopTimer } = useWorkoutTimer();
+  const { t } = useTranslation("workouts");
 
   const isCurrentWorkoutActive = isTimerActive && workout?.id === props.id;
   const isAnotherWorkoutActive = workout?.id !== props.id && workout?.timer > 0;
 
   const buttonStateHandler = async () => {
     if (isAnotherWorkoutActive) {
-      Alert.alert(
-        "Workout Active",
-        "Another workout is already active. Please finish or stop the current workout before starting a new one.",
-      );
+      Alert.alert(t("activeAlert.title"), t("activeAlert.description"));
       return;
     }
 

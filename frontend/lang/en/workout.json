@@ -83,6 +83,11 @@
     }
   },
 
+  "activeAlert": {
+    "title": "Active Workout",
+    "description": "You have an active workout. Please finish or stop the current workout before starting a new one."
+  },
+
   "search": {
     "title": "Exercises",
     "searchPlaceholder": "Search for exercises",
