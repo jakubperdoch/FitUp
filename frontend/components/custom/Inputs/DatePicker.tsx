@@ -53,6 +53,7 @@ const DatePickerComponent = ({ control }) => {
             <DatePicker
               date={date}
               mode="date"
+              theme={"light"}
               onDateChange={(value) => {
                 const selectedDate = new Date(value);
                 setDate(selectedDate);

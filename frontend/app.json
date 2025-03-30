@@ -33,7 +33,7 @@
     },
     "android": {
       "package": "com.jakubperdoch.FitUp",
-      "versionCode": 2
+      "versionCode": 4
     }
   }
 }

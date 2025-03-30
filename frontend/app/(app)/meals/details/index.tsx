@@ -116,13 +116,11 @@ const DetailsScreen = () => {
   }, [macrosData]);
 
   const confirmHandler = (meal) => {
-    // if (id) {
-    //   updateMeal(meal);
-    // } else {
-    //   addMeal(meal);
-    // }
-
-    macrosLimitCheck(meal);
+    if (id) {
+      updateMeal(meal);
+    } else {
+      addMeal(meal);
+    }
   };
 
   return (

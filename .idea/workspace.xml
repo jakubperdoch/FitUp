@@ -4,28 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="update: major update">
-      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Button/LanguageButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/lang/en/auth.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/lang/en/onboarding.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/lang/sk/auth.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/lang/sk/onboarding.json" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: onboarding translations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/layout/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignInScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/SignUpScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer1Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer1Screen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer2Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer2Screen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer3Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer3Screen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer4Screen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/Explainer4Screen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/explainers/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/explainers/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SelectingGoalsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SelectingGoalsScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/custom/Inputs/DatePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Inputs/DatePicker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Inputs/ValidationForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Inputs/ValidationForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/en/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/sk/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/sk/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,14 +220,6 @@
       <workItem from="1743174745289" duration="26199000" />
       <workItem from="1743291700442" duration="627000" />
       <workItem from="1743293949420" duration="8132000" />
-    </task>
-    <task id="LOCAL-00027" summary="add: Workout details additional features (delete,timer)">
-      <option name="closed" value="true" />
-      <created>1736883044816</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1736883044816</updated>
     </task>
     <task id="LOCAL-00028" summary="add: Add search engine &amp; search components for workouts">
       <option name="closed" value="true" />
@@ -630,7 +605,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743340016231</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="add: onboarding translations">
+      <option name="closed" value="true" />
+      <created>1743347791108</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1743347791108</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -654,7 +637,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: adding meals" />
     <MESSAGE value="fix: adding meals to database" />
     <MESSAGE value="add: updating meals" />
     <MESSAGE value="fix: workout active conditions" />
@@ -679,6 +661,7 @@
     <MESSAGE value="add: support for translations" />
     <MESSAGE value="add: translated dates" />
     <MESSAGE value="update: major update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: major update" />
+    <MESSAGE value="add: onboarding translations" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: onboarding translations" />
   </component>
 </project>
