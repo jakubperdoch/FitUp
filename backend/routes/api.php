@@ -84,6 +84,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/details', [UserController::class, 'userDetails'])->name('userDetails');
     Route::put('/user/biometrics', [UserController::class, 'updateUserBiometrics'])->name('updateUserBiometrics');
     Route::get('/user/biometrics', [UserController::class, 'getUserBiometrics'])->name('getUserBiometrics');
+    Route::get('/user/remaining-macros',[UserController::class, 'getRemainingMacros'])->name('getRemainingMacros');
 });
 
 

@@ -17,7 +17,6 @@ const RootPage = () => {
         await userToken;
         await chosenLanguage();
         await isFontLoading();
-        await logOut();
       } catch (e) {
         console.log(e);
       } finally {
