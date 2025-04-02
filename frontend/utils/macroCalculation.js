@@ -1,8 +1,6 @@
 export const calculateMacros = (age, gender, weight, height, goal) => {
   const activityFactor = 1.55;
 
-  console.log(age, gender, weight, height, goal);
-
   const BMR =
     gender === "male"
       ? 10 * weight + 6.25 * height - 5 * age + 5

@@ -87,7 +87,10 @@ const FoodCardComponent = ({
               >
                 {meal.name}
               </Text>
-              <Text className="font-poppins text-[#ADA4A5] font-sm ">
+              <Text
+                className="font-poppins text-[#ADA4A5] font-sm truncate max-w-40"
+                numberOfLines={1}
+              >
                 {meal.quantity} x {meal.serving_description}
               </Text>
             </View>

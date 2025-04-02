@@ -327,12 +327,12 @@ class MealController extends Controller
             'serving_id' => ['required', 'string', 'max:255'],
             'eaten_at' => ['required', 'string', 'max:255', Rule::in(['breakfast', 'morningSnack', 'lunch', 'afternoonSnack', 'dinner', 'lateNightSnack'])],
             'date' => ['required', 'date'],
-            'calories' => ['required', 'numeric'],
-            'protein' => ['required', 'numeric'],
-            'carbs' => ['required', 'numeric'],
-            'fat' => ['required', 'numeric'],
-            'fiber' => ['required', 'numeric'],
-            'sugar' => ['required', 'numeric'],
+            'calories' => ['numeric'],
+            'protein' => [ 'numeric'],
+            'carbs' => [ 'numeric'],
+            'fat' => ['numeric'],
+            'fiber' => ['numeric'],
+            'sugar' => ['numeric'],
         ]);
 
         if ($validator->fails()) {
@@ -353,12 +353,12 @@ class MealController extends Controller
             'serving_id' => $request->serving_id,
             'eaten_at' => $request->eaten_at,
             'date' => Carbon::parse($request->date)->format('Y-m-d'),
-            'calories' => $request->calories,
-            'protein' => $request->protein,
-            'carbs' => $request->carbs,
-            'fat' => $request->fat,
-            'fiber' => $request->fiber,
-            'sugar' => $request->sugar,
+            'calories' => $request->calories ?? 0,
+            'protein' => $request->protein ?? 0,
+            'carbs' => $request->carbs ?? 0,
+            'fat' => $request->fat ?? 0,
+            'fiber' => $request->fiber ?? 0,
+            'sugar' => $request->sugar ?? 0,
         ]);
 
         return response()->json([
