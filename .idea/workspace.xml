@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="update: small details in styling">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: warning when exceeded macros">
       <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/home/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/meals/details/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/ExploreScreen.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/en/meals.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/meals.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/sk/meals.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/sk/meals.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,15 +222,7 @@
       <workItem from="1743488669712" duration="2268000" />
       <workItem from="1743507368083" duration="972000" />
       <workItem from="1743511301261" duration="1949000" />
-      <workItem from="1743540429188" duration="18524000" />
-    </task>
-    <task id="LOCAL-00033" summary="add: disabled inputs when editing workout">
-      <option name="closed" value="true" />
-      <created>1737417441262</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1737417441262</updated>
+      <workItem from="1743540429188" duration="18569000" />
     </task>
     <task id="LOCAL-00034" summary="add: workout creation redux slice">
       <option name="closed" value="true" />
@@ -626,7 +608,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743628258358</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="add: warning when exceeded macros">
+      <option name="closed" value="true" />
+      <created>1743631099524</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1743631099524</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,7 +640,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: loading workout cards" />
     <MESSAGE value="add: loading workout in edit" />
     <MESSAGE value="add: uploading &amp; editing workouts" />
     <MESSAGE value="add: exercise search &amp; details controllers" />
@@ -675,6 +664,7 @@
     <MESSAGE value="add: update user details" />
     <MESSAGE value="add: macroCalculation.js implementation" />
     <MESSAGE value="update: small details in styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: small details in styling" />
+    <MESSAGE value="add: warning when exceeded macros" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: warning when exceeded macros" />
   </component>
 </project>
