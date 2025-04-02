@@ -43,6 +43,7 @@
   "preferences": {
     "title": "Preferences",
     "description": "Set your preferences",
+    "calculate": "Calculate",
 
     "calories": "Calories",
     "protein": "Protein",

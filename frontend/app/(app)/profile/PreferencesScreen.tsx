@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Input, InputField } from "@/components/ui/input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -14,6 +14,7 @@ import GradientButton from "@/components/custom/Button/GradientButton";
 import GenericIcon from "@/components/custom/Icon";
 import { useTranslation } from "react-i18next";
 import { shadows } from "@/styles/shadows";
+import { calculateMacros } from "@/utils/macroCalculation";
 
 const PreferencesScreen = () => {
   const { setNavbarTitle, setShowBackButton } = useLayout();
@@ -36,6 +37,11 @@ const PreferencesScreen = () => {
   } = useQuery({
     queryKey: ["userPreferences"],
     queryFn: () => apiFetch("/user/preferences"),
+  });
+
+  const { data: userBiometrics } = useQuery({
+    queryKey: ["userBiometrics"],
+    queryFn: () => apiFetch("/user/biometrics"),
   });
 
   const {
@@ -105,6 +111,31 @@ const PreferencesScreen = () => {
     updateUserPreferences(formData);
   };
 
+  const calculateHandler = (data: {
+    height: string;
+    weight: string;
+    gender: string;
+    goal: string;
+    age: number;
+  }) => {
+    const macros = calculateMacros(
+      data.age,
+      data.gender,
+      Number(data.weight),
+      Number(data.height),
+      data.goal,
+    );
+
+    reset({
+      calories: String(macros.calories),
+      protein: String(macros.protein),
+      carbs: String(macros.carbs),
+      fats: String(macros.fats),
+      sugar: String(macros.sugar),
+      fiber: String(macros.fiber),
+    });
+  };
+
   useEffect(() => {
     setNavbarTitle(t("profileCards.account.preferences"));
     setShowBackButton(true);
@@ -126,13 +157,24 @@ const PreferencesScreen = () => {
         <Spinner color={"#F77F00"} />
       ) : (
         <>
-          <View className="gap-1 px-7 mb-3">
-            <Text className="font-poppinsSemiBold text-xl">
-              {t("preferences.title", { context: "profile" })}
-            </Text>
-            <Text className="text-[#6B7280] font-poppins text-sm">
-              {t("preferences.description", { context: "profile" })}
-            </Text>
+          <View className="flex-row px-7 items-center justify-between">
+            <View className="gap-1  mb-3">
+              <Text className="font-poppinsSemiBold text-xl">
+                {t("preferences.title", { context: "profile" })}
+              </Text>
+              <Text className="text-[#6B7280] font-poppins text-sm">
+                {t("preferences.description", { context: "profile" })}
+              </Text>
+            </View>
+
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => calculateHandler(userBiometrics)}
+            >
+              <Text className="text-[#F77F00] font-poppins underline">
+                {t("preferences.calculate", { context: "profile" })}
+              </Text>
+            </TouchableOpacity>
           </View>
 
           <Animated.View
