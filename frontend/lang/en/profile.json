@@ -61,5 +61,18 @@
     "new": "New password",
     "confirm": "Confirm new password",
     "save": "Change password"
+  },
+
+  "biometrics": {
+    "title": "Profile details",
+    "description": "Set your profile details",
+    "save": "Save"
+  },
+
+  "goal": {
+    "placeholder": "Set your goal",
+    "lose": "Lose weight",
+    "maintain": "Maintain weight",
+    "gain": "Gain muscle"
   }
 }

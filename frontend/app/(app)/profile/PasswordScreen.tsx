@@ -72,7 +72,7 @@ const PasswordScreen = () => {
   );
 
   return (
-    <View className="gap-7 mt-5 px-7">
+    <View className="gap-5 mt-5 px-7">
       <View className="gap-1">
         <Text className="font-poppinsSemiBold text-xl">
           {t("password.title", { context: "profile" })}

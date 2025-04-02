@@ -4,21 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="update: onboarding process">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Exceptions/Handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/bootstrap/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/InformationScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SelectingGoalsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SelectingGoalsScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(auth)/register-process/SuccessScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Inputs/DatePicker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Inputs/DatePicker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Profile/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Profile/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/PasswordScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/PasswordScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/ProfileDetailsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/ProfileDetailsScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Inputs/Select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Inputs/Select.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lang/en/profile.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/profile.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,15 +226,7 @@
       <workItem from="1743488669712" duration="2268000" />
       <workItem from="1743507368083" duration="972000" />
       <workItem from="1743511301261" duration="1949000" />
-      <workItem from="1743540429188" duration="6819000" />
-    </task>
-    <task id="LOCAL-00029" summary="add: Add exercise selection in SearchPage">
-      <option name="closed" value="true" />
-      <created>1737044896746</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1737044896746</updated>
+      <workItem from="1743540429188" duration="12424000" />
     </task>
     <task id="LOCAL-00030" summary="add: Add exercise instruction details page">
       <option name="closed" value="true" />
@@ -629,7 +612,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743364073991</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="update: onboarding process">
+      <option name="closed" value="true" />
+      <created>1743606168392</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1743606168392</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -653,7 +644,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: adding meals to database" />
     <MESSAGE value="add: updating meals" />
     <MESSAGE value="fix: workout active conditions" />
     <MESSAGE value="add: backend structure for workoutPlans" />
@@ -678,6 +668,7 @@
     <MESSAGE value="update: major update" />
     <MESSAGE value="add: onboarding translations" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="update: onboarding process" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: onboarding process" />
   </component>
 </project>
