@@ -10,19 +10,17 @@ import InformationCardThird from "@/assets/images/information-card--third.svg";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
 import { router } from "expo-router";
 import { setGoal } from "@/store/user";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import CarouselCardComponent from "@/components/custom/Dashboard/CarouselCard";
-import { useAuth } from "@/context/AuthContext";
-import { RootState } from "@/store/store";
 import { useTranslation } from "react-i18next";
+import { useMutation } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
 
 const PAGE_WIDTH = Dimensions.get("window").width;
 type TAnimationStyle = (value: number) => AnimatedStyle<ViewStyle>;
 
 const SelectingGoalsScreen = () => {
   const dispatch = useDispatch();
-  const { addToken } = useAuth();
-  const user = useSelector((state: RootState) => state.user);
   const { t } = useTranslation("onboarding");
 
   const itemSize = 300;
@@ -83,6 +81,17 @@ const SelectingGoalsScreen = () => {
     setGoalIndex(index);
   };
 
+  const { mutate: addGoal } = useMutation({
+    mutationKey: ["setGoal"],
+    mutationFn: (goal: string) =>
+      apiFetch("/auth/add-goal", {
+        method: "POST",
+        body: {
+          goal,
+        },
+      }),
+  });
+
   const submitHandler = (formData: any) => {
     switch (formData) {
       case 0:
@@ -98,8 +107,8 @@ const SelectingGoalsScreen = () => {
         break;
     }
 
-    addToken(user.token);
     dispatch(setGoal(formData));
+    addGoal(formData);
     router.replace("/register-process/SuccessScreen");
   };
 

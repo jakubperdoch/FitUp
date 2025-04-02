@@ -12,7 +12,11 @@ const SuccessScreen = () => {
   const user = useSelector((state: RootState) => state.user);
   const { t } = useTranslation("onboarding");
 
-  const { mutate: finishAccount } = useMutation<string, Error, Partial<User>>({
+  const { mutate: finishAccount, error } = useMutation<
+    string,
+    Error,
+    Partial<User>
+  >({
     mutationFn: (data: Partial<User>) =>
       apiFetch("/auth/finish-account", {
         method: "POST",
@@ -48,6 +52,12 @@ const SuccessScreen = () => {
           {t("success.text")}
         </Text>
       </View>
+
+      {error && (
+        <Text className="font-poppins text-[#F77F00]">
+          {error instanceof Error ? error.message : String(error)}
+        </Text>
+      )}
 
       <View className="w-full mt-auto mb-6">
         <GradientButtonComponent

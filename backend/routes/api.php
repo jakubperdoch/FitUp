@@ -28,6 +28,7 @@ Route::prefix('auth')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::put('/change-password', [AuthController::class, 'changePassword'])->name('changePassword');
         Route::post('/finish-account', [AuthController::class, 'addAdditionalData'])->name('addAdditionalData');
+        Route::post('/add-goal', [AuthController::class, 'addGoal'])->name('addGoal');
     });
 });
 
@@ -81,7 +82,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/user/macros/update', [UserController::class, 'updateUserMacroPreferences'])->name('updateUserMacroPreferences');
     Route::put('/user/language/update', [UserController::class, 'updateUserLanguagePreference'])->name('updateUserLanguagePreference');
     Route::get('/user/details', [UserController::class, 'userDetails'])->name('userDetails');
-
+    Route::put('/user/biometrics', [UserController::class, 'updateUserBiometrics'])->name('updateUserBiometrics');
+    Route::get('/user/biometrics', [UserController::class, 'getUserBiometrics'])->name('getUserBiometrics');
 });
 
 

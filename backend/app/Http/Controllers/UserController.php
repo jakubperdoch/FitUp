@@ -101,5 +101,41 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function getUserBiometrics()
+    {
+        $user = auth()->user();
+
+        return response()->json([
+            'weight' => $user->weight,
+            'height' => $user->height,
+            'gender'=>$user->gender,
+            'goal'=>$user->goal,
+            'age' => Carbon::parse($user->birth_date)->age,
+        ]);
+
+    }
+
+    public function updateUserBiometrics(Request $request)
+    {
+        $user= $request->user();
+
+        $validator=Validator::make($request->all(),[
+            'gender' => ['string', 'max:255', Rule::in(['male', 'female', 'other'])],
+            'goal' => ['string', 'max:255', Rule::in(['lose', 'lean', 'gain'])],
+            'weight' => [ 'integer', 'max:255'],
+            'height' => ['integer', 'max:255'],
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(), 400);
+        }
+
+        $user->update($request->all());
+
+        return response()->json([
+            'message' => 'User Preferences updated',
+        ], 200);
+    }
+
 
 }

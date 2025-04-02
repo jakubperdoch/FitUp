@@ -10,22 +10,27 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { router } from "expo-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setGender,
-  setBirthDate,
   setHeight as setReduxHeight,
   setWeight as setReduxWeight,
 } from "@/store/user";
+import { useAuth } from "@/context/AuthContext";
 import { useResponsive } from "react-native-responsive-hook";
 import Animated, { ZoomIn } from "react-native-reanimated";
 import GenericIcon from "@/components/custom/Icon";
 import { useTranslation } from "react-i18next";
+import { RootState } from "@/store/store";
+import { useMutation } from "@tanstack/react-query";
+import apiFetch from "@/utils/apiFetch";
 
 const InformationScreen = () => {
   const dispatch = useDispatch();
   const { vh } = useResponsive();
   const { t } = useTranslation("onboarding");
+  const user = useSelector((state: RootState) => state.user);
+  const { addToken } = useAuth();
 
   const [currentWeightIndex, setCurrentWeightIndex] = useState(0);
   const [currentHeightIndex, setCurrentHeightIndex] = useState(0);
@@ -80,13 +85,36 @@ const InformationScreen = () => {
     resolver: yupResolver(informationSchema),
   });
 
+  const { mutate: setBiometrics, error } = useMutation({
+    mutationKey: ["setUserBiometrics"],
+    mutationFn: (data: {
+      weight: number;
+      height: number;
+      birth_date: string;
+    }) =>
+      apiFetch("/auth/set-user-biometrics", {
+        method: "POST",
+        body: {
+          birth_date: data.birth_date,
+          weight: data.weight,
+          height: data.height,
+        },
+      }),
+  });
+
   const watchedFields = watch(["gender", "birth", "weight", "height"]);
 
   const submitHandler = () => {
     dispatch(setGender(watchedFields[0]));
-    dispatch(setBirthDate(new Date(watchedFields[1]).toLocaleDateString()));
     dispatch(setReduxHeight(watchedFields[3]));
     dispatch(setReduxWeight(watchedFields[2]));
+    addToken(user.token);
+    setBiometrics({
+      weight: watchedFields[2],
+      height: watchedFields[3],
+      birth_date: new Date(watchedFields[1]).toLocaleDateString(),
+    });
+
     router.push("/register-process/SelectingGoalsScreen");
   };
 

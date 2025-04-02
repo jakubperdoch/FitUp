@@ -5,6 +5,8 @@ import ActionSheetComponent from "../ActionSheet";
 import { CalendarDays } from "lucide-react-native";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { setBirthDate } from "@/store/user";
 
 const DatePickerComponent = ({ control }) => {
   const [date, setDate] = useState(new Date());
@@ -13,6 +15,7 @@ const DatePickerComponent = ({ control }) => {
   const [showActionsheet, setshowActionsheet] = useState(false);
   const handleClose = () => setshowActionsheet(false);
   const { t } = useTranslation("onboarding");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setMinimumDate(
@@ -23,6 +26,12 @@ const DatePickerComponent = ({ control }) => {
   useEffect(() => {
     if (date && showActionsheet) {
       setStringDate(date ? date.toLocaleDateString("en-US") : "");
+    }
+  }, [date]);
+
+  useEffect(() => {
+    if (date) {
+      dispatch(setBirthDate(new Date(date).toLocaleDateString()));
     }
   }, [date]);
 
