@@ -4,8 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="add: warning when exceeded macros">
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: .env">
+      <change afterPath="$PROJECT_DIR$/backend/app/Models/Exercise/Muscle.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,15 +230,10 @@
       <workItem from="1743488669712" duration="2268000" />
       <workItem from="1743507368083" duration="972000" />
       <workItem from="1743511301261" duration="1949000" />
-      <workItem from="1743540429188" duration="18569000" />
-    </task>
-    <task id="LOCAL-00034" summary="add: workout creation redux slice">
-      <option name="closed" value="true" />
-      <created>1737669471183</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1737669471183</updated>
+      <workItem from="1743540429188" duration="19188000" />
+      <workItem from="1743639214440" duration="922000" />
+      <workItem from="1743661253097" duration="1338000" />
+      <workItem from="1743898078594" duration="2457000" />
     </task>
     <task id="LOCAL-00035" summary="add: starting to work on charts &amp; stats">
       <option name="closed" value="true" />
@@ -616,7 +619,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743631099524</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="fix: .env">
+      <option name="closed" value="true" />
+      <created>1743631121002</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1743631121002</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -640,7 +651,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: loading workout in edit" />
     <MESSAGE value="add: uploading &amp; editing workouts" />
     <MESSAGE value="add: exercise search &amp; details controllers" />
     <MESSAGE value="fix: active footer icon &amp; truncate title" />
@@ -665,6 +675,7 @@
     <MESSAGE value="add: macroCalculation.js implementation" />
     <MESSAGE value="update: small details in styling" />
     <MESSAGE value="add: warning when exceeded macros" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: warning when exceeded macros" />
+    <MESSAGE value="fix: .env" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: .env" />
   </component>
 </project>

@@ -118,7 +118,7 @@ class MealController extends Controller
 
     public function translateToEn($text)
     {
-        $authKey = '8605c424-1199-4c66-be40-0949548513b1:fx';
+        $authKey = '587e6406-ff60-45e4-826c-442c3822a4ad';
 
         $deeplClient = new \DeepL\DeepLClient($authKey);
 
@@ -130,7 +130,7 @@ class MealController extends Controller
     public function translate($text, $lang = 'sk')
     {
         if ($lang == 'sk') {
-            $authKey = '8605c424-1199-4c66-be40-0949548513b1:fx';
+            $authKey = '587e6406-ff60-45e4-826c-442c3822a4ad';
 
             $deeplClient = new \DeepL\DeepLClient($authKey);
 

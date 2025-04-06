@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Exercise\Exercise;
 use App\Models\Exercise\BodyPart;
+use App\Models\Exercise\Muscle;
 use App\Models\UserPreferences;
 use Illuminate\Http\Request;
 
@@ -21,19 +22,34 @@ class ExerciseController extends Controller
         ], 200);
     }
 
+    public function getMuscles()
+    {
+        $muscles = Muscle::all();
+
+        return response()->json([
+            'message' => 'Muscles retrieved',
+            'muscles' => $muscles
+        ], 200);
+    }
+
     public function getExercises(Request $request)
     {
         $query = $request->query();
-        $lang = UserPreferences::where('user_id', $request->user()->id)->first()->selected_language;
+        $userId = $request->user()->id;
 
-        $max_results = isset($query['max']) ? (int)$query['max'] : 10;
-        $search = $query['search'];
+        $lang = UserPreferences::where('user_id', $userId)->value('selected_language') ?? 'en';
 
-        if ($lang == 'sk') {
-            $search = $this->translateToEn($query['search']);
+        $max_results = isset($query['max']) ? (int) $query['max'] : 10;
+        $search = $query['search'] ?? '';
+
+
+        if ($lang == 'sk' && !empty($search)) {
+            $search = $this->translateToEn($search);
         }
 
-        $data = Exercise::where('name', 'like', '%' . $search . '%')->get();
+        $data = Exercise::where('name', 'like', '%' . $search . '%')
+            ->limit($max_results)
+            ->get();;
 
         if ($data->isEmpty()) {
             return response()->json([
@@ -42,29 +58,27 @@ class ExerciseController extends Controller
         }
 
         $exercises = $data->map(function ($exercise) use ($lang) {
-            $target_muscles = [$exercise->target_muscles];
-
             return [
                 'id' => $exercise->id,
                 'type' => 'exercise',
                 'exercise_id' => $exercise->exercise_id,
                 'name' => $this->translate($exercise->name, $lang),
-                'target_muscles' => $target_muscles,
+                'target_muscles' => [$exercise->target_muscles],
             ];
-        });
+        });;
 
 
         return response()->json([
             'message' => 'Exercises retrieved',
             'total_results' => $exercises->count(),
-            'exercises' => $exercises->take($max_results)
+            'exercises' => $exercises,
         ], 200);
 
     }
 
     public function translateToEn($text)
     {
-        $authKey = '8605c424-1199-4c66-be40-0949548513b1:fx';
+        $authKey = '587e6406-ff60-45e4-826c-442c3822a4ad';
 
         $deeplClient = new \DeepL\DeepLClient($authKey);
 
@@ -75,17 +89,16 @@ class ExerciseController extends Controller
 
     public function translate($text, $lang = 'sk')
     {
-        if ($lang == 'sk') {
-            $authKey = '8605c424-1199-4c66-be40-0949548513b1:fx';
-
-            $deeplClient = new \DeepL\DeepLClient($authKey);
-
-            $response = $deeplClient->translateText($text, 'EN', 'SK');
-
-            return $response->text;
-        } else {
+        if ($lang !== 'sk' || empty($text)) {
             return $text;
         }
+
+        return \Cache::remember("translation_en_to_sk_" . md5($text), 3600, function () use ($text) {
+            $authKey = '587e6406-ff60-45e4-826c-442c3822a4ad';
+            $deeplClient = new \DeepL\DeepLClient($authKey);
+            $response = $deeplClient->translateText($text, 'EN', 'SK');
+            return $response->text;
+        });return $text;
     }
 
     public function getExerciseDetails(Request $request)
