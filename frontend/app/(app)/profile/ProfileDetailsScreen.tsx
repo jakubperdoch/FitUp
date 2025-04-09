@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import ConversionInputComponent from "@/components/custom/Inputs/ConversionInput";
 import { Ruler, Weight } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -11,7 +11,8 @@ import GradientButton from "@/components/custom/Button/GradientButton";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
+import { useLayout } from "@/context/LayoutContext";
 
 const ProfileDetailsScreen = () => {
   const { t } = useTranslation(["onboarding", "profile"]);
@@ -21,6 +22,20 @@ const ProfileDetailsScreen = () => {
   const [heightMetric, setHeightMetric] = useState("cm");
   const [currentWeightIndex, setCurrentWeightIndex] = useState(0);
   const [currentHeightIndex, setCurrentHeightIndex] = useState(0);
+  const { setNavbarTitle, setShowBackButton } = useLayout();
+
+  useEffect(() => {
+    setNavbarTitle(t("biometrics.title", { ns: "profile" }));
+    setShowBackButton(true);
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        setShowBackButton(false);
+      };
+    }, []),
+  );
 
   const weightMetrics = ["kg", "lb"];
   const heightMetrics = ["cm", "in"];

@@ -28,42 +28,36 @@ const defaultMacroData = [
   {
     icon: icons.fire,
     title: "Calories",
-    size: 270,
     colors: ["#FF4747", "#FFBBBB", "#FFDEDE"],
     type: "calories",
   },
   {
     icon: icons.transFats,
     title: "Fats",
-    size: 250,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "fats",
   },
   {
     icon: icons.protein,
     title: "Protein",
-    size: 250,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "protein",
   },
   {
     icon: icons.carbohydrates,
     title: "Carbs",
-    size: 250,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "carbs",
   },
   {
     icon: icons.sugarCube,
     title: "Sugar",
-    size: 250,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "sugar",
   },
   {
     icon: icons.grain,
     title: "Fiber",
-    size: 250,
     colors: ["#FE9A05", "#F9CD8C", "#FFE4BC"],
     type: "fiber",
   },
@@ -125,8 +119,8 @@ const DashBoardComponent = ({ macros }: ComponentProps) => {
             type={dataCircle.type}
             title={dataCircle.title}
             value={dataCircle.value}
-            size={dataCircle.size}
             icon={dataCircle.icon}
+            circlesPerRow={3}
           />
         );
       })}

@@ -4,16 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix: .env">
-      <change afterPath="$PROJECT_DIR$/backend/app/Models/Exercise/Muscle.php" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="updates">
+      <change afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/SearchFilter.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/MealController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Models/Exercise/Exercise.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Models/Exercise/Exercise.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/ProfileDetailsScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/ProfileDetailsScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCircle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardCircle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Dashboard/DashboardPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/ui/input/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/ui/input/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,15 +240,10 @@
       <workItem from="1743540429188" duration="19188000" />
       <workItem from="1743639214440" duration="922000" />
       <workItem from="1743661253097" duration="1338000" />
-      <workItem from="1743898078594" duration="2457000" />
-    </task>
-    <task id="LOCAL-00035" summary="add: starting to work on charts &amp; stats">
-      <option name="closed" value="true" />
-      <created>1737678863221</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1737678863221</updated>
+      <workItem from="1743898078594" duration="6511000" />
+      <workItem from="1744146839592" duration="1465000" />
+      <workItem from="1744149513886" duration="262000" />
+      <workItem from="1744149781983" duration="6083000" />
     </task>
     <task id="LOCAL-00036" summary="fix">
       <option name="closed" value="true" />
@@ -627,7 +629,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743631121002</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="updates">
+      <option name="closed" value="true" />
+      <created>1743902072879</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1743902072879</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -651,7 +661,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: uploading &amp; editing workouts" />
     <MESSAGE value="add: exercise search &amp; details controllers" />
     <MESSAGE value="fix: active footer icon &amp; truncate title" />
     <MESSAGE value="add: exercise search &amp; adding them to workoutPlan" />
@@ -676,6 +685,7 @@
     <MESSAGE value="update: small details in styling" />
     <MESSAGE value="add: warning when exceeded macros" />
     <MESSAGE value="fix: .env" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: .env" />
+    <MESSAGE value="updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates" />
   </component>
 </project>

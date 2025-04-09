@@ -38,7 +38,6 @@ class ExerciseController extends Controller
         $userId = $request->user()->id;
 
         $lang = UserPreferences::where('user_id', $userId)->value('selected_language') ?? 'en';
-
         $max_results = isset($query['max']) ? (int) $query['max'] : 10;
         $search = $query['search'] ?? '';
 
@@ -47,17 +46,18 @@ class ExerciseController extends Controller
             $search = $this->translateToEn($search);
         }
 
-        $data = Exercise::where('name', 'like', '%' . $search . '%')
-            ->limit($max_results)
-            ->get();;
+        $results = !empty($search)
+            ? Exercise::search($search)->take($max_results)->get()
+            : Exercise::query()->limit($max_results)->get();
 
-        if ($data->isEmpty()) {
+        if ($results->isEmpty()) {
             return response()->json([
                 'message' => 'No exercises found for this muscle group',
             ], 404);
         }
 
-        $exercises = $data->map(function ($exercise) use ($lang) {
+
+        $exercises = $results->map(function ($exercise) use ($lang) {
             return [
                 'id' => $exercise->id,
                 'type' => 'exercise',
@@ -78,13 +78,12 @@ class ExerciseController extends Controller
 
     public function translateToEn($text)
     {
-        $authKey = '587e6406-ff60-45e4-826c-442c3822a4ad';
-
-        $deeplClient = new \DeepL\DeepLClient($authKey);
-
-        $response = $deeplClient->translateText($text, 'SK', 'En-US');
-
-        return $response->text;
+        return \Cache::remember("translation_sk_to_en_" . md5($text), 3600, function () use ($text) {
+            $authKey = '587e6406-ff60-45e4-826c-442c3822a4ad';
+            $deeplClient = new \DeepL\DeepLClient($authKey);
+            $response = $deeplClient->translateText($text, 'SK', 'EN-US');
+            return $response->text;
+        });
     }
 
     public function translate($text, $lang = 'sk')

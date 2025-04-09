@@ -12,7 +12,7 @@
       "backgroundColor": "#ffffff"
     },
     "newArchEnabled": true,
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,

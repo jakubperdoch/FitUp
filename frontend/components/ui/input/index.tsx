@@ -101,7 +101,7 @@ const inputStyle = tva({
   variants: {
     size: {
       xl: "h-16",
-      lg: "h-11",
+      lg: "h-14",
       md: "h-10",
       sm: "h-9",
     },
@@ -127,7 +127,7 @@ const inputIconStyle = tva({
       xs: "h-3.5 w-3.5",
       sm: "h-4 w-4",
       md: "h-[18px] w-[18px]",
-      lg: "h-5 w-5",
+      lg: "h-4 w-4",
       xl: "h-6 w-6",
     },
   },
@@ -152,7 +152,7 @@ const inputFieldStyle = tva({
       xs: "text-xs",
       sm: "text-sm",
       md: "text-base",
-      lg: "text-lg",
+      lg: "text-base",
       xl: "text-xl",
       "2xl": "text-2xl",
       "3xl": "text-3xl",

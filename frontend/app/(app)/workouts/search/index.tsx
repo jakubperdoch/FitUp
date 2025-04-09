@@ -10,6 +10,7 @@ import { useDebounce } from "@uidotdev/usehooks";
 import ExerciseScroll from "@/components/custom/Workouts/ExerciseScroll";
 import useExercises from "@/hooks/exercises";
 import { useTranslation } from "react-i18next";
+import SearchFilter from "@/components/custom/Workouts/Search/SearchFilter";
 
 interface FetchedExercises {
   exercises: Exercise[];
@@ -27,17 +28,21 @@ const WorkoutSearchPage = () => {
   const { handleSubmit, handleExerciseSelection, selectedExercises } =
     useExercises();
 
-  const { data, isFetching } = useQuery<FetchedExercises>({
-    queryKey: ["exercises", exerciseSearch, maxResults],
-    queryFn: () =>
-      apiFetch(`/exercises?search=${exerciseSearch}&max=${maxResults}`),
-  });
+  const { data, isFetching, isLoading, isPending } = useQuery<FetchedExercises>(
+    {
+      queryKey: ["exercises", exerciseSearch, maxResults],
+      queryFn: () =>
+        apiFetch(`/exercises?search=${exerciseSearch}&max=${maxResults}`),
+    },
+  );
 
   useEffect(() => {
     if (data) {
       setExerciseData((prev) => data?.exercises);
     }
   }, [data]);
+
+  const isFetchingExercises = isFetching || isLoading || isPending;
 
   const loadMore = useCallback(() => {
     if (!isFetching) {
@@ -53,32 +58,19 @@ const WorkoutSearchPage = () => {
   }, [exerciseSearch]);
 
   return (
-    <View className="flex-col gap-7 ">
-      <Input size="xl" variant="rounded" className="mx-7">
-        <InputSlot>
-          <GenericIcon name="Search" size={20} color="#7B6F72" />
-        </InputSlot>
-        <InputField
-          className="text-lg"
-          value={exerciseQuery}
-          onChangeText={setExerciseQuery}
-          type={"text"}
-          placeholder={t("search.searchPlaceholder", {
-            context: "workouts",
-          })}
-          placeholderTextColor={"#7B6F72"}
-          autoCapitalize="words"
-          autoCorrect={false}
-        />
-      </Input>
+    <View className="flex-col gap-7">
+      <SearchFilter
+        setExerciseQuery={setExerciseQuery}
+        exerciseQuery={exerciseQuery}
+      />
 
-      <View className="h-2/3">
+      <View className="h-3/5">
         <ExerciseScroll
           exercises={exerciseData}
           selectedExercises={selectedExercises}
           handleExerciseSelection={handleExerciseSelection}
           loadMore={loadMore}
-          isLoading={isFetching}
+          isLoading={isFetchingExercises}
         />
       </View>
 
