@@ -1,17 +1,16 @@
 import { useEffect } from "react";
 import { useExplainer } from "@/context/ExplainerContext";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Image } from "react-native";
+import { useTranslation } from "react-i18next";
 
 const ExplainerPageFour = () => {
   const { setExplainerTitle, setExplainerDescription, setExplainerImage } =
     useExplainer();
-  const insets = useSafeAreaInsets();
+  const { t } = useTranslation("onboarding");
+
   useEffect(() => {
-    setExplainerTitle("Improve Sleep  Quality");
-    setExplainerDescription(
-      "Improve the quality of your sleep with us, good quality sleep can bring a good mood in the morning",
-    );
+    setExplainerTitle(t("explainers4.title"));
+    setExplainerDescription(t("explainers4.text"));
   }, [setExplainerTitle, setExplainerDescription, setExplainerImage]);
 
   return (

@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import ActionSheetComponent from "../ActionSheet";
 import { CalendarDays } from "lucide-react-native";
 import { Controller } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { setBirthDate } from "@/store/user";
 
 const DatePickerComponent = ({ control }) => {
   const [date, setDate] = useState(new Date());
@@ -11,6 +14,8 @@ const DatePickerComponent = ({ control }) => {
   const [minumumDate, setMinimumDate] = useState(null);
   const [showActionsheet, setshowActionsheet] = useState(false);
   const handleClose = () => setshowActionsheet(false);
+  const { t } = useTranslation("onboarding");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setMinimumDate(
@@ -21,6 +26,12 @@ const DatePickerComponent = ({ control }) => {
   useEffect(() => {
     if (date && showActionsheet) {
       setStringDate(date ? date.toLocaleDateString("en-US") : "");
+    }
+  }, [date]);
+
+  useEffect(() => {
+    if (date) {
+      dispatch(setBirthDate(new Date(date).toLocaleDateString()));
     }
   }, [date]);
 
@@ -36,7 +47,7 @@ const DatePickerComponent = ({ control }) => {
             stringDate ? "opacity-100" : "opacity-40"
           } font-semibold font-poppins text-lg text-[#7B6F72]`}
         >
-          {stringDate ? stringDate : "Date of Birth"}
+          {stringDate ? stringDate : t("dateOfBirthPlaceholder")}
         </Text>
       </TouchableOpacity>
 
@@ -51,6 +62,7 @@ const DatePickerComponent = ({ control }) => {
             <DatePicker
               date={date}
               mode="date"
+              theme={"light"}
               onDateChange={(value) => {
                 const selectedDate = new Date(value);
                 setDate(selectedDate);

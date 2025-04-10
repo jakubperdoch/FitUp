@@ -44,5 +44,12 @@
     "message": "Naozaj chcete vymazať toto jedlo?",
     "cancel": "Zrušiť",
     "delete": "Vymazať"
+  },
+
+  "macroAlert": {
+    "title": "Upozornenie na makrá",
+    "message": "Naozaj si želáte pridať toto jedlo? Obsahuje veľa kalórií a nemusí zapadať do vašich denných makro cieľov.",
+    "cancelButton": "Zrušiť",
+    "confirmButton": "Pridať aj tak"
   }
 }

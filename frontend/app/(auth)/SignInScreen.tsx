@@ -13,6 +13,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "@/context/AuthContext";
 import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
 import GenericIcon from "@/components/custom/Icon";
+import LanguageButton from "@/components/custom/Button/LanguageButton";
+import { useTranslation } from "react-i18next";
 
 const SignInScreen = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -20,6 +22,7 @@ const SignInScreen = () => {
 
   const { logIn } = useAuth();
   const dispatch = useDispatch();
+  const { t } = useTranslation("auth");
 
   let userSchema = yup.object().shape({
     email: yup.string().required("Email is required").email("Invalid email"),
@@ -88,10 +91,10 @@ const SignInScreen = () => {
     <View className="flex flex-col gap-5 justify-center items-center px-5 h-full pb-3">
       <View className="d-flex items-center mb-6 mt-4">
         <Text className="text-2xl text-primary-500 font-poppins">
-          Hey there,
+          {t("welcomeMessage")}
         </Text>
         <Text className="text-3xl font-bold font-poppins mt-2">
-          Welcome Back
+          {t("loginTitle")}
         </Text>
       </View>
 
@@ -117,23 +120,27 @@ const SignInScreen = () => {
       <GradientButtonComponent
         size={"full"}
         handleSubmit={handleSubmit(submitHandler)}
-        title={"Login"}
+        title={t("loginButton", { ns: "auth" })}
       />
 
       <View className="w-full flex flex-row items-center justify-center gap-2 mt-2">
         <Divider />
-        <Text className="text-lg font-poppins">Or</Text>
+        <Text className="text-lg font-poppins">{t("or", { ns: "auth" })}</Text>
         <Divider />
       </View>
 
       <View className="flex flex-col gap-2 mt-5  items-center justify-center">
-        <Text className="text-lg font-poppins">Don't have an account?</Text>
+        <Text className="text-lg font-poppins">
+          {t("noAccount", { ns: "auth" })}
+        </Text>
         <TouchableOpacity onPress={() => router.push("/SignUpScreen")}>
           <Text className="font-poppins text-xl font-bold text-[#F77F00]">
-            Sign Up
+            {t("signUp", { ns: "auth" })}
           </Text>
         </TouchableOpacity>
       </View>
+
+      <LanguageButton />
     </View>
   );
 };

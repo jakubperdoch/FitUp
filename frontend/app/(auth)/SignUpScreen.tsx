@@ -14,6 +14,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "@/context/AuthContext";
 import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
 import GenericIcon from "@/components/custom/Icon";
+import LanguageButton from "@/components/custom/Button/LanguageButton";
+import { useTranslation } from "react-i18next";
 
 const SignUpScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,6 +23,7 @@ const SignUpScreen = () => {
 
   const { register } = useAuth();
   const dispatch = useDispatch();
+  const { t } = useTranslation("auth");
 
   let userSchema = yup.object().shape({
     name: yup.string().required("Name is required"),
@@ -95,10 +98,10 @@ const SignUpScreen = () => {
       <View className="flex-1 items-strech grow flex-col gap-5 justify-center items-center px-5 pb-3">
         <View className="items-center mb-6 mt-4">
           <Text className="text-2xl text-primary-500 font-poppins">
-            Hey there,
+            {t("welcomeMessage")}
           </Text>
           <Text className="text-3xl font-bold font-poppins mt-2">
-            Create an Account
+            {t("registerTitle")}
           </Text>
         </View>
 
@@ -125,27 +128,29 @@ const SignUpScreen = () => {
           <GradientButtonComponent
             size={"full"}
             handleSubmit={handleSubmit(submitHandler)}
-            title={"Register"}
+            title={t("registerButton")}
           />
         </View>
 
         <View className="w-full flex flex-row items-center justify-center gap-2 mt-2">
           <Divider />
-          <Text className="text-lg font-poppins">Or</Text>
+          <Text className="text-lg font-poppins"> {t("or")}</Text>
           <Divider />
         </View>
 
         <View className="flex flex-col gap-2  items-center justify-center">
-          <Text className="text-lg font-poppins">Already have an account?</Text>
+          <Text className="text-lg font-poppins"> {t("haveAccount")}</Text>
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => router.push("/SignInScreen")}
           >
             <Text className="text-xl font-poppins font-bold text-[#F77F00]">
-              Sign In
+              {t("signIn")}
             </Text>
           </TouchableOpacity>
         </View>
+
+        <LanguageButton />
       </View>
     </ScrollView>
   );

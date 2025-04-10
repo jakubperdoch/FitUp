@@ -78,10 +78,6 @@ const HomeScreen = () => {
     }
   }, [workoutsData]);
 
-  useEffect(() => {
-    console.log(workoutsError);
-  }, [workoutsError]);
-
   const workoutSelectHandler = useCallback(
     (id: number) => {
       {

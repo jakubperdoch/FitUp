@@ -33,10 +33,13 @@ export const workoutSlice = createSlice({
       if (!state.workout?.exercises) {
         state.workout.exercises = [];
       }
-      state.workout.exercises = action.payload;
+      state.workout.exercises.push(...action.payload);
     },
 
     addSuperset: (state, action: PayloadAction<Superset>) => {
+      if (!state.workout?.exercises) {
+        state.workout.exercises = [];
+      }
       state.workout.exercises.push(action.payload);
     },
 

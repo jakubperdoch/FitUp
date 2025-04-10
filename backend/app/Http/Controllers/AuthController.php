@@ -80,6 +80,8 @@ class AuthController extends Controller
         ], 200);
     }
 
+
+
     public function addAdditionalData(Request $request)
     {
 
@@ -88,7 +90,6 @@ class AuthController extends Controller
             'weight' => ['required', 'integer', 'max:255'],
             'height' => ['required', 'integer', 'max:255'],
             'gender' => ['required', 'string', 'max:255', Rule::in(['male', 'female', 'other'])],
-            'goal' => ['required', 'string', 'max:255', Rule::in(['lose', 'lean', 'gain'])],
         ]);
 
         if ($validator->fails()) {
@@ -102,13 +103,36 @@ class AuthController extends Controller
             'weight' => $request->weight,
             'height' => $request->height,
             'gender' => $request->gender,
-            'goal' => $request->goal,
-            'onboarding' => 'true',
         ]);
 
         return response()->json([
             'message' => 'Additional data added',
         ], 200);
+    }
+
+    public function addGoal()
+    {
+        $request = request();
+
+        $validator = Validator::make($request->all(), [
+            'goal' => ['required', 'string', 'max:255', Rule::in(['lose', 'lean', 'gain'])],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        };
+
+        $user = $request->user();
+
+        $user->update([
+            'goal' => $request->goal,
+            'onboarding' => 'true',
+        ]);
+
+        return response()->json([
+            'message' => 'Goal added',
+        ], 200);
+
     }
 
 

@@ -28,6 +28,7 @@ Route::prefix('auth')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::put('/change-password', [AuthController::class, 'changePassword'])->name('changePassword');
         Route::post('/finish-account', [AuthController::class, 'addAdditionalData'])->name('addAdditionalData');
+        Route::post('/add-goal', [AuthController::class, 'addGoal'])->name('addGoal');
     });
 });
 
@@ -63,6 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
 //exercise endpoints
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/exercises/body_parts', [ExerciseController::class, 'getBodyParts'])->name('getBodyParts');
+    Route::get('/exercises/muscles', [ExerciseController::class, 'getMuscles'])->name('getMuscles');
     Route::get('/exercises', [ExerciseController::class, 'getExercises'])->name('getExercises');
     Route::get('/exercises/{id}/details', [ExerciseController::class, 'getExerciseDetails'])->name('getExerciseDetails');
 });
@@ -81,7 +83,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/user/macros/update', [UserController::class, 'updateUserMacroPreferences'])->name('updateUserMacroPreferences');
     Route::put('/user/language/update', [UserController::class, 'updateUserLanguagePreference'])->name('updateUserLanguagePreference');
     Route::get('/user/details', [UserController::class, 'userDetails'])->name('userDetails');
-
+    Route::put('/user/biometrics', [UserController::class, 'updateUserBiometrics'])->name('updateUserBiometrics');
+    Route::get('/user/biometrics', [UserController::class, 'getUserBiometrics'])->name('getUserBiometrics');
+    Route::get('/user/remaining-macros',[UserController::class, 'getRemainingMacros'])->name('getRemainingMacros');
 });
 
 

@@ -1,0 +1,66 @@
+{
+  "explainers1": {
+    "title": "Define & Achieve Your Goals",
+    "text": "Struggling to set clear goals? FitUp helps you define achievable objectives and effortlessly tracks your progress towards success."
+  },
+
+  "explainers2": {
+    "title": "Effortless Food Tracking",
+    "text": "Easily track your daily meals with FitUp. Keeping tabs on your nutrition has never been simpler or more enjoyable!"
+  },
+
+  "explainers3": {
+    "title": "Feel the Burn & See Results",
+    "text": "Stay motivated with FitUp—every burn brings you closer to your goals. Temporary discomfort leads to lasting success."
+  },
+
+  "explainers4": {
+    "title": "Visualize Your Progress",
+    "text": "Track every step of your journey with FitUp and clearly see your progress, keeping you motivated to go even further."
+  },
+
+  "information": {
+    "title": "Track Your Goal",
+    "description": "Let’s complete your profile",
+    "text": "This helps us learn more about you!"
+  },
+
+  "genders": {
+    "placeholder": "Choose Gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other"
+  },
+
+  "dateOfBirthPlaceholder": "Date of Birth",
+  "weightPlaceholder": "Your Weight",
+  "heightPlaceholder": "Your Height",
+
+  "next": "Next",
+  "confirm": "Confirm",
+
+  "fatLoss": {
+    "title": "Fat Loss",
+    "description": "I want to lose body fat and build muscle definition"
+  },
+  "maintenance": {
+    "title": "Maintenance",
+    "description": "I want to maintain my current physique and overall health"
+  },
+  "muscleGain": {
+    "title": "Muscle Gain",
+    "description": "I want to build muscle mass and increase overall strength"
+  },
+
+  "selectingGoals": {
+    "title": "Select Your Goals",
+    "description": "Choose your primary goal to help us tailor your experience."
+  },
+
+  "success": {
+    "title": "Welcome in FitUp family!",
+    "text": "Your profile is complete. Now you can start tracking your progress and achieving your goals."
+  },
+
+  "welcome": "Welcome"
+}

@@ -16,8 +16,8 @@ import { Users } from "lucide-react-native";
 const SelectComponent = ({ control, options, placeholder, controllerName }) => {
   let lastIndexOfArray = options.length - 1;
 
-  const selectElement = (onChange) => (
-    <Select onValueChange={onChange} className="w-full">
+  const selectElement = (onChange, value = "gain") => (
+    <Select onValueChange={onChange} defaultValue={value} className="w-full">
       <SelectTrigger variant="rounded" size={"xl"}>
         <SelectInput placeholder={placeholder} />
         <SelectIcon as={Users} size={20} />
@@ -52,7 +52,9 @@ const SelectComponent = ({ control, options, placeholder, controllerName }) => {
     <Controller
       control={control}
       rules={{ required: true }}
-      render={({ field: { onChange } }) => selectElement(onChange)}
+      render={({ field: { onChange, value } }) =>
+        selectElement(onChange, value)
+      }
       name={controllerName}
     />
   ) : (

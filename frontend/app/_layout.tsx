@@ -12,6 +12,7 @@ import { store } from "@/store/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@/lang/i18n";
 const queryClient = new QueryClient();
+import "expo-dev-client";
 
 const RootLayout = () => {
   return (

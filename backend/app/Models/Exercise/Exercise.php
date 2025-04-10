@@ -3,10 +3,11 @@
 namespace App\Models\Exercise;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Exercise extends Model
 {
-
+    use Searchable;
     protected $table = 'exercises';
 
     protected $fillable = [
@@ -45,4 +46,14 @@ class Exercise extends Model
         });
     }
 
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'exercise_id' => $this->exercise_id,
+            'name' => $this->name,
+            'target_muscles' => $this->target_muscles,
+        ];
+    }
 }

@@ -43,11 +43,14 @@ const ProfileHeaderComponent = ({ user }: ComponentProps) => {
         <Text className="font-poppins text-[#7B6F72]">
           {user.userCredentials.email}
         </Text>
-        <Text className="font-poppins text-[#7B6F72] capitalize">
-          {t(`profileCards.profileDetails.goal.${user.goal.toLowerCase()}`, {
-            context: "profile",
-          })}
-        </Text>
+
+        {user?.goal && (
+          <Text className="font-poppins text-[#7B6F72] capitalize">
+            {t(`profileCards.profileDetails.goal.${user.goal.toLowerCase()}`, {
+              context: "profile",
+            })}
+          </Text>
+        )}
       </View>
     </View>
   );

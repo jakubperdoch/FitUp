@@ -1,5 +1,12 @@
 import { useFocusEffect, useLocalSearchParams } from "expo-router";
-import { Text, View, TouchableOpacity, Image, ScrollView } from "react-native";
+import {
+  Alert,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useCallback, useEffect, useState } from "react";
 import GenericIcon from "@/components/custom/Icon";
 import GradientButtonComponent from "@/components/custom/Button/GradientButton";
@@ -17,12 +24,21 @@ import useMeals from "@/hooks/meals";
 import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
 
+interface Macros {
+  calories: number;
+  carbs: number;
+  protein: number;
+  sugar: number;
+  fat: number;
+  fiber: number;
+}
+
 const DetailsScreen = () => {
   const { setShowFooter, setNavbarTitle, setShowBackButton } = useLayout();
   const insets = useSafeAreaInsets();
   const { id, date, food_id, eaten_at } = useLocalSearchParams();
   const { t } = useTranslation("meals");
-  const [macros, setMacros] = useState({});
+  const [macros, setMacros] = useState<Macros | null>(null);
 
   useEffect(() => {
     setShowFooter(false);
@@ -62,24 +78,31 @@ const DetailsScreen = () => {
     enabled: !!food_id,
   });
 
-  const {
-    data: macrosData,
-    isLoading: macrosLoading,
-    isFetching: macrosFetching,
-  } = useQuery({
-    queryKey: ["macros"],
-    queryFn: () =>
-      apiFetch("/stats/macros/today", {
-        method: "GET",
-      }),
+  const { data: remainingMacros, isLoading: isLoadingRemainings } = useQuery({
+    queryKey: ["remainingMacros"],
+    queryFn: () => apiFetch("/user/remaining-macros"),
+    enabled: !!food_id,
   });
 
   const macrosLimitCheck = (meal) => {
     if (macros) {
-      Object.keys(macros).forEach((key) => {
-        console.log(meal[key] <= macros[key]);
-        return meal[key] <= macros[key];
-      });
+      const { calories, carbs, protein, sugar, fat, fiber } = meal;
+
+      const isOverCalories = macros.calories < calories;
+      const isOverCarbs = macros.carbs < carbs;
+      const isOverProtein = macros.protein < protein;
+      const isOverSugar = macros.sugar < sugar;
+      const isOverFat = macros.fat < fat;
+      const isOverFiber = macros.fiber < fiber;
+
+      return (
+        isOverCalories ||
+        isOverCarbs ||
+        isOverProtein ||
+        isOverSugar ||
+        isOverFat ||
+        isOverFiber
+      );
     }
   };
 
@@ -97,6 +120,12 @@ const DetailsScreen = () => {
   }, [isLoading]);
 
   useEffect(() => {
+    if (remainingMacros) {
+      setMacros(remainingMacros?.remaining_macros);
+    }
+  }, [remainingMacros]);
+
+  useEffect(() => {
     if (data?.meal) {
       setSelectedTimeOfDay(
         partsOfDayData.find(
@@ -109,20 +138,32 @@ const DetailsScreen = () => {
     }
   }, [data]);
 
-  useEffect(() => {
-    if (macrosData?.values) {
-      setMacros(macrosData.values);
-    }
-  }, [macrosData]);
-
   const confirmHandler = (meal) => {
-    // if (id) {
-    //   updateMeal(meal);
-    // } else {
-    //   addMeal(meal);
-    // }
+    if (macrosLimitCheck(meal)) {
+      Alert.alert(t("macroAlert.title"), t("macroAlert.message"), [
+        {
+          text: t("macroAlert.cancelButton"),
+          style: "cancel",
+        },
+        {
+          text: t("macroAlert.confirmButton"),
+          onPress: () => {
+            if (id) {
+              updateMeal(meal);
+            } else {
+              addMeal(meal);
+            }
+          },
+        },
+      ]);
+      return;
+    }
 
-    macrosLimitCheck(meal);
+    if (id) {
+      updateMeal(meal);
+    } else {
+      addMeal(meal);
+    }
   };
 
   return (

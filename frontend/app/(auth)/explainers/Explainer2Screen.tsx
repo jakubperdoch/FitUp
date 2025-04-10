@@ -1,17 +1,16 @@
 import { useEffect } from "react";
 import { useExplainer } from "@/context/ExplainerContext";
 import { Image, StyleSheet } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 const ExplainerPageTwo = () => {
   const { setExplainerTitle, setExplainerDescription, setExplainerImage } =
     useExplainer();
-  const insets = useSafeAreaInsets();
+  const { t } = useTranslation("onboarding");
+
   useEffect(() => {
-    setExplainerTitle("Eat Well");
-    setExplainerDescription(
-      "Let's start a healthy lifestyle with us, we can determine your diet every day. healthy eating is fun",
-    );
+    setExplainerTitle(t("explainers3.title"));
+    setExplainerDescription(t("explainers3.text"));
   }, [setExplainerTitle, setExplainerDescription, setExplainerImage]);
 
   return (

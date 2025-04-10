@@ -78,20 +78,20 @@ const ProfileScreen = () => {
         },
       ],
     },
-    {
-      title: t("profileCards.notifications.title", {
-        context: "profile",
-      }),
-      links: [
-        {
-          title: t("profileCards.notifications.description", {
-            context: "profile",
-          }),
-          icon: "BellRing",
-          isSwitch: true,
-        },
-      ],
-    },
+    // {
+    //   title: t("profileCards.notifications.title", {
+    //     context: "profile",
+    //   }),
+    //   links: [
+    //     {
+    //       title: t("profileCards.notifications.description", {
+    //         context: "profile",
+    //       }),
+    //       icon: "BellRing",
+    //       isSwitch: true,
+    //     },
+    //   ],
+    // },
     {
       title: t("profileCards.other.title", {
         context: "profile",
@@ -103,14 +103,6 @@ const ProfileScreen = () => {
           }),
           icon: "Languages",
           route: "profile/LanguagesScreen",
-        },
-
-        {
-          title: t("profileCards.other.explore", {
-            context: "profile",
-          }),
-          icon: "GraduationCap",
-          route: "profile/ExploreScreen",
         },
       ],
     },

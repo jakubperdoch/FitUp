@@ -4,22 +4,26 @@
       "weight": "Váha",
       "height": "Výška",
       "age": "Vek",
+
       "goal": {
         "lose": "Schudnúť",
-        "lean": "Štíhle svaly",
-        "gain": "Budovať svaly"
+        "lean": "Udržať hmotnosť",
+        "gain": "Nabrať svaly"
       }
     },
+
     "account": {
       "title": "Účet",
-      "profileDetails": "Údaje o profile",
+      "profileDetails": "Detaily profilu",
       "preferences": "Preferencie",
       "changePassword": "Zmeniť heslo"
     },
+
     "notifications": {
-      "title": "Oznámenia",
-      "description": "Vyskakovacie oznámenia"
+      "title": "Notifikácie",
+      "description": "Upozornenia"
     },
+
     "other": {
       "title": "Ostatné",
       "language": "Jazyk",
@@ -27,16 +31,20 @@
       "explore": "Preskúmať"
     }
   },
+
   "languages": {
     "title": "Vyberte si preferovaný jazyk",
-    "description": "Vyberte si jazyk, ktorý chcete používať v aplikácii",
+    "description": "Vyberte jazyk, ktorý chcete používať v aplikácii",
     "english": "Angličtina",
     "slovak": "Slovenčina",
     "save": "Uložiť"
   },
+
   "preferences": {
     "title": "Preferencie",
     "description": "Nastavte si svoje preferencie",
+    "calculate": "Vypočítať",
+
     "calories": "Kalórie",
     "protein": "Bielkoviny",
     "carbs": "Sacharidy",
@@ -45,12 +53,27 @@
     "fiber": "Vláknina",
     "save": "Uložiť"
   },
+
   "password": {
-    "title": "Zmeniť heslo",
+    "title": "Zmena hesla",
     "description": "Zmeňte svoje heslo",
-    "current": "Súčasné heslo",
+
+    "current": "Aktuálne heslo",
     "new": "Nové heslo",
     "confirm": "Potvrďte nové heslo",
     "save": "Zmeniť heslo"
+  },
+
+  "biometrics": {
+    "title": "Detaily profilu",
+    "description": "Nastavte si detaily profilu",
+    "save": "Uložiť"
+  },
+
+  "goal": {
+    "placeholder": "Nastavte si cieľ",
+    "lose": "Schudnúť",
+    "maintain": "Udržať hmotnosť",
+    "gain": "Nabrať svaly"
   }
 }

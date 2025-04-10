@@ -1,5 +1,5 @@
 {
-  "meals": "meals",
+  "meals": "Meals",
   "meal": "meal",
   "categories": "Categories",
   "nutrition": "Nutrition",
@@ -44,5 +44,12 @@
     "message": "Do you really want to delete this meal?",
     "cancel": "Cancel",
     "delete": "Delete"
+  },
+
+  "macroAlert": {
+    "title": "Macro Alert",
+    "message": "Are you sure you want to add this meal? It contains a lot of calories and may not fit your daily macro goals.",
+    "cancelButton": "Cancel",
+    "confirmButton": "Add anyway"
   }
 }

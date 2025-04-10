@@ -1,9 +1,8 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Dimensions } from "react-native";
 import Svg, { Circle } from "react-native-svg";
 import Animated from "react-native-reanimated";
 import { useAnimatedProps, withTiming } from "react-native-reanimated";
 import { useEffect, useState } from "react";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -11,13 +10,20 @@ const DashBoardCircle = ({
   value,
   colorVariation,
   title,
-  size,
   icon,
   type,
+  circlesPerRow = 3,
 }) => {
+  const screenWidth = Dimensions.get("window").width;
+  const horizontalPadding = 32;
+  const gap = 16 * (circlesPerRow + 1);
+  const availableWidth = screenWidth - horizontalPadding - gap;
+
+  const containerSize = availableWidth / circlesPerRow;
+  const size = containerSize * 2.5;
   const strokeWidth = size / 40;
-  const circleLength = size;
-  const radius = circleLength / (2 * Math.PI);
+  const radius = size / (2 * Math.PI);
+
   const [progress, setProgress] = useState(value);
 
   useEffect(() => {
@@ -26,57 +32,52 @@ const DashBoardCircle = ({
 
   const animatedProps = useAnimatedProps(() => {
     return {
-      strokeDashoffset: withTiming(circleLength * progress),
+      strokeDashoffset: withTiming(size * progress),
     };
   });
 
-  const contentHandler = () => {
-    if (type === "calories") {
-      return (
-        <View className="absolute items-center gap-1">
-          <Image source={icon} className="h-10 w-10" />
-          <Text className="font-poppinsLight text-sm">{title}</Text>
-        </View>
-      );
-    } else {
-      return (
-        <View className="absolute items-center gap-1">
-          <Image source={icon} className="h-8 w-8" />
-          <Text className="font-poppinsLight text-xs">{title}</Text>
-        </View>
-      );
-    }
-  };
+  const contentHandler = () => (
+    <View className="absolute items-center gap-1">
+      <Image
+        source={icon}
+        style={{
+          width: type === "calories" ? 40 : 32,
+          height: type === "calories" ? 40 : 32,
+        }}
+      />
+      <Text className={`font-poppinsLight text-xs`}>{title}</Text>
+    </View>
+  );
 
   return (
     <View
-      className={`rounded-full relative items-center justify-center`}
+      className="rounded-full relative items-center justify-center"
       style={{
         backgroundColor: colorVariation[2],
-        height: size / 2.5,
-        width: size / 2.5,
+        height: containerSize,
+        width: containerSize,
       }}
     >
-      <Svg width={circleLength} height={circleLength}>
+      <Svg width={size} height={size}>
         <AnimatedCircle
           stroke={colorVariation[1]}
           fill="none"
-          cx={circleLength / 2}
-          cy={circleLength / 2}
+          cx={size / 2}
+          cy={size / 2}
           r={radius}
           strokeWidth={strokeWidth}
-          strokeLinecap={"round"}
+          strokeLinecap="round"
         />
         <AnimatedCircle
           stroke={colorVariation[0]}
           fill="none"
-          cx={circleLength / 2}
-          cy={circleLength / 2}
+          cx={size / 2}
+          cy={size / 2}
           r={radius}
           strokeWidth={strokeWidth}
-          strokeDasharray={circleLength}
+          strokeDasharray={size}
           animatedProps={animatedProps}
-          strokeLinecap={"round"}
+          strokeLinecap="round"
         />
       </Svg>
 

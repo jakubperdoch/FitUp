@@ -364,6 +364,7 @@ const useWorkoutDetails = () => {
               deletePlanWorkout({ id: workout?.id });
             } else {
               dispatch(resetExercises());
+              setData(null);
             }
           },
         },

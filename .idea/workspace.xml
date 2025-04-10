@@ -4,17 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="update: major update">
-      <change afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/ExploreScreen.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/ProfileDetailsScreen.tsx" afterDir="false" />
+    <list default="true" id="9eaeebe4-1dba-4f95-9dec-a88dcf4cab57" name="Changes" comment="fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/profile/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Button/TimeButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Stats/WorkoutStats.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/en/profile.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/profile.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/en/workout.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/en/workout.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/sk/profile.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/sk/profile.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/lang/sk/workout.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lang/sk/workout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/Http/Controllers/ExerciseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/scout.php" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/scout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app/(app)/workouts/search/instructions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/SearchFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/custom/Workouts/Search/SearchFilter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/hooks/exercises.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/exercises.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/hooks/workout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/hooks/workout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/store/workoutPlan.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/store/workoutPlan.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +94,7 @@
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;frontend&quot;,
     &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
     &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/jakubperdoch/Developer/FitUp/frontend/lang/en&quot;,
@@ -226,94 +226,19 @@
       <workItem from="1743174745289" duration="26199000" />
       <workItem from="1743291700442" duration="627000" />
       <workItem from="1743293949420" duration="8132000" />
-    </task>
-    <task id="LOCAL-00027" summary="add: Workout details additional features (delete,timer)">
-      <option name="closed" value="true" />
-      <created>1736883044816</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1736883044816</updated>
-    </task>
-    <task id="LOCAL-00028" summary="add: Add search engine &amp; search components for workouts">
-      <option name="closed" value="true" />
-      <created>1736980424312</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1736980424312</updated>
-    </task>
-    <task id="LOCAL-00029" summary="add: Add exercise selection in SearchPage">
-      <option name="closed" value="true" />
-      <created>1737044896746</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1737044896746</updated>
-    </task>
-    <task id="LOCAL-00030" summary="add: Add exercise instruction details page">
-      <option name="closed" value="true" />
-      <created>1737312603445</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1737312603445</updated>
-    </task>
-    <task id="LOCAL-00031" summary="add: workout creation process with redux">
-      <option name="closed" value="true" />
-      <created>1737403903886</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1737403903886</updated>
-    </task>
-    <task id="LOCAL-00032" summary="fix: workoutCreation redux slice">
-      <option name="closed" value="true" />
-      <created>1737415710635</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1737415710635</updated>
-    </task>
-    <task id="LOCAL-00033" summary="add: disabled inputs when editing workout">
-      <option name="closed" value="true" />
-      <created>1737417441262</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1737417441262</updated>
-    </task>
-    <task id="LOCAL-00034" summary="add: workout creation redux slice">
-      <option name="closed" value="true" />
-      <created>1737669471183</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1737669471183</updated>
-    </task>
-    <task id="LOCAL-00035" summary="add: starting to work on charts &amp; stats">
-      <option name="closed" value="true" />
-      <created>1737678863221</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1737678863221</updated>
-    </task>
-    <task id="LOCAL-00036" summary="fix">
-      <option name="closed" value="true" />
-      <created>1737678875601</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1737678875601</updated>
-    </task>
-    <task id="LOCAL-00037" summary="add: workout stats &amp; graph">
-      <option name="closed" value="true" />
-      <created>1737935477829</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1737935477829</updated>
+      <workItem from="1743413286096" duration="4280000" />
+      <workItem from="1743487368270" duration="15000" />
+      <workItem from="1743488669712" duration="2268000" />
+      <workItem from="1743507368083" duration="972000" />
+      <workItem from="1743511301261" duration="1949000" />
+      <workItem from="1743540429188" duration="19188000" />
+      <workItem from="1743639214440" duration="922000" />
+      <workItem from="1743661253097" duration="1338000" />
+      <workItem from="1743898078594" duration="6511000" />
+      <workItem from="1744146839592" duration="1465000" />
+      <workItem from="1744149513886" duration="262000" />
+      <workItem from="1744149781983" duration="6734000" />
+      <workItem from="1744243105773" duration="8562000" />
     </task>
     <task id="LOCAL-00038" summary="add: starting structure for diet stats">
       <option name="closed" value="true" />
@@ -619,7 +544,95 @@
       <option name="project" value="LOCAL" />
       <updated>1743340016231</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="add: onboarding translations">
+      <option name="closed" value="true" />
+      <created>1743347791108</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1743347791108</updated>
+    </task>
+    <task id="LOCAL-00077" summary="fix">
+      <option name="closed" value="true" />
+      <created>1743364073991</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1743364073991</updated>
+    </task>
+    <task id="LOCAL-00078" summary="update: onboarding process">
+      <option name="closed" value="true" />
+      <created>1743606168392</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1743606168392</updated>
+    </task>
+    <task id="LOCAL-00079" summary="add: update user details">
+      <option name="closed" value="true" />
+      <created>1743623328139</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1743623328139</updated>
+    </task>
+    <task id="LOCAL-00080" summary="add: macroCalculation.js implementation">
+      <option name="closed" value="true" />
+      <created>1743624423741</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1743624423741</updated>
+    </task>
+    <task id="LOCAL-00081" summary="update: small details in styling">
+      <option name="closed" value="true" />
+      <created>1743628258358</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1743628258358</updated>
+    </task>
+    <task id="LOCAL-00082" summary="add: warning when exceeded macros">
+      <option name="closed" value="true" />
+      <created>1743631099524</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1743631099524</updated>
+    </task>
+    <task id="LOCAL-00083" summary="fix: .env">
+      <option name="closed" value="true" />
+      <created>1743631121002</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1743631121002</updated>
+    </task>
+    <task id="LOCAL-00084" summary="updates">
+      <option name="closed" value="true" />
+      <created>1743902072879</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1743902072879</updated>
+    </task>
+    <task id="LOCAL-00085" summary="updates">
+      <option name="closed" value="true" />
+      <created>1744215272775</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1744215272775</updated>
+    </task>
+    <task id="LOCAL-00086" summary="fix">
+      <option name="closed" value="true" />
+      <created>1744215284925</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1744215284925</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -643,14 +656,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add: adding meals" />
-    <MESSAGE value="fix: adding meals to database" />
-    <MESSAGE value="add: updating meals" />
-    <MESSAGE value="fix: workout active conditions" />
-    <MESSAGE value="add: backend structure for workoutPlans" />
-    <MESSAGE value="add: loading workout cards" />
-    <MESSAGE value="add: loading workout in edit" />
-    <MESSAGE value="add: uploading &amp; editing workouts" />
     <MESSAGE value="add: exercise search &amp; details controllers" />
     <MESSAGE value="fix: active footer icon &amp; truncate title" />
     <MESSAGE value="add: exercise search &amp; adding them to workoutPlan" />
@@ -662,12 +667,20 @@
     <MESSAGE value="add: macro stats" />
     <MESSAGE value="fix: empty states" />
     <MESSAGE value="fix: android version permissions" />
-    <MESSAGE value="fix" />
     <MESSAGE value="add: i18n translations structure" />
     <MESSAGE value="add: translations for workout instruction pages" />
     <MESSAGE value="add: support for translations" />
     <MESSAGE value="add: translated dates" />
     <MESSAGE value="update: major update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: major update" />
+    <MESSAGE value="add: onboarding translations" />
+    <MESSAGE value="update: onboarding process" />
+    <MESSAGE value="add: update user details" />
+    <MESSAGE value="add: macroCalculation.js implementation" />
+    <MESSAGE value="update: small details in styling" />
+    <MESSAGE value="add: warning when exceeded macros" />
+    <MESSAGE value="fix: .env" />
+    <MESSAGE value="updates" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
 </project>

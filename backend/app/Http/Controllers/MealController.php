@@ -118,7 +118,7 @@ class MealController extends Controller
 
     public function translateToEn($text)
     {
-        $authKey = '8605c424-1199-4c66-be40-0949548513b1:fx';
+        $authKey = '587e6406-ff60-45e4-826c-442c3822a4ad';
 
         $deeplClient = new \DeepL\DeepLClient($authKey);
 
@@ -130,7 +130,7 @@ class MealController extends Controller
     public function translate($text, $lang = 'sk')
     {
         if ($lang == 'sk') {
-            $authKey = '8605c424-1199-4c66-be40-0949548513b1:fx';
+            $authKey = '587e6406-ff60-45e4-826c-442c3822a4ad';
 
             $deeplClient = new \DeepL\DeepLClient($authKey);
 
@@ -327,12 +327,12 @@ class MealController extends Controller
             'serving_id' => ['required', 'string', 'max:255'],
             'eaten_at' => ['required', 'string', 'max:255', Rule::in(['breakfast', 'morningSnack', 'lunch', 'afternoonSnack', 'dinner', 'lateNightSnack'])],
             'date' => ['required', 'date'],
-            'calories' => ['required', 'numeric'],
-            'protein' => ['required', 'numeric'],
-            'carbs' => ['required', 'numeric'],
-            'fat' => ['required', 'numeric'],
-            'fiber' => ['required', 'numeric'],
-            'sugar' => ['required', 'numeric'],
+            'calories' => ['numeric'],
+            'protein' => [ 'numeric'],
+            'carbs' => [ 'numeric'],
+            'fat' => ['numeric'],
+            'fiber' => ['numeric'],
+            'sugar' => ['numeric'],
         ]);
 
         if ($validator->fails()) {
@@ -353,12 +353,12 @@ class MealController extends Controller
             'serving_id' => $request->serving_id,
             'eaten_at' => $request->eaten_at,
             'date' => Carbon::parse($request->date)->format('Y-m-d'),
-            'calories' => $request->calories,
-            'protein' => $request->protein,
-            'carbs' => $request->carbs,
-            'fat' => $request->fat,
-            'fiber' => $request->fiber,
-            'sugar' => $request->sugar,
+            'calories' => $request->calories ?? 0,
+            'protein' => $request->protein ?? 0,
+            'carbs' => $request->carbs ?? 0,
+            'fat' => $request->fat ?? 0,
+            'fiber' => $request->fiber ?? 0,
+            'sugar' => $request->sugar ?? 0,
         ]);
 
         return response()->json([
