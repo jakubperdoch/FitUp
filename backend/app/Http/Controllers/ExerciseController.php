@@ -7,6 +7,8 @@ use App\Models\Exercise\Exercise;
 use App\Models\Exercise\BodyPart;
 use App\Models\Exercise\Muscle;
 use App\Models\UserPreferences;
+use Cache;
+use DeepL\DeepLClient;
 use Illuminate\Http\Request;
 
 class ExerciseController extends Controller
@@ -38,17 +40,28 @@ class ExerciseController extends Controller
         $userId = $request->user()->id;
 
         $lang = UserPreferences::where('user_id', $userId)->value('selected_language') ?? 'en';
-        $max_results = isset($query['max']) ? (int) $query['max'] : 10;
+        $max_results = isset($query['max']) ? (int)$query['max'] : 10;
         $search = $query['search'] ?? '';
+        $muscle = $query['muscle'] ?? null;
 
 
         if ($lang == 'sk' && !empty($search)) {
             $search = $this->translateToEn($search);
         }
 
-        $results = !empty($search)
-            ? Exercise::search($search)->take($max_results)->get()
-            : Exercise::query()->limit($max_results)->get();
+        $meiliResult = Exercise::search($search, function ($meilisearch, $query, $options) use ($muscle, $max_results) {
+            $options['limit'] = $max_results;
+
+            if ($muscle) {
+                $escapedMuscle = addslashes($muscle);
+                $options['filter'] = "target_muscles = '{$escapedMuscle}'";
+            }
+
+            return $meilisearch->search($query, $options);
+        });
+
+        $results = collect($meiliResult->raw()['hits']);
+        $totalHits = $meiliResult->raw()['estimatedTotalHits'] ?? $results->count();
 
         if ($results->isEmpty()) {
             return response()->json([
@@ -59,18 +72,18 @@ class ExerciseController extends Controller
 
         $exercises = $results->map(function ($exercise) use ($lang) {
             return [
-                'id' => $exercise->id,
+                'id' => $exercise['id'],
                 'type' => 'exercise',
-                'exercise_id' => $exercise->exercise_id,
-                'name' => $this->translate($exercise->name, $lang),
-                'target_muscles' => [$exercise->target_muscles],
+                'exercise_id' => $exercise['exercise_id'],
+                'name' => $this->translate($exercise['name'], $lang),
+                'target_muscle' => $exercise['target_muscles'],
             ];
-        });;
+        });
 
 
         return response()->json([
             'message' => 'Exercises retrieved',
-            'total_results' => $exercises->count(),
+            'total_results' => $totalHits,
             'exercises' => $exercises,
         ], 200);
 
@@ -78,9 +91,9 @@ class ExerciseController extends Controller
 
     public function translateToEn($text)
     {
-        return \Cache::remember("translation_sk_to_en_" . md5($text), 3600, function () use ($text) {
+        return Cache::remember("translation_sk_to_en_" . md5($text), 3600, function () use ($text) {
             $authKey = '587e6406-ff60-45e4-826c-442c3822a4ad';
-            $deeplClient = new \DeepL\DeepLClient($authKey);
+            $deeplClient = new DeepLClient($authKey);
             $response = $deeplClient->translateText($text, 'SK', 'EN-US');
             return $response->text;
         });
@@ -92,12 +105,13 @@ class ExerciseController extends Controller
             return $text;
         }
 
-        return \Cache::remember("translation_en_to_sk_" . md5($text), 3600, function () use ($text) {
+        return Cache::remember("translation_en_to_sk_" . md5($text), 3600, function () use ($text) {
             $authKey = '587e6406-ff60-45e4-826c-442c3822a4ad';
-            $deeplClient = new \DeepL\DeepLClient($authKey);
+            $deeplClient = new DeepLClient($authKey);
             $response = $deeplClient->translateText($text, 'EN', 'SK');
             return $response->text;
-        });return $text;
+        });
+        return $text;
     }
 
     public function getExerciseDetails(Request $request)

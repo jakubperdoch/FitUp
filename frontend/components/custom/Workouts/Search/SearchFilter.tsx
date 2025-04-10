@@ -12,10 +12,11 @@ import apiFetch from "@/utils/apiFetch";
 import { Spinner } from "@/components/ui/spinner";
 import { Input, InputField, InputSlot } from "@/components/ui/input";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 
 interface CategoryListProps {
   isExpanded: SharedValue<boolean>;
+  selectedMuscle: string | null;
+  setSelectedMuscle: (muscle: string) => void;
   viewKey: number;
   duration?: number;
   data?: any;
@@ -24,54 +25,15 @@ interface CategoryListProps {
 interface SearchFilterProps {
   exerciseQuery: string;
   setExerciseQuery: (query: string) => void;
+  selectedMuscle: string | null;
+  setSelectedMuscle: (muscle: string) => void;
 }
-
-export const CategoryList = ({
-  isExpanded,
-  viewKey,
-  duration = 300,
-  data,
-}: CategoryListProps) => {
-  const height = useSharedValue(0);
-
-  const derivedHeight = useDerivedValue(() =>
-    withTiming(height.value * Number(isExpanded.value), {
-      duration,
-    }),
-  );
-  const bodyStyle = useAnimatedStyle(() => ({
-    height: derivedHeight.value,
-  }));
-
-  return (
-    <Animated.View
-      key={`accordionItem_${viewKey}`}
-      style={bodyStyle}
-      className="w-full overflow-hidden "
-    >
-      <View
-        onLayout={(e) => {
-          height.value = e.nativeEvent.layout.height;
-        }}
-        className="absolute flex-row flex-wrap gap-2 px-7"
-      >
-        {data?.map((category) => (
-          <TouchableOpacity
-            key={category?.name}
-            activeOpacity={0.7}
-            className="bg-[#E5E6E6] px-3 py-1 rounded-xl"
-          >
-            <Text className="capitalize w-full">{category?.name}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-    </Animated.View>
-  );
-};
 
 const SearchFilter = ({
   setExerciseQuery,
   exerciseQuery,
+  selectedMuscle,
+  setSelectedMuscle,
 }: SearchFilterProps) => {
   const { t } = useTranslation("workouts");
   const isAccordionOpen = useSharedValue(false);
@@ -84,10 +46,6 @@ const SearchFilter = ({
     queryKey: ["categories"],
     queryFn: () => apiFetch("/exercises/muscles"),
   });
-
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
 
   const isLoadingOrFetching = isLoading || isFetching;
 
@@ -126,11 +84,63 @@ const SearchFilter = ({
       </View>
 
       <CategoryList
+        selectedMuscle={selectedMuscle}
+        setSelectedMuscle={setSelectedMuscle}
         data={data?.muscles}
         isExpanded={isAccordionOpen}
         viewKey={1}
       />
     </>
+  );
+};
+
+export const CategoryList = ({
+  selectedMuscle,
+  setSelectedMuscle,
+  isExpanded,
+  viewKey,
+  duration = 300,
+  data,
+}: CategoryListProps) => {
+  const height = useSharedValue(0);
+
+  const derivedHeight = useDerivedValue(() =>
+    withTiming(height.value * Number(isExpanded.value), {
+      duration,
+    }),
+  );
+  const bodyStyle = useAnimatedStyle(() => ({
+    height: derivedHeight.value,
+  }));
+
+  return (
+    <Animated.View
+      key={`accordionItem_${viewKey}`}
+      style={bodyStyle}
+      className="w-full overflow-hidden "
+    >
+      <View
+        onLayout={(e) => {
+          height.value = e.nativeEvent.layout.height;
+        }}
+        className="absolute flex-row flex-wrap gap-2 px-7"
+      >
+        {data?.map((category) => (
+          <TouchableOpacity
+            key={category?.name}
+            activeOpacity={0.7}
+            onPress={() => {
+              setSelectedMuscle(
+                selectedMuscle === category?.name ? null : category?.name,
+              );
+            }}
+            className={`bg-[#E5E6E6] px-4 py-2 rounded-3xl ${selectedMuscle === category?.name ? "bg-[#F77F00]" : ""}`}
+          >
+            <Text className="capitalize w-full">{category?.name}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </Animated.View>
   );
 };
 

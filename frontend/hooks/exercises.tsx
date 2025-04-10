@@ -23,16 +23,7 @@ const useExercises = () => {
 
   const handleSubmit = (params: any) => {
     if (params?.type === "exercise") {
-      if (exercises && exercises.length > 0) {
-        const isExercise = (ex: Exercise | Superset): ex is Exercise => {
-          return ex.type === "exercise";
-        };
-        const filteredExercises = exercises.filter(isExercise);
-
-        dispatch(setExercises([...filteredExercises, ...selectedExercises]));
-      } else {
-        dispatch(setExercises(selectedExercises));
-      }
+      dispatch(setExercises(selectedExercises));
     } else if (params?.type === "superset") {
       dispatch(
         addSuperset({

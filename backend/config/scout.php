@@ -143,6 +143,10 @@ return [
             // 'users' => [
             //     'filterableAttributes'=> ['id', 'name', 'email'],
             // ],
+            'exercises' => [
+                'filterableAttributes' => ['id', 'name', 'target_muscles'],
+                'searchableAttributes' => ['name'],
+            ],
         ],
     ],
 

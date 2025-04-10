@@ -19,26 +19,29 @@ interface FetchedExercises {
 
 const WorkoutSearchPage = () => {
   const [exerciseQuery, setExerciseQuery] = useState<string>("");
+  const [selectedMuscle, setSelectedMuscle] = useState<string | null>(null);
   const [maxResults, setMaxResults] = useState(10);
   const [exerciseData, setExerciseData] = useState([]);
   const { t } = useTranslation("workouts");
   const params = useLocalSearchParams();
-  const exerciseSearch = useDebounce(exerciseQuery, 100);
+  const exerciseSearch = useDebounce(exerciseQuery, 50);
 
   const { handleSubmit, handleExerciseSelection, selectedExercises } =
     useExercises();
 
   const { data, isFetching, isLoading, isPending } = useQuery<FetchedExercises>(
     {
-      queryKey: ["exercises", exerciseSearch, maxResults],
+      queryKey: ["exercises", exerciseSearch, maxResults, selectedMuscle],
       queryFn: () =>
-        apiFetch(`/exercises?search=${exerciseSearch}&max=${maxResults}`),
+        apiFetch(
+          `/exercises?search=${exerciseSearch}&max=${maxResults}${selectedMuscle !== null ? `&muscle=${selectedMuscle}` : ""}`,
+        ),
     },
   );
 
   useEffect(() => {
     if (data) {
-      setExerciseData((prev) => data?.exercises);
+      setExerciseData(data?.exercises);
     }
   }, [data]);
 
@@ -58,13 +61,15 @@ const WorkoutSearchPage = () => {
   }, [exerciseSearch]);
 
   return (
-    <View className="flex-col gap-7">
+    <View className="flex-col flex-1 gap-7">
       <SearchFilter
         setExerciseQuery={setExerciseQuery}
         exerciseQuery={exerciseQuery}
+        selectedMuscle={selectedMuscle}
+        setSelectedMuscle={setSelectedMuscle}
       />
 
-      <View className="h-3/5">
+      <View className="flex-1">
         <ExerciseScroll
           exercises={exerciseData}
           selectedExercises={selectedExercises}
@@ -74,7 +79,7 @@ const WorkoutSearchPage = () => {
         />
       </View>
 
-      <View className="px-7 w-full mt-4">
+      <View className="px-7 w-full mt-4 mb-20">
         <GradientButton
           disabled={
             params?.type === "superset"

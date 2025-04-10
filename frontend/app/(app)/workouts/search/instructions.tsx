@@ -41,16 +41,7 @@ const InstructionsPage = () => {
   });
 
   const handleAddExercise = (exercise: Exercise) => {
-    if (exercises && exercises.length > 0) {
-      const isExercise = (ex: Exercise | Superset): ex is Exercise => {
-        return ex.type === "exercise";
-      };
-      const filteredExercises = exercises.filter(isExercise);
-
-      dispatch(setExercises([...filteredExercises, exercise]));
-    } else {
-      dispatch(setExercises([exercise]));
-    }
+    dispatch(setExercises([exercise]));
 
     router.push({
       pathname: "/workouts/create",
