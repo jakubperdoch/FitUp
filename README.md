@@ -64,7 +64,7 @@ This runs the Laravel server at http://127.0.0.1:8000 by default.
 ### 5. Start the Frontend
 From the **frontend** directory:
 ```bash
-npm start
+npx expo start
 ```
 This launches the Expo development tools for running on an emulator or real device.
 
