@@ -19,7 +19,7 @@ FitUp is a fitness app built with **React Native (Expo)** and **Laravel** to hel
 ### Frontend
 - **React Native (Expo)** – Cross-platform mobile development made simpler.  
 - **React Navigation** – Easy handling of in-app navigation and stack management.  
-- **Axios** – Simplified HTTP requests and data fetching.  
+- **React Query & Axios** – Simplified HTTP requests and data fetching.  
 - **React Hook Form** – Manage form state and validation efficiently.  
 - **Day.js** – Lightweight date/time manipulation for schedules and logs.  
 - **Victory Native** – Generate charts and visualizations for monthly progress.  
